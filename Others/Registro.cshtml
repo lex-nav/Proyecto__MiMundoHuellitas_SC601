@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+}
+
+<div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+        <div class="card">
+            <div class="card-body">
+                <div class="app-brand justify-content-center">
+                    <a href="index.html" class="app-brand-link gap-2">
+                        <img src="~/StaticFiles/img/logo.png">
+                        <span class="app-brand-text demo text-body fw-bolder">Crear Cuenta</span>
+                    </a>
+                </div>
+
+                <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Identificación</label>
+                        <input type="text" class="form-control" id="username" name="username" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="username" name="username" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" />
+                    </div>
+                    <div class="mb-3 form-password-toggle">
+                        <label class="form-label" for="password">Contraseña</label>
+                        <div class="input-group input-group-merge">
+                            <input type="password" id="password" class="form-control" name="password" aria-describedby="password" />
+                            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary d-grid w-100">Procesar</button>
+                </form>
+
+                <p class="text-center">
+                    <span>Ya tienes una cuenta?</span>
+                    <a href="@Url.Action("Index","Home")">
+                        <span>Iniciar Sesión</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
