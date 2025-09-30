@@ -26,5 +26,13 @@ namespace MiMundoHuellitas.Controllers
 
             return View();
         }
+
+        [Authorize]
+        public ActionResult Privado()
+        {
+            ViewBag.Message = "Solo usuarios autenticados";
+            return View();
+        }
+
     }
 }

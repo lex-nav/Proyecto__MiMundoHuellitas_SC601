@@ -1,0 +1,34 @@
+﻿@{
+    Layout = null; // No hereda del layout interno
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MiMundoHuellitas</title>
+
+    <!-- CSS de Bootstrap -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <!-- CSS de la plantilla petsitting -->
+    <link href="~/StaticFiles/css/style.css" rel="stylesheet" />
+    <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
+
+    <!-- Iconos / fuentes -->
+    <link href="~/StaticFiles/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+    <!-- Aquí se renderizan las vistas (Login, Registro, Recuperar) -->
+    @RenderBody()
+
+    <!-- JS de la plantilla -->
+    <script src="~/StaticFiles/js/jquery.min.js"></script>
+    <script src="~/StaticFiles/js/bootstrap.bundle.min.js"></script>
+    <script src="~/StaticFiles/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
