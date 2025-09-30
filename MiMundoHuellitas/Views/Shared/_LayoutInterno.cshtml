@@ -4,28 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - MiMundoHuellitas</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body class="has-fixed-nav">
+    
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container">
+        <div class="container-fluid px-3">
+            
             @Html.ActionLink("MiMundoHuellitas", "Index", "Home", null, new { @class = "navbar-brand" })
 
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+            <button type="button" class="navbar-toggler"
+                    data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <!-- Menú a la izquierda -->
+                
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
 
-                <!-- Menú a la derecha -->
+                
                 <ul class="navbar-nav ms-auto">
                     @if (Request.IsAuthenticated)
                     {
@@ -47,17 +51,23 @@
         </div>
     </nav>
 
-    <div class="container body-content">
+    
+    @RenderSection("FullWidthTop", required: false)
+
+    
+    <main class="container-fluid body-content px-3">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="text-center">
             <p>&copy; @DateTime.Now.Year - MiMundoHuellitas</p>
         </footer>
-    </div>
+    </main>
+
+   
+    @RenderSection("FullWidthBottom", required: false)
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
