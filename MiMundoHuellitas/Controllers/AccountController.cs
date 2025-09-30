@@ -17,7 +17,7 @@ namespace MiMundoHuellitas.Controllers
         [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
         public ActionResult Login(string Email, string Password, bool RememberMe = false, string returnUrl = null)
         {
-            // DEMO (sin BD): cámbialo cuando integremos la tabla de usuarios
+            // DEMO (sin BD)
             bool esValido = ((Email == "admin@demo.com" || Email == "admin") && Password == "123456");
             if (!esValido)
             {
