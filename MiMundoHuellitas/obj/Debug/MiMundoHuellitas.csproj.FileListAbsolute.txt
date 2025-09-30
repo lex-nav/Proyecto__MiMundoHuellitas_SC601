@@ -156,3 +156,9 @@ C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.dll
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.pdb
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Helpers.resources.dll
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Mvc.resources.dll
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Razor.resources.dll
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.resources.dll
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.Razor.resources.dll

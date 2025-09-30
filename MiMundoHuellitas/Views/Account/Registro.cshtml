@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+    ViewBag.Title = "Crear Cuenta";
+}
+
+<div class="container" style="max-width:520px; margin-top:40px;">
+    <div class="card">
+        <div class="card-body">
+            <div class="text-center mb-3">
+                <img src="~/StaticFiles/img/Huellitas.png"
+                     alt="Mi Mundo Huellitas"
+                     style="max-width:120px; height:auto;" />
+
+                <h3 class="mt-2">Crear Cuenta</h3>
+            </div>
+
+            @if (TempData["RegisterError"] != null)
+            {
+                <div class="alert alert-danger">@TempData["RegisterError"]</div>
+            }
+            @if (TempData["RegisterOk"] != null)
+            {
+                <div class="alert alert-success">@TempData["RegisterOk"]</div>
+            }
+
+            @using (Html.BeginForm("Registro", "Account", FormMethod.Post, new { @class = "mb-3" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label class="form-label">Correo o Usuario</label>
+                    <input type="text" name="Email" class="form-control" placeholder="usuario@correo.com" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" name="Password" class="form-control" placeholder="********" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Confirmar contraseña</label>
+                    <input type="password" name="ConfirmPassword" class="form-control" placeholder="********" required />
+                </div>
+
+                <input type="hidden" name="AutoLogin" value="true" />
+
+                <button type="submit" class="btn btn-primary w-100">Crear cuenta</button>
+            }
+
+            <p class="text-center mt-3">
+                ¿Ya tienes cuenta?
+                <a href="@Url.Action("Login","Account")">Iniciar sesión</a>
+            </p>
+        </div>
+    </div>
+</div>
