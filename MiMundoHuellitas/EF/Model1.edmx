@@ -1,0 +1,1357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MiMundoHuellitasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MH_Canton_TB">
+          <Key>
+            <PropertyRef Name="IdCanton" />
+          </Key>
+          <Property Name="IdCanton" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
+          <Property Name="NombreCanton" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Cita_TB">
+          <Key>
+            <PropertyRef Name="IdCita" />
+          </Key>
+          <Property Name="IdCita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdMascota" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="FechaHoraCita" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="NotasCliente" Type="nvarchar" MaxLength="300" />
+          <Property Name="NotasInternas" Type="nvarchar" MaxLength="300" />
+          <Property Name="FechaCreacion" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="FechaActualiza" Type="datetime2" Precision="0" />
+        </EntityType>
+        <EntityType Name="MH_DetalleFactura_TB">
+          <Key>
+            <PropertyRef Name="IdDetalleFactura" />
+          </Key>
+          <Property Name="IdDetalleFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFactura" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="IdServicio" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Direccion_TB">
+          <Key>
+            <PropertyRef Name="IdDireccion" />
+          </Key>
+          <Property Name="IdDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDistrito" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CodigoPostal" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="MH_Distrito_TB">
+          <Key>
+            <PropertyRef Name="IdDistrito" />
+          </Key>
+          <Property Name="IdDistrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCanton" Type="int" Nullable="false" />
+          <Property Name="NombreDistrito" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Especie_TB">
+          <Key>
+            <PropertyRef Name="IdEspecie" />
+          </Key>
+          <Property Name="IdEspecie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEspecie" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Estado_TB">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEstado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoEntidad" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Factura_TB">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaFactura" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="MetodoPago" Type="nvarchar" MaxLength="40" />
+          <Property Name="NumeroReferencia" Type="nvarchar" MaxLength="80" />
+          <Property Name="MontoTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="MH_Mascotas_TB">
+          <Key>
+            <PropertyRef Name="IdMascota" />
+          </Key>
+          <Property Name="IdMascota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdEspecie" Type="int" Nullable="false" />
+          <Property Name="IdRaza" Type="int" />
+          <Property Name="NombreMascota" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Productos_TB">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProveedor" Type="int" />
+          <Property Name="NombreProducto" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="300" />
+          <Property Name="Categoria" Type="nvarchar" MaxLength="80" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StockActual" Type="int" Nullable="false" />
+          <Property Name="IdEstado" Type="int" />
+          <Property Name="ImagenUrl" Type="nvarchar" MaxLength="250" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Proveedor_TB">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreProveedor" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="120" />
+          <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Provincia_TB">
+          <Key>
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="IdProvincia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreProvincia" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Raza_TB">
+          <Key>
+            <PropertyRef Name="IdRaza" />
+          </Key>
+          <Property Name="IdRaza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEspecie" Type="int" Nullable="false" />
+          <Property Name="NombreRaza" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Servicios_Cita_TB">
+          <Key>
+            <PropertyRef Name="IdServicioCita" />
+          </Key>
+          <Property Name="IdServicioCita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCita" Type="int" Nullable="false" />
+          <Property Name="IdServicio" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Servicios_TB">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreServicio" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="300" />
+          <Property Name="Categoria" Type="nvarchar" MaxLength="80" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DuracionMin" Type="int" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Tipo_Usuario_TB">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreTipoUsuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Usuario_TB">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+          <Property Name="IdDireccion" Type="int" />
+          <Property Name="NombreCompleto" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="ContrasennaHash" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MH_Canton_Provincia">
+          <End Role="MH_Provincia_TB" Type="Self.MH_Provincia_TB" Multiplicity="1" />
+          <End Role="MH_Canton_TB" Type="Self.MH_Canton_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Provincia_TB">
+              <PropertyRef Name="IdProvincia" />
+            </Principal>
+            <Dependent Role="MH_Canton_TB">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_Estado">
+          <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Estado_TB">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_Mascota">
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdMascota" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_DetalleFactura_Factura">
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="1" />
+          <End Role="MH_DetalleFactura_TB" Type="Self.MH_DetalleFactura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Factura_TB">
+              <PropertyRef Name="IdFactura" />
+            </Principal>
+            <Dependent Role="MH_DetalleFactura_TB">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_DetalleFactura_Producto">
+          <End Role="MH_Productos_TB" Type="Self.MH_Productos_TB" Multiplicity="0..1" />
+          <End Role="MH_DetalleFactura_TB" Type="Self.MH_DetalleFactura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Productos_TB">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="MH_DetalleFactura_TB">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_DetalleFactura_Servicio">
+          <End Role="MH_Servicios_TB" Type="Self.MH_Servicios_TB" Multiplicity="0..1" />
+          <End Role="MH_DetalleFactura_TB" Type="Self.MH_DetalleFactura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Servicios_TB">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="MH_DetalleFactura_TB">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Direccion_Distrito">
+          <End Role="MH_Distrito_TB" Type="Self.MH_Distrito_TB" Multiplicity="1" />
+          <End Role="MH_Direccion_TB" Type="Self.MH_Direccion_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Distrito_TB">
+              <PropertyRef Name="IdDistrito" />
+            </Principal>
+            <Dependent Role="MH_Direccion_TB">
+              <PropertyRef Name="IdDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Distrito_Canton">
+          <End Role="MH_Canton_TB" Type="Self.MH_Canton_TB" Multiplicity="1" />
+          <End Role="MH_Distrito_TB" Type="Self.MH_Distrito_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Canton_TB">
+              <PropertyRef Name="IdCanton" />
+            </Principal>
+            <Dependent Role="MH_Distrito_TB">
+              <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Factura_Estado">
+          <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Estado_TB">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Factura_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Mascotas_Especie">
+          <End Role="MH_Especie_TB" Type="Self.MH_Especie_TB" Multiplicity="1" />
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Especie_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Principal>
+            <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Mascotas_Raza">
+          <End Role="MH_Raza_TB" Type="Self.MH_Raza_TB" Multiplicity="0..1" />
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Raza_TB">
+              <PropertyRef Name="IdRaza" />
+            </Principal>
+            <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdRaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Mascotas_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Productos_Estado">
+          <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="0..1" />
+          <End Role="MH_Productos_TB" Type="Self.MH_Productos_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Estado_TB">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="MH_Productos_TB">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Productos_Proveedor">
+          <End Role="MH_Proveedor_TB" Type="Self.MH_Proveedor_TB" Multiplicity="0..1" />
+          <End Role="MH_Productos_TB" Type="Self.MH_Productos_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Proveedor_TB">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="MH_Productos_TB">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Raza_Especie">
+          <End Role="MH_Especie_TB" Type="Self.MH_Especie_TB" Multiplicity="1" />
+          <End Role="MH_Raza_TB" Type="Self.MH_Raza_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Especie_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Principal>
+            <Dependent Role="MH_Raza_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Servicios_Cita_Cita">
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="1" />
+          <End Role="MH_Servicios_Cita_TB" Type="Self.MH_Servicios_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Cita_TB">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="MH_Servicios_Cita_TB">
+              <PropertyRef Name="IdCita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Servicios_Cita_Servicio">
+          <End Role="MH_Servicios_TB" Type="Self.MH_Servicios_TB" Multiplicity="1" />
+          <End Role="MH_Servicios_Cita_TB" Type="Self.MH_Servicios_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Servicios_TB">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="MH_Servicios_Cita_TB">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Usuario_Direccion">
+          <End Role="MH_Direccion_TB" Type="Self.MH_Direccion_TB" Multiplicity="0..1" />
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Direccion_TB">
+              <PropertyRef Name="IdDireccion" />
+            </Principal>
+            <Dependent Role="MH_Usuario_TB">
+              <PropertyRef Name="IdDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Usuario_TipoUsuario">
+          <End Role="MH_Tipo_Usuario_TB" Type="Self.MH_Tipo_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Tipo_Usuario_TB">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Principal>
+            <Dependent Role="MH_Usuario_TB">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiMundoHuellitasModelStoreContainer">
+          <EntitySet Name="MH_Canton_TB" EntityType="Self.MH_Canton_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Cita_TB" EntityType="Self.MH_Cita_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_DetalleFactura_TB" EntityType="Self.MH_DetalleFactura_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Direccion_TB" EntityType="Self.MH_Direccion_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Distrito_TB" EntityType="Self.MH_Distrito_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Especie_TB" EntityType="Self.MH_Especie_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Estado_TB" EntityType="Self.MH_Estado_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Factura_TB" EntityType="Self.MH_Factura_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Mascotas_TB" EntityType="Self.MH_Mascotas_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Productos_TB" EntityType="Self.MH_Productos_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Proveedor_TB" EntityType="Self.MH_Proveedor_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Provincia_TB" EntityType="Self.MH_Provincia_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Raza_TB" EntityType="Self.MH_Raza_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Servicios_Cita_TB" EntityType="Self.MH_Servicios_Cita_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Servicios_TB" EntityType="Self.MH_Servicios_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Usuario_TB" EntityType="Self.MH_Usuario_TB" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MH_Canton_Provincia" Association="Self.FK_MH_Canton_Provincia">
+            <End Role="MH_Provincia_TB" EntitySet="MH_Provincia_TB" />
+            <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_Estado" Association="Self.FK_MH_Cita_Estado">
+            <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_Mascota" Association="Self.FK_MH_Cita_Mascota">
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_Usuario" Association="Self.FK_MH_Cita_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_DetalleFactura_Factura" Association="Self.FK_MH_DetalleFactura_Factura">
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+            <End Role="MH_DetalleFactura_TB" EntitySet="MH_DetalleFactura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_DetalleFactura_Producto" Association="Self.FK_MH_DetalleFactura_Producto">
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+            <End Role="MH_DetalleFactura_TB" EntitySet="MH_DetalleFactura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_DetalleFactura_Servicio" Association="Self.FK_MH_DetalleFactura_Servicio">
+            <End Role="MH_Servicios_TB" EntitySet="MH_Servicios_TB" />
+            <End Role="MH_DetalleFactura_TB" EntitySet="MH_DetalleFactura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Direccion_Distrito" Association="Self.FK_MH_Direccion_Distrito">
+            <End Role="MH_Distrito_TB" EntitySet="MH_Distrito_TB" />
+            <End Role="MH_Direccion_TB" EntitySet="MH_Direccion_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Distrito_Canton" Association="Self.FK_MH_Distrito_Canton">
+            <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
+            <End Role="MH_Distrito_TB" EntitySet="MH_Distrito_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_Estado" Association="Self.FK_MH_Factura_Estado">
+            <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_Usuario" Association="Self.FK_MH_Factura_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Mascotas_Especie" Association="Self.FK_MH_Mascotas_Especie">
+            <End Role="MH_Especie_TB" EntitySet="MH_Especie_TB" />
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Mascotas_Raza" Association="Self.FK_MH_Mascotas_Raza">
+            <End Role="MH_Raza_TB" EntitySet="MH_Raza_TB" />
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Mascotas_Usuario" Association="Self.FK_MH_Mascotas_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Productos_Estado" Association="Self.FK_MH_Productos_Estado">
+            <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Productos_Proveedor" Association="Self.FK_MH_Productos_Proveedor">
+            <End Role="MH_Proveedor_TB" EntitySet="MH_Proveedor_TB" />
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Raza_Especie" Association="Self.FK_MH_Raza_Especie">
+            <End Role="MH_Especie_TB" EntitySet="MH_Especie_TB" />
+            <End Role="MH_Raza_TB" EntitySet="MH_Raza_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Servicios_Cita_Cita" Association="Self.FK_MH_Servicios_Cita_Cita">
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+            <End Role="MH_Servicios_Cita_TB" EntitySet="MH_Servicios_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Servicios_Cita_Servicio" Association="Self.FK_MH_Servicios_Cita_Servicio">
+            <End Role="MH_Servicios_TB" EntitySet="MH_Servicios_TB" />
+            <End Role="MH_Servicios_Cita_TB" EntitySet="MH_Servicios_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Usuario_Direccion" Association="Self.FK_MH_Usuario_Direccion">
+            <End Role="MH_Direccion_TB" EntitySet="MH_Direccion_TB" />
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Usuario_TipoUsuario" Association="Self.FK_MH_Usuario_TipoUsuario">
+            <End Role="MH_Tipo_Usuario_TB" EntitySet="MH_Tipo_Usuario_TB" />
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MiMundoHuellitasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MH_Canton_TB">
+          <Key>
+            <PropertyRef Name="IdCanton" />
+          </Key>
+          <Property Name="IdCanton" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+          <Property Name="NombreCanton" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MH_Provincia_TB" Relationship="Self.FK_MH_Canton_Provincia" FromRole="MH_Canton_TB" ToRole="MH_Provincia_TB" />
+          <NavigationProperty Name="MH_Distrito_TB" Relationship="Self.FK_MH_Distrito_Canton" FromRole="MH_Canton_TB" ToRole="MH_Distrito_TB" />
+        </EntityType>
+        <EntityType Name="MH_Cita_TB">
+          <Key>
+            <PropertyRef Name="IdCita" />
+          </Key>
+          <Property Name="IdCita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdMascota" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="FechaHoraCita" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NotasCliente" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="NotasInternas" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaActualiza" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Cita_Estado" FromRole="MH_Cita_TB" ToRole="MH_Estado_TB" />
+          <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Cita_Mascota" FromRole="MH_Cita_TB" ToRole="MH_Mascotas_TB" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Servicios_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Cita" FromRole="MH_Cita_TB" ToRole="MH_Servicios_Cita_TB" />
+        </EntityType>
+        <EntityType Name="MH_DetalleFactura_TB">
+          <Key>
+            <PropertyRef Name="IdDetalleFactura" />
+          </Key>
+          <Property Name="IdDetalleFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFactura" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" />
+          <Property Name="IdServicio" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_DetalleFactura_Factura" FromRole="MH_DetalleFactura_TB" ToRole="MH_Factura_TB" />
+          <NavigationProperty Name="MH_Productos_TB" Relationship="Self.FK_MH_DetalleFactura_Producto" FromRole="MH_DetalleFactura_TB" ToRole="MH_Productos_TB" />
+          <NavigationProperty Name="MH_Servicios_TB" Relationship="Self.FK_MH_DetalleFactura_Servicio" FromRole="MH_DetalleFactura_TB" ToRole="MH_Servicios_TB" />
+        </EntityType>
+        <EntityType Name="MH_Direccion_TB">
+          <Key>
+            <PropertyRef Name="IdDireccion" />
+          </Key>
+          <Property Name="IdDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDistrito" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MH_Distrito_TB" Relationship="Self.FK_MH_Direccion_Distrito" FromRole="MH_Direccion_TB" ToRole="MH_Distrito_TB" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Usuario_Direccion" FromRole="MH_Direccion_TB" ToRole="MH_Usuario_TB" />
+        </EntityType>
+        <EntityType Name="MH_Distrito_TB">
+          <Key>
+            <PropertyRef Name="IdDistrito" />
+          </Key>
+          <Property Name="IdDistrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCanton" Type="Int32" Nullable="false" />
+          <Property Name="NombreDistrito" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MH_Canton_TB" Relationship="Self.FK_MH_Distrito_Canton" FromRole="MH_Distrito_TB" ToRole="MH_Canton_TB" />
+          <NavigationProperty Name="MH_Direccion_TB" Relationship="Self.FK_MH_Direccion_Distrito" FromRole="MH_Distrito_TB" ToRole="MH_Direccion_TB" />
+        </EntityType>
+        <EntityType Name="MH_Especie_TB">
+          <Key>
+            <PropertyRef Name="IdEspecie" />
+          </Key>
+          <Property Name="IdEspecie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEspecie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Mascotas_Especie" FromRole="MH_Especie_TB" ToRole="MH_Mascotas_TB" />
+          <NavigationProperty Name="MH_Raza_TB" Relationship="Self.FK_MH_Raza_Especie" FromRole="MH_Especie_TB" ToRole="MH_Raza_TB" />
+        </EntityType>
+        <EntityType Name="MH_Estado_TB">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEstado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TipoEntidad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_Estado" FromRole="MH_Estado_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_Factura_Estado" FromRole="MH_Estado_TB" ToRole="MH_Factura_TB" />
+          <NavigationProperty Name="MH_Productos_TB" Relationship="Self.FK_MH_Productos_Estado" FromRole="MH_Estado_TB" ToRole="MH_Productos_TB" />
+        </EntityType>
+        <EntityType Name="MH_Factura_TB">
+          <Key>
+            <PropertyRef Name="IdFactura" />
+          </Key>
+          <Property Name="IdFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaFactura" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="MetodoPago" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroReferencia" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="MontoTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MH_DetalleFactura_TB" Relationship="Self.FK_MH_DetalleFactura_Factura" FromRole="MH_Factura_TB" ToRole="MH_DetalleFactura_TB" />
+          <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Factura_Estado" FromRole="MH_Factura_TB" ToRole="MH_Estado_TB" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Factura_TB" ToRole="MH_Usuario_TB" />
+        </EntityType>
+        <EntityType Name="MH_Mascotas_TB">
+          <Key>
+            <PropertyRef Name="IdMascota" />
+          </Key>
+          <Property Name="IdMascota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdEspecie" Type="Int32" Nullable="false" />
+          <Property Name="IdRaza" Type="Int32" />
+          <Property Name="NombreMascota" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_Mascota" FromRole="MH_Mascotas_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Especie_TB" Relationship="Self.FK_MH_Mascotas_Especie" FromRole="MH_Mascotas_TB" ToRole="MH_Especie_TB" />
+          <NavigationProperty Name="MH_Raza_TB" Relationship="Self.FK_MH_Mascotas_Raza" FromRole="MH_Mascotas_TB" ToRole="MH_Raza_TB" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Mascotas_TB" ToRole="MH_Usuario_TB" />
+        </EntityType>
+        <EntityType Name="MH_Productos_TB">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProveedor" Type="Int32" />
+          <Property Name="NombreProducto" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Categoria" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="PrecioUnitario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StockActual" Type="Int32" Nullable="false" />
+          <Property Name="IdEstado" Type="Int32" />
+          <Property Name="ImagenUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_DetalleFactura_TB" Relationship="Self.FK_MH_DetalleFactura_Producto" FromRole="MH_Productos_TB" ToRole="MH_DetalleFactura_TB" />
+          <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Productos_Estado" FromRole="MH_Productos_TB" ToRole="MH_Estado_TB" />
+          <NavigationProperty Name="MH_Proveedor_TB" Relationship="Self.FK_MH_Productos_Proveedor" FromRole="MH_Productos_TB" ToRole="MH_Proveedor_TB" />
+        </EntityType>
+        <EntityType Name="MH_Proveedor_TB">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreProveedor" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_Productos_TB" Relationship="Self.FK_MH_Productos_Proveedor" FromRole="MH_Proveedor_TB" ToRole="MH_Productos_TB" />
+        </EntityType>
+        <EntityType Name="MH_Provincia_TB">
+          <Key>
+            <PropertyRef Name="IdProvincia" />
+          </Key>
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreProvincia" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MH_Canton_TB" Relationship="Self.FK_MH_Canton_Provincia" FromRole="MH_Provincia_TB" ToRole="MH_Canton_TB" />
+        </EntityType>
+        <EntityType Name="MH_Raza_TB">
+          <Key>
+            <PropertyRef Name="IdRaza" />
+          </Key>
+          <Property Name="IdRaza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEspecie" Type="Int32" Nullable="false" />
+          <Property Name="NombreRaza" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MH_Especie_TB" Relationship="Self.FK_MH_Raza_Especie" FromRole="MH_Raza_TB" ToRole="MH_Especie_TB" />
+          <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Mascotas_Raza" FromRole="MH_Raza_TB" ToRole="MH_Mascotas_TB" />
+        </EntityType>
+        <EntityType Name="MH_Servicios_Cita_TB">
+          <Key>
+            <PropertyRef Name="IdServicioCita" />
+          </Key>
+          <Property Name="IdServicioCita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCita" Type="Int32" Nullable="false" />
+          <Property Name="IdServicio" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="PrecioUnitario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Subtotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Cita" FromRole="MH_Servicios_Cita_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Servicios_TB" Relationship="Self.FK_MH_Servicios_Cita_Servicio" FromRole="MH_Servicios_Cita_TB" ToRole="MH_Servicios_TB" />
+        </EntityType>
+        <EntityType Name="MH_Servicios_TB">
+          <Key>
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreServicio" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Categoria" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DuracionMin" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_DetalleFactura_TB" Relationship="Self.FK_MH_DetalleFactura_Servicio" FromRole="MH_Servicios_TB" ToRole="MH_DetalleFactura_TB" />
+          <NavigationProperty Name="MH_Servicios_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Servicio" FromRole="MH_Servicios_TB" ToRole="MH_Servicios_Cita_TB" />
+        </EntityType>
+        <EntityType Name="MH_Tipo_Usuario_TB">
+          <Key>
+            <PropertyRef Name="IdTipoUsuario" />
+          </Key>
+          <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreTipoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Usuario_TipoUsuario" FromRole="MH_Tipo_Usuario_TB" ToRole="MH_Usuario_TB" />
+        </EntityType>
+        <EntityType Name="MH_Usuario_TB">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdDireccion" Type="Int32" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContrasennaHash" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Direccion_TB" Relationship="Self.FK_MH_Usuario_Direccion" FromRole="MH_Usuario_TB" ToRole="MH_Direccion_TB" />
+          <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
+          <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Mascotas_TB" />
+          <NavigationProperty Name="MH_Tipo_Usuario_TB" Relationship="Self.FK_MH_Usuario_TipoUsuario" FromRole="MH_Usuario_TB" ToRole="MH_Tipo_Usuario_TB" />
+        </EntityType>
+        <Association Name="FK_MH_Canton_Provincia">
+          <End Role="MH_Provincia_TB" Type="Self.MH_Provincia_TB" Multiplicity="1" />
+          <End Role="MH_Canton_TB" Type="Self.MH_Canton_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Provincia_TB">
+              <PropertyRef Name="IdProvincia" />
+            </Principal>
+            <Dependent Role="MH_Canton_TB">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Distrito_Canton">
+          <End Role="MH_Canton_TB" Type="Self.MH_Canton_TB" Multiplicity="1" />
+          <End Role="MH_Distrito_TB" Type="Self.MH_Distrito_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Canton_TB">
+              <PropertyRef Name="IdCanton" />
+            </Principal>
+            <Dependent Role="MH_Distrito_TB">
+              <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_Estado">
+          <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Estado_TB">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_Mascota">
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdMascota" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Servicios_Cita_Cita">
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="1" />
+          <End Role="MH_Servicios_Cita_TB" Type="Self.MH_Servicios_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Cita_TB">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="MH_Servicios_Cita_TB">
+              <PropertyRef Name="IdCita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_DetalleFactura_Factura">
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="1" />
+          <End Role="MH_DetalleFactura_TB" Type="Self.MH_DetalleFactura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Factura_TB">
+              <PropertyRef Name="IdFactura" />
+            </Principal>
+            <Dependent Role="MH_DetalleFactura_TB">
+              <PropertyRef Name="IdFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_DetalleFactura_Producto">
+          <End Role="MH_Productos_TB" Type="Self.MH_Productos_TB" Multiplicity="0..1" />
+          <End Role="MH_DetalleFactura_TB" Type="Self.MH_DetalleFactura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Productos_TB">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="MH_DetalleFactura_TB">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_DetalleFactura_Servicio">
+          <End Role="MH_Servicios_TB" Type="Self.MH_Servicios_TB" Multiplicity="0..1" />
+          <End Role="MH_DetalleFactura_TB" Type="Self.MH_DetalleFactura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Servicios_TB">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="MH_DetalleFactura_TB">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Direccion_Distrito">
+          <End Role="MH_Distrito_TB" Type="Self.MH_Distrito_TB" Multiplicity="1" />
+          <End Role="MH_Direccion_TB" Type="Self.MH_Direccion_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Distrito_TB">
+              <PropertyRef Name="IdDistrito" />
+            </Principal>
+            <Dependent Role="MH_Direccion_TB">
+              <PropertyRef Name="IdDistrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Usuario_Direccion">
+          <End Role="MH_Direccion_TB" Type="Self.MH_Direccion_TB" Multiplicity="0..1" />
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Direccion_TB">
+              <PropertyRef Name="IdDireccion" />
+            </Principal>
+            <Dependent Role="MH_Usuario_TB">
+              <PropertyRef Name="IdDireccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Mascotas_Especie">
+          <End Role="MH_Especie_TB" Type="Self.MH_Especie_TB" Multiplicity="1" />
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Especie_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Principal>
+            <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Raza_Especie">
+          <End Role="MH_Especie_TB" Type="Self.MH_Especie_TB" Multiplicity="1" />
+          <End Role="MH_Raza_TB" Type="Self.MH_Raza_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Especie_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Principal>
+            <Dependent Role="MH_Raza_TB">
+              <PropertyRef Name="IdEspecie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Factura_Estado">
+          <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Estado_TB">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Productos_Estado">
+          <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="0..1" />
+          <End Role="MH_Productos_TB" Type="Self.MH_Productos_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Estado_TB">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="MH_Productos_TB">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Factura_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Mascotas_Raza">
+          <End Role="MH_Raza_TB" Type="Self.MH_Raza_TB" Multiplicity="0..1" />
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Raza_TB">
+              <PropertyRef Name="IdRaza" />
+            </Principal>
+            <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdRaza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Mascotas_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Productos_Proveedor">
+          <End Role="MH_Proveedor_TB" Type="Self.MH_Proveedor_TB" Multiplicity="0..1" />
+          <End Role="MH_Productos_TB" Type="Self.MH_Productos_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Proveedor_TB">
+              <PropertyRef Name="IdProveedor" />
+            </Principal>
+            <Dependent Role="MH_Productos_TB">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Servicios_Cita_Servicio">
+          <End Role="MH_Servicios_TB" Type="Self.MH_Servicios_TB" Multiplicity="1" />
+          <End Role="MH_Servicios_Cita_TB" Type="Self.MH_Servicios_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Servicios_TB">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="MH_Servicios_Cita_TB">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Usuario_TipoUsuario">
+          <End Role="MH_Tipo_Usuario_TB" Type="Self.MH_Tipo_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Tipo_Usuario_TB">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Principal>
+            <Dependent Role="MH_Usuario_TB">
+              <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_MiMundoHuellitasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MH_Canton_TB" EntityType="Self.MH_Canton_TB" />
+          <EntitySet Name="MH_Cita_TB" EntityType="Self.MH_Cita_TB" />
+          <EntitySet Name="MH_DetalleFactura_TB" EntityType="Self.MH_DetalleFactura_TB" />
+          <EntitySet Name="MH_Direccion_TB" EntityType="Self.MH_Direccion_TB" />
+          <EntitySet Name="MH_Distrito_TB" EntityType="Self.MH_Distrito_TB" />
+          <EntitySet Name="MH_Especie_TB" EntityType="Self.MH_Especie_TB" />
+          <EntitySet Name="MH_Estado_TB" EntityType="Self.MH_Estado_TB" />
+          <EntitySet Name="MH_Factura_TB" EntityType="Self.MH_Factura_TB" />
+          <EntitySet Name="MH_Mascotas_TB" EntityType="Self.MH_Mascotas_TB" />
+          <EntitySet Name="MH_Productos_TB" EntityType="Self.MH_Productos_TB" />
+          <EntitySet Name="MH_Proveedor_TB" EntityType="Self.MH_Proveedor_TB" />
+          <EntitySet Name="MH_Provincia_TB" EntityType="Self.MH_Provincia_TB" />
+          <EntitySet Name="MH_Raza_TB" EntityType="Self.MH_Raza_TB" />
+          <EntitySet Name="MH_Servicios_Cita_TB" EntityType="Self.MH_Servicios_Cita_TB" />
+          <EntitySet Name="MH_Servicios_TB" EntityType="Self.MH_Servicios_TB" />
+          <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" />
+          <EntitySet Name="MH_Usuario_TB" EntityType="Self.MH_Usuario_TB" />
+          <AssociationSet Name="FK_MH_Canton_Provincia" Association="Self.FK_MH_Canton_Provincia">
+            <End Role="MH_Provincia_TB" EntitySet="MH_Provincia_TB" />
+            <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Distrito_Canton" Association="Self.FK_MH_Distrito_Canton">
+            <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
+            <End Role="MH_Distrito_TB" EntitySet="MH_Distrito_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_Estado" Association="Self.FK_MH_Cita_Estado">
+            <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_Mascota" Association="Self.FK_MH_Cita_Mascota">
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_Usuario" Association="Self.FK_MH_Cita_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Servicios_Cita_Cita" Association="Self.FK_MH_Servicios_Cita_Cita">
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+            <End Role="MH_Servicios_Cita_TB" EntitySet="MH_Servicios_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_DetalleFactura_Factura" Association="Self.FK_MH_DetalleFactura_Factura">
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+            <End Role="MH_DetalleFactura_TB" EntitySet="MH_DetalleFactura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_DetalleFactura_Producto" Association="Self.FK_MH_DetalleFactura_Producto">
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+            <End Role="MH_DetalleFactura_TB" EntitySet="MH_DetalleFactura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_DetalleFactura_Servicio" Association="Self.FK_MH_DetalleFactura_Servicio">
+            <End Role="MH_Servicios_TB" EntitySet="MH_Servicios_TB" />
+            <End Role="MH_DetalleFactura_TB" EntitySet="MH_DetalleFactura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Direccion_Distrito" Association="Self.FK_MH_Direccion_Distrito">
+            <End Role="MH_Distrito_TB" EntitySet="MH_Distrito_TB" />
+            <End Role="MH_Direccion_TB" EntitySet="MH_Direccion_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Usuario_Direccion" Association="Self.FK_MH_Usuario_Direccion">
+            <End Role="MH_Direccion_TB" EntitySet="MH_Direccion_TB" />
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Mascotas_Especie" Association="Self.FK_MH_Mascotas_Especie">
+            <End Role="MH_Especie_TB" EntitySet="MH_Especie_TB" />
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Raza_Especie" Association="Self.FK_MH_Raza_Especie">
+            <End Role="MH_Especie_TB" EntitySet="MH_Especie_TB" />
+            <End Role="MH_Raza_TB" EntitySet="MH_Raza_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_Estado" Association="Self.FK_MH_Factura_Estado">
+            <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Productos_Estado" Association="Self.FK_MH_Productos_Estado">
+            <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_Usuario" Association="Self.FK_MH_Factura_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Mascotas_Raza" Association="Self.FK_MH_Mascotas_Raza">
+            <End Role="MH_Raza_TB" EntitySet="MH_Raza_TB" />
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Mascotas_Usuario" Association="Self.FK_MH_Mascotas_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Productos_Proveedor" Association="Self.FK_MH_Productos_Proveedor">
+            <End Role="MH_Proveedor_TB" EntitySet="MH_Proveedor_TB" />
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Servicios_Cita_Servicio" Association="Self.FK_MH_Servicios_Cita_Servicio">
+            <End Role="MH_Servicios_TB" EntitySet="MH_Servicios_TB" />
+            <End Role="MH_Servicios_Cita_TB" EntitySet="MH_Servicios_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Usuario_TipoUsuario" Association="Self.FK_MH_Usuario_TipoUsuario">
+            <End Role="MH_Tipo_Usuario_TB" EntitySet="MH_Tipo_Usuario_TB" />
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MiMundoHuellitasModelStoreContainer" CdmEntityContainer="BD_MiMundoHuellitasEntities">
+          <EntitySetMapping Name="MH_Canton_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Canton_TB">
+              <MappingFragment StoreEntitySet="MH_Canton_TB">
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="NombreCanton" ColumnName="NombreCanton" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Cita_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Cita_TB">
+              <MappingFragment StoreEntitySet="MH_Cita_TB">
+                <ScalarProperty Name="IdCita" ColumnName="IdCita" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdMascota" ColumnName="IdMascota" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="FechaHoraCita" ColumnName="FechaHoraCita" />
+                <ScalarProperty Name="NotasCliente" ColumnName="NotasCliente" />
+                <ScalarProperty Name="NotasInternas" ColumnName="NotasInternas" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualiza" ColumnName="FechaActualiza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_DetalleFactura_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_DetalleFactura_TB">
+              <MappingFragment StoreEntitySet="MH_DetalleFactura_TB">
+                <ScalarProperty Name="IdDetalleFactura" ColumnName="IdDetalleFactura" />
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Direccion_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Direccion_TB">
+              <MappingFragment StoreEntitySet="MH_Direccion_TB">
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="IdDistrito" ColumnName="IdDistrito" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Distrito_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Distrito_TB">
+              <MappingFragment StoreEntitySet="MH_Distrito_TB">
+                <ScalarProperty Name="IdDistrito" ColumnName="IdDistrito" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="NombreDistrito" ColumnName="NombreDistrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Especie_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Especie_TB">
+              <MappingFragment StoreEntitySet="MH_Especie_TB">
+                <ScalarProperty Name="IdEspecie" ColumnName="IdEspecie" />
+                <ScalarProperty Name="NombreEspecie" ColumnName="NombreEspecie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Estado_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Estado_TB">
+              <MappingFragment StoreEntitySet="MH_Estado_TB">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="NombreEstado" ColumnName="NombreEstado" />
+                <ScalarProperty Name="TipoEntidad" ColumnName="TipoEntidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Factura_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Factura_TB">
+              <MappingFragment StoreEntitySet="MH_Factura_TB">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="NumeroReferencia" ColumnName="NumeroReferencia" />
+                <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Mascotas_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Mascotas_TB">
+              <MappingFragment StoreEntitySet="MH_Mascotas_TB">
+                <ScalarProperty Name="IdMascota" ColumnName="IdMascota" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdEspecie" ColumnName="IdEspecie" />
+                <ScalarProperty Name="IdRaza" ColumnName="IdRaza" />
+                <ScalarProperty Name="NombreMascota" ColumnName="NombreMascota" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Productos_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Productos_TB">
+              <MappingFragment StoreEntitySet="MH_Productos_TB">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="ImagenUrl" ColumnName="ImagenUrl" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Proveedor_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Proveedor_TB">
+              <MappingFragment StoreEntitySet="MH_Proveedor_TB">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Provincia_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Provincia_TB">
+              <MappingFragment StoreEntitySet="MH_Provincia_TB">
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="NombreProvincia" ColumnName="NombreProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Raza_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Raza_TB">
+              <MappingFragment StoreEntitySet="MH_Raza_TB">
+                <ScalarProperty Name="IdRaza" ColumnName="IdRaza" />
+                <ScalarProperty Name="IdEspecie" ColumnName="IdEspecie" />
+                <ScalarProperty Name="NombreRaza" ColumnName="NombreRaza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Servicios_Cita_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Servicios_Cita_TB">
+              <MappingFragment StoreEntitySet="MH_Servicios_Cita_TB">
+                <ScalarProperty Name="IdServicioCita" ColumnName="IdServicioCita" />
+                <ScalarProperty Name="IdCita" ColumnName="IdCita" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Servicios_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Servicios_TB">
+              <MappingFragment StoreEntitySet="MH_Servicios_TB">
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="DuracionMin" ColumnName="DuracionMin" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Tipo_Usuario_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Tipo_Usuario_TB">
+              <MappingFragment StoreEntitySet="MH_Tipo_Usuario_TB">
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="NombreTipoUsuario" ColumnName="NombreTipoUsuario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Usuario_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Usuario_TB">
+              <MappingFragment StoreEntitySet="MH_Usuario_TB">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="ContrasennaHash" ColumnName="ContrasennaHash" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
