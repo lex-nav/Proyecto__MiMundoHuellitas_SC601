@@ -1,0 +1,12 @@
+﻿namespace MiMundoHuellitas.Models
+{
+    public class Servicios
+    {
+        public int ConsecutivoServicio { get; set; }
+        public string Servicio { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Precio { get; set; }
+        public int Duracion { get; set; }
+
+    }
+}

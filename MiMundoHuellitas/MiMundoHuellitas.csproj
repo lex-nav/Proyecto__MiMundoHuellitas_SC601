@@ -121,10 +121,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MascotaController.cs" />
+    <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Mascota.cs" />
+    <Compile Include="Models\Servicios.cs" />
     <Compile Include="Models\Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -258,9 +263,15 @@
     <Content Include="StaticFiles\fonts\flaticon\font\Flaticon.woff2" />
     <Content Include="StaticFiles\fonts\flaticon\font\_flaticon.scss" />
     <Content Include="StaticFiles\fonts\flaticon\license\license.pdf" />
+    <Content Include="Views\Mascota\VerMascotas.cshtml" />
+    <Content Include="Views\Mascota\AgregarMascota.cshtml" />
+    <Content Include="Views\Mascota\EditarMascota.cshtml" />
+    <Content Include="Views\Servicios\VerServicios.cshtml" />
+    <Content Include="Views\Servicios\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Citas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -1,22 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\",
+  "WorkspaceRootPath": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|e:\\ingenieria en sistemas\\6to cuatrimestre\\programacion avanzada sc-601\\mimundohuellitas\\mimundohuellitas\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\universidad\\repokn\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\views\\mascota\\agregarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\mascota\\agregarmascota.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|e:\\ingenieria en sistemas\\6to cuatrimestre\\programacion avanzada sc-601\\mimundohuellitas\\mimundohuellitas\\views\\shared\\_layoutinterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\shared\\_layoutinterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\universidad\\repokn\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\models\\mascota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\models\\mascota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|e:\\ingenieria en sistemas\\6to cuatrimestre\\programacion avanzada sc-601\\mimundohuellitas\\mimundohuellitas\\staticfiles\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\staticfiles\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|e:\\ingenieria en sistemas\\6to cuatrimestre\\programacion avanzada sc-601\\mimundohuellitas\\mimundohuellitas\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\universidad\\repokn\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_LayoutInterno.cshtml",
-              "DocumentMoniker": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "ToolTip": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "RelativeToolTip": "MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-30T21:38:36.004Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_ViewStart.cshtml",
-              "DocumentMoniker": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Views\\_ViewStart.cshtml",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\_ViewStart.cshtml",
-              "ToolTip": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Views\\_ViewStart.cshtml",
-              "RelativeToolTip": "MiMundoHuellitas\\Views\\_ViewStart.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-30T21:38:16.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Home\\Index.cshtml",
-              "ToolTip": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Views\\Home\\Index.cshtml*",
-              "RelativeToolTip": "MiMundoHuellitas\\Views\\Home\\Index.cshtml*",
-              "ViewState": "AgIAAOMCAAAAAAAAAAAUwBMDAACAAAAAAAAAAA==",
+              "Title": "AgregarMascota.cshtml",
+              "DocumentMoniker": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Mascota\\AgregarMascota.cshtml",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Mascota\\AgregarMascota.cshtml",
+              "ToolTip": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Mascota\\AgregarMascota.cshtml",
+              "RelativeToolTip": "MiMundoHuellitas\\Views\\Mascota\\AgregarMascota.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADMAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-30T21:24:48.469Z",
+              "WhenOpened": "2025-11-17T03:08:52.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Mascota.cs",
+              "DocumentMoniker": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\models\\Mascota.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\models\\Mascota.cs",
+              "ToolTip": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\models\\Mascota.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\models\\Mascota.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T02:08:35.332Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "style.css",
-              "DocumentMoniker": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\StaticFiles\\CSS\\style.css",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\StaticFiles\\CSS\\style.css",
-              "ToolTip": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\StaticFiles\\CSS\\style.css",
-              "RelativeToolTip": "MiMundoHuellitas\\StaticFiles\\CSS\\style.css",
-              "ViewState": "AgIAABgmAAAAAAAAAAAowCgmAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-09-30T21:27:16.2Z",
+              "Title": "MascotaController.cs",
+              "DocumentMoniker": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "ToolTip": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T02:05:33.755Z",
               "EditorCaption": ""
             }
           ]

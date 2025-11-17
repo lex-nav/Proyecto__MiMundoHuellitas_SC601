@@ -1,0 +1,54 @@
+﻿@model MiMundoHuellitas.Models.Mascota
+@{
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<div class="col-xl-6">
+    <!-- HTML5 Inputs -->
+    <div class="card mb-4">
+        <h5 class="card-header">Agregar Mascota</h5>
+        <div class="card-body">
+            <div class="mb-3 row">
+                <label for="html5-text-input" class="col-md-2 col-form-label">Consecutivo Mascota</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" value="" id="html5-text-input" />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="html5-search-input" class="col-md-2 col-form-label">Nombre</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="search" value="" id="html5-search-input" />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="html5-email-input" class="col-md-2 col-form-label">Tipo</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="email" value="" id="html5-email-input" />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="html5-tel-input" class="col-md-2 col-form-label">Raza</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="tel" value="" id="html5-tel-input" />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="html5-number-input" class="col-md-2 col-form-label">Edad</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="number" value="" id="html5-number-input" />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="estado" class="col-md-2 col-form-label">Estado</label>
+                <div class="col-md-10">
+                    <select class="form-select" id="estado" name="Estado">
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Agregar Mascota</button>
+            </div>
+        </div>
+    </div>
