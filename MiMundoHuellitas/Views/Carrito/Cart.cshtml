@@ -1,0 +1,62 @@
+﻿@model List<MiMundoHuellitas.Models.CarritoItemViewModel>
+
+@{
+    ViewBag.Title = "Carrito de compras";
+    var total = Model.Sum(i => i.Subtotal);
+}
+
+<h2>Carrito de compras</h2>
+
+@if (!Model.Any())
+{
+    <p>Tu carrito está vacío.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cant.</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NombreProducto</td>
+                    <td>
+                        @using (Html.BeginForm("ActualizarCantidad", "Carrito", FormMethod.Post, new { @class = "d-flex" }))
+                        {
+                            @Html.Hidden("idProducto", item.IdProducto)
+                            <input type="number" name="cantidad" value="@item.Cantidad" min="1"
+                                   class="form-control" style="max-width:80px;" />
+                            <button type="submit" class="btn btn-sm btn-secondary ms-2">
+                                Actualizar
+                            </button>
+                        }
+                    </td>
+                    <td>@item.PrecioUnitario.ToString("C")</td>
+                    <td>@item.Subtotal.ToString("C")</td>
+                    <td>
+                        @using (Html.BeginForm("Eliminar", "Carrito", FormMethod.Post))
+                        {
+                            @Html.Hidden("idProducto", item.IdProducto)
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                Eliminar
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Total: @total.ToString("C")</h4>
+
+    @Html.ActionLink("Continuar con la compra", "Checkout", "Carrito", null,
+                     new { @class = "btn btn-success" })
+}

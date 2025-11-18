@@ -1,0 +1,59 @@
+﻿@model MiMundoHuellitas.Models.CheckoutViewModel
+
+@{
+    ViewBag.Title = "Confirmar compra";
+}
+
+<h2>Confirmar compra</h2>
+
+@using (Html.BeginForm("Checkout", "Carrito", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label class="form-label">Correo electrónico</label>
+        @Html.TextBoxFor(m => m.CorreoCliente, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Método de pago</label>
+        @Html.TextBoxFor(m => m.MetodoPago, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Número de referencia</label>
+        @Html.TextBoxFor(m => m.NumeroReferencia, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Observaciones</label>
+        @Html.TextAreaFor(m => m.Observaciones, new { @class = "form-control" })
+    </div>
+
+    <h4>Resumen</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cant.</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.NombreProducto</td>
+                    <td>@item.Cantidad</td>
+                    <td>@item.PrecioUnitario.ToString("C")</td>
+                    <td>@item.Subtotal.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Total: @Model.MontoTotal.ToString("C")</h4>
+
+    <button type="submit" class="btn btn-primary">Finalizar compra</button>
+}

@@ -1,0 +1,73 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.PerfilViewModel
+@{
+    ViewBag.Title = "Mi perfil";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Mi perfil</h5>
+                </div>
+                <div class="card-body">
+
+                    @if (TempData["PerfilOk"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["PerfilOk"]
+                        </div>
+                    }
+
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Nombre</dt>
+                        <dd class="col-sm-8">@Model.Nombre</dd>
+
+                        <dt class="col-sm-4">Correo</dt>
+                        <dd class="col-sm-8">@Model.Correo</dd>
+
+                        <dt class="col-sm-4">Teléfono</dt>
+                        <dd class="col-sm-8">@Model.Telefono</dd>
+
+                        <dt class="col-sm-4">Dirección</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrWhiteSpace(Model.DireccionDetalle))
+                            {
+                                @Model.DireccionDetalle
+                            }
+                            else
+                            {
+                                <span class="text-muted">Sin dirección registrada</span>
+                            }
+                        </dd>
+
+                        @if (!string.IsNullOrWhiteSpace(Model.CodigoPostal))
+                        {
+                            <dt class="col-sm-4">Código postal</dt>
+                            <dd class="col-sm-8">@Model.CodigoPostal</dd>
+                        }
+                    </dl>
+
+                    <div class="mt-4 d-flex justify-content-between">
+                        @Html.ActionLink(
+                            "Cambiar contraseña",
+                            "CambiarContrasena",   
+                            "Usuario",
+                            null,
+                            new { @class = "btn btn-outline-secondary" }
+                        )
+
+                        @Html.ActionLink(
+                            "Editar perfil",
+                            "EditarPerfil",
+                            "Usuario",
+                            null,
+                            new { @class = "btn btn-primary" }
+                        )
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

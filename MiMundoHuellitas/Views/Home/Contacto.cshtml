@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "Contacto - Mi Mundo de Huellitas";
+}
+
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px;
+            background: linear-gradient(rgba(10,123,72,0.75), rgba(14,118,140,0.75));">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Contáctanos</h1>
+        <p class="lead">Estamos listos para cuidar y consentir a tu peludito</p>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+
+    <!-- MENSAJES -->
+    @if (TempData["ContactoOk"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["ContactoOk"]
+        </div>
+    }
+    @if (TempData["ContactoError"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["ContactoError"]
+        </div>
+    }
+
+    <div class="row gy-4">
+
+        <!-- FORMULARIO DE CONTACTO -->
+        <div class="col-lg-7">
+            <div class="card shadow-sm contact-card">
+                <div class="card-header contact-header">
+                    <h4 class="mb-0">Envíanos un mensaje</h4>
+                    <small>Completa el formulario y te responderemos lo antes posible.</small>
+                </div>
+
+                <div class="card-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @using (Html.BeginForm("Contacto", "Home", FormMethod.Post, new { @class = "row g-3" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Nombre completo</label>
+                            @Html.TextBox("Nombre", null, new { @class = "form-control", placeholder = "Ej: Ana García" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Correo electrónico</label>
+                            @Html.TextBox("Email", null, new { @class = "form-control", type = "email", placeholder = "tucorreo@ejemplo.com" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Teléfono / WhatsApp</label>
+                            @Html.TextBox("Telefono", null, new { @class = "form-control", placeholder = "Ej: +506 8888-8888" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Motivo de contacto</label>
+                            @Html.DropDownList("Motivo", new SelectList(new[]
+                                {
+                                    "Información de servicios",
+                                    "Agendar cita",
+                                    "Reprogramar o cancelar cita",
+                                    "Consulta general",
+                                    "Otro"
+                                }), "-- Seleccione --", new { @class = "form-select" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Tipo de mascota</label>
+                            @Html.DropDownList("TipoMascota", new SelectList(new[]
+                                {
+                                    "Perro",
+                                    "Gato",
+                                    "Perro y gato",
+                                    "Otro"
+                                }), "-- Seleccione --", new { @class = "form-select" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Servicio de interés</label>
+                            @Html.DropDownList("Servicio", new SelectList(new[]
+                                {
+                                    "Baño y corte",
+                                    "Baño medicado",
+                                    "Corte de uñas",
+                                    "Limpieza de oídos",
+                                    "Spa completo",
+                                    "Otro"
+                                }), "-- Seleccione --", new { @class = "form-select" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Fecha aproximada para la cita</label>
+                            @Html.TextBox("FechaDeseada", null, new { @class = "form-control", type = "date" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Horario preferido</label>
+                            @Html.DropDownList("Horario", new SelectList(new[]
+                                {
+                                    "Mañana (8:00 am - 12:00 md)",
+                                    "Tarde (1:00 pm - 5:00 pm)",
+                                    "Indistinto"
+                                }), "-- Seleccione --", new { @class = "form-select" })
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Mensaje</label>
+                            @Html.TextArea("Mensaje", null, 5, 40,
+                                new { @class = "form-control", placeholder = "Cuéntanos sobre tu mascota o tu consulta..." })
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="AceptoTerminos" name="AceptoTerminos" />
+                                <label class="form-check-label" for="AceptoTerminos">
+                                    Acepto que Mi Mundo de Huellitas utilice mis datos para comunicarse conmigo.
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-contact">
+                                <i class="fa fa-paper-plane"></i> Enviar mensaje
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN + RECOMENDACIONES -->
+        <div class="col-lg-5">
+            <!-- INFO CONTACTO -->
+            <div class="card shadow-sm mb-4 contact-card">
+                <div class="card-header contact-header">
+                    <h4 class="mb-0">Información de contacto</h4>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Si prefieres, también puedes escribirnos o llamarnos directamente.
+                    </p>
+                    <ul class="list-unstyled contact-list">
+                        <li>
+                            <i class="fa fa-map-marker-alt contact-icon"></i>
+                            <strong>Dirección:</strong> San José, Desamparados,Costa Rica
+                        </li>
+                        <li>
+                            <i class="fa fa-map-marker-alt contact-icon"></i>
+                            <strong>Waze:</strong> Mi mundo de huellitas
+                        </li>
+                        <li>
+                            <i class="fa fa-phone contact-icon"></i>
+                            <strong>Teléfonos:</strong> +506 7263-7460 / 7063-5673
+                        </li>
+                        <li>
+                            <i class="fa fa-whatsapp contact-icon"></i>
+                            <strong>WhatsApp:</strong> +506 64674247
+                        </li>
+                        <li>
+                            <i class="fa fa-envelope contact-icon"></i>
+                            <strong>Correo:</strong> mimundodehuellitascr@outlook.com
+                        </li>
+                        <li>
+                            <i class="fa fa-clock contact-icon"></i>
+                            <strong>Horario:</strong> Lunes a sábado de 8:00 am a 5:00 pm
+                        </li>
+                    </ul>
+
+                    <hr />
+
+
+                </div>
+            </div>
+
+            <!-- RECOMENDACIONES EN LUGAR DEL MAPA -->
+            <div class="card shadow-sm contact-card">
+                <div class="card-header contact-header">
+                    <h4 class="mb-0">Recomendaciones antes de tu cita</h4>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Para que la experiencia de tu mascota sea lo más cómoda posible, te sugerimos:
+                    </p>
+                    <ul class="list-unstyled contact-list">
+                        <li>
+                            <i class="fa fa-check contact-icon"></i>
+                            Traer a tu mascota con collar y correa.
+                        </li>
+                        <li>
+                            <i class="fa fa-check contact-icon"></i>
+                            Avisarnos si tu peludito tiene alguna condición médica o tratamiento especial.
+                        </li>
+                        <li>
+                            <i class="fa fa-check contact-icon"></i>
+                            Evitar darle comida pesada justo antes de la cita.
+                        </li>
+                        <li>
+                            <i class="fa fa-check contact-icon"></i>
+                            Si es su primera visita, llegar unos minutos antes para que se acostumbre al lugar.
+                        </li>
+                        <li>
+                            <i class="fa fa-check contact-icon"></i>
+                            Si necesitas reprogramar, háznoslo saber con anticipación.
+                        </li>
+                    </ul>
+                    <p class="small text-muted mb-0">
+                        Nuestro objetivo es que tanto tú como tu mascota se sientan tranquilos y en confianza.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ESTILOS PERSONALIZADOS -->
+<style>
+    .contact-card {
+        border-radius: 12px;
+        border: 1px solid #0A7B48;
+        background-color: #ffffff;
+    }
+
+    .contact-header {
+        background-color: #0E768C;
+        color: #fff;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .btn-contact {
+        background-color: #0A7B48;
+        color: #fff;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: none;
+    }
+
+        .btn-contact:hover {
+            background-color: #085a35;
+            color: #fff;
+        }
+
+    .contact-list li {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    .contact-icon {
+        color: #0E768C;
+        margin-right: 6px;
+    }
+
+    .btn-social {
+        background-color: #0E768C;
+        color: #fff;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        border: none;
+        padding: 6px 14px;
+    }
+
+        .btn-social:hover {
+            background-color: #085a35;
+            color: #fff;
+        }
+</style>

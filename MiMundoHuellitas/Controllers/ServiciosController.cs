@@ -1,12 +1,10 @@
 ﻿using System.Web.Mvc;
 
-namespace MiMundoHuellitas.Controllers
+public class ServiciosController : Controller
 {
-    public class ServiciosController : Controller
+    public ActionResult Index()
     {
-        public ActionResult VerServicios()
-        {
-            return View();
-        }
+        ViewBag.ActiveMenu = "Servicios";
+        return View();
     }
 }

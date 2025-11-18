@@ -14,8 +14,8 @@
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Estado_TB" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Factura_TB" Width="1.5" PointX="15" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Mascotas_TB" Width="1.5" PointX="15" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Productos_TB" Width="1.5" PointX="18" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Proveedor_TB" Width="1.5" PointX="15.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Productos_TB" Width="1.5" PointX="19.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Proveedor_TB" Width="1.5" PointX="17.25" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Provincia_TB" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Raza_TB" Width="1.5" PointX="12.75" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_Cita_TB" Width="1.5" PointX="17.25" PointY="5.875" IsExpanded="true" />

@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,43 +10,131 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <!-- CSS plantilla -->
+    <link href="~/StaticFiles/css/style.css" rel="stylesheet" />
+    <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
+    <link href="~/StaticFiles/fonts/font-awesome.min.css" rel="stylesheet" />
+
+    <style>
+        /* Footer pegado abajo */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main.container-fluid.body-content {
+            flex: 1;
+        }
+
+        /* Barra celestita */
+        .top-contact-bar {
+            background: linear-gradient(90deg, #03a9f4, #00e676);
+            padding: 8px 0;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .top-contact-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-contact-left span {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .top-contact-left i {
+            margin-right: 5px;
+        }
+
+        .top-contact-right a {
+            font-size: 1.2rem;
+        }
+
+        /* Menú principal */
+        .menu-principal .nav-link {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-left: 0.75rem;
+            white-space: nowrap;
+        }
+
+            .menu-principal .nav-link.active {
+                color: #00c853 !important;
+            }
+
+        /* Alinear mejor logo y texto */
+        .menu-principal .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+            .menu-principal .navbar-brand img {
+                height: 40px;
+            }
+
+            .menu-principal .navbar-brand span {
+                line-height: 1;
+            }
+    </style>
 </head>
+
 <body class="has-fixed-nav">
-    
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid px-3">
-            
-            @Html.ActionLink("MiMundoHuellitas", "Index", "Home", null, new { @class = "navbar-brand" })
+
+    <!-- 1) BARRA SUPERIOR GRIS (perfil / login / carrito) -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
+        <div class="container-fluid">
+
+            @Html.ActionLink("Mi Mundo de Huellitas", "Index", "Home", null, new { @class = "navbar-brand" })
 
             <button type="button" class="navbar-toggler"
-                    data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    data-bs-toggle="collapse" data-bs-target="#topAccountBar"
+                    aria-controls="topAccountBar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
-                </ul>
-
-                
+            <div class="collapse navbar-collapse justify-content-end" id="topAccountBar">
                 <ul class="navbar-nav ms-auto">
                     @if (Request.IsAuthenticated)
                     {
-                        <li class="nav-item">
+                        <li class="nav-item d-flex align-items-center">
                             <span class="navbar-text me-2">Hola, @User.Identity.Name</span>
                         </li>
+
+                        <!-- Carrito -->
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Logout","Account")">Salir</a>
+                            <a class="nav-link" href="@Url.Action("Carrito", "Productos")">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Mis citas", "VerCitas", "Citas", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "nav-link" })
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Login","Account")">Login</a>
+                            @Html.ActionLink("Iniciar sesión", "Login", "Account", null, new { @class = "nav-link" })
                         </li>
                     }
                 </ul>
@@ -51,10 +142,105 @@
         </div>
     </nav>
 
-    
+    <!-- 2) BARRA CELESTE (contacto + redes) -->
+    <div class="top-contact-bar">
+        <div class="top-contact-inner">
+            <div class="top-contact-left">
+                <span>
+                    <i class="fa fa-phone"></i> +506 7263-7460
+                </span>
+                <span class="ms-3">
+                    <i class="fa fa-envelope"></i> mundodehuellitascr@outlook.com
+                </span>
+            </div>
+
+            <div class="top-contact-right">
+                <a href="#" class="text-white me-3">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="#" class="text-white">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3) MENÚ PRINCIPAL BLANCO (sticky) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom menu-principal sticky-top">
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                <img src="~/StaticFiles/img/Huellitas.png" alt="Logo" />
+                <span class="ms-2 fw-bold">Mi Mundo de Huellitas</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
+                    aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Inicio" ? "active" : "")"
+                           href="@Url.Action("Index","Home")">INICIO</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Nosotros" ? "active" : "")"
+                           href="@Url.Action("SobreNosotros","Home")">SOBRE NOSOTROS</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Equipo" ? "active" : "")"
+                           href="@Url.Action("Equipo","Home")">EQUIPO</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Servicios" ? "active" : "")"
+                           href="@Url.Action("Servicios","Home")">SERVICIOS</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Galeria" ? "active" : "")"
+                           href="@Url.Action("Galeria","Home")">GALERÍA</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Productos" ? "active" : "")"
+                           href="@Url.Action("Catalogo","Carrito")">PRODUCTOS</a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Blog" ? "active" : "")"
+                           href="@Url.Action("Blog","Home")">BLOG</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.ActiveMenu=="Contacto" ? "active" : "")"
+                           href="@Url.Action("Contacto","Home")">CONTÁCTENOS</a>
+                    </li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewBag.ActiveMenu=="AgendarCita" ? "active" : "")"
+                               href="@Url.Action("Agendar", "Citas")">AGENDAR CITA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewBag.ActiveMenu=="MisMascotas" ? "active" : "")"
+                               href="@Url.Action("VerMascotas", "Mascota")">MIS MASCOTAS</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     @RenderSection("FullWidthTop", required: false)
 
-    
     <main class="container-fluid body-content px-3">
         @RenderBody()
         <hr />
@@ -63,7 +249,6 @@
         </footer>
     </main>
 
-   
     @RenderSection("FullWidthBottom", required: false)
 
     @Scripts.Render("~/bundles/jquery")

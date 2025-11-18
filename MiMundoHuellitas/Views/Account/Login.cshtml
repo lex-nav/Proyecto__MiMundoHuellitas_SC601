@@ -1,13 +1,18 @@
-﻿@{
+﻿@model MiMundoHuellitas.Models.ViewModels.LoginViewModel
+
+@{
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
     ViewBag.Title = "Iniciar Sesión";
 }
 
-<div class="container" style="max-width:480px; margin-top:40px;">
+<div class="container" style="max-width:520px; margin-top:40px;">
     <div class="card">
         <div class="card-body">
             <div class="text-center mb-3">
-                <img src="~/StaticFiles/img/Huellitas.png" alt="logo" style="max-height:60px;" />
+                <img src="~/StaticFiles/img/Huellitas.png"
+                     alt="Mi Mundo Huellitas"
+                     style="max-width:120px; height:auto;" />
+
                 <h3 class="mt-2">Iniciar Sesión</h3>
             </div>
 
@@ -16,33 +21,41 @@
                 <div class="alert alert-danger">@TempData["LoginError"]</div>
             }
 
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "formAuthentication", @class = "mb-3" }))
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "mb-3" }))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="mb-3">
-                    <label class="form-label">Correo o Usuario</label>
-                    @Html.TextBox("Email", null, new { @class = "form-control", @placeholder = "usuario@correo.com" })
+                    @Html.LabelFor(m => m.Correo, "Correo", htmlAttributes: new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", placeholder = "usuario@correo.com" })
+                    @Html.ValidationMessageFor(m => m.Correo, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Contraseña</label>
-                    @Html.Password("Password", null, new { @class = "form-control", @placeholder = "••••••••" })
+                    @Html.LabelFor(m => m.Contrasena, htmlAttributes: new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control", placeholder = "********" })
+                    @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="remember-me" name="RememberMe" />
-                    <label class="form-check-label" for="remember-me">Recordarme</label>
+                    <label class="form-check-label">
+                        @Html.CheckBoxFor(m => m.Recordarme, new { @class = "form-check-input" })
+                        Recordarme
+                    </label>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                <button type="submit" class="btn btn-primary w-100">Entrar</button>
             }
+
+            <p class="text-center mt-3">
+                <a href="@Url.Action("RecuperarContrasena","Account")">¿Olvidaste tu contraseña?</a>
+            </p>
 
             <p class="text-center mt-3">
                 ¿No tienes cuenta?
                 <a href="@Url.Action("Registro","Account")">Crear cuenta</a>
             </p>
-
         </div>
     </div>
 </div>

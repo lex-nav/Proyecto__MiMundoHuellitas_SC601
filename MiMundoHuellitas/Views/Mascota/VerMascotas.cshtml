@@ -1,32 +1,53 @@
-﻿@model MiMundoHuellitas.Models.Mascota
+﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Mascotas_TB>
 @{
-    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+    ViewBag.Title = "Mis mascotas";
 }
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Raza</th>
-            <th>Edad</th>
-            <th>Estado</th>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Mis mascotas</h3>
+        @Html.ActionLink("Agregar mascota", "AgregarMascota", "Mascota", null, new { @class = "btn btn-primary" })
+    </div>
 
-        </tr>
-    </thead>
-
-    <tbody>
-        @*@foreach (var item in Model)
-            {
+    @if (!Model.Any())
+    {
+        <p class="text-muted">Aún no has registrado mascotas.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>@item.ConsecutivoMascota</td>
-                    <td>@item.Nombre</td>
-                    <td>@item.Tipo</td>
-                    <td>@item.Raza</td>
-                    <td>@item.Edad</td>
-                    <td>@item.Estado</td>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Raza</th>
+                    <th></th>
                 </tr>
-            }*@
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                    <tr>
+                        <td>@m.NombreMascota</td>
+                        <td>@m.MH_Especie_TB.NombreEspecie</td>  <!-- corregido -->
+                        <td>@m.MH_Raza_TB.NombreRaza</td>        <!-- corregido -->
+                        <td class="text-end">
+                            @Html.ActionLink("Editar", "EditarMascota", "Mascota",
+                                new { id = m.IdMascota }, new { @class = "btn btn-sm btn-outline-primary" })
+
+                            @using (Html.BeginForm("EliminarMascota", "Mascota", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", m.IdMascota)
+                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('¿Seguro que deseas eliminar esta mascota?');">
+                                    Eliminar
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

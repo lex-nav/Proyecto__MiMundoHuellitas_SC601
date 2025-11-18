@@ -1,0 +1,165 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Blog de Consejos - Mi Mundo de Huellitas";
+}
+
+<style>
+    /* Colores base */
+    .text-huellitas-primary {
+        color: #0A7B48 !important; /* Verde */
+    }
+
+    .bg-huellitas-primary {
+        background-color: #0A7B48 !important; /* Verde */
+        color: white;
+    }
+
+    .text-huellitas-secondary {
+        color: #0E768C !important; /* Azul */
+    }
+
+    .border-huellitas-secondary {
+        border-color: #0E768C !important;
+    }
+
+    /* Estilo del Botón Principal */
+    .btn-huellitas-primary {
+        background-color: #0A7B48;
+        color: white;
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+        .btn-huellitas-primary:hover {
+            background-color: #0E768C; /* Cambia a azul al pasar el ratón */
+            color: white;
+        }
+
+    /* Estilo de la Tarjeta del Artículo */
+    .article-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+    }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(14, 118, 140, 0.15) !important;
+        }
+
+    .card-img-top {
+        height: 200px; /* Altura fija para todas las imágenes de artículos */
+        object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsión */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    /* Degradado del Hero */
+    .hero-blog {
+        height: 260px;
+        background: linear-gradient(rgba(10,123,72,0.85), rgba(14,118,140,0.85));
+    }
+
+    .commitment-block {
+        background: linear-gradient(135deg, #0A7B48 0%, #0E768C 100%);
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(14, 118, 140, 0.4);
+    }
+</style>
+
+<div class="hero-blog d-flex align-items-center text-white">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold"><i class="fas fa-book-reader me-2"></i> Nuestro Rincón de Consejos</h1>
+        <p class="lead">Artículos y guías que recomiendan leer nuestros Groomers profesionales para el bienestar de tu mascota.</p>
+    </div>
+</div>
+
+<div class="container my-5">
+
+    <section id="introduccion-blog" class="text-center mb-5">
+        <h2 class="text-huellitas-secondary mb-3">Últimos Artículos Publicados</h2>
+        <p class="fs-5 text-muted">
+            Mantente al día con las mejores prácticas en higiene, salud y felicidad canina y felina.
+        </p>
+    </section>
+
+    <div class="row mb-5 justify-content-center">
+        <div class="col-lg-8">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por tema o palabra clave..." aria-label="Buscar artículos">
+                <button class="btn btn-huellitas-primary" type="button">Buscar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card article-card h-100 shadow-sm">
+                <img src="~/StaticFiles/img/blog_verano.jpg"
+                     class="card-img-top"
+                     alt="Imagen del artículo sobre cuidado de verano" />
+                <div class="card-body">
+                    <span class="badge bg-huellitas-primary mb-2">Salud</span>
+                    <h5 class="card-title text-huellitas-secondary">5 Consejos para un Verano sin Estrés</h5>
+                    <p class="card-text small text-muted">
+                        Aprende a proteger las almohadillas y el pelaje de tu mascota de las altas temperaturas y la humedad.
+                    </p>
+                    <a href="#" class="btn btn-sm btn-huellitas-primary">Leer más</a>
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">Publicado el 15/11/2025 por Luis F.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card article-card h-100 shadow-sm">
+                <img src="~/StaticFiles/img/blog_cepillado.jpg"
+                     class="card-img-top"
+                     alt="Imagen del artículo sobre cepillado diario" />
+                <div class="card-body">
+                    <span class="badge bg-huellitas-primary mb-2">Grooming</span>
+                    <h5 class="card-title text-huellitas-secondary">La Importancia del Cepillado Diario</h5>
+                    <p class="card-text small text-muted">
+                        Descubre qué tipos de cepillos son mejores para cada raza y cómo prevenir nudos dolorosos en casa.
+                    </p>
+                    <a href="#" class="btn btn-sm btn-huellitas-primary">Leer más</a>
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">Publicado el 01/11/2025 por Sofía P.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card article-card h-100 shadow-sm">
+                <img src="~/StaticFiles/img/blog_dieta.jpg"
+                     class="card-img-top"
+                     alt="Imagen del artículo sobre dieta y pelaje" />
+                <div class="card-body">
+                    <span class="badge bg-huellitas-primary mb-2">Nutrición</span>
+                    <h5 class="card-title text-huellitas-secondary">Dieta: El Secreto de un Pelaje Brillante</h5>
+                    <p class="card-text small text-muted">
+                        Qué suplementos y alimentos pueden mejorar la salud de la piel y el brillo del pelo de tu mascota.
+                    </p>
+                    <a href="#" class="btn btn-sm btn-huellitas-primary">Leer más</a>
+                </div>
+                <div class="card-footer bg-light">
+                    <small class="text-muted">Publicado el 20/10/2025 por Luis F.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="cta-blog" class="text-center mt-5 p-5 rounded commitment-block">
+        <h3 class="text-white mb-3">¿Tienes Preguntas para Nuestros Expertos?</h3>
+        <p class="lead text-white mb-4">
+            Contáctanos directamente o sugiere el tema para nuestro próximo artículo.
+        </p>
+        <a href="@Url.Action("Contacto", "Home")" class="btn btn-lg bg-light text-huellitas-primary fw-bold shadow-sm">
+            Contactar al Equipo <i class="fas fa-envelope"></i>
+        </a>
+    </section>
+
+</div>

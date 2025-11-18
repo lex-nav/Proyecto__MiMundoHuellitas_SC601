@@ -1,0 +1,95 @@
+﻿@using System.Collections.Generic
+@model dynamic
+
+@{
+    ViewBag.Title = "Compra realizada";
+    var detalle = Model.MH_DetalleFactura_TB as IEnumerable<dynamic>;
+}
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-success mb-3">¡Gracias por tu compra! 🐾</h2>
+
+        <p class="mb-1">
+            Tu compra fue procesada exitosamente.
+        </p>
+
+        <p class="mb-1">
+            <strong>Número de factura:</strong> @Model.IdFactura
+        </p>
+
+        <p class="mb-1">
+            <strong>Fecha:</strong> @Model.FechaFactura.ToString("dd/MM/yyyy HH:mm")
+        </p>
+
+        <p class="mb-1">
+            <strong>Método de pago:</strong> @Model.MetodoPago
+        </p>
+
+        @if (!string.IsNullOrWhiteSpace((string)Model.NumeroReferencia))
+        {
+            <p class="mb-1">
+                <strong>Número de referencia:</strong> @Model.NumeroReferencia
+            </p>
+        }
+
+        @if (!string.IsNullOrWhiteSpace((string)Model.Observaciones))
+        {
+            <p class="mb-3">
+                <strong>Observaciones:</strong> @Model.Observaciones
+            </p>
+        }
+
+        <hr />
+
+        <h4>Detalle de la compra</h4>
+
+        @if (detalle != null && detalle.Any())
+        {
+            <div class="table-responsive mt-3">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Producto / Servicio</th>
+                            <th style="width: 90px;">Cantidad</th>
+                            <th style="width: 120px;">Precio</th>
+                            <th style="width: 130px;">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var d in detalle)
+                        {
+                            <tr>
+                                <td>@d.Descripcion</td>
+                                <td class="text-center">@d.Cantidad</td>
+                                <td class="text-end">@d.PrecioUnitario.ToString("C")</td>
+                                <td class="text-end">@d.Subtotal.ToString("C")</td>
+                            </tr>
+                        }
+                        <tr class="fw-bold">
+                            <td colspan="3" class="text-end">Total:</td>
+                            <td class="text-end">@Model.MontoTotal.ToString("C")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="mt-3">No se encontraron detalles asociados a esta factura.</p>
+        }
+
+        <p class="mt-3">
+            Se ha enviado un comprobante al correo asociado a tu cuenta.
+        </p>
+
+        <div class="mt-4">
+            <a href="@Url.Action("Catalogo", "Carrito")" class="btn btn-primary me-2">
+                Seguir comprando
+            </a>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">
+                Volver al inicio
+            </a>
+        </div>
+    </div>
+</div>

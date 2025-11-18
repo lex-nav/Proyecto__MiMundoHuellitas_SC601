@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Cita_TB>
+@{
+    ViewBag.Title = "Mis citas";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Mis citas</h3>
+        <a href="@Url.Action("Agendar", "Citas")" class="btn btn-primary">Agendar nueva cita</a>
+    </div>
+
+    @if (TempData["CitaOk"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["CitaOk"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <p class="text-muted">No tienes citas registradas.</p>
+    }
+    else
+    {
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Fecha y hora</th>
+                    <th>Mascota</th>
+                    <th>Servicio</th>
+                    <th>Estado</th>
+                    <th style="width: 160px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model)
+                {
+                    var detalle = c.MH_Servicios_Cita_TB.FirstOrDefault();
+                    <tr>
+                        <td>@c.FechaHoraCita.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@c.MH_Mascotas_TB.NombreMascota</td>
+                        <td>@(detalle != null ? detalle.MH_Servicios_TB.NombreServicio : "-")</td>
+                        <td>@(c.MH_Estado_TB != null ? c.MH_Estado_TB.NombreEstado : c.IdEstado.ToString())</td>
+                        <td class="text-end">
+                            <a href="@Url.Action("EditarCitas", "Citas", new { id = c.IdCita })"
+                               class="btn btn-sm btn-outline-primary me-1">
+                                Editar
+                            </a>
+
+                            @using (Html.BeginForm("CancelarCita", "Citas", FormMethod.Post, new { @class = "d-inline" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("id", c.IdCita)
+                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
+                                    Cancelar
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

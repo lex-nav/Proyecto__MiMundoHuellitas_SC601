@@ -1,38 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace MiMundoHuellitas.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    public ActionResult Index()
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        ViewBag.ActiveMenu = "Inicio";
+        return View("Index");
+    }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+    public ActionResult SobreNosotros()
+    {
+        ViewBag.ActiveMenu = "Nosotros";
+        return View("SobreNosotros");
+    }
 
-            return View();
-        }
+    public ActionResult Equipo()
+    {
+        ViewBag.ActiveMenu = "Equipo";
+        return View("Equipo");
+    }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+    public ActionResult Servicios()
+    {
+        ViewBag.ActiveMenu = "Servicios";
+        return View("Servicios");
+    }
 
-            return View();
-        }
+    public ActionResult Productos()
+    {
+        ViewBag.ActiveMenu = "Productos";
+        return View("Productos");
+    }
 
-        [Authorize]
-        public ActionResult Privado()
-        {
-            ViewBag.Message = "Solo usuarios autenticados";
-            return View();
-        }
+    public ActionResult Blog()
+    {
+        ViewBag.ActiveMenu = "Blog";
+        return View("Blog");
+    }
 
+    public ActionResult Galeria()
+    {
+        ViewBag.ActiveMenu = "Galeria";
+        return View("Galeria");
+    }
+
+    public ActionResult Contacto()
+    {
+        ViewBag.ActiveMenu = "Contacto";
+        return View("Contacto");
     }
 }

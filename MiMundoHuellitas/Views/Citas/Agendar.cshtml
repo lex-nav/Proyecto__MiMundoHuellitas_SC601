@@ -1,0 +1,52 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.AgendarCitaViewModel
+@{
+    ViewBag.Title = "Agendar cita";
+}
+
+<div class="container py-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Agendar cita</h4>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Agendar", "Citas", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.IdMascota)
+                        @Html.DropDownListFor(m => m.IdMascota, Model.Mascotas, "Seleccione una mascota", new { @class = "form-select" })
+                        @Html.ValidationMessageFor(m => m.IdMascota, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.IdServicio)
+                        @Html.DropDownListFor(m => m.IdServicio, Model.Servicios, "Seleccione un servicio", new { @class = "form-select" })
+                        @Html.ValidationMessageFor(m => m.IdServicio, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Fecha)
+                        @Html.TextBoxFor(m => m.Fecha, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(m => m.Fecha, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Hora)
+                        @Html.DropDownListFor(m => m.Hora, Model.Horarios, "Seleccione una hora", new { @class = "form-select" })
+                        @Html.ValidationMessageFor(m => m.Hora, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.NotasCliente)
+                        @Html.TextAreaFor(m => m.NotasCliente, new { @class = "form-control", rows = 3 })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Agendar cita</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

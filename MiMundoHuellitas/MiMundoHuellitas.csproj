@@ -265,17 +265,96 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="EF\ApplicationDbContext.cs" />
+    <Compile Include="EF\MH_Canton_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Cita_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_DetalleFactura_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Direccion_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Distrito_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Especie_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Estado_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Factura_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Mascotas_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Productos_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Proveedor_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Provincia_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Raza_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Servicios_Cita_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Servicios_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Tipo_Usuario_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Usuario_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Mascota.cs" />
+    <Compile Include="Models\Citas.cs" />
+    <Compile Include="Models\ViewModels\CheckoutViewModel.cs" />
+    <Compile Include="Models\ViewModels\CarritoItemViewModel.cs" />
+    <Compile Include="Models\ViewModels\AgendarCitaViewModel.cs" />
+    <Compile Include="Models\ViewModels\MascotaViewModel.cs" />
     <Compile Include="Models\Servicios.cs" />
     <Compile Include="Models\Usuarios.cs" />
+    <Compile Include="Models\ViewModels\PerfilViewModel.cs" />
+    <Compile Include="Models\ViewModels\CambiarContrasenaViewModel.cs" />
+    <Compile Include="Models\ViewModels\EditarPerfilViewModel.cs" />
+    <Compile Include="Models\ViewModels\RecuperarContrasennaViewModel.cs" />
+    <Compile Include="Models\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +374,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="EF\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -304,6 +393,14 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="EF\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EF\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="credencialesMail.config" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -330,10 +427,25 @@
     <Content Include="StaticFiles\img\about-1.jpg" />
     <Content Include="StaticFiles\img\about-2.jpg" />
     <Content Include="StaticFiles\img\about-3.jpg" />
+    <Content Include="StaticFiles\img\about-4.jpg" />
+    <Content Include="StaticFiles\img\about-5.jpg" />
+    <Content Include="StaticFiles\img\about-6.jpg" />
     <Content Include="StaticFiles\img\about.jpg" />
+    <Content Include="StaticFiles\img\almohadilla.jpg" />
+    <Content Include="StaticFiles\img\Banos1.jpg" />
+    <Content Include="StaticFiles\img\Banos2.jpg" />
     <Content Include="StaticFiles\img\bg_1.jpg" />
     <Content Include="StaticFiles\img\bg_2.jpg" />
     <Content Include="StaticFiles\img\bg_3.jpg" />
+    <Content Include="StaticFiles\img\blog-1.jpg" />
+    <Content Include="StaticFiles\img\blog-2.jpg" />
+    <Content Include="StaticFiles\img\blog-3.jpg" />
+    <Content Include="StaticFiles\img\carousel-3.jpg" />
+    <Content Include="StaticFiles\img\carousel-4.jpg" />
+    <Content Include="StaticFiles\img\corte.jpg" />
+    <Content Include="StaticFiles\img\dientes.JPG" />
+    <Content Include="StaticFiles\img\feature.jpg" />
+    <Content Include="StaticFiles\img\Fondo_Huellitas.jpg" />
     <Content Include="StaticFiles\img\gallery-1.jpg" />
     <Content Include="StaticFiles\img\gallery-2.jpg" />
     <Content Include="StaticFiles\img\gallery-3.jpg" />
@@ -341,6 +453,9 @@
     <Content Include="StaticFiles\img\gallery-5.jpg" />
     <Content Include="StaticFiles\img\gallery-6.jpg" />
     <Content Include="StaticFiles\img\gallery-7.jpg" />
+    <Content Include="StaticFiles\img\Grid1.jpg" />
+    <Content Include="StaticFiles\img\Grid2.jpg" />
+    <Content Include="StaticFiles\img\Grid3.jpg" />
     <Content Include="StaticFiles\img\image_1.jpg" />
     <Content Include="StaticFiles\img\image_2.jpg" />
     <Content Include="StaticFiles\img\image_3.jpg" />
@@ -349,13 +464,43 @@
     <Content Include="StaticFiles\img\image_6.jpg" />
     <Content Include="StaticFiles\img\img.jpg" />
     <Content Include="StaticFiles\img\loc.png" />
+    <Content Include="StaticFiles\img\Logo Huellitas.jpg" />
+    <Content Include="StaticFiles\img\monos.JPG" />
+    <Content Include="StaticFiles\img\oidos.JPG" />
     <Content Include="StaticFiles\img\person_1.jpg" />
     <Content Include="StaticFiles\img\person_2.jpg" />
     <Content Include="StaticFiles\img\person_3.jpg" />
     <Content Include="StaticFiles\img\person_4.jpg" />
+    <Content Include="StaticFiles\img\pipeta.jpg" />
+    <Content Include="StaticFiles\img\price-1.jpg" />
+    <Content Include="StaticFiles\img\price-2.jpg" />
+    <Content Include="StaticFiles\img\price-3.jpg" />
     <Content Include="StaticFiles\img\pricing-1.jpg" />
     <Content Include="StaticFiles\img\pricing-2.jpg" />
     <Content Include="StaticFiles\img\pricing-3.jpg" />
+    <Content Include="StaticFiles\img\productos\CollarIsabelino.png" />
+    <Content Include="StaticFiles\img\productos\Dentalife.png" />
+    <Content Include="StaticFiles\img\productos\ima1.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima10.jpg" />
+    <Content Include="StaticFiles\img\productos\ima11.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima12.jpg" />
+    <Content Include="StaticFiles\img\productos\ima13.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima14.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima15.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima16.jpg" />
+    <Content Include="StaticFiles\img\productos\ima17.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima18.jpg" />
+    <Content Include="StaticFiles\img\productos\ima19.jpg" />
+    <Content Include="StaticFiles\img\productos\ima2.jpg" />
+    <Content Include="StaticFiles\img\productos\ima21.jpg" />
+    <Content Include="StaticFiles\img\productos\ima3.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima4.png" />
+    <Content Include="StaticFiles\img\productos\ima5.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima6.jpeg" />
+    <Content Include="StaticFiles\img\productos\ima9.jpg" />
+    <Content Include="StaticFiles\img\productos\Talco.png" />
+    <Content Include="StaticFiles\img\spa.jpg" />
+    <Content Include="StaticFiles\img\spa2.jpg" />
     <Content Include="StaticFiles\img\staff-1.jpg" />
     <Content Include="StaticFiles\img\staff-2.jpg" />
     <Content Include="StaticFiles\img\staff-3.jpg" />
@@ -364,6 +509,17 @@
     <Content Include="StaticFiles\img\staff-6.jpg" />
     <Content Include="StaticFiles\img\staff-7.jpg" />
     <Content Include="StaticFiles\img\staff-8.jpg" />
+    <Content Include="StaticFiles\img\team-1.jpg" />
+    <Content Include="StaticFiles\img\team-2.jpg" />
+    <Content Include="StaticFiles\img\team-3.jpg" />
+    <Content Include="StaticFiles\img\team-4.jpg" />
+    <Content Include="StaticFiles\img\testimonial-1.png" />
+    <Content Include="StaticFiles\img\testimonial-2.png" />
+    <Content Include="StaticFiles\img\testimonial-3.png" />
+    <Content Include="StaticFiles\img\testimonial-4.png" />
+    <Content Include="StaticFiles\img\tintes.JPG" />
+    <Content Include="StaticFiles\img\unnas.jpg" />
+    <Content Include="StaticFiles\img\user.jpg" />
     <Content Include="StaticFiles\JS\bootstrap-datepicker.js" />
     <Content Include="StaticFiles\JS\bootstrap.min.js" />
     <Content Include="StaticFiles\JS\google-map.js" />
@@ -391,8 +547,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\SobreNosotros.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="StaticFiles\fonts\Flaticon.eot" />
     <Content Include="StaticFiles\fonts\Flaticon.ttf" />
@@ -413,10 +569,27 @@
     <Content Include="Views\Mascota\EditarMascota.cshtml" />
     <Content Include="Views\Servicios\VerServicios.cshtml" />
     <Content Include="Views\Servicios\Detalle.cshtml" />
+    <Content Include="Views\Account\RecuperarContrasena.cshtml" />
+    <Content Include="Views\Usuario\Perfil.cshtml" />
+    <Content Include="Views\Home\Equipo.cshtml" />
+    <Content Include="Views\Home\Servicios.cshtml" />
+    <Content Include="Views\Home\Productos.cshtml" />
+    <Content Include="Views\Home\Galeria.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Usuario\EditarPerfil.cshtml" />
+    <Content Include="Views\Usuario\CambiarContrasena.cshtml" />
+    <Content Include="Views\Citas\Agendar.cshtml" />
+    <Content Include="Views\Citas\EditarCitas.cshtml" />
+    <Content Include="Views\Citas\VerCitas.cshtml" />
+    <Content Include="Views\Carrito\Cart.cshtml" />
+    <Content Include="Views\Carrito\Checkout.cshtml" />
+    <Content Include="Views\Carrito\Catalogo.cshtml" />
+    <Content Include="StaticFiles\img\productos\ima20.webp" />
+    <Content Include="StaticFiles\img\productos\ima7.webp" />
+    <Content Include="StaticFiles\img\productos\ima8.webp" />
+    <Content Include="Views\Carrito\Confirmacion.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Citas\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
@@ -444,7 +617,9 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup Condition="$(VisualStudioVersion) == '17.0'">
     <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>$(SSDTPath)\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>

@@ -1,22 +1,22 @@
-using System.Collections.Concurrent;
+using System.ComponentModel.DataAnnotations;
 
 namespace MiMundoHuellitas.Models
 {
-    public static class Usuarios
+    public class Usuario
     {
-        
-        private static readonly ConcurrentDictionary<string, string> _users =
-            new ConcurrentDictionary<string, string>();
+        public int Id { get; set; }
 
-        public static bool Existe(string emailOrUser) =>
-            _users.ContainsKey(Normalizar(emailOrUser));
+        [Required, StringLength(100)]
+        public string Nombre { get; set; }
 
-        public static bool Agregar(string emailOrUser, string password) =>
-            _users.TryAdd(Normalizar(emailOrUser), password);
+        [Required, EmailAddress, StringLength(150)]
+        public string Correo { get; set; }
 
-        public static bool Validar(string emailOrUser, string password) =>
-            _users.TryGetValue(Normalizar(emailOrUser), out var stored) && stored == password;
+        [Required, StringLength(200)]
+        public string ContrasenaHash { get; set; }
 
-        private static string Normalizar(string s) => (s ?? "").Trim().ToLowerInvariant();
+        [Required, StringLength(20)]
+        public string Rol { get; set; }  
     }
 }
+

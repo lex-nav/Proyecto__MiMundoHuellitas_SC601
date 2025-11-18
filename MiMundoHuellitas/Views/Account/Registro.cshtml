@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MiMundoHuellitas.Models.ViewModels.RegisterViewModel
+
+@{
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
     ViewBag.Title = "Crear Cuenta";
 }
@@ -14,6 +16,7 @@
                 <h3 class="mt-2">Crear Cuenta</h3>
             </div>
 
+            @* mensajes desde el controlador, si querés usarlos más adelante *@
             @if (TempData["RegisterError"] != null)
             {
                 <div class="alert alert-danger">@TempData["RegisterError"]</div>
@@ -26,23 +29,31 @@
             @using (Html.BeginForm("Registro", "Account", FormMethod.Post, new { @class = "mb-3" }))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="mb-3">
-                    <label class="form-label">Correo o Usuario</label>
-                    <input type="text" name="Email" class="form-control" placeholder="usuario@correo.com" required />
+                    @Html.LabelFor(m => m.Nombre, htmlAttributes: new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", placeholder = "Nombre completo" })
+                    @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Contraseña</label>
-                    <input type="password" name="Password" class="form-control" placeholder="********" required />
+                    @Html.LabelFor(m => m.Correo, "Correo", htmlAttributes: new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", placeholder = "usuario@correo.com" })
+                    @Html.ValidationMessageFor(m => m.Correo, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Confirmar contraseña</label>
-                    <input type="password" name="ConfirmPassword" class="form-control" placeholder="********" required />
+                    @Html.LabelFor(m => m.Contrasena, htmlAttributes: new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control", placeholder = "********" })
+                    @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
                 </div>
 
-                <input type="hidden" name="AutoLogin" value="true" />
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.ConfirmarContrasena, htmlAttributes: new { @class = "form-label" })
+                    @Html.PasswordFor(m => m.ConfirmarContrasena, new { @class = "form-control", placeholder = "********" })
+                    @Html.ValidationMessageFor(m => m.ConfirmarContrasena, "", new { @class = "text-danger" })
+                </div>
 
                 <button type="submit" class="btn btn-primary w-100">Crear cuenta</button>
             }

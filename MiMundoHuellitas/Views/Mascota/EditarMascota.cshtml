@@ -1,63 +1,80 @@
-﻿@model MiMundoHuellitas.Models.Mascota
+﻿@model MiMundoHuellitas.Models.ViewModels.MascotaViewModel
 @{
-    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+    ViewBag.Title = "Editar mascota";
 }
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Raza</th>
-            <th>Edad</th>
-            <th>Estado</th>
-            <th style="width:160px;">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @*@foreach (var m in Model)
-            {
-                <tr>
-                    <td>@m.Id</td>
-                    <td>@m.Nombre</td>
-                    <td>@m.Tipo</td>
-                    <td>@m.Raza</td>
-                    <td>@m.Edad</td>
-                    <td>@m.Estado</td>
-                    <td>
-                        <a href="@Url.Action("Edit", "Mascotas", new { id = m.Id })"
-                           class="btn btn-sm btn-warning">Editar</a>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Editar mascota</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EditarMascota", "Mascota", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.IdMascota)
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <button class="btn btn-sm btn-danger"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalEliminar"
-                                data-id="@m.Id">
-                            Eliminar
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.NombreMascota, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.NombreMascota, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.NombreMascota, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.IdEspecie, new { @class = "form-label" })
+                            @Html.DropDownListFor(
+                                m => m.IdEspecie,
+                                Model.Especies,
+                                "-- Seleccione especie --",
+                                new { @class = "form-select" })
+                            @Html.ValidationMessageFor(m => m.IdEspecie, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.IdRaza, new { @class = "form-label" })
+                            @Html.DropDownListFor(
+                                m => m.IdRaza,
+                                Model.Razas,
+                                "-- Seleccione raza --",
+                                new { @class = "form-select" })
+                            @Html.ValidationMessageFor(m => m.IdRaza, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.FechaNacimiento, new { @class = "form-label" })
+                            @Html.TextBoxFor(
+                                m => m.FechaNacimiento,
+                                "{0:yyyy-MM-dd}",
+                                new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(m => m.FechaNacimiento, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.Observaciones, new { @class = "form-label" })
+                            @Html.TextAreaFor(
+                                m => m.Observaciones,
+                                3,
+                                40,
+                                new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-check mb-3">
+                            @Html.CheckBoxFor(m => m.Activo, new { @class = "form-check-input", id = "chkActivo" })
+                            <label class="form-check-label" for="chkActivo">Activo</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-2">
+                            Guardar cambios
                         </button>
-                    </td>
-                </tr>
-            }*@
-    </tbody>
-</table>
 
-<!-- AQUI va el modal -->
-@* Modal de confirmación *@
-<div class="modal fade" id="modalEliminar" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Eliminar Mascota</h5>
-            </div>
-            <div class="modal-body">
-                ¿Seguro que deseas eliminar esta mascota?
-            </div>
-            <div class="modal-footer">
-                <form method="post" action="/Mascota/DeleteConfirmed">
-                    <input type="hidden" id="idMascota" name="id" />
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
+                        <a href="@Url.Action("VerMascotas", "Mascota")" class="btn btn-secondary w-100">
+                            Cancelar
+                        </a>
+                    }
+                </div>
             </div>
         </div>
     </div>
