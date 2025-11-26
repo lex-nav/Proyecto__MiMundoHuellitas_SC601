@@ -1,15 +1,209 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
-    ViewBag.Title = "Servicios";
+    ViewBag.Title = "Servicios - Mi Mundo de Huellitas";
 }
 
-<div class="container my-4">
-    <h1>Servicios</h1>
-    <ul>
-        <li>Baño y grooming</li>
-        <li>Corte de uñas</li>
-        <li>Limpieza dental</li>
-        <li>Consultas veterinarias</li>
-        <!-- etc -->
-    </ul>
-</div>
+<div class="page-green-bg">
+
+    <!-- HERO DE SERVICIOS -->
+    <div class="page-hero servicios-hero d-flex align-items-center text-white">
+        <div class="container text-center hero-content">
+            <h1 class="display-5 fw-bold mb-3">Nuestros Servicios</h1>
+            <p class="lead mb-0">
+                Todo lo que tu peludito necesita para verse y sentirse increíble.
+            </p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+
+        <!-- INTRO SERVICIOS -->
+        <div class="service-intro-box">
+
+            <!-- Patitas decorativas de fondo -->
+            <div class="intro-paws">
+                <span>🐾</span>
+                <span>🐾</span>
+                <span>🐾</span>
+                <span>🐾</span>
+            </div>
+
+            <div class="service-intro-content">
+                <h2 class="intro-title">Cuidamos cada detalle para tu peludito</h2>
+
+                <p class="intro-text">
+                    En <strong>Mi Mundo de Huellitas</strong> cuidamos cada detalle para que la experiencia de tu
+                    mascota sea segura, cómoda y llena de cariño. Nuestros servicios combinan
+                    <strong> profesionalismo</strong>, <strong>amor</strong> y
+                    <strong> productos de alta calidad</strong>, siempre pensando en su bienestar.
+                </p>
+
+                <div class="intro-actions">
+                    <a href="@Url.Action("Contacto", "Home")" class="btn btn-intro">
+                        <i class="fa fa-calendar-check-o"></i> Quiero agendar un servicio
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TARJETAS DE SERVICIOS (DETALLADAS) -->
+        <div class="row g-4">
+
+            <!-- CORTES Y ESTILIZADO PROFESIONAL -->
+            <div class="col-md-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        ✂️
+                    </div>
+                    <h4 class="service-title">Cortes y Estilizado Profesional</h4>
+                    <p class="service-text">
+                        Cortes pensados según la raza, el estilo de vida y la comodidad de tu peludito.
+                    </p>
+                    <ul class="service-list">
+                        <li><strong>Corte de pelo según raza</strong> (corte estándar: Poodle, Schnauzer, etc.).</li>
+                        <li><strong>Corte funcional o de mantenimiento</strong>, práctico y fácil de cuidar.</li>
+                        <li><strong>Arreglo a tijera (Scissoring)</strong> para un acabado más natural y estético.</li>
+                        <li><strong>Trimming</strong> y acondicionamiento general del manto según la raza.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MANTO Y SUBPELO -->
+            <div class="col-md-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        🐕
+                    </div>
+                    <h4 class="service-title">Manto & Subpelo</h4>
+                    <p class="service-text">
+                        Cuidamos la salud del pelaje para evitar nudos y ayudar a la termorregulación.
+                    </p>
+                    <ul class="service-list">
+                        <li><strong>Cepillado y deslanado</strong> profundo en razas de doble capa (Huskies, Golden, etc.).</li>
+                        <li><strong>Desenredado</strong> meticuloso de nudos grandes antes del baño.</li>
+                        <li><strong>Stripping</strong> en razas de pelo duro, manteniendo textura y color del manto.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- HIDRATACIÓN PROFUNDA -->
+            <div class="col-md-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        💧
+                    </div>
+                    <h4 class="service-title">Hidratación Profunda</h4>
+                    <p class="service-text">
+                        Ideal para mantos secos, dañados o muy largos que necesitan un cuidado extra.
+                    </p>
+                    <ul class="service-list">
+                        <li><strong>Mascarillas hidratantes</strong> para recuperar la suavidad del pelo.</li>
+                        <li><strong>Keratina</strong> para dar brillo y fuerza al manto.</li>
+                        <li><strong>Aceites especiales</strong> (cocoterapia, gotas de seda, etc.).</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row g-4 mt-1">
+
+            <!-- BAÑOS TERAPÉUTICOS O MEDICADOS -->
+            <div class="col-md-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        🛁
+                    </div>
+                    <h4 class="service-title">Baños Terapéuticos o Medicados</h4>
+                    <p class="service-text">
+                        Especiales para peluditos con piel sensible o con tratamiento veterinario.
+                    </p>
+                    <ul class="service-list">
+                        <li>Uso de <strong>shampoo prescrito</strong> para problemas como dermatitis, hongos o alergias.</li>
+                        <li>Enjuague cuidadoso para respetar la piel y el tratamiento.</li>
+                        <li>Acompañamiento tranquilo para reducir el estrés durante el baño.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TRATAMIENTOS ANTIPARASITARIOS -->
+            <div class="col-md-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        🐜
+                    </div>
+                    <h4 class="service-title">Tratamientos Antiparasitarios</h4>
+                    <p class="service-text">
+                        Apoyo en el control de parásitos externos, siempre siguiendo las recomendaciones veterinarias.
+                    </p>
+                    <ul class="service-list">
+                        <li><strong>Baños antipulgas y antigarrapatas</strong> con productos específicos.</li>
+                        <li>Aplicación de productos tópicos según indicación del propietario.</li>
+                        <li>Revisión visual del manto para detectar presencia de parásitos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CUIDADO DE PATITAS Y SONRISA -->
+            <div class="col-md-4">
+                <div class="service-card h-100">
+                    <div class="service-icon">
+                        🐾
+                    </div>
+                    <h4 class="service-title">Cuidado de Patitas y Sonrisa</h4>
+                    <p class="service-text">
+                        Detalles que marcan la diferencia en la comodidad y salud diaria de tu mascota.
+                    </p>
+                    <ul class="service-list">
+                        <li><strong>Exfoliación de plantares</strong> para almohadillas suaves y cuidadas.</li>
+                        <li><strong>Higiene bucal básica</strong> (cepillado de dientes para reducir placa y mal aliento).</li>
+                        <li>Revisión general y recomendaciones de cuidado en casa.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FLUJO DE ATENCIÓN -->
+        <div class="service-flow-wrapper mt-5">
+            <h3 class="text-center mb-4 section-colored-title">¿Cómo atendemos a tu peludito?</h3>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="service-steps">
+                        <div class="step-item">
+                            <span class="step-number">1</span>
+                            <h5>Agendá la cita</h5>
+                            <p class="small mb-0">Coordinamos el servicio según sus necesidades.</p>
+                        </div>
+
+                        <div class="step-item">
+                            <span class="step-number">2</span>
+                            <h5>Recepción y evaluación</h5>
+                            <p class="small mb-0">Revisamos el pelaje, piel y temperamento de tu mascota.</p>
+                        </div>
+
+                        <div class="step-item">
+                            <span class="step-number">3</span>
+                            <h5>Servicio con cariño</h5>
+                            <p class="small mb-0">Realizamos el servicio con paciencia, amor y profesionalismo.</p>
+                        </div>
+
+                        <div class="step-item">
+                            <span class="step-number">4</span>
+                            <h5>Entrega feliz</h5>
+                            <p class="small mb-0">Te mostramos el resultado y damos recomendaciones de cuidado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+    <!-- FOOTER -->
+    <div class="footer-simple mt-5">
+        <p class="mb-0 text-center text-white">
+            © 2025 Mi Mundo de Huellitas – Todos los derechos reservados
+        </p>
+    </div>
+
+</div> <!-- /page-green-bg -->

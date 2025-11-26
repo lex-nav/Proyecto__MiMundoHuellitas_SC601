@@ -2,243 +2,128 @@
     ViewBag.Title = "Sobre Nosotros - Mi Mundo de Huellitas";
 }
 
-<!-- HERO PRINCIPAL -->
+<!-- HERO CON ANIMACIONES -->
 <div class="hero-section d-flex align-items-center text-white">
-    <div class="container text-center">
-        <h1 class="display-4 fw-bold text-shadow">Mi Mundo de Huellitas</h1>
-        <p class="lead text-shadow">Amor, cuidado y bienestar para tus mascotas</p>
+
+    <!-- Patitas animadas -->
+    <div class="paws-animated-bg">
+        <span class="paw paw-1"><i class="fa fa-paw"></i></span>
+        <span class="paw paw-2"><i class="fa fa-paw"></i></span>
+        <span class="paw paw-3"><i class="fa fa-paw"></i></span>
+        <span class="paw paw-4"><i class="fa fa-paw"></i></span>
+        <span class="paw paw-5"><i class="fa fa-paw"></i></span>
+    </div>
+
+    <div class="container text-center hero-content">
+        <h1 class="display-4 fw-bold text-shadow mb-3">Mi Mundo de Huellitas</h1>
+        <p class="lead text-shadow mb-4">
+            Un lugar donde cada peludito recibe amor, cuidado y mucho estilo.
+        </p>
+
+        <div class="hero-tags d-flex justify-content-center flex-wrap gap-2">
+            <span class="tag-pill"><i class="fa fa-scissors"></i> Grooming Profesional</span>
+            <span class="tag-pill"><i class="fa fa-bath"></i> Baños Premium</span>
+            <span class="tag-pill"><i class="fa fa-heart"></i> Ambiente Seguro y Cariñoso</span>
+        </div>
     </div>
 </div>
 
 <div class="container mt-5">
+    <!-- SECCIÓN QUIÉNES SOMOS -->
+    <section class="about-section container my-5">
+        <div class="row align-items-center">
 
-    <!-- QUIÉNES SOMOS -->
-    <div class="row mb-5 align-items-center">
-        <div class="col-md-6">
-            <h2 class="section-title">¿Quiénes Somos?</h2>
-            <p style="text-align: justify;">
-                En <strong>Mi Mundo de Huellitas</strong> creemos que cada mascota es un miembro
-                importante de la familia. Somos una peluquería canina especializada en estética,
-                bienestar y cuidado profesional, trabajando siempre desde el amor y el respeto.
-            </p>
-            <p style="text-align: justify;">
-                Cada servicio que brindamos está pensado para que tu peludito disfrute un ambiente
-                tranquilo, seguro y lleno de cariño, con productos de calidad y un trato amable.
-            </p>
-        </div>
+            <div class="col-md-7">
+                <h2 class="about-title">¿Quiénes Somos?</h2>
 
-        <div class="col-md-6 text-center">
+                <p class="about-text">
+                    En <strong>Mi Mundo de Huellitas</strong> creemos que cada mascota es un miembro muy especial de la familia.
+                    Somos una peluquería canina especializada en estética, bienestar y cuidado profesional.
+                </p>
 
-            <img src="/StaticFiles/img/peluqueria_huellitas.jpg"
-                 class="img-fluid rounded shadow-sm" alt="Peluquería Mi Mundo de Huellitas" />
-        </div>
-    </div>
-
-    <!-- MISIÓN Y VISIÓN -->
-    <div class="row text-center mb-5">
-        <div class="col-md-6 mb-3">
-            <div class="card-custom shadow-sm h-100">
-                <h3 class="card-title-custom">Nuestra Misión</h3>
-                <p>
-                    Brindar servicios de estética, limpieza y bienestar con altos estándares de calidad,
-                    cuidando la salud, comodidad y felicidad de cada mascota que nos visita.
+                <p class="about-text">
+                    Brindamos un ambiente seguro, tranquilo y lleno de cariño, utilizando productos de alta calidad
+                    y ofreciendo siempre un trato amable y respetuoso.
                 </p>
             </div>
-        </div>
 
-        <div class="col-md-6 mb-3">
-            <div class="card-custom shadow-sm h-100">
-                <h3 class="card-title-custom">Nuestra Visión</h3>
-                <p>
-                    Ser la peluquería canina favorita de nuestra comunidad, reconocida por el trato humano,
-                    la excelencia en el servicio y el compromiso con el bienestar animal.
-                </p>
+            <div class="col-md-5 text-center">
+                <div class="about-image-frame">
+                    <img src="~/StaticFiles/img/mundo.jpg" class="img-fluid" alt="Peluquería Canina">
+                    <span class="about-badge">Pet Lovers 🐾</span>
+                </div>
             </div>
+
         </div>
-    </div>
+    </section>
 
-    <!-- VALORES -->
-    <h2 class="section-title text-center mb-4">Nuestros Valores</h2>
 
-    <div class="row text-center mb-5">
+    <!-- MISIÓN, VISIÓN Y VALORES – NUEVO DISEÑO -->
+    <div class="section-colored my-5">
 
-        <div class="col-md-3 mb-3">
-            <div class="valor-card shadow-sm">
-                <i class="fa fa-heart fa-2x valor-icon"></i>
-                <h5>Amor</h5>
-                <p class="small mb-0">Amamos lo que hacemos y tratamos a cada mascota como parte de nuestra familia.</p>
+        <!-- MISIÓN Y VISIÓN -->
+        <div class="row text-center mb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="info-card">
+                    <h2 class="section-colored-title mb-3">Nuestra Misión</h2>
+                    <p>
+                        Brindar servicios de estética y bienestar para mascotas, garantizando su comodidad,
+                        felicidad y seguridad en todo momento.
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-3 mb-3">
-            <div class="valor-card shadow-sm">
-                <i class="fa fa-paw fa-2x valor-icon"></i>
-                <h5>Respeto</h5>
-                <p class="small mb-0">Cuidamos el estado emocional y físico de cada peludito en todo momento.</p>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-3">
-            <div class="valor-card shadow-sm">
-                <i class="fa fa-hand-holding-heart fa-2x valor-icon"></i>
-                <h5>Cuidado</h5>
-                <p class="small mb-0">Trabajamos con paciencia, delicadeza y productos adecuados para su piel y pelaje.</p>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-3">
-            <div class="valor-card shadow-sm">
-                <i class="fa fa-star fa-2x valor-icon"></i>
-                <h5>Calidad</h5>
-                <p class="small mb-0">Buscamos siempre resultados profesionales y una experiencia agradable para todos.</p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- EQUIPO -->
-    <h2 class="section-title text-center mb-4">Nuestro Equipo</h2>
-    <p class="text-center mb-4">
-        Conoce al equipo que hace posible un servicio lleno de amor y profesionalismo.
-    </p>
-
-    <div class="row justify-content-center gy-4">
-
-        <!-- ADMIN -->
-        <div class="col-md-3 d-flex">
-            <div class="team-card shadow-sm w-100">
-                <img src="/StaticFiles/img/administrador.jpg" class="img-fluid rounded-top" alt="Administrador(a)">
-                <div class="p-3 text-center">
-                    <h5 class="team-title mb-1">Administrador(a)</h5>
-                    <p class="text-muted small mb-0">
-                        Responsable de la gestión del negocio, atención al cliente y supervisión de calidad.
+            <div class="col-md-6">
+                <div class="info-card">
+                    <h2 class="section-colored-title mb-3">Nuestra Visión</h2>
+                    <p>
+                        Ser reconocidos como la peluquería canina favorita de la comunidad,
+                        destacando por la excelencia, el amor por los animales y el trato humano.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- PELUQUERO PROFESIONAL -->
-        <div class="col-md-3 d-flex">
-            <div class="team-card shadow-sm w-100">
-                <img src="/StaticFiles/img/groomer.jpg" class="img-fluid rounded-top" alt="Peluquero Profesional">
-                <div class="p-3 text-center">
-                    <h5 class="team-title mb-1">Peluquero Profesional</h5>
-                    <p class="text-muted small mb-0">
-                        Especialista en cortes, baños y estilo canino, cuidando la imagen y comodidad del peludito.
-                    </p>
+        <!-- VALORES -->
+        <h2 class="section-colored-title text-center mb-4">Nuestros Valores</h2>
+
+        <div class="row text-center g-4">
+            <div class="col-md-3 col-6">
+                <div class="valor-card">
+                    <h5>Amor</h5>
+                    <p class="small mb-0">Amamos lo que hacemos y a cada peludito que nos visita.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- ASISTENTE CANINO -->
-        <div class="col-md-3 d-flex">
-            <div class="team-card shadow-sm w-100">
-                <img src="/StaticFiles/img/asistente.jpg" class="img-fluid rounded-top" alt="Asistente Canino">
-                <div class="p-3 text-center">
-                    <h5 class="team-title mb-1">Asistente Canino</h5>
-                    <p class="text-muted small mb-0">
-                        Apoyo en baño, secado y manejo seguro de mascotas durante el servicio.
-                    </p>
+            <div class="col-md-3 col-6">
+                <div class="valor-card">
+                    <h5>Respeto</h5>
+                    <p class="small mb-0">Cuidamos su bienestar físico y emocional en todo momento.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- ASISTENTE DE LIMPIEZA -->
-        <div class="col-md-3 d-flex">
-            <div class="team-card shadow-sm w-100">
-                <img src="/StaticFiles/img/limpieza.jpg" class="img-fluid rounded-top" alt="Asistente de Limpieza">
-                <div class="p-3 text-center">
-                    <h5 class="team-title mb-1">Asistente de Limpieza</h5>
-                    <p class="text-muted small mb-0">
-                        Encargado de mantener áreas limpias, seguras y cómodas para las mascotas y sus familias.
-                    </p>
+            <div class="col-md-3 col-6">
+                <div class="valor-card">
+                    <h5>Cuidado</h5>
+                    <p class="small mb-0">Trabajamos con paciencia, cariño y productos adecuados.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-6">
+                <div class="valor-card">
+                    <h5>Calidad</h5>
+                    <p class="small mb-0">Buscamos resultados profesionales y experiencias felices.</p>
                 </div>
             </div>
         </div>
 
     </div>
+    <!-- FIN MISIÓN / VISIÓN / VALORES -->
+    <!-- FOOTER -->
+    <div class="footer-simple mt-5">
+        <p class="mb-0 text-center text-white">
+            © 2025 Mi Mundo de Huellitas – Todos los derechos reservados
+        </p>
+    </div>
 
-</div>
 
-<!-- FOOTER SIMPLE -->
-<div class="footer-simple mt-5">
-    <p class="mb-0 text-center text-white">
-        © 2025 Mi Mundo de Huellitas – Todos los derechos reservados
-    </p>
-</div>
-
-<style>
-    /* HERO CON COLORES DEL LOGO */
-    .hero-section {
-        height: 320px;
-        background: linear-gradient(135deg, #0A7B48, #0E768C);
-        border-radius: 0;
-        margin-bottom: 40px;
-        display: flex;
-        align-items: center;
-    }
-
-    .text-shadow {
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-    }
-
-    /* TÍTULOS PRINCIPALES */
-    .section-title {
-        color: #0A7B48; /* verde oscuro del logo */
-        font-weight: bold;
-    }
-
-    /* TARJETAS MISIÓN/VISIÓN */
-    .card-custom {
-        border-left: 8px solid #0E768C; /* azul petróleo */
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    .card-title-custom {
-        color: #0E768C;
-        font-weight: 600;
-        margin-bottom: 10px;
-    }
-
-    /* VALORES */
-    .valor-card {
-        background-color: #E9F7DF; /* verde muy suave */
-        padding: 20px;
-        border-radius: 12px;
-    }
-
-    .valor-icon {
-        color: #0A7B48;
-        margin-bottom: 8px;
-    }
-
-    /* EQUIPO */
-    .team-card {
-        border-radius: 12px;
-        overflow: hidden;
-        border: 2px solid #0A7B48;
-        background-color: #ffffff;
-    }
-
-    .team-title {
-        color: #0A7B48;
-        font-weight: bold;
-    }
-
-    .team-card img {
-        object-fit: cover;
-        height: 180px;
-        width: 100%;
-    }
-
-    /* FOOTER */
-    .footer-simple {
-        background-color: #0A7B48;
-        padding: 20px;
-        margin-top: 40px;
-    }
-</style>
-
-</div>
