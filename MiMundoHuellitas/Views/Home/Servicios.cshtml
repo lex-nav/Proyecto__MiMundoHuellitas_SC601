@@ -1,209 +1,382 @@
 ﻿@{
     ViewBag.Title = "Servicios - Mi Mundo de Huellitas";
+    ViewBag.ActiveMenu = "Servicios";
 }
 
-<div class="page-green-bg">
+<!-- HERO SERVICIOS -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px;
+            background: linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+                        url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Nuestros Servicios</h1>
+        <p class="lead mb-0">
+            Grooming profesional, spa, tintes seguros y cuidados completos para consentir a tu peludito.
+        </p>
+    </div>
+</div>
 
-    <!-- HERO DE SERVICIOS -->
-    <div class="page-hero servicios-hero d-flex align-items-center text-white">
-        <div class="container text-center hero-content">
-            <h1 class="display-5 fw-bold mb-3">Nuestros Servicios</h1>
-            <p class="lead mb-0">
-                Todo lo que tu peludito necesita para verse y sentirse increíble.
+<div class="container my-5">
+
+    <!-- INTRO + PUNTOS CLAVE -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+            <h2 class="h4 mb-3" style="color:#0A7B48;">Todo lo que tu mascota necesita en un solo lugar</h2>
+            <p class="text-muted mb-0">
+                En Mi Mundo de Huellitas combinamos técnicas profesionales de estética canina con un trato
+                lleno de cariño y paciencia. Cada servicio está pensado para que tu peludito se sienta cómodo,
+                seguro y salga más guapo que nunca.
             </p>
         </div>
     </div>
 
-    <div class="container my-5">
+    <!-- TRES PÍLDORAS RÁPIDAS -->
+    <div class="row mb-5">
 
-        <!-- INTRO SERVICIOS -->
-        <div class="service-intro-box">
-
-            <!-- Patitas decorativas de fondo -->
-            <div class="intro-paws">
-                <span>🐾</span>
-                <span>🐾</span>
-                <span>🐾</span>
-                <span>🐾</span>
+        <!-- Trato con amor -->
+        <div class="col-md-4 mb-5 card-1">
+            <div class="h-100"
+                 style="background: linear-gradient(135deg, #0A7B48, #0E768C);
+                    border-radius: 22px;
+                    padding: 3px;">
+                <div class="text-center h-100"
+                     style="background:#ffffff;
+                        border-radius: 20px;
+                        padding: 22px 20px;
+                        box-shadow: 0 12px 30px rgba(0,0,0,0.08);">
+                    <div class="mx-auto mb-3 d-flex align-items-center justify-content-center"
+                         style="width:56px;height:56px;border-radius:50%;
+                            background:rgba(14,118,140,0.08);">
+                        <span class="fa fa-heart" style="font-size:26px;color:#0E768C;"></span>
+                    </div>
+                    <h3 class="h5">Trato con amor</h3>
+                    <p class="text-muted mb-0">
+                        Manejo respetuoso, pausas cuando es necesario y mucha paciencia,
+                        sobre todo con perritos nerviosos o primerizos.
+                    </p>
+                </div>
             </div>
+        </div>
 
-            <div class="service-intro-content">
-                <h2 class="intro-title">Cuidamos cada detalle para tu peludito</h2>
+        <!-- Productos seguros -->
+        <div class="col-md-4 mb-3 card-2">
+            <div class="h-100"
+                 style="background: linear-gradient(135deg, #0E768C, #18A999);
+                    border-radius: 22px;
+                    padding: 3px;">
+                <div class="text-center h-100"
+                     style="background:#ffffff;
+                        border-radius: 20px;
+                        padding: 22px 20px;
+                        box-shadow: 0 12px 30px rgba(0,0,0,0.08);">
+                    <div class="mx-auto mb-3 d-flex align-items-center justify-content-center"
+                         style="width:56px;height:56px;border-radius:50%;
+                            background:rgba(24,169,153,0.08);">
+                        <span class="fa fa-medkit" style="font-size:26px;color:#0E768C;"></span>
+                    </div>
+                    <h3 class="h5">Productos seguros</h3>
+                    <p class="text-muted mb-0">
+                        Usamos productos profesionales diseñados para mascotas, elegidos
+                        según el tipo de piel y pelaje de tu peludito.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-                <p class="intro-text">
-                    En <strong>Mi Mundo de Huellitas</strong> cuidamos cada detalle para que la experiencia de tu
-                    mascota sea segura, cómoda y llena de cariño. Nuestros servicios combinan
-                    <strong> profesionalismo</strong>, <strong>amor</strong> y
-                    <strong> productos de alta calidad</strong>, siempre pensando en su bienestar.
-                </p>
+        <!-- Resultados que enamoran -->
+        <div class="col-md-4 mb-3 card-3">
+            <div class="h-100"
+                 style="background: linear-gradient(135deg, #FF9472, #F2709C);
+                    border-radius: 22px;
+                    padding: 3px;">
+                <div class="text-center h-100"
+                     style="background:#ffffff;
+                        border-radius: 20px;
+                        padding: 22px 20px;
+                        box-shadow: 0 12px 30px rgba(0,0,0,0.08);">
+                    <div class="mx-auto mb-3 d-flex align-items-center justify-content-center"
+                         style="width:56px;height:56px;border-radius:50%;
+                            background:rgba(242,112,156,0.08);">
+                        <span class="fa fa-picture-o" style="font-size:26px;color:#F2709C;"></span>
+                    </div>
+                    <h3 class="h5">Resultados que enamoran</h3>
+                    <p class="text-muted mb-0">
+                        Cortes, baños y estilos pensados para que salga listo para sus fotos
+                        y para recibir mimos en casa.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-                <div class="intro-actions">
-                    <a href="@Url.Action("Contacto", "Home")" class="btn btn-intro">
-                        <i class="fa fa-calendar-check-o"></i> Quiero agendar un servicio
+    </div>
+
+
+
+    <!-- BLOQUE CÓMO TRABAJAMOS + AGENDA -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <div class="service-card h-100">
+                <h3 class="h5 mb-3">¿Cómo trabajamos?</h3>
+                <ul class="list-unstyled mb-0 text-muted">
+                    <li class="mb-2">
+                        <span class="fa fa-check text-success me-2"></span>
+                        Valoración inicial del pelaje, piel y comportamiento.
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa fa-check text-success me-2"></span>
+                        Selección de productos según tipo de pelaje y necesidades.
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa fa-check text-success me-2"></span>
+                        Trabajo por etapas para que tu peludo se sienta tranquilo.
+                    </li>
+                    <li class="mb-2">
+                        <span class="fa fa-check text-success me-2"></span>
+                        Entrega con recomendaciones de cuidado en casa.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="service-cta-band h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <h3 class="h5 mb-3">Agenda y paquetes</h3>
+                    <p class="mb-2">
+                        Trabajamos con agenda previa para garantizar que cada peludito tenga
+                        el tiempo y la atención que se merece.
+                    </p>
+                    <p class="mb-3">
+                        Contamos con paquetes básicos, intermedios y premium que combinan
+                        baño, corte, spa y servicios adicionales.
+                    </p>
+                </div>
+                <div>
+                    <a href="@Url.Action("Contacto","Home")" class="btn btn-light btn-sm">
+                        Consultar disponibilidad
                     </a>
                 </div>
             </div>
         </div>
-
-        <!-- TARJETAS DE SERVICIOS (DETALLADAS) -->
-        <div class="row g-4">
-
-            <!-- CORTES Y ESTILIZADO PROFESIONAL -->
-            <div class="col-md-4">
-                <div class="service-card h-100">
-                    <div class="service-icon">
-                        ✂️
-                    </div>
-                    <h4 class="service-title">Cortes y Estilizado Profesional</h4>
-                    <p class="service-text">
-                        Cortes pensados según la raza, el estilo de vida y la comodidad de tu peludito.
-                    </p>
-                    <ul class="service-list">
-                        <li><strong>Corte de pelo según raza</strong> (corte estándar: Poodle, Schnauzer, etc.).</li>
-                        <li><strong>Corte funcional o de mantenimiento</strong>, práctico y fácil de cuidar.</li>
-                        <li><strong>Arreglo a tijera (Scissoring)</strong> para un acabado más natural y estético.</li>
-                        <li><strong>Trimming</strong> y acondicionamiento general del manto según la raza.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- MANTO Y SUBPELO -->
-            <div class="col-md-4">
-                <div class="service-card h-100">
-                    <div class="service-icon">
-                        🐕
-                    </div>
-                    <h4 class="service-title">Manto & Subpelo</h4>
-                    <p class="service-text">
-                        Cuidamos la salud del pelaje para evitar nudos y ayudar a la termorregulación.
-                    </p>
-                    <ul class="service-list">
-                        <li><strong>Cepillado y deslanado</strong> profundo en razas de doble capa (Huskies, Golden, etc.).</li>
-                        <li><strong>Desenredado</strong> meticuloso de nudos grandes antes del baño.</li>
-                        <li><strong>Stripping</strong> en razas de pelo duro, manteniendo textura y color del manto.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- HIDRATACIÓN PROFUNDA -->
-            <div class="col-md-4">
-                <div class="service-card h-100">
-                    <div class="service-icon">
-                        💧
-                    </div>
-                    <h4 class="service-title">Hidratación Profunda</h4>
-                    <p class="service-text">
-                        Ideal para mantos secos, dañados o muy largos que necesitan un cuidado extra.
-                    </p>
-                    <ul class="service-list">
-                        <li><strong>Mascarillas hidratantes</strong> para recuperar la suavidad del pelo.</li>
-                        <li><strong>Keratina</strong> para dar brillo y fuerza al manto.</li>
-                        <li><strong>Aceites especiales</strong> (cocoterapia, gotas de seda, etc.).</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row g-4 mt-1">
-
-            <!-- BAÑOS TERAPÉUTICOS O MEDICADOS -->
-            <div class="col-md-4">
-                <div class="service-card h-100">
-                    <div class="service-icon">
-                        🛁
-                    </div>
-                    <h4 class="service-title">Baños Terapéuticos o Medicados</h4>
-                    <p class="service-text">
-                        Especiales para peluditos con piel sensible o con tratamiento veterinario.
-                    </p>
-                    <ul class="service-list">
-                        <li>Uso de <strong>shampoo prescrito</strong> para problemas como dermatitis, hongos o alergias.</li>
-                        <li>Enjuague cuidadoso para respetar la piel y el tratamiento.</li>
-                        <li>Acompañamiento tranquilo para reducir el estrés durante el baño.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- TRATAMIENTOS ANTIPARASITARIOS -->
-            <div class="col-md-4">
-                <div class="service-card h-100">
-                    <div class="service-icon">
-                        🐜
-                    </div>
-                    <h4 class="service-title">Tratamientos Antiparasitarios</h4>
-                    <p class="service-text">
-                        Apoyo en el control de parásitos externos, siempre siguiendo las recomendaciones veterinarias.
-                    </p>
-                    <ul class="service-list">
-                        <li><strong>Baños antipulgas y antigarrapatas</strong> con productos específicos.</li>
-                        <li>Aplicación de productos tópicos según indicación del propietario.</li>
-                        <li>Revisión visual del manto para detectar presencia de parásitos.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- CUIDADO DE PATITAS Y SONRISA -->
-            <div class="col-md-4">
-                <div class="service-card h-100">
-                    <div class="service-icon">
-                        🐾
-                    </div>
-                    <h4 class="service-title">Cuidado de Patitas y Sonrisa</h4>
-                    <p class="service-text">
-                        Detalles que marcan la diferencia en la comodidad y salud diaria de tu mascota.
-                    </p>
-                    <ul class="service-list">
-                        <li><strong>Exfoliación de plantares</strong> para almohadillas suaves y cuidadas.</li>
-                        <li><strong>Higiene bucal básica</strong> (cepillado de dientes para reducir placa y mal aliento).</li>
-                        <li>Revisión general y recomendaciones de cuidado en casa.</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- FLUJO DE ATENCIÓN -->
-        <div class="service-flow-wrapper mt-5">
-            <h3 class="text-center mb-4 section-colored-title">¿Cómo atendemos a tu peludito?</h3>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="service-steps">
-                        <div class="step-item">
-                            <span class="step-number">1</span>
-                            <h5>Agendá la cita</h5>
-                            <p class="small mb-0">Coordinamos el servicio según sus necesidades.</p>
-                        </div>
-
-                        <div class="step-item">
-                            <span class="step-number">2</span>
-                            <h5>Recepción y evaluación</h5>
-                            <p class="small mb-0">Revisamos el pelaje, piel y temperamento de tu mascota.</p>
-                        </div>
-
-                        <div class="step-item">
-                            <span class="step-number">3</span>
-                            <h5>Servicio con cariño</h5>
-                            <p class="small mb-0">Realizamos el servicio con paciencia, amor y profesionalismo.</p>
-                        </div>
-
-                        <div class="step-item">
-                            <span class="step-number">4</span>
-                            <h5>Entrega feliz</h5>
-                            <p class="small mb-0">Te mostramos el resultado y damos recomendaciones de cuidado.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div> <!-- /container -->
-    <!-- FOOTER -->
-    <div class="footer-simple mt-5">
-        <p class="mb-0 text-center text-white">
-            © 2025 Mi Mundo de Huellitas – Todos los derechos reservados
-        </p>
     </div>
 
-</div> <!-- /page-green-bg -->
+    <!-- GRID DE SERVICIOS PRINCIPALES -->
+    <div class="row mb-4">
+        <div class="col-12 text-center mb-3">
+            <h2 class="h4">Servicios principales</h2>
+            <p class="text-muted mb-0">
+                Podés elegir un servicio individual o combinarlos dentro de un paquete.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!-- Grooming completo -->
+        <div class="col-md-4 d-flex mb-4">
+            <div class="service-card text-center">
+                <div class="icon-circle">
+                    <span class="flaticon-grooming"></span>
+                </div>
+                <h3 class="heading mb-2">Grooming completo</h3>
+                <p class="text-muted mb-3">
+                    Baño, secado profesional, corte según raza o a gusto, perfume
+                    y accesorio decorativo para fotos perfectas.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li>Valoración del manto y piel</li>
+                    <li>Corte a máquina o tijera</li>
+                    <li>Estilizado final</li>
+                </ul>
+                <span class="service-badge bg-success text-white">
+                    Ideal para mantenimiento mensual
+                </span>
+            </div>
+        </div>
+
+        <!-- Baño & Spa -->
+        <div class="col-md-4 d-flex mb-4">
+            <div class="service-card text-center">
+                <div class="icon-circle">
+                    <span class="flaticon-dog-eating"></span>
+                </div>
+                <h3 class="heading mb-2">Baño &amp; Spa</h3>
+                <p class="text-muted mb-3">
+                    Baño relajante con agua templada, shampoo adecuado, masaje,
+                    cepillado y productos que dejan el pelaje suave y brillante.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li>Baño profundo y doble enjuague</li>
+                    <li>Acondicionador hidratante</li>
+                    <li>Aromas suaves y agradables</li>
+                </ul>
+                <span class="service-badge bg-info text-dark">
+                    Perfecto entre cortes
+                </span>
+            </div>
+        </div>
+
+        <!-- Higiene básica -->
+        <div class="col-md-4 d-flex mb-4">
+            <div class="service-card text-center">
+                <div class="icon-circle">
+                    <span class="flaticon-dog-with-scarf-and-bells"></span>
+                </div>
+                <h3 class="heading mb-2">Higiene básica</h3>
+                <p class="text-muted mb-3">
+                    Corte higiénico en zonas delicadas, limpieza de orejas, corte
+                    o limado de uñas y revisión rápida del pelaje.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li>Corte higiénico</li>
+                    <li>Orejas limpias</li>
+                    <li>Uñas seguras y cortas</li>
+                </ul>
+                <span class="service-badge bg-warning text-dark">
+                    Recomendado cada pocas semanas
+                </span>
+            </div>
+        </div>
+
+        <!-- Tintes y color -->
+        <div class="col-md-4 d-flex mb-4">
+            <div class="service-card text-center">
+                <div class="icon-circle">
+                    <span class="flaticon-dog"></span>
+                </div>
+                <h3 class="heading mb-2">Tintes &amp; estilos</h3>
+                <p class="text-muted mb-3">
+                    Toques de color divertidos y seguros, utilizando productos aptos para mascotas
+                    y zonas permitidas.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li>Evaluación previa de piel</li>
+                    <li>Colores temporales</li>
+                    <li>Estilos personalizados</li>
+                </ul>
+                <span class="service-badge bg-danger text-white">
+                    Sujeto a evaluación
+                </span>
+            </div>
+        </div>
+
+        <!-- Paquetes combinados -->
+        <div class="col-md-4 d-flex mb-4">
+            <div class="service-card text-center">
+                <div class="icon-circle">
+                    <span class="flaticon-pet"></span>
+                </div>
+                <h3 class="heading mb-2">Paquetes combinados</h3>
+                <p class="text-muted mb-3">
+                    Combina baño, corte, higiene y extras en paquetes básico, intermedio
+                    o premium para mantener a tu peludo siempre cuidado.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li>Paquete Básico</li>
+                    <li>Paquete Intermedio</li>
+                    <li>Paquete Premium</li>
+                </ul>
+                <span class="service-badge bg-primary text-white">
+                    Mejor valor por visita
+                </span>
+            </div>
+        </div>
+
+        <!-- Servicios adicionales -->
+        <div class="col-md-4 d-flex mb-4">
+            <div class="service-card text-center">
+                <div class="icon-circle">
+                    <span class="flaticon-emergency-call"></span>
+                </div>
+                <h3 class="heading mb-2">Servicios adicionales</h3>
+                <p class="text-muted mb-3">
+                    Según agenda y disponibilidad, coordinamos servicios especiales como transporte
+                    o cuidados extra para ocasiones específicas.
+                </p>
+                <ul class="list-unstyled small text-muted mb-3">
+                    <li>Transporte (según zona)</li>
+                    <li>Accesorios especiales</li>
+                    <li>Recomendaciones personalizadas</li>
+                </ul>
+                <span class="service-badge bg-secondary text-white">
+                    Consultar condiciones
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASOS DEL SERVICIO -->
+    <div class="row mt-4 mb-5">
+        <div class="col-12">
+            <div style="background: linear-gradient(135deg,
+                                               rgba(10,123,72,0.06),
+                                               rgba(14,118,140,0.10));
+                    border-radius: 28px;
+                    padding: 28px 24px 18px;">
+                <div class="text-center mb-4">
+                    <h2 class="h4 mb-1">¿Cómo es la experiencia de tu peludo?</h2>
+                    <p class="text-muted mb-0">
+                        Queremos que cada visita sea tranquila para él y sencilla para vos.
+                    </p>
+                </div>
+
+                <div class="row">
+                    <!-- Paso 1 -->
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="mx-auto mb-2 d-flex align-items-center justify-content-center"
+                             style="width:42px;height:42px;border-radius:50%;
+                                background:#ffffff;border:2px solid #0E768C;
+                                font-weight:700;color:#0E768C;
+                                box-shadow:0 6px 15px rgba(0,0,0,0.08);">
+                            1
+                        </div>
+                        <div class="mb-2">
+                            <span class="fa fa-phone fa-2x" style="color:#0A7B48;"></span>
+                        </div>
+                        <h5 class="mb-2">Reserva</h5>
+                        <p class="small text-muted mb-0">
+                            Nos contactás por WhatsApp o redes para agendar el día y la hora.
+                        </p>
+                    </div>
+
+                    <!-- Paso 2 -->
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="mx-auto mb-2 d-flex align-items-center justify-content-center"
+                             style="width:42px;height:42px;border-radius:50%;
+                                background:#ffffff;border:2px solid #0E768C;
+                                font-weight:700;color:#0E768C;
+                                box-shadow:0 6px 15px rgba(0,0,0,0.08);">
+                            2
+                        </div>
+                        <div class="mb-2">
+                            <span class="fa fa-bath fa-2x" style="color:#0A7B48;"></span>
+                        </div>
+                        <h5 class="mb-2">Servicio</h5>
+                        <p class="small text-muted mb-0">
+                            Tu peludito recibe el servicio con calma, cariño y tiempo suficiente.
+                        </p>
+                    </div>
+
+                    <!-- Paso 3 -->
+                    <div class="col-md-4 text-center mb-3">
+                        <div class="mx-auto mb-2 d-flex align-items-center justify-content-center"
+                             style="width:42px;height:42px;border-radius:50%;
+                                background:#ffffff;border:2px solid #0E768C;
+                                font-weight:700;color:#0E768C;
+                                box-shadow:0 6px 15px rgba(0,0,0,0.08);">
+                            3
+                        </div>
+                        <div class="mb-2">
+                            <span class="fa fa-heart fa-2x" style="color:#0A7B48;"></span>
+                        </div>
+                        <h5 class="mb-2">Entrega feliz</h5>
+                        <p class="small text-muted mb-0">
+                            Te lo entregamos limpio, guapo y con recomendaciones para el hogar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

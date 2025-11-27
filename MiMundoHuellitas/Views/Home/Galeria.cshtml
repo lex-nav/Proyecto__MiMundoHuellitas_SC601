@@ -1,9 +1,205 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
-    ViewBag.Title = "Galería";
+    ViewBag.Title = "Galería - Mi Mundo de Huellitas";
+    ViewBag.ActiveMenu = "Galeria";
 }
 
-<div class="container my-4">
-    <h1>Galería</h1>
-    <p>Fotos de mascotas antes y después del grooming, instalaciones, etc.</p>
+<!-- HERO GALERÍA -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px;
+            background: linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+                        url('/StaticFiles/img/bg_2.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Galería de Mascotas</h1>
+        <p class="lead mb-0">
+            Momentos felices, cortes creativos y muchos peluditos consentidos en Mi Mundo de Huellitas.
+        </p>
+    </div>
 </div>
+
+<div class="container my-5">
+
+    <!-- DESCRIPCIÓN / INTRO -->
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+            <h2 class="h4 text-huellitas-secondary mb-3">Antes y después, spa y mucho amor</h2>
+            <p class="text-muted mb-0">
+                Aquí podés ver algunos de los resultados de nuestros servicios de grooming, spa canino,
+                tintes y paquetes especiales. Cada foto es un peludito real que salió feliz y hermoso
+                de nuestra peluquería.
+            </p>
+        </div>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-center flex-wrap gap-2">
+            <button class="btn btn-sm btn-outline-success mx-1 mb-2 gallery-filter active"
+                    data-filter="all">
+                Todos
+            </button>
+            <button class="btn btn-sm btn-outline-success mx-1 mb-2 gallery-filter"
+                    data-filter="grooming">
+                Grooming &amp; cortes
+            </button>
+            <button class="btn btn-sm btn-outline-success mx-1 mb-2 gallery-filter"
+                    data-filter="spa">
+                Spa &amp; baño
+            </button>
+            <button class="btn btn-sm btn-outline-success mx-1 mb-2 gallery-filter"
+                    data-filter="tintes">
+                Tintes &amp; estilos
+            </button>
+            <button class="btn btn-sm btn-outline-success mx-1 mb-2 gallery-filter"
+                    data-filter="antes-despues">
+                Antes y después
+            </button>
+        </div>
+    </div>
+
+    <!-- GRID GALERÍA -->
+    <div class="row g-4">
+
+        <!-- Item 1 -->
+        <div class="col-md-4 mb-4 gallery-item" data-category="grooming antes-despues">
+            <div class="work img d-flex align-items-end"
+                 style="background-image: url('/StaticFiles/img/gallery-1.jpg');">
+                <a href="/StaticFiles/img/gallery-1.jpg"
+                   class="icon image-popup d-flex justify-content-center align-items-center">
+                    <span class="fa fa-expand"></span>
+                </a>
+                <div class="desc w-100 px-4">
+                    <div class="text w-100 mb-3">
+                        <span>Grooming completo</span>
+                        <h2 class="h5 mb-0"><a href="#">Antes y después de baño &amp; corte</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="col-md-4 mb-4 gallery-item" data-category="spa">
+            <div class="work img d-flex align-items-end"
+                 style="background-image: url('/StaticFiles/img/gallery-2.jpg');">
+                <a href="/StaticFiles/img/gallery-2.jpg"
+                   class="icon image-popup d-flex justify-content-center align-items-center">
+                    <span class="fa fa-expand"></span>
+                </a>
+                <div class="desc w-100 px-4">
+                    <div class="text w-100 mb-3">
+                        <span>Spa canino</span>
+                        <h2 class="h5 mb-0"><a href="#">Momento relax con aromaterapia</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="col-md-4 mb-4 gallery-item" data-category="grooming">
+            <div class="work img d-flex align-items-end"
+                 style="background-image: url('/StaticFiles/img/gallery-3.jpg');">
+                <a href="/StaticFiles/img/gallery-3.jpg"
+                   class="icon image-popup d-flex justify-content-center align-items-center">
+                    <span class="fa fa-expand"></span>
+                </a>
+                <div class="desc w-100 px-4">
+                    <div class="text w-100 mb-3">
+                        <span>Corte de raza</span>
+                        <h2 class="h5 mb-0"><a href="#">Perfilado para resaltar su carita</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="col-md-4 mb-4 gallery-item" data-category="tintes grooming">
+            <div class="work img d-flex align-items-end"
+                 style="background-image: url('/StaticFiles/img/gallery-4.jpg');">
+                <a href="/StaticFiles/img/gallery-4.jpg"
+                   class="icon image-popup d-flex justify-content-center align-items-center">
+                    <span class="fa fa-expand"></span>
+                </a>
+                <div class="desc w-100 px-4">
+                    <div class="text w-100 mb-3">
+                        <span>Tintes seguros</span>
+                        <h2 class="h5 mb-0"><a href="#">Toques de color que resaltan su estilo</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="col-md-4 mb-4 gallery-item" data-category="spa grooming">
+            <div class="work img d-flex align-items-end"
+                 style="background-image: url('/StaticFiles/img/gallery-5.jpg');">
+                <a href="/StaticFiles/img/gallery-5.jpg"
+                   class="icon image-popup d-flex justify-content-center align-items-center">
+                    <span class="fa fa-expand"></span>
+                </a>
+                <div class="desc w-100 px-4">
+                    <div class="text w-100 mb-3">
+                        <span>Pelaje brillante</span>
+                        <h2 class="h5 mb-0"><a href="#">Baño hidratante y cepillado profundo</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="col-md-4 mb-4 gallery-item" data-category="antes-despues grooming">
+            <div class="work mb-4 img d-flex align-items-end"
+                 style="background-image: url('/StaticFiles/img/gallery-6.jpg');">
+                <a href="/StaticFiles/img/gallery-6.jpg"
+                   class="icon image-popup d-flex justify-content-center align-items-center">
+                    <span class="fa fa-expand"></span>
+                </a>
+                <div class="desc w-100 px-4">
+                    <div class="text w-100 mb-3">
+                        <span>Transformación</span>
+                        <h2 class="h5 mb-0"><a href="#">Cambio completo de look</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="row mt-5">
+        <div class="col-lg-8 mx-auto text-center">
+            <h3 class="h4 mb-2 text-huellitas-primary">¿Te gustaría que tu peludito aparezca aquí?</h3>
+            <p class="text-muted mb-3">
+                Podés agendar una cita y, con tu autorización, compartir sus fotos del antes y después
+                en nuestra galería y redes sociales.
+            </p>
+            <a href="@Url.Action("Contacto","Home")" class="btn btn-huellitas-primary">
+                Reservar cita de grooming
+            </a>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <!-- Filtro sencillo de galería por categoría -->
+    <script>
+        $(function () {
+            $('.gallery-filter').on('click', function () {
+                var filter = $(this).data('filter');
+
+                $('.gallery-filter').removeClass('active');
+                $(this).addClass('active');
+
+                if (filter === 'all') {
+                    $('.gallery-item').fadeIn(200);
+                } else {
+                    $('.gallery-item').hide();
+                    $('.gallery-item').each(function () {
+                        var cat = $(this).data('category');
+                        if (cat && cat.indexOf(filter) !== -1) {
+                            $(this).fadeIn(200);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -470,6 +470,7 @@
     <Content Include="StaticFiles\img\image_5.jpg" />
     <Content Include="StaticFiles\img\image_6.jpg" />
     <Content Include="StaticFiles\img\img.jpg" />
+    <Content Include="StaticFiles\img\lagrimales.jpg" />
     <Content Include="StaticFiles\img\loc.png" />
     <Content Include="StaticFiles\img\Logo Huellitas.jpg" />
     <Content Include="StaticFiles\img\mela.jpg" />
@@ -478,6 +479,8 @@
     <Content Include="StaticFiles\img\noemy.jpg" />
     <Content Include="StaticFiles\img\oidos.JPG" />
     <Content Include="StaticFiles\img\patita1.png" />
+    <Content Include="StaticFiles\img\perrito.jpg" />
+    <Content Include="StaticFiles\img\perrito1.jpg" />
     <Content Include="StaticFiles\img\person_1.jpg" />
     <Content Include="StaticFiles\img\person_2.jpg" />
     <Content Include="StaticFiles\img\person_3.jpg" />
@@ -528,6 +531,7 @@
     <Content Include="StaticFiles\img\testimonial-2.png" />
     <Content Include="StaticFiles\img\testimonial-3.png" />
     <Content Include="StaticFiles\img\testimonial-4.png" />
+    <Content Include="StaticFiles\img\tintes.jpeg" />
     <Content Include="StaticFiles\img\tintes.JPG" />
     <Content Include="StaticFiles\img\unnas.jpg" />
     <Content Include="StaticFiles\img\user.jpg" />
@@ -557,7 +561,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\SobreNosotros.cshtml" />
     <Content Include="Views\Home\Contacto.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
