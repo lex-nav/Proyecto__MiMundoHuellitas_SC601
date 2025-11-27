@@ -1,160 +1,109 @@
-﻿@model dynamic
-@{
+﻿@{
 
-    ViewBag.Title = "Nuestro Equipo - Mi Mundo de Huellitas";
+    ViewData["Title"] = "Nuestro Equipo de Profesionales";
 }
 
-@{
-    ViewBag.Title = "Equipo - Mi Mundo de Huellitas";
-}
-
-<div class="hero-section equipo-hero d-flex align-items-center text-white">
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px; background: linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+           url('/StaticFiles/img/Fondo_Huellitas.jpg') center/cover no-repeat;">
     <div class="container text-center">
-        <h1 class="display-5 fw-bold">Conoce a Nuestros Estilistas y Staff</h1>
-        <p class="lead">El corazón de Mi Mundo de Huellitas: pasión, experiencia y dedicación.</p>
+        <h1 class="display-5 fw-bold">Conoce a Nuestro Equipo</h1>
+        <p class="lead mb-0">
+            Profesionales dedicados, apasionados por el bienestar de tus mascotas.
+        </p>
     </div>
 </div>
 
-<div class="container my-5">
+<section class="team-section py-5">
+    <div class="container">
 
-    <section id="introduccion" class="text-center mb-5">
-        <h2 class="text-contact-primary mb-3">Personas que Cuidan de tu Mascota</h2>
-        <p class="fs-5 text-muted">
-            Nuestro equipo multidisciplinario asegura que cada visita sea segura, profesional y muy divertida.
-        </p>
-    </section>
+        <header class="text-center mb-5">
+            <h2 class="display-4 fw-bold team-title-color">Nuestros Pilares</h2>
+            <p class="lead text-muted">
+                Dedicación, profesionalismo y amor por los animales en cada servicio.
+            </p>
+        </header>
 
-    <div class="row g-4 justify-content-center mb-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
 
-        <div class="col-md-6 col-lg-4">
-            <div class="team-card shadow-sm h-100">
-                <div class="team-header-img">
-                    <img src="~/StaticFiles/img/noemy.jpg"
-                         class="team-img-circle shadow-sm" />
-                    <p class="text-contact-secondary fw-bold mt-2 mb-0">Noemy Bernal</p>
-                </div>
-                <div class="card-body text-center">
-                    <h5 class="card-title text-contact-secondary">Administrador</h5>
-                    <p class="card-text small text-muted">
-                        Encargada de la gestión de citas, la logística de productos y la calidad del servicio al cliente.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge team-badge bg-primary-custom">Gestión Operativa</span>
-                        <span class="badge team-badge bg-secondary-custom">Atención al Cliente</span>
+            <div class="col">
+                <div class="card team-card shadow-sm h-100 border-0 rounded-3" data-role="administrador">
+                    <div class="card-body text-center p-4">
+                        <img src="/StaticFiles/img/noemy.jpg" class="team-member-img rounded-circle mb-3" alt="Imagen de Juan Pérez">
+                        <h5 class="card-title fw-bold">Noemy Bernal</h5>
+                        <p class="card-text text-uppercase small team-role-color">Administrador</p>
+                        <p class="card-text description text-muted">
+                            Líder visionario a cargo de la gestión general y la calidad del servicio.
+                        </p>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="#" class="text-contact-secondary me-2"><i class="fas fa-envelope"></i></a>
-                    <a href="#" class="text-contact-secondary"><i class="fab fa-linkedin"></i></a>
-                </div>
             </div>
-        </div>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="team-card shadow-sm h-100">
-                <div class="team-header-img">
-                    <img src="~/StaticFiles/img/mela.jpg"
-                         class="team-img-circle shadow-sm" />
-                    <p class="text-contact-primary fw-bold mt-2 mb-0">Melany Fernández.</p>
-                </div>
-                <div class="card-body text-center">
-                    <h5 class="card-title text-contact-secondary">Groomer Profesional</h5>
-                    <p class="card-text small text-muted">
-                        Experta en técnicas de corte, stripping y manejo de pieles sensibles. Especialidad en razas grandes.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge team-badge bg-primary-custom">Estética Canina</span>
-                        <span class="badge team-badge bg-secondary-custom">Salud del Pelaje</span>
+            <div class="col">
+                <div class="card team-card shadow-sm h-100 border-0 rounded-3" data-role="groomer">
+                    <div class="card-body text-center p-4">
+                        <img src="/StaticFiles/img/mela.jpg" class="team-member-img rounded-circle mb-3" alt="Imagen de María López">
+                        <h5 class="card-title fw-bold">Melany Fernández</h5>
+                        <p class="card-text text-uppercase small team-role-color">Groomer Profesional</p>
+                        <p class="card-text description text-muted">
+                            Experta en estilismo canino y felino, garantiza cortes y peinados perfectos.
+                        </p>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="#" class="text-contact-secondary me-2"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-contact-secondary"><i class="fab fa-instagram"></i></a>
-                </div>
             </div>
-        </div>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="team-card shadow-sm h-100">
-                <div class="team-header-img">
-                    <img src="~/StaticFiles/img/ali.jpg"
-                         class="team-img-circle shadow-sm" />
-                    <p class="text-contact-secondary fw-bold mt-2 mb-0">Alisson Oviedo.</p>
-                </div>
-                <div class="card-body text-center">
-                    <h5 class="card-title text-contact-secondary">Asistente Canino</h5>
-                    <p class="card-text small text-muted">
-                        Encargada del manejo positivo, el secado inicial, juegos y tranquilidad de la mascota durante la espera.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge team-badge bg-primary-custom">Manejo Básico</span>
-                        <span class="badge team-badge bg-secondary-custom">Cuidados Post-Baño</span>
+            <div class="col">
+                <div class="card team-card shadow-sm h-100 border-0 rounded-3" data-role="banista">
+                    <div class="card-body text-center p-4">
+                        <img src="~/StaticFiles/img/person_2.jpg" class="team-member-img rounded-circle mb-3" alt="Imagen de Carlos Gómez">
+                        <h5 class="card-title fw-bold">Carlos Gómez</h5>
+                        <p class="card-text text-uppercase small team-role-color">Bañista Profesional</p>
+                        <p class="card-text description text-muted">
+                            Se encarga del bienestar e higiene, asegurando baños relajantes y profundos.
+                        </p>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="#" class="text-contact-secondary me-2"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="text-contact-secondary"><i class="fab fa-instagram"></i></a>
-                </div>
             </div>
-        </div>
-    </div>
 
-    <h3 class="text-center text-contact-primary mb-4">✨ Soporte y Ambiente</h3>
-
-    <div class="row g-4 justify-content-center">
-
-        <div class="col-md-6 col-lg-4">
-            <div class="team-card shadow-sm h-100">
-                <div class="team-header-img">
-                    <img src="~/StaticFiles/img/achi.jpg"
-                         class="team-img-circle shadow-sm" />
-                    <p class="text-contact-primary fw-bold mt-2 mb-0">Asley Castillo.</p>
-                </div>
-                <div class="card-body text-center">
-                    <h5 class="card-title text-contact-secondary">Asistente de Limpieza</h5>
-                    <p class="card-text small text-muted">
-                        Responsable de mantener el área de trabajo y recepción impecable, garantizando la desinfección total.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge team-badge bg-primary-custom">Sanitización</span>
-                        <span class="badge team-badge bg-secondary-custom">Mantenimiento</span>
+            <div class="col">
+                <div class="card team-card shadow-sm h-100 border-0 rounded-3" data-role="veterinario">
+                    <div class="card-body text-center p-4">
+                        <img src="/StaticFiles/img/ali.jpg" class="team-member-img rounded-circle mb-3" alt="Imagen de Laura Torres">
+                        <h5 class="card-title fw-bold">Allison Oviedo</h5>
+                        <p class="card-text text-uppercase small team-role-color">Asistente Veterinario</p>
+                        <p class="card-text description text-muted">
+                            Brinda apoyo médico, garantizando la seguridad y salud de nuestras mascotas.
+                        </p>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <small class="text-muted">Parte de nuestro staff esencial.</small>
-                </div>
             </div>
-        </div>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="team-card shadow-sm h-100">
-                <div class="team-header-img">
-                    <img src="~/StaticFiles/img/chabu.jpg"
-                         class="team-img-circle shadow-sm" />
-                    <p class="text-contact-secondary fw-bold mt-2 mb-0">Mariana Lara.</p>
-                </div>
-                <div class="card-body text-center">
-                    <h5 class="card-title text-contact-secondary">Asistente de Limpieza</h5>
-                    <p class="card-text small text-muted">
-                        Asegura que todos los equipos y herramientas de grooming estén esterilizados y listos para el siguiente cliente.
-                    </p>
-                    <div class="mt-3">
-                        <span class="badge team-badge bg-primary-custom">Control de Higiene</span>
-                        <span class="badge team-badge bg-secondary-custom">Soporte Logístico</span>
+            <div class="col">
+                <div class="card team-card shadow-sm h-100 border-0 rounded-3" data-role="aseo-1">
+                    <div class="card-body text-center p-4">
+                        <img src="/StaticFiles/img/chabu.jpg" class="team-member-img rounded-circle mb-3" alt="Imagen de Roberto Díaz">
+                        <h5 class="card-title fw-bold">Mariana Lara</h5>
+                        <p class="card-text text-uppercase small team-role-color">Asistente de Aseo</p>
+                        <p class="card-text description text-muted">
+                            Mantiene nuestras instalaciones impecables y seguras para todos.
+                        </p>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <small class="text-muted">Parte de nuestro staff esencial.</small>
+            </div>
+
+            <div class="col">
+                <div class="card team-card shadow-sm h-100 border-0 rounded-3" data-role="aseo-2">
+                    <div class="card-body text-center p-4">
+                        <img src="/StaticFiles/img/achi.jpg" class="team-member-img rounded-circle mb-3" alt="Imagen de Sofía Castro">
+                        <h5 class="card-title fw-bold">Ashley Castrillo</h5>
+                        <p class="card-text text-uppercase small team-role-color">Asistente de Limpieza</p>
+                        <p class="card-text description text-muted">
+                            Fundamental para mantener un ambiente fresco y libre de gérmenes.
+                        </p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
-
-    <section id="compromiso" class="commitment-block text-center mt-5 p-5 shadow-lg">
-        <h3 class="text-white mb-3"><i class="fas fa-paw me-2"></i> Un Compromiso con el Corazón</h3>
-        <p class="lead text-white mb-0">
-            Somos un equipo unido por el amor a las mascotas. Juntos, garantizamos el mejor servicio, la máxima higiene y un ambiente libre de estrés.
-        </p>
-    </section>
-
-</div>
+</section>
