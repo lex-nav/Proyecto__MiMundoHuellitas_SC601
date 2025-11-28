@@ -244,6 +244,48 @@
     position: relative;
     overflow: hidden;
 }
+.icon-circle-service {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(14,118,140,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+    .icon-circle-service span {
+        font-size: 26px;
+    }
+
+.icon-circle {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(14,118,140,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 26px;
+}
+
+.step-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #0E768C;
+    font-weight: 700;
+    color: #0E768C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
 
     .service-card .icon-circle {
         width: 56px;
