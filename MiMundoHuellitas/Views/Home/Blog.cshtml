@@ -3,10 +3,7 @@
 }
 
 <!-- HERO BLOG -->
-<div class="hero-section d-flex align-items-center text-white"
-     style="height: 260px;
-            background: linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
-                        url('/StaticFiles/img/price-1.jpg') center/cover no-repeat;">
+<div class="hero-section hero-small hero-blog d-flex align-items-center text-white">
     <div class="container text-center">
         <h1 class="display-5 fw-bold">Blog Mi Mundo de Huellitas</h1>
         <p class="lead mb-0">
@@ -18,216 +15,247 @@
 <!-- CONTENIDO BLOG -->
 <div class="container mt-5 mb-5">
 
-    <!-- FILA: TÍTULO + FILTROS -->
+    <!-- TÍTULO + FILTROS -->
     <div class="row align-items-center mb-4">
         <div class="col-md-6">
-            <h2 class="h4 mb-1" style="color:#0A7B48;">Últimos artículos</h2>
+            <h2 class="h4 mb-1 text-huellitas-primary">Últimos artículos</h2>
             <p class="mb-0 text-muted">
                 Descubre recomendaciones, ideas y buenas prácticas para el cuidado de tu mascota.
             </p>
         </div>
+
         <div class="col-md-6 text-md-end mt-3 mt-md-0">
-            <!-- Filtros simples (solo visuales por ahora) -->
-            <div class="btn-group btn-group-sm" role="group" aria-label="Filtros blog">
-                <button type="button" class="btn btn-outline-success active">Todos</button>
-                <button type="button" class="btn btn-outline-success">Grooming</button>
-                <button type="button" class="btn btn-outline-success">Cuidados</button>
-                <button type="button" class="btn btn-outline-success">Tips rápidos</button>
-                <button type="button" class="btn btn-outline-success">Noticias</button>
+            <div class="blog-filters d-flex flex-wrap gap-2 justify-content-md-end">
+                <button type="button" class="btn btn-huellitas-outline active" data-filter="todos">Todos</button>
+                <button type="button" class="btn btn-huellitas-outline" data-filter="grooming">Grooming</button>
+                <button type="button" class="btn btn-huellitas-outline" data-filter="cuidados">Cuidados</button>
+                <button type="button" class="btn btn-huellitas-outline" data-filter="tips">Tips rápidos</button>
+                <button type="button" class="btn btn-huellitas-outline" data-filter="tintes">Tintes y estilo</button>
+                <button type="button" class="btn btn-huellitas-outline" data-filter="higiene">Higiene</button>
+                <button type="button" class="btn btn-huellitas-outline" data-filter="bienestar">Spa & bienestar</button>
             </div>
+
         </div>
     </div>
 
     <!-- GRID DE POSTS -->
     <div class="row g-4">
 
-        <!-- POST 1 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <img src="~/StaticFiles/img/Banos2.jpg"
-                     class="card-img-top"
-                     alt="Perro durante un baño y corte profesional" />
+        <!-- POST 1 – Grooming -->
+        <div class="col-md-6 col-lg-4 blog-item" data-category="grooming">
+            <div class="card blog-card h-100">
+                <div class="blog-card-img"
+                     style="background-image: url('/StaticFiles/img/Banos2.jpg');"></div>
+
                 <div class="card-body d-flex flex-column">
                     <div class="mb-2">
                         <span class="badge bg-success bg-opacity-75">Grooming</span>
-                        <small class="text-muted ms-2">
-                            05 Nov 2025 · 4 min
-                        </small>
+                        <small class="text-muted ms-2">05 Nov 2025 · 4 min</small>
                     </div>
-                    <h5 class="card-title">
-                        ¿Cada cuánto debo bañar y cortar el pelo de mi perro?
-                    </h5>
+
+                    <h5 class="card-title">¿Cada cuánto debo bañar y cortar el pelo de mi perro?</h5>
+
                     <p class="card-text text-muted flex-grow-1">
-                        La frecuencia de baño y grooming depende del tipo de pelaje, estilo de vida
-                        y sensibilidad de la piel. Te contamos cómo encontrar la rutina ideal para tu peludito.
+                        La frecuencia de baño y grooming depende del tipo de pelaje,
+                        estilo de vida y sensibilidad de la piel. Te contamos cómo
+                        encontrar la rutina ideal para tu peludito.
                     </p>
-                    <a href="#" class="stretched-link text-decoration-none" style="color:#0E768C;">
+
+                    <a href="#" class="stretched-link text-decoration-none text-huellitas-secondary">
                         Leer artículo completo
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- POST 2 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <img src="~/StaticFiles/img/lagrimales.jpg"
-                     class="card-img-top"
-                     alt="Persona limpiando los ojos de un perro" />
+        <!-- POST 2 – Cuidados -->
+        <div class="col-md-6 col-lg-4 blog-item" data-category="cuidados">
+            <div class="card blog-card h-100">
+                <div class="blog-card-img"
+                     style="background-image: url('/StaticFiles/img/lagrimales.jpg');"></div>
+
                 <div class="card-body d-flex flex-column">
                     <div class="mb-2">
                         <span class="badge bg-success bg-opacity-75">Cuidados</span>
-                        <small class="text-muted ms-2">
-                            20 Oct 2025 · 3 min
-                        </small>
+                        <small class="text-muted ms-2">20 Oct 2025 · 3 min</small>
                     </div>
-                    <h5 class="card-title">
-                        Limpieza de ojos y lagrimales: pasos básicos en casa
-                    </h5>
+
+                    <h5 class="card-title">Limpieza de ojos y lagrimales: pasos básicos en casa</h5>
+
                     <p class="card-text text-muted flex-grow-1">
                         Los ojos son una zona muy delicada. Aprende cómo limpiarlos de forma segura,
                         cuándo acudir al veterinario y qué cosas nunca deberías usar.
                     </p>
-                    <a href="#" class="stretched-link text-decoration-none" style="color:#0E768C;">
+
+                    <a href="#" class="stretched-link text-decoration-none text-huellitas-secondary">
                         Leer artículo completo
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- POST 3 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <img src="/StaticFiles/img/tintes.jpg"
-                     class="card-img-top"
-                     alt="Perro con tinte canino de colores" />
+        <!-- POST 3 – Tintes -->
+        <div class="col-md-6 col-lg-4 blog-item" data-category="tintes">
+            <div class="card blog-card h-100">
+                <div class="blog-card-img"
+                     style="background-image: url('/StaticFiles/img/tintes.jpg');"></div>
+
                 <div class="card-body d-flex flex-column">
                     <div class="mb-2">
                         <span class="badge bg-success bg-opacity-75">Tintes y estilo</span>
-                        <small class="text-muted ms-2">
-                            02 Oct 2025 · 5 min
-                        </small>
+                        <small class="text-muted ms-2">02 Oct 2025 · 5 min</small>
                     </div>
-                    <h5 class="card-title">
-                        Tintes para perros: cómo usarlos de forma segura
-                    </h5>
+
+                    <h5 class="card-title">Tintes para perros: cómo usarlos de forma segura</h5>
+
                     <p class="card-text text-muted flex-grow-1">
                         Los tintes caninos pueden ser una forma divertida de resaltar la personalidad
                         de tu mascota, siempre que se utilicen productos adecuados y en manos profesionales.
                     </p>
-                    <a href="#" class="stretched-link text-decoration-none" style="color:#0E768C;">
+
+                    <a href="#" class="stretched-link text-decoration-none text-huellitas-secondary">
                         Leer artículo completo
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- POST 4 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <img src="~/StaticFiles/img/perrito1.jpg"
-                     class="card-img-top"
-                     alt="Perrito nervioso en su primera visita a grooming" />
+        <!-- POST 4 – Tips rápidos -->
+        <div class="col-md-6 col-lg-4 blog-item" data-category="tips">
+            <div class="card blog-card h-100">
+                <div class="blog-card-img"
+                     style="background-image: url('/StaticFiles/img/perrito1.jpg');"></div>
+
                 <div class="card-body d-flex flex-column">
                     <div class="mb-2">
                         <span class="badge bg-success bg-opacity-75">Tips rápidos</span>
-                        <small class="text-muted ms-2">
-                            15 Sep 2025 · 2 min
-                        </small>
+                        <small class="text-muted ms-2">15 Sep 2025 · 2 min</small>
                     </div>
-                    <h5 class="card-title">
-                        Primera visita al grooming: cómo preparar a tu peludito
-                    </h5>
+
+                    <h5 class="card-title">Primera visita al grooming: cómo preparar a tu peludito</h5>
+
                     <p class="card-text text-muted flex-grow-1">
                         Algunos perros pueden sentir nervios en su primera experiencia de grooming.
                         Te compartimos consejos para que llegue más tranquilo y confiado.
                     </p>
-                    <a href="#" class="stretched-link text-decoration-none" style="color:#0E768C;">
+
+                    <a href="#" class="stretched-link text-decoration-none text-huellitas-secondary">
                         Leer artículo completo
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- POST 5 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <img src="/StaticFiles/img/oidos.jpg"
-                     class="card-img-top"
-                     alt="Detalle de corte de uñas y orejas limpias" />
+        <!-- POST 5 – Higiene -->
+        <div class="col-md-6 col-lg-4 blog-item" data-category="higiene">
+            <div class="card blog-card h-100">
+                <div class="blog-card-img"
+                     style="background-image: url('/StaticFiles/img/oidos.jpg');"></div>
+
                 <div class="card-body d-flex flex-column">
                     <div class="mb-2">
                         <span class="badge bg-success bg-opacity-75">Higiene</span>
-                        <small class="text-muted ms-2">
-                            01 Sep 2025 · 3 min
-                        </small>
+                        <small class="text-muted ms-2">01 Sep 2025 · 3 min</small>
                     </div>
-                    <h5 class="card-title">
-                        Corte de uñas y limpieza de oídos: por qué no deberías saltarlos
-                    </h5>
+
+                    <h5 class="card-title">Corte de uñas y limpieza de oídos</h5>
+
                     <p class="card-text text-muted flex-grow-1">
-                        Estos pequeños detalles hacen una gran diferencia en la comodidad y salud
-                        de tu mascota. Te explicamos cuándo y cómo hacerlo.
+                        Estos pequeños detalles hacen una gran diferencia en la comodidad
+                        y salud de tu mascota. Te explicamos cuándo y cómo hacerlo.
                     </p>
-                    <a href="#" class="stretched-link text-decoration-none" style="color:#0E768C;">
+
+                    <a href="#" class="stretched-link text-decoration-none text-huellitas-secondary">
                         Leer artículo completo
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- POST 6 -->
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0">
-                <img src="~/StaticFiles/img/corte.jpg"
-                     class="card-img-top"
-                     alt="Perro relajado en spa canino" />
+        <!-- POST 6 – Bienestar -->
+        <div class="col-md-6 col-lg-4 blog-item" data-category="bienestar">
+            <div class="card blog-card h-100">
+                <div class="blog-card-img"
+                     style="background-image: url('/StaticFiles/img/corte.jpg');"></div>
+
                 <div class="card-body d-flex flex-column">
                     <div class="mb-2">
                         <span class="badge bg-success bg-opacity-75">Spa & bienestar</span>
-                        <small class="text-muted ms-2">
-                            18 Ago 2025 · 4 min
-                        </small>
+                        <small class="text-muted ms-2">18 Ago 2025 · 4 min</small>
                     </div>
-                    <h5 class="card-title">
-                        Beneficios del spa canino para perros nerviosos o ansiosos
-                    </h5>
+
+                    <h5 class="card-title">Beneficios del spa canino</h5>
+
                     <p class="card-text text-muted flex-grow-1">
-                        Aromaterapia, masajes y un ambiente controlado pueden ayudar a que tu peludo
-                        se relaje y asocie el grooming con una experiencia positiva.
+                        Aromaterapia, masajes y un ambiente controlado pueden ayudar
+                        a que tu peludo se relaje y asocie el grooming con algo positivo.
                     </p>
-                    <a href="#" class="stretched-link text-decoration-none" style="color:#0E768C;">
+
+                    <a href="#" class="stretched-link text-decoration-none text-huellitas-secondary">
                         Leer artículo completo
                     </a>
                 </div>
             </div>
         </div>
 
-    </div>
 
-    <!-- CTA FINAL -->
-    <div class="row mt-5">
-        <div class="col-lg-10 mx-auto">
-            <div class="p-4 p-md-5 rounded-4 shadow-sm"
-                 style="background: linear-gradient(90deg, #0A7B48, #0E768C); color:#fff;">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <h3 class="h4 mb-3">¿Tienes alguna duda específica sobre tu mascota?</h3>
-                        <p class="mb-0">
-                            Si quieres que un próximo artículo trate un tema en particular,
-                            o tienes preguntas sobre grooming y cuidados, puedes escribirnos
-                            y con gusto te ayudamos.
-                        </p>
-                    </div>
-                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                        <a href="@Url.Action("Contacto","Home")"
-                           class="btn btn-light fw-semibold px-4 py-2 rounded-pill">
-                            Escríbenos aquí
-                        </a>
+        <!-- CTA FINAL -->
+        <div class="row mt-5">
+            <div class="col-lg-10 mx-auto">
+                <div class="commitment-block p-4 p-md-5 text-white rounded-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3 class="h4 mb-3">¿Tienes alguna duda específica sobre tu mascota?</h3>
+                            <p class="mb-0">
+                                Si quieres que un próximo artículo trate un tema en particular,
+                                o tienes preguntas sobre grooming y cuidados, puedes escribirnos
+                                y con gusto te ayudamos.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                            <a href="@Url.Action("Contacto","Home")"
+                               class="btn btn-light fw-semibold px-4 py-2 rounded-pill">
+                                Escríbenos aquí
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-</div>
+<!-- SCRIPT DE FILTROS -->
+@section scripts {
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const items = document.querySelectorAll(".blog-item");
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener("click", function () {
+
+            // activar botón visual
+            filterButtons.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+
+            const filter = this.getAttribute("data-filter");
+
+            items.forEach(item => {
+                const category = item.getAttribute("data-category");
+
+                if (filter === "todos" || filter === category) {
+                    item.style.display = "block";
+                    item.classList.remove("fade-out");
+                } else {
+                    item.classList.add("fade-out");
+                    setTimeout(() => item.style.display = "none", 200);
+                }
+            });
+        });
+    });
+
+});
+    </script>
+}

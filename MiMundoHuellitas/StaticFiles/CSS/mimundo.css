@@ -1,28 +1,52 @@
-﻿
-    /* ========================= */
-    /*  REGLAS GENERALES         */
-    /* ========================= */
+﻿/* ========================= */
+/*  REGLAS GENERALES         */
+/* ========================= */
 
-    .text-justify
-
-{
+/* Texto justificado reutilizable */
+.text-justify {
     text-align: justify;
 }
 
+/* Paleta base general (por si la quieres usar en más partes) */
+:root {
+    --huellitas-green: #0A7B48;
+    --huellitas-teal: #0E768C;
+    --huellitas-accent: #26A36C;
+}
+
 /* ========================= */
-/*  HERO ANIMADO             */
+/*  HERO ANIMADO (HOME)      */
 /* ========================= */
 
 .hero-section {
     position: relative;
     height: 330px;
-    background: linear-gradient(120deg, #0A7B48, #0E768C, #26A36C);
+    background: linear-gradient(120deg, var(--huellitas-green), var(--huellitas-teal), var(--huellitas-accent));
     background-size: 300% 300%;
     border-radius: 0 0 30px 30px;
     animation: heroGradientMove 15s ease-in-out infinite;
     overflow: hidden;
 }
 
+/* Hero más bajito para páginas internas (Blog, Equipo, Contacto, Servicios, etc.) */
+.hero-small {
+    height: 260px;
+}
+
+/* Variantes de hero por sección (puedes usarlas en las vistas) */
+.hero-contacto {
+    background: linear-gradient(rgba(10, 123, 72, 0.80), rgba(14, 118, 140, 0.80)), url('/StaticFiles/img/gallery-1.jpg') center/cover no-repeat;
+}
+
+.hero-blog {
+    background: linear-gradient(rgba(10, 123, 72, 0.85), rgba(14, 118, 140, 0.85)), url('/StaticFiles/img/price-1.jpg') center/cover no-repeat;
+}
+
+.hero-equipo {
+    background: linear-gradient(rgba(10, 123, 72, 0.80), rgba(14, 118, 140, 0.80)), url('/StaticFiles/img/Fondo_Huellitas.jpg') center/cover no-repeat;
+}
+
+/* Animaciones de entrada del contenido del hero */
 .hero-content h1 {
     animation: heroTitleIn 1s ease forwards;
     opacity: 0;
@@ -42,7 +66,9 @@
 /*  TARJETAS GENERALES       */
 /* ========================= */
 
-.card-custom, .valor-card, .team-card {
+.card-custom,
+.valor-card,
+.team-card {
     transition: transform .25s ease, box-shadow .25s ease;
 }
 
@@ -50,7 +76,7 @@
     .valor-card:hover,
     .team-card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 12px 25px rgba(0,0,0,.15);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, .15);
     }
 
 /* ========================= */
@@ -60,8 +86,8 @@
 .img-frame {
     padding: 10px;
     border-radius: 24px;
-    background: linear-gradient(135deg, #0A7B48, #0E768C);
-    animation: imgFloat 90s ease-in-out infinite alternate;
+    background: linear-gradient(135deg, var(--huellitas-green), var(--huellitas-teal));
+    animation: imgFloat 4s ease-in-out infinite alternate;
 }
 
     .img-frame img {
@@ -74,10 +100,11 @@
     bottom: 8px;
     right: 16px;
     background: #fff;
-    color: #0A7B48;
+    color: var(--huellitas-green);
     padding: 6px 12px;
     border-radius: 999px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+    font-size: 0.9rem;
 }
 
 /* ========================= */
@@ -85,7 +112,7 @@
 /* ========================= */
 
 .footer-simple {
-    background-color: #0A7B48;
+    background-color: var(--huellitas-green);
     padding: 20px;
     border-radius: 20px 20px 0 0;
 }
@@ -98,23 +125,23 @@
     background: linear-gradient(135deg, #E8FFF3, #D6F4EC);
     border-radius: 30px;
     padding: 50px 30px 60px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
     margin-top: 40px;
     margin-bottom: 70px;
 }
 
 .section-colored-title {
-    color: #0A7B48;
+    color: var(--huellitas-green);
     font-weight: 800;
     letter-spacing: 0.03em;
 }
 
-/* tarjetas misión/visión */
+/* Tarjetas misión/visión */
 .info-card {
     background: #ffffff;
     border-radius: 18px;
     padding: 30px 25px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease;
     animation: fadeInUp 0.9s ease forwards;
     opacity: 0;
@@ -124,22 +151,22 @@
     .info-card:hover {
         transform: translateY(-10px);
         background-color: #D0F5E5;
-        box-shadow: 0 14px 30px rgba(0,0,0,0.16);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16);
     }
 
-/* valores */
+/* Valores */
 .valor-card {
     background: #ffffff;
     padding: 22px 18px;
     border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease;
     animation: fadeInUp 1.1s ease forwards;
     opacity: 0;
 }
 
     .valor-card h5 {
-        color: #0A7B48;
+        color: var(--huellitas-green);
         font-weight: 700;
         margin-bottom: 8px;
     }
@@ -147,7 +174,7 @@
     .valor-card:hover {
         transform: translateY(-12px);
         background-color: #C8F0DF;
-        box-shadow: 0 16px 32px rgba(0,0,0,0.18);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
     }
 
 /* ========================= */
@@ -158,11 +185,14 @@
     background: linear-gradient( 180deg, #E3F6EF 0%, #C4EEE1 35%, #A6E4D4 65%, #8AD7C4 100% );
     padding-top: 60px;
     padding-bottom: 60px;
-    .about-image-frame {
+}
+
+/* Marco de imagen */
+.about-image-frame {
     background: #ffffff;
     padding: 12px;
     border-radius: 22px;
-    box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
     position: relative;
     animation: imgFloat 4s ease-in-out infinite alternate;
 }
@@ -175,13 +205,540 @@
     position: absolute;
     bottom: 10px;
     right: 14px;
-    background: #0A7B48;
+    background: var(--huellitas-green);
     color: white;
     padding: 6px 14px;
     border-radius: 999px;
     font-size: 14px;
-    box-shadow: 0 6px 15px rgba(0,0,0,.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .15);
 }
+
+/* ========================= */
+/*  HERO SERVICIOS / PAGE    */
+/* ========================= */
+
+/* Hero general para páginas internas de servicios si lo usas */
+.page-hero {
+    position: relative;
+    height: 260px;
+    background: linear-gradient(120deg, var(--huellitas-green), var(--huellitas-teal), var(--huellitas-accent));
+    background-size: 300% 300%;
+    border-radius: 0 0 30px 30px;
+    animation: heroGradientMove 15s ease-in-out infinite;
+    overflow: hidden;
+}
+
+/* Quitar los círculos grises originales de Colorlib */
+.services::before,
+.services-2::before {
+    display: none !important;
+}
+
+/* Tarjetas de servicios modernas */
+.service-card {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    padding: 24px 22px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+    .service-card .icon-circle {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: rgba(14, 118, 140, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+    }
+
+        .service-card .icon-circle span {
+            font-size: 26px;
+            color: var(--huellitas-teal);
+        }
+
+    .service-card h3 {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .service-card p {
+        font-size: 0.95rem;
+    }
+
+/* Badges de las tarjetas */
+.service-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Banda de llamada a la acción */
+.service-cta-band {
+    background: linear-gradient(135deg, var(--huellitas-green), var(--huellitas-teal));
+    color: #fff;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Tarjetas superiores con borde de color */
+.service-card-highlight {
+    background: linear-gradient(135deg, var(--huellitas-green), var(--huellitas-teal));
+    padding: 2px;
+    border-radius: 20px;
+    height: 100%;
+}
+
+.service-card-highlight-inner {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px 22px;
+    height: 100%;
+}
+
+/* Sección de pasos con fondo suave */
+.service-steps-wrapper {
+    background: linear-gradient( 135deg, rgba(10, 123, 72, 0.06), rgba(14, 118, 140, 0.06) );
+    border-radius: 24px;
+    padding: 28px 24px 16px;
+}
+
+/* Cada paso */
+.service-step {
+    position: relative;
+}
+
+/* Burbujita con el número */
+.service-step-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid var(--huellitas-teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-weight: 700;
+    color: var(--huellitas-teal);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+}
+
+.service-step h5 {
+    font-weight: 700;
+}
+
+/* Tarjetas tipo "píldora" */
+.service-pill {
+    position: relative;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 48px 24px 24px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    height: 100%;
+}
+
+/* Círculo superior */
+.service-pill-icon {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #F4FAF9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .service-pill-icon span {
+        font-size: 28px;
+    }
+
+/* Variantes de color por tarjeta */
+.service-pill-1 {
+    border-top: 4px solid var(--huellitas-green);
+}
+
+    .service-pill-1 .service-pill-icon {
+        background: rgba(10, 123, 72, 0.08);
+    }
+
+        .service-pill-1 .service-pill-icon span {
+            color: var(--huellitas-green);
+        }
+
+.service-pill-2 {
+    border-top: 4px solid var(--huellitas-teal);
+}
+
+    .service-pill-2 .service-pill-icon {
+        background: rgba(14, 118, 140, 0.08);
+    }
+
+        .service-pill-2 .service-pill-icon span {
+            color: var(--huellitas-teal);
+        }
+
+.service-pill-3 {
+    border-top: 4px solid #F2709C;
+}
+
+    .service-pill-3 .service-pill-icon {
+        background: rgba(242, 112, 156, 0.08);
+    }
+
+        .service-pill-3 .service-pill-icon span {
+            color: #F2709C;
+        }
+
+/* ========================= */
+/*  EQUIPO                   */
+/* ========================= */
+
+/* Paleta específica para Equipo */
+:root {
+    --team-primary-color: #2e8b57; /* Esmeralda oscuro */
+    --team-secondary-color: #66cdaa; /* Aguamarina/Menta */
+    --team-light-bg: #f8fcf8; /* Fondo claro hover */
+    --team-text-muted: #6c757d;
+}
+
+/* Hero equipo (si prefieres este en lugar de hero-equipo) */
+.team-hero {
+    height: 260px;
+    background: linear-gradient( 45deg, rgba(46, 139, 87, 0.90), rgba(102, 205, 170, 0.90) ), url('/StaticFiles/img/Fondo_Huellitas.jpg') center center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.team-title-color {
+    color: var(--team-primary-color) !important;
+}
+
+.team-role-color {
+    color: var(--team-primary-color);
+    font-weight: 600;
+}
+
+/* Tarjeta equipo */
+.team-card {
+    border: 1px solid #e0e0e0 !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border-radius: 18px;
+}
+
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.1) !important;
+        background-color: var(--team-light-bg);
+    }
+
+/* Imagen circular */
+.team-member-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px solid var(--team-primary-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    border-radius: 50%;
+}
+
+/* Descripción */
+.team-card .description {
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--team-text-muted) !important;
+}
+
+/* 3 por fila en pantallas grandes */
+@media (min-width: 992px) {
+    .row-cols-lg-3 > * {
+        flex: 0 0 auto;
+        width: 33.333333%;
+    }
+}
+
+/* ========================= */
+/*  BLOG                     */
+/* ========================= */
+
+/* Colores base */
+.text-huellitas-primary {
+    color: var(--huellitas-green) !important;
+}
+
+.bg-huellitas-primary {
+    background-color: var(--huellitas-green) !important;
+    color: white;
+}
+
+.text-huellitas-secondary {
+    color: var(--huellitas-teal) !important;
+}
+
+.border-huellitas-secondary {
+    border-color: var(--huellitas-teal) !important;
+}
+
+/* Botones */
+.btn-huellitas-primary {
+    background-color: var(--huellitas-green);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 28px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(10, 123, 72, 0.35);
+    transition: all 0.25s ease;
+}
+
+    .btn-huellitas-primary:hover {
+        background-color: #085a35;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 26px rgba(10, 123, 72, 0.5);
+    }
+
+.btn-huellitas-outline {
+    background-color: transparent;
+    border-radius: 30px;
+    padding: 10px 26px;
+    font-weight: 600;
+    border: 2px solid var(--huellitas-teal);
+    color: var(--huellitas-teal);
+    transition: all 0.25s ease;
+}
+
+    .btn-huellitas-outline:hover {
+        background-color: var(--huellitas-teal);
+        color: #fff;
+    }
+
+/* Tarjetas del Blog */
+.blog-card {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    height: 100%;
+}
+
+    .blog-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+
+.blog-image {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.blog-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(10, 123, 72, 0.9);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.blog-meta {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.blog-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--huellitas-teal);
+}
+
+    .blog-title:hover {
+        color: var(--huellitas-green);
+    }
+
+/* Bloque de tips */
+.tips-card {
+    border-radius: 20px;
+    border: none;
+    background: linear-gradient(135deg, #E8FFF3, #D6F4EC);
+    box-shadow: 0 12px 35px rgba(10, 123, 72, 0.25);
+}
+
+    .tips-card h3 {
+        font-weight: 800;
+        color: var(--huellitas-green);
+    }
+
+    .tips-card p {
+        margin-bottom: 0.35rem;
+    }
+
+/* Lista de recomendaciones */
+.check-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+    .check-list li {
+        position: relative;
+        padding-left: 24px;
+        margin-bottom: 8px;
+    }
+
+        .check-list li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--huellitas-green);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+/* Cards de categoría */
+.blog-category-card {
+    border-radius: 18px;
+    border: 1px solid rgba(14, 118, 140, 0.18);
+    background: #ffffff;
+    padding: 18px 16px;
+    transition: all 0.25s ease;
+    height: 100%;
+}
+
+    .blog-category-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 26px rgba(14, 118, 140, 0.2);
+        border-color: var(--huellitas-teal);
+    }
+
+.blog-category-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(10, 123, 72, 0.07);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Bloque de compromiso al final */
+.commitment-block {
+    background: linear-gradient(135deg, var(--huellitas-green) 0%, var(--huellitas-teal) 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(14, 118, 140, 0.4);
+}
+
+    .commitment-block h3 {
+        font-weight: 800;
+    }
+
+    .commitment-block p {
+        margin-bottom: 0;
+    }
+
+/* ========================= */
+/*  CONTACTO                 */
+/* ========================= */
+
+/* Fondo general para la página de contacto */
+.contact-page-bg {
+    background-image: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0.45) 2px, transparent 2px), radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.40) 0, rgba(255, 255, 255, 0.40) 2px, transparent 2px), linear-gradient( 180deg, #E3F6EF 0%, #C4EEE1 35%, #A6E4D4 65%, #8AD7C4 100% );
+    background-size: 140px 140px, 180px 180px, 100% 100%;
+    background-repeat: repeat;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Header de tarjetas de contacto con degradado */
+.card-header.contact-header {
+    background: linear-gradient(90deg, var(--huellitas-green), var(--huellitas-teal)) !important;
+    color: #fff !important;
+    border-radius: 18px 18px 0 0;
+    padding: 14px 20px;
+    border-bottom: none;
+}
+
+/* Botón principal contacto */
+.btn-contact {
+    background: var(--huellitas-teal);
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 26px;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 8px 22px rgba(10, 123, 72, 0.25);
+    transition: all 0.25s ease;
+}
+
+    .btn-contact:hover {
+        background-color: var(--huellitas-green);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(10, 123, 72, 0.35);
+    }
+
+/* Iconos de lista de contacto */
+.contact-list .contact-icon {
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+    color: var(--huellitas-teal);
+}
+
+/* Etiquetas del formulario */
+.form-label {
+    font-weight: 600;
+    color: var(--huellitas-teal);
+}
+
+/* Focus del formulario */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--huellitas-green);
+    box-shadow: 0 0 0 0.15rem rgba(10, 123, 72, 0.25);
+}
+
+/* Badges contacto */
+.badge-contact {
+    background-color: rgba(10, 123, 72, 0.08);
+    color: var(--huellitas-green);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+}
+
+/* Botones sociales */
+.btn-social {
+    background-color: var(--huellitas-teal);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    border: none;
+    padding: 6px 14px;
+}
+
+    .btn-social:hover {
+        background-color: #085a35;
+    }
 
 /* ========================= */
 /*  ANIMACIONES (CSS PURO)   */
@@ -280,622 +837,34 @@
 }
 
 
-========================================== */
-
-/* Hero más bajito para páginas internas */
-/* ==========================================
-   PÁGINA DE SERVICIOS
-========================================== */
-
-/* Hero más bajito para páginas internas */
-.page-hero {
-    position: relative;
-    height: 260px;
-    background: linear-gradient(120deg, #0A7B48, #0E768C, #26A36C);
-    background-size: 300% 300%;
-    border-radius: 0 0 30px 30px;
-    animation: heroGradientMove 15s ease-in-out infinite;
-    overflow: hidden;
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
-/* Quitar los círculos grises que tapan texto en .services de Colorlib */
-.services::before,
-.services-2::before {
-    display: none;
+.blog-item {
+    opacity: 1;
+    transition: opacity 0.2s ease;
 }
 
-/* Tarjetas de servicios más modernas */
-.service-card {
-    background: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-    padding: 24px 22px;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
+/* Filtros más compactos */
+.blog-filters .btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    border-radius: 18px !important;
+    white-space: nowrap;
 }
 
-    .service-card .icon-circle {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: rgba(14, 118, 140, 0.08);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 16px;
-    }
-
-        .service-card .icon-circle span {
-            font-size: 26px;
-            color: #0E768C;
-        }
-
-    .service-card h3 {
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .service-card p {
-        font-size: 0.95rem;
-    }
-
-/* Badges de las tarjetas */
-.service-badge {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 4px 12px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* Banda de llamada a la acción */
-.service-cta-band {
-    background: linear-gradient(135deg, #0A7B48, #0E768C);
-    color: #fff;
-    border-radius: 20px;
-    padding: 28px 24px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-/* ===== Tarjetas superiores con borde de color ===== */
-
-.service-card-highlight {
-    background: linear-gradient(135deg, #0A7B48, #0E768C);
-    padding: 2px;
-    border-radius: 20px;
-    height: 100%;
-}
-
-.service-card-highlight-inner {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 24px 22px;
-    height: 100%;
-}
-
-/* ===== Sección de pasos con fondo suave ===== */
-
-.service-steps-wrapper {
-    background: linear-gradient( 135deg, rgba(10, 123, 72, 0.06), rgba(14, 118, 140, 0.06) );
-    border-radius: 24px;
-    padding: 28px 24px 16px;
-}
-
-/* Cada paso */
-.service-step {
-    position: relative;
-}
-
-/* Burbujita con el número */
-.service-step-number {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: 2px solid #0E768C;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 10px;
-    font-weight: 700;
-    color: #0E768C;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
-}
-
-.service-step h5 {
-    font-weight: 700;
-}
-
-/* Apagar los círculos vacíos de la plantilla original */
-.services::before {
-    display: none !important;
-}
-
-/* Tarjetas tipo "píldora" con círculo e ícono */
-.service-pill {
-    position: relative;
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 48px 24px 24px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-    height: 100%;
-}
-
-/* Círculo superior */
-.service-pill-icon {
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: #F4FAF9; /* puedes variar por tarjeta */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-    /* Ícono dentro del círculo */
-    .service-pill-icon span {
-        font-size: 28px;
-    }
-
-/* Permitir cambiar colores por tarjeta */
-.service-pill-1 {
-    border-top: 4px solid #0A7B48;
-}
-
-    .service-pill-1 .service-pill-icon {
-        background: rgba(10,123,72,0.08);
-    }
-
-        .service-pill-1 .service-pill-icon span {
-            color: #0A7B48;
-        }
-
-.service-pill-2 {
-    border-top: 4px solid #0E768C;
-}
-
-    .service-pill-2 .service-pill-icon {
-        background: rgba(14,118,140,0.08);
-    }
-
-        .service-pill-2 .service-pill-icon span {
-            color: #0E768C;
-        }
-
-.service-pill-3 {
-    border-top: 4px solid #F2709C;
-}
-
-    .service-pill-3 .service-pill-icon {
-        background: rgba(242,112,156,0.08);
-    }
-
-        .service-pill-3 .service-pill-icon span {
-            color: #F2709C;
-        }
-
-/* Círculos superiores (ya existentes) ahora con íconos */
-.services::before {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-family: "FontAwesome"; /* usa los iconos */
-    font-size: 26px;
-    font-weight: normal;
-    color: #0A7B48; /* color por defecto, luego lo cambiamos por tarjeta */
-}
-
-/* Ícono tarjeta 1: corazón */
-.card-1 .services::before {
-    content: "\f004"; /* fa-heart */
-    color: #0A7B48;
-    background: rgba(10,123,72,0.1);
-}
-
-/* Ícono tarjeta 2: botiquín */
-.card-2 .services::before {
-    content: "\f0fa"; /* fa-medkit */
-    color: #0E768C;
-    background: rgba(14,118,140,0.1);
-}
-
-/* Ícono tarjeta 3: cámara */
-.card-3 .services::before {
-    content: "\f030"; /* fa-camera */
-    color: #F2709C;
-    background: rgba(242,112,156,0.1);
-}
-
-
-
-
-
-
-/* ===================================== */
-/* HERO DE LA PÁGINA (EQUIPO) */
-/* ===================================== */
-
-
-
-
-/* === EQUIPO === */
-/* =========================
-   TARJETAS EQUIPO
-=========================== */
-/* --- Paleta de Colores --- */
-/* Menta/Esmeralda: Un verde fresco y profesional */
-:root {
-    --team-primary-color: #2e8b57; /* Esmeralda oscuro para títulos y acentos */
-    --team-secondary-color: #66cdaa; /* Aguamarina/Menta claro para el degradado */
-    --team-light-bg: #f8fcf8; /* Fondo muy claro para hover */
-    --team-text-muted: #6c757d; /* Gris para textos secundarios */
-}
-
-/* -------------------------------------- */
-/* 1. HERO SECTION (Fondo Verde Degradado) */
-/* -------------------------------------- */
-.team-hero {
-    height: 260px;
-    /* Fondo con Gradiente Verde Esmeralda a Menta */
-    background: linear-gradient( 45deg, rgba(46, 139, 87, 0.90), /* Esmeralda más oscuro */
-    rgba(102, 205, 170, 0.90) /* Menta más claro */
-    ),
-    /* Imagen de fondo (Asegúrate de tener esta imagen en la ruta!) */
-    url('/StaticFiles/img/Fondo_Huellitas.jpg') center center no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-/* -------------------------------------- */
-/* 2. SECCIÓN DE TARJETAS Y TÍTULOS */
-/* -------------------------------------- */
-
-.team-title-color {
-    color: var(--team-primary-color) !important;
-}
-
-.team-role-color {
-    color: var(--team-primary-color);
-    font-weight: 600; /* Seminegrita para destacar el rol */
-}
-
-/* Estilos base de la tarjeta */
-.team-card {
-    border: 1px solid #e0e0e0 !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-    .team-card:hover {
-        transform: translateY(-5px); /* Efecto de elevación */
-        box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.1) !important; /* Sombra sutil */
-        background-color: var(--team-light-bg); /* Fondo muy claro al pasar el mouse */
-    }
-
-/* -------------------------------------- */
-/* 3. IMÁGENES CIRCULARES */
-/* -------------------------------------- */
-
-.team-member-img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    /* Para darle el efecto de borde verde al rededor de la imagen */
-    border: 4px solid var(--team-primary-color);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    padding: 2px; /* Pequeño padding para separar la imagen del borde */
-}
-
-/* -------------------------------------- */
-/* 4. DESCRIPCIÓN */
-/* -------------------------------------- */
-.team-card .description {
-    font-size: 0.875rem; /* Tamaño más pequeño */
-    font-style: italic;
-    color: var(--team-text-muted) !important;
-}
-
-/* Media Query: Asegura que en pantallas grandes (lg) se vean 3 por fila */
-@media (min-width: 992px) {
-    .row-cols-lg-3 > * {
-        flex: 0 0 auto;
-        width: 33.333333%;
-    }
-}
-
-
-
-
-
-
-
-
-/* === ESTILOS GENERALES / BLOG / TARJETAS === */
-/* Colores base */
-.text-huellitas-primary {
-    color: #0A7B48 !important; /* Verde */
-}
-
-.bg-huellitas-primary {
-    background-color: #0A7B48 !important; /* Verde */
-    color: white;
-}
-
-.text-huellitas-secondary {
-    color: #0E768C !important; /* Azul */
-}
-
-.border-huellitas-secondary {
-    border-color: #0E768C !important;
-}
-
-/* Botones */
-.btn-huellitas-primary {
-    background-color: #0A7B48;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 10px 28px;
-    font-weight: 600;
-    box-shadow: 0 6px 20px rgba(10, 123, 72, 0.35);
-    transition: all 0.25s ease;
-}
-
-    .btn-huellitas-primary:hover {
-        background-color: #085a35;
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 26px rgba(10, 123, 72, 0.5);
-    }
-
-.btn-huellitas-outline {
-    background-color: transparent;
-    border-radius: 30px;
-    padding: 10px 26px;
-    font-weight: 600;
-    border: 2px solid #0E768C;
-    color: #0E768C;
-    transition: all 0.25s ease;
-}
-
-    .btn-huellitas-outline:hover {
-        background-color: #0E768C;
-        color: #fff;
-    }
-
-/* Tarjetas del Blog */
-.blog-card {
-    border-radius: 16px;
-    border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    height: 100%;
-}
-
-    .blog-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-    }
-
-.blog-image {
+.blog-card-img {
     height: 220px;
+    width: 100%;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
 }
 
-.blog-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(10, 123, 72, 0.9);
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+.hero-services {
+    background: linear-gradient(rgba(10, 123, 72, 0.80), rgba(14, 118, 140, 0.80)), url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat;
 }
-
-.blog-meta {
-    font-size: 0.85rem;
-    color: #6c757d;
-}
-
-.blog-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #0E768C;
-}
-
-    .blog-title:hover {
-        color: #0A7B48;
-    }
-
-/* Bloque de tips */
-.tips-card {
-    border-radius: 20px;
-    border: none;
-    background: linear-gradient(135deg, #E8FFF3, #D6F4EC);
-    box-shadow: 0 12px 35px rgba(10, 123, 72, 0.25);
-}
-
-    .tips-card h3 {
-        font-weight: 800;
-        color: #0A7B48;
-    }
-
-    .tips-card p {
-        margin-bottom: 0.35rem;
-    }
-
-/* Lista de recomendaciones */
-.check-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-    .check-list li {
-        position: relative;
-        padding-left: 24px;
-        margin-bottom: 8px;
-    }
-
-        .check-list li::before {
-            content: "✔";
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: #0A7B48;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-/* Cards de categoría */
-.blog-category-card {
-    border-radius: 18px;
-    border: 1px solid rgba(14, 118, 140, 0.18);
-    background: #ffffff;
-    padding: 18px 16px;
-    transition: all 0.25s ease;
-    height: 100%;
-}
-
-    .blog-category-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 26px rgba(14, 118, 140, 0.2);
-        border-color: #0E768C;
-    }
-
-.blog-category-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(10, 123, 72, 0.07);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-/* Bloque de compromiso al final */
-.commitment-block {
-    background: linear-gradient(135deg, #0A7B48 0%, #0E768C 100%);
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(14, 118, 140, 0.4);
-}
-
-    .commitment-block h3 {
-        font-weight: 800;
-    }
-
-    .commitment-block p {
-        margin-bottom: 0;
-    }
-
-/* Hero del blog */
-.hero-blog {
-    height: 260px;
-    background: linear-gradient(rgba(10, 123, 72, 0.85), rgba(14, 118, 140, 0.85));
-}
-
-
-
-
-/* === FONDO GENERAL PARA LA PÁGINA CONTACTO === */
-.contact-page-bg {
-    background-image: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0.45) 2px, transparent 2px), radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.40) 0, rgba(255, 255, 255, 0.40) 2px, transparent 2px), linear-gradient( 180deg, #E3F6EF 0%, /* verde hielo */
-    #C4EEE1 35%, /* verde menta suave */
-    #A6E4D4 65%, /* verde menta */
-    #8AD7C4 100% /* verde menta oscuro suave */
-    );
-    background-size: 140px 140px, 180px 180px, 100% 100%;
-    background-repeat: repeat;
-    padding-top: 60px;
-    padding-bottom: 60px;
-}
-
-/* === TARJETAS CONTACTO (FORMULARIO, INFO, RECOMENDACIONES) === */
-.contact-card {
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.92);
-    border: none;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
-}
-
-/* HEADER CON DEGRADADO */
-.contact-header {
-    background: linear-gradient(90deg, #0A7B48, #0E768C);
-    color: #fff;
-    border-radius: 18px 18px 0 0;
-    padding: 14px 20px;
-}
-
-/* BOTÓN PRINCIPAL */
-.btn-contact {
-    background: #0E768C;
-    color: #fff;
-    border-radius: 30px;
-    padding: 10px 26px;
-    border: none;
-    font-weight: 600;
-    box-shadow: 0 8px 22px rgba(10, 123, 72, 0.25);
-    transition: all 0.25s ease;
-}
-
-    .btn-contact:hover {
-        background-color: #0A7B48;
-        transform: translateY(-2px);
-        box-shadow: 0 12px 32px rgba(10, 123, 72, 0.35);
-    }
-
-/* ICONOS */
-.contact-list .contact-icon {
-    width: 20px;
-    text-align: center;
-    margin-right: 8px;
-    color: #0E768C;
-}
-
-/* ETIQUETAS DEL FORMULARIO */
-.form-label {
-    font-weight: 600;
-    color: #0E768C;
-}
-
-/* FOCUS DEL FORMULARIO */
-.form-control:focus,
-.form-select:focus {
-    border-color: #0A7B48;
-    box-shadow: 0 0 0 0.15rem rgba(10, 123, 72, 0.25);
-}
-
-/* BADGES */
-.badge-contact {
-    background-color: rgba(10, 123, 72, 0.08);
-    color: #0A7B48;
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 0.78rem;
-}
-
-/* BOTONES SOCIALES */
-.btn-social {
-    background-color: #0E768C;
-    color: #fff;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    border: none;
-    padding: 6px 14px;
-}
-
-    .btn-social:hover {
-        background-color: #085a35;
-    }
-
-
-
