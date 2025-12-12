@@ -570,7 +570,7 @@
     <Content Include="Views\Shared\_LayoutInterno.cshtml" />
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Registro.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="StaticFiles\fonts\flaticon\.DS_Store" />
     <Content Include="StaticFiles\fonts\flaticon\font\Flaticon.eot" />
     <Content Include="StaticFiles\fonts\flaticon\font\Flaticon.ttf" />
