@@ -5,40 +5,107 @@
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Editar perfil</h5>
+        <div class="col-lg-8 col-xl-7">
+
+            <div class="card border-0 shadow-sm">
+                <!-- Header -->
+                <div class="card-header bg-white border-0 pb-0">
+                    <div class="d-flex align-items-start justify-content-between">
+                        <div>
+                            <h4 class="mb-1">
+                                <i class="fa fa-pencil text-success mr-2" aria-hidden="true"></i>
+                                Editar perfil
+                            </h4>
+                            <p class="text-muted mb-0">Actualiza tus datos personales y tu información de contacto.</p>
+                        </div>
+
+                        <a href="@Url.Action("Perfil","Usuario")" class="btn btn-sm btn-outline-secondary">
+                            <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Volver
+                        </a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    @using (Html.BeginForm("EditarPerfil", "Usuario", FormMethod.Post))
+
+                <div class="card-body pt-4">
+
+                    <!-- Avatar + correo -->
+                    <div class="d-flex align-items-center mb-4">
+                        @{
+                            var inicial = !string.IsNullOrWhiteSpace(Model.Nombre)
+                                ? Model.Nombre.Trim().Substring(0, 1).ToUpper()
+                                : "U";
+                        }
+                        <div class="rounded-circle d-flex align-items-center justify-content-center mr-3"
+                             style="width:56px;height:56px;background:linear-gradient(135deg,#03a9f4,#00e676); color:#fff; font-weight:800; font-size:1.3rem;">
+                            @inicial
+                        </div>
+
+                        <div>
+                            <div class="text-muted small mb-1">Cuenta</div>
+                            <div class="font-weight-bold">
+                                <i class="fa fa-envelope mr-1" aria-hidden="true"></i> @Model.Correo
+                            </div>
+                        </div>
+                    </div>
+
+                    @using (Html.BeginForm("EditarPerfil", "Usuario", FormMethod.Post, new { @class = "needs-validation" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(m => m.Id)
 
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+                        <!-- Nombre -->
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.Nombre, new { @class = "form-label" })
-                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                            @Html.LabelFor(m => m.Nombre, new { @class = "form-label font-weight-bold" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-user text-muted" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", placeholder = "Tu nombre completo" })
+                            </div>
                             @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
                         </div>
 
+                        <!-- Correo (readonly) -->
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.Correo, new { @class = "form-label" })
-                            @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.LabelFor(m => m.Correo, new { @class = "form-label font-weight-bold" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-envelope text-muted" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                            <small class="text-muted">El correo no se puede editar.</small>
                         </div>
 
+                        <!-- Teléfono -->
                         <div class="mb-3">
-                            @Html.LabelFor(m => m.Telefono, new { @class = "form-label" })
-                            @Html.TextBoxFor(
-                                m => m.Telefono,
-                                new { @class = "form-control", placeholder = "+506 0000-0000" }
-                            )
+                            @Html.LabelFor(m => m.Telefono, new { @class = "form-label font-weight-bold" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-phone text-muted" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", placeholder = "Ej: 88884444" })
+                            </div>
                             @Html.ValidationMessageFor(m => m.Telefono, "", new { @class = "text-danger" })
                         </div>
 
-                        <!-- NUEVO: Dirección -->
+                        <hr class="my-4" />
+
+                        <h6 class="mb-3">
+                            <i class="fa fa-map-marker text-success mr-2" aria-hidden="true"></i>
+                            Dirección
+                        </h6>
+
+                        <!-- Dirección detalle -->
                         <div class="mb-3">
-                            @Html.Label("Dirección", new { @class = "form-label" })
+                            @Html.Label("Dirección", new { @class = "form-label font-weight-bold" })
                             @Html.TextAreaFor(
                                 m => m.DireccionDetalle,
                                 3,
@@ -52,25 +119,35 @@
                             @Html.ValidationMessageFor(m => m.DireccionDetalle, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.CodigoPostal, new { @class = "form-label" })
-                            @Html.TextBoxFor(
-                                m => m.CodigoPostal,
-                                new { @class = "form-control", placeholder = "Ej: 10101" }
-                            )
+                        <!-- Código postal -->
+                        <div class="mb-4">
+                            @Html.LabelFor(m => m.CodigoPostal, new { @class = "form-label font-weight-bold" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-map-pin text-muted" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                @Html.TextBoxFor(m => m.CodigoPostal, new { @class = "form-control", placeholder = "Ej: 10101" })
+                            </div>
                             @Html.ValidationMessageFor(m => m.CodigoPostal, "", new { @class = "text-danger" })
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 mb-2">
-                            Guardar cambios
-                        </button>
+                        <!-- Botones -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-between">
+                            <a href="@Url.Action("Perfil", "Usuario")" class="btn btn-outline-secondary mb-2 mb-sm-0">
+                                <i class="fa fa-times mr-1" aria-hidden="true"></i> Cancelar
+                            </a>
 
-                        <a href="@Url.Action("Perfil", "Usuario")" class="btn btn-secondary w-100">
-                            Cancelar
-                        </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-save mr-1" aria-hidden="true"></i> Guardar cambios
+                            </button>
+                        </div>
                     }
+
                 </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -1,45 +1,159 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
-    ViewBag.Title = "Recuperar Contraseña";
+﻿@model MiMundoHuellitas.Models.ViewModels.RecuperarContrasenaViewModel
+@{
+    ViewBag.Title = "Recuperar contraseña - MiMundoHuellitas";
+    Layout = null;
 }
 
-<div class="container" style="max-width:500px; margin-top:40px;">
-    <div class="card">
-        <div class="card-body">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
 
-            <h3 class="text-center mb-3">Recuperar Contraseña</h3>
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-            @if (TempData["Error"] != null)
-            {
-                <div class="alert alert-danger">@TempData["Error"]</div>
-            }
+    <!-- Tus CSS (puedes dejarlos) -->
+    <link href="~/StaticFiles/css/style.css" rel="stylesheet" />
+    <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
+    <link href="~/StaticFiles/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css">
 
-            @if (TempData["Ok"] != null)
-            {
-                <div class="alert alert-success">@TempData["Ok"]</div>
-            }
+    <!-- Estilo mínimo inline para que se vea bien aunque falle algo -->
+    <style>
+        body {
+            background: #f6f7fb;
+        }
 
-            @using (Html.BeginForm("RecuperarContrasena", "Account", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
+        .auth-card {
+            border-radius: 18px;
+            overflow: hidden;
+        }
 
-                <div class="mb-3">
-                    <label class="form-label">Correo</label>
-                    <input type="email" name="Email" class="form-control" required />
+        .auth-logo {
+            width: 90px;
+            height: auto;
+        }
+
+        .auth-sub {
+            color: #6c757d;
+        }
+
+        .btn-radius {
+            border-radius: 12px;
+        }
+
+        .error-box {
+            background: #f8d7da;
+            border: 1px solid #f1aeb5;
+            color: #58151c;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+
+                <div class="card shadow-sm border-0 auth-card">
+                    <div class="card-body p-4 p-md-5">
+
+                        <div class="text-center mb-4">
+                            <img src="~/StaticFiles/img/Huellitas.png" class="auth-logo" alt="Mi Mundo de Huellitas" />
+                            <h2 class="mt-3 mb-1 fw-bold">Recuperar contraseña</h2>
+                            <div class="auth-sub">Te enviaremos una contraseña temporal a tu correo 🐾</div>
+                        </div>
+
+                        @* TempData *@
+                        @if (TempData["Error"] != null)
+                        {
+                            <div class="error-box">@TempData["Error"]</div>
+                        }
+                        @if (TempData["Ok"] != null)
+                        {
+                            <div class="alert alert-success text-center">@TempData["Ok"]</div>
+                        }
+
+                        @* Errores del ModelState (siempre visibles) *@
+                        @{
+                            var errores = ViewData.ModelState.Values
+                                .SelectMany(v => v.Errors)
+                                .Select(e => e.ErrorMessage)
+                                .Where(m => !string.IsNullOrWhiteSpace(m))
+                                .ToList();
+                        }
+                        @if (errores.Any())
+                        {
+                            <div class="error-box">
+                                @foreach (var msg in errores)
+                                {
+                                    <div>@msg</div>
+                                }
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("RecuperarContrasena", "Account", FormMethod.Post, new { autocomplete = "off" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold" for="Correo">Correo</label>
+                                @Html.TextBox(
+                                    "Correo",
+                                    Model?.Correo,
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        type = "email",
+                                        placeholder = "usuario@correo.com",
+                                        id = "Correo"
+                                    }
+                                )
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold" for="Nombre">Nombre</label>
+                                @Html.TextBox(
+                                    "Nombre",
+                                    Model?.Nombre,
+                                    new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Nombre completo",
+                                        id = "Nombre"
+                                    }
+                                )
+                                <div class="form-text">Debe coincidir con el nombre usado al crear la cuenta.</div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 py-2 btn-radius">
+                                ENVIAR CONTRASEÑA TEMPORAL
+                            </button>
+
+                            <div class="text-center mt-3">
+                                <a href="@Url.Action("Login", "Account")" class="text-decoration-none">Volver a iniciar sesión</a>
+                            </div>
+                        }
+
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Nombre registrado</label>
-                    <input type="text" name="Nombre" class="form-control" required />
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Enviar nueva contraseña</button>
-            }
-
-            <p class="text-center mt-3">
-                <a href="@Url.Action("Login","Account")">Volver</a>
-            </p>
-
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- ✅ IMPORTANTE: NO cargamos main.js ni scripts de plantilla aquí -->
+    <!-- Solo bootstrap bundle si lo ocupas; si no, puedes quitarlo también -->
+    <script src="~/StaticFiles/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

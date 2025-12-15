@@ -1,53 +1,142 @@
 ﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Mascotas_TB>
+
 @{
     ViewBag.Title = "Mis mascotas";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-<div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Mis mascotas</h3>
-        @Html.ActionLink("Agregar mascota", "AgregarMascota", "Mascota", null, new { @class = "btn btn-primary" })
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-1.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Mis mascotas</h1>
+        <p class="lead mb-0">
+            Administra tus mascotas registradas 🐾
+        </p>
     </div>
+</div>
 
-    @if (!Model.Any())
-    {
-        <p class="text-muted">Aún no has registrado mascotas.</p>
-    }
-    else
-    {
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Especie</th>
-                    <th>Raza</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+<!-- FONDO GENERAL (estilo Contactenos) -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
+
+    <div class="container">
+
+        <!-- HEADER / BOTÓN -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <div>
+                <h3 class="mb-1 fw-bold">Mis mascotas</h3>
+                <div class="text-muted">Administra tus mascotas registradas 🐾</div>
+            </div>
+
+            @Html.ActionLink("Agregar mascota", "AgregarMascota", "Mascota", null,
+                new { @class = "btn btn-success btn-lg", style = "border-radius:12px;" })
+        </div>
+
+        <!-- MENSAJES -->
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+        @if (TempData["Ok"] != null)
+        {
+            <div class="alert alert-success">@TempData["Ok"]</div>
+        }
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="card border-0 shadow-sm" style="border-radius:18px;">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div style="font-size:42px;">🐶</div>
+                    <h5 class="mt-2 mb-1 fw-bold">Aún no has registrado mascotas</h5>
+                    <p class="text-muted mb-4">Agrega tu primera mascota para poder agendar citas.</p>
+
+                    @Html.ActionLink("Agregar mascota", "AgregarMascota", "Mascota", null,
+                        new { @class = "btn btn-success btn-lg", style = "border-radius:12px;" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
                 @foreach (var m in Model)
                 {
-                    <tr>
-                        <td>@m.NombreMascota</td>
-                        <td>@m.MH_Especie_TB.NombreEspecie</td>  <!-- corregido -->
-                        <td>@m.MH_Raza_TB.NombreRaza</td>        <!-- corregido -->
-                        <td class="text-end">
-                            @Html.ActionLink("Editar", "EditarMascota", "Mascota",
-                                new { id = m.IdMascota }, new { @class = "btn btn-sm btn-outline-primary" })
+                    var nombre = (m.NombreMascota ?? "").Trim();
+                    var inicial = !string.IsNullOrEmpty(nombre) ? nombre.Substring(0, 1).ToUpper() : "🐾";
 
-                            @using (Html.BeginForm("EliminarMascota", "Mascota", FormMethod.Post, new { @class = "d-inline" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                @Html.Hidden("id", m.IdMascota)
-                                <button type="submit" class="btn btn-sm btn-outline-danger"
-                                        onclick="return confirm('¿Seguro que deseas eliminar esta mascota?');">
-                                    Eliminar
-                                </button>
-                            }
-                        </td>
-                    </tr>
+                    var especieNombre = (m.MH_Especie_TB != null) ? m.MH_Especie_TB.NombreEspecie : "—";
+                    var razaNombre = (m.MH_Raza_TB != null) ? m.MH_Raza_TB.NombreRaza : "—";
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0" style="border-radius:18px;">
+                            <div class="card-body p-4">
+
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="d-flex align-items-center justify-content-center"
+                                         style="width:52px;height:52px;border-radius:14px;background: rgba(0,0,0,0.06); font-weight:700; font-size:20px;">
+                                        @inicial
+                                    </div>
+
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-0 fw-bold">@m.NombreMascota</h5>
+                                        <div class="text-muted small">ID: @m.IdMascota</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    <span class="badge rounded-pill text-bg-light"
+                                          style="border:1px solid rgba(0,0,0,0.08);">
+                                        <span class="text-muted">Especie:</span>
+                                        <span class="fw-semibold">@especieNombre</span>
+                                    </span>
+
+                                    <span class="badge rounded-pill text-bg-light"
+                                          style="border:1px solid rgba(0,0,0,0.08);">
+                                        <span class="text-muted">Raza:</span>
+                                        <span class="fw-semibold">@razaNombre</span>
+                                    </span>
+                                </div>
+
+                                <div class="d-flex gap-2">
+                                    @Html.ActionLink("Editar", "EditarMascota", "Mascota",
+                                        new { id = m.IdMascota },
+                                        new { @class = "btn btn-outline-primary w-100", style = "border-radius:12px;" })
+
+                                    @using (Html.BeginForm("EliminarMascota", "Mascota", FormMethod.Post, new { @class = "w-100" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("id", m.IdMascota)
+                                        <button type="submit"
+                                                class="btn btn-outline-danger w-100"
+                                                style="border-radius:12px;"
+                                                onclick="return confirm('¿Seguro que deseas eliminar esta mascota?');">
+                                            Eliminar
+                                        </button>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 }
-            </tbody>
-        </table>
-    }
+            </div>
+
+            <div class="mt-4 text-muted small">
+                Tip: Mantén tus mascotas actualizadas para agilizar el agendamiento de citas.
+            </div>
+        }
+
+    </div>
 </div>

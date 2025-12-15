@@ -4,34 +4,138 @@
     Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-<div class="container" style="max-width:700px; margin-top:40px;">
-    <h2 class="mb-4">Cambiar contraseña</h2>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card border-0 shadow-sm">
+                <!-- Header -->
+                <div class="card-header bg-white border-0 pb-0">
+                    <div class="d-flex align-items-start justify-content-between">
+                        <div>
+                            <h4 class="mb-1">
+                                <i class="fa fa-lock text-success mr-2" aria-hidden="true"></i>
+                                Cambiar contraseña
+                            </h4>
+                            <p class="text-muted mb-0">
+                                Por seguridad, confirmá tu contraseña actual y definí una nueva.
+                            </p>
+                        </div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+                        <a href="@Url.Action("Perfil","Usuario")" class="btn btn-sm btn-outline-secondary">
+                            <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Volver
+                        </a>
+                    </div>
+                </div>
 
-        <div class="mb-3">
-            @Html.LabelFor(m => m.ContrasenaActual, new { @class = "form-label" })
-            @Html.PasswordFor(m => m.ContrasenaActual, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ContrasenaActual, "", new { @class = "text-danger" })
+                <div class="card-body pt-4">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+                    <div class="alert alert-light border d-flex align-items-start mb-4" role="alert">
+                        <i class="fa fa-shield text-success mr-2 mt-1" aria-hidden="true"></i>
+                        <div class="small mb-0">
+                            Recomendación: usá una contraseña de al menos <b>8 caracteres</b>, con letras y números.
+                        </div>
+                    </div>
+
+                    @using (Html.BeginForm("CambiarContrasena", "Usuario", FormMethod.Post, new { autocomplete = "off" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <!-- Contraseña actual -->
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.ContrasenaActual, new { @class = "form-label font-weight-bold" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-key text-muted" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                @Html.PasswordFor(m => m.ContrasenaActual, new { @class = "form-control", placeholder = "Tu contraseña actual", id = "ContrasenaActual" })
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                            onclick="togglePwd('ContrasenaActual', this)">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ContrasenaActual, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Nueva contraseña -->
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.NuevaContrasena, new { @class = "form-label font-weight-bold" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-lock text-muted" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                @Html.PasswordFor(m => m.NuevaContrasena, new { @class = "form-control", placeholder = "Nueva contraseña", id = "NuevaContrasena" })
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                            onclick="togglePwd('NuevaContrasena', this)">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.NuevaContrasena, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Confirmar nueva contraseña -->
+                        <div class="mb-4">
+                            @Html.LabelFor(m => m.ConfirmarContrasena, new { @class = "form-label font-weight-bold" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-check text-muted" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                @Html.PasswordFor(m => m.ConfirmarContrasena, new { @class = "form-control", placeholder = "Confirmá la nueva contraseña", id = "ConfirmarContrasena" })
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                            onclick="togglePwd('ConfirmarContrasena', this)">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ConfirmarContrasena, "", new { @class = "text-danger" })
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-between">
+                            <a href="@Url.Action("Perfil","Usuario")" class="btn btn-outline-secondary mb-2 mb-sm-0">
+                                <i class="fa fa-times mr-1" aria-hidden="true"></i> Cancelar
+                            </a>
+
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-save mr-1" aria-hidden="true"></i> Guardar contraseña
+                            </button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
         </div>
-
-        <div class="mb-3">
-            @Html.LabelFor(m => m.NuevaContrasena, new { @class = "form-label" })
-            @Html.PasswordFor(m => m.NuevaContrasena, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.NuevaContrasena, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="mb-3">
-            @Html.LabelFor(m => m.ConfirmarContrasena, new { @class = "form-label" })
-            @Html.PasswordFor(m => m.ConfirmarContrasena, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ConfirmarContrasena, "", new { @class = "text-danger" })
-        </div>
-
-        <button type="submit" class="btn btn-success">Guardar contraseña</button>
-        <a href="@Url.Action("Perfil")" class="btn btn-secondary ms-2">Cancelar</a>
-    }
+    </div>
 </div>
+
+@section scripts{
+    <script>
+    function togglePwd(inputId, btn) {
+        var input = document.getElementById(inputId);
+        if (!input) return;
+
+        var icon = btn.querySelector("i");
+        if (input.type === "password") {
+            input.type = "text";
+            if (icon) { icon.classList.remove("fa-eye"); icon.classList.add("fa-eye-slash"); }
+        } else {
+            input.type = "password";
+            if (icon) { icon.classList.remove("fa-eye-slash"); icon.classList.add("fa-eye"); }
+        }
+    }
+    </script>
+}

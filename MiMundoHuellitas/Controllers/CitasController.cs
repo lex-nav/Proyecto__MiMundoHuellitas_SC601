@@ -115,10 +115,12 @@ namespace MiMundoHuellitas.Controllers
                 smtp.Credentials = new NetworkCredential(user, pass);
                 smtp.EnableSsl = ssl;
 
-                var mail = new MailMessage(user, destino);
-                mail.Subject = asunto;
-                mail.Body = cuerpoHtml;
-                mail.IsBodyHtml = true;
+                var mail = new MailMessage(user, destino)
+                {
+                    Subject = asunto,
+                    Body = cuerpoHtml,
+                    IsBodyHtml = true
+                };
 
                 smtp.Send(mail);
             }
@@ -155,6 +157,109 @@ namespace MiMundoHuellitas.Controllers
             }
 
             return fecha.Add(hora);
+        }
+
+        // =========================
+        // EMAILS BONITOS (HTML)
+        // =========================
+
+        private string EmailLayout(string titulo, string subtitulo, string contenidoHtml)
+        {
+            return $@"
+<!DOCTYPE html>
+<html lang='es'>
+<body style='margin:0;background:#f4f7f6;font-family:Arial,Helvetica,sans-serif'>
+<table width='100%' cellpadding='0' cellspacing='0' style='padding:30px 0'>
+<tr><td align='center'>
+<table width='600' style='background:#fff;border-radius:14px;overflow:hidden;
+box-shadow:0 6px 18px rgba(0,0,0,.08)'>
+
+<tr>
+<td style='background:linear-gradient(135deg,#0a7b48,#0e768c);
+padding:25px;text-align:center;color:#fff'>
+<h1 style='margin:0;font-size:22px'>{titulo}</h1>
+<p style='margin:6px 0 0;font-size:14px'>{subtitulo}</p>
+</td>
+</tr>
+
+<tr>
+<td style='padding:30px; color:#222; font-size:14px; line-height:1.55'>
+{contenidoHtml}
+</td>
+</tr>
+
+<tr>
+<td style='background:#f8f8f8;padding:15px;text-align:center;font-size:12px;color:#777'>
+© {DateTime.Now.Year} Mi Mundo de Huellitas · Costa Rica
+</td>
+</tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>";
+        }
+
+        private string EmailConfirmacionCita(string nombre, DateTime fechaHora, string mascota, string servicio)
+        {
+            var saludo = string.IsNullOrWhiteSpace(nombre) ? "Hola 👋" : $"Hola <strong>{nombre}</strong> 👋";
+
+            string contenido = $@"
+<p>{saludo}</p>
+<p>¡Tu cita ha sido <strong>agendada correctamente</strong>! 🐾</p>
+
+<div style='background:#f1fdf8;border:1px solid rgba(10,123,72,.20);
+padding:16px;border-radius:12px;margin:16px 0'>
+<p style='margin:0 0 8px'><strong>📅 Fecha y hora:</strong> {fechaHora:dd/MM/yyyy HH:mm}</p>
+<p style='margin:0 0 8px'><strong>🐶 Mascota:</strong> {WebUtility.HtmlEncode(mascota ?? "N/D")}</p>
+<p style='margin:0'><strong>✨ Servicio:</strong> {WebUtility.HtmlEncode(servicio ?? "N/D")}</p>
+</div>
+
+<p style='margin:0'>Si necesitas reprogramar o cancelar, podés hacerlo desde <strong>Mis citas</strong>.</p>
+<p style='margin-top:16px'>¡Gracias por confiar en <strong>Mi Mundo de Huellitas</strong>! 💚</p>";
+
+            return EmailLayout("Mi Mundo de Huellitas", "Confirmación de cita", contenido);
+        }
+
+        private string EmailActualizacionCita(string nombre, DateTime fechaHora, string mascota, string servicio)
+        {
+            var saludo = string.IsNullOrWhiteSpace(nombre) ? "Hola 👋" : $"Hola <strong>{nombre}</strong> 👋";
+
+            string contenido = $@"
+<p>{saludo}</p>
+<p>Tu cita fue <strong>actualizada</strong> correctamente ✅</p>
+
+<div style='background:#eef7ff;border:1px solid rgba(14,118,140,.20);
+padding:16px;border-radius:12px;margin:16px 0'>
+<p style='margin:0 0 8px'><strong>📅 Nueva fecha y hora:</strong> {fechaHora:dd/MM/yyyy HH:mm}</p>
+<p style='margin:0 0 8px'><strong>🐶 Mascota:</strong> {WebUtility.HtmlEncode(mascota ?? "N/D")}</p>
+<p style='margin:0'><strong>✨ Servicio:</strong> {WebUtility.HtmlEncode(servicio ?? "N/D")}</p>
+</div>
+
+<p style='margin:0'>Si algo no quedó correcto, podés editarla nuevamente desde <strong>Mis citas</strong>.</p>
+<p style='margin-top:16px'>— Equipo <strong>Mi Mundo de Huellitas</strong> 🐾</p>";
+
+            return EmailLayout("Mi Mundo de Huellitas", "Actualización de cita", contenido);
+        }
+
+        private string EmailCancelacionCita(string nombre, DateTime fechaHora)
+        {
+            var saludo = string.IsNullOrWhiteSpace(nombre) ? "Hola 👋" : $"Hola <strong>{nombre}</strong> 👋";
+
+            string contenido = $@"
+<p>{saludo}</p>
+<p>Tu cita fue <strong>cancelada</strong> correctamente.</p>
+
+<div style='background:#fff3f3;border:1px solid rgba(220,53,69,.20);
+padding:16px;border-radius:12px;margin:16px 0'>
+<p style='margin:0'><strong>📅 Fecha y hora:</strong> {fechaHora:dd/MM/yyyy HH:mm}</p>
+</div>
+
+<p style='margin:0'>Si fue un error, podés agendar una nueva cita cuando gustés.</p>
+<p style='margin-top:16px'>Gracias por usar <strong>Mi Mundo de Huellitas</strong> 💚</p>";
+
+            return EmailLayout("Mi Mundo de Huellitas", "Cita cancelada", contenido);
         }
 
         // =========================
@@ -210,7 +315,7 @@ namespace MiMundoHuellitas.Controllers
                 return View("Agendar", model);
             }
 
-            // Crear cita (Estado: 1 = Pendiente, ajusta según tus datos)
+            // Crear cita (Estado: 1 = Pendiente)
             var cita = new MH_Cita_TB
             {
                 IdUsuario = usuario.IdUsuario,
@@ -239,29 +344,22 @@ namespace MiMundoHuellitas.Controllers
             db.MH_Servicios_Cita_TB.Add(det);
             db.SaveChanges();
 
-            // Correo de confirmación
+            // Correo de confirmación (bonito)
             try
             {
-                // Cargar mascota explícitamente
                 var mascota = db.MH_Mascotas_TB.FirstOrDefault(m => m.IdMascota == cita.IdMascota);
+                var nombreMostrar = string.IsNullOrWhiteSpace(usuario.NombreCompleto) ? usuario.Correo : usuario.NombreCompleto;
 
-                string cuerpo = $@"
-        <p>Hola {(string.IsNullOrWhiteSpace(usuario.NombreCompleto) ? usuario.Correo : usuario.NombreCompleto)},</p>
-        <p>Tu cita ha sido agendada correctamente:</p>
-        <ul>
-            <li><strong>Fecha:</strong> {cita.FechaHoraCita:dd/MM/yyyy HH:mm}</li>
-            <li><strong>Mascota:</strong> {(mascota != null ? mascota.NombreMascota : "N/D")}</li>
-            <li><strong>Servicio:</strong> {servicio.NombreServicio}</li>
-        </ul>
-        <p>¡Gracias por confiar en Mi Mundo de Huellitas!</p>";
+                string html = EmailConfirmacionCita(
+                    nombreMostrar,
+                    cita.FechaHoraCita,
+                    mascota?.NombreMascota ?? "N/D",
+                    servicio.NombreServicio
+                );
 
-                EnviarCorreo(usuario.Correo, "Confirmación de cita", cuerpo);
+                EnviarCorreo(usuario.Correo, "Confirmación de cita - Mi Mundo de Huellitas", html);
             }
-            catch
-            {
-                // si falla el correo, no rompemos el flujo
-            }
-
+            catch { }
 
             TempData["CitaOk"] = "¡Cita agendada correctamente!";
             return RedirectToAction("VerCitas");
@@ -342,7 +440,6 @@ namespace MiMundoHuellitas.Controllers
             if (cita == null)
                 return HttpNotFound();
 
-            // Si cambió fecha/hora, validar que no esté ocupado por otra cita
             bool ocupado = db.MH_Cita_TB.Any(c =>
                 c.IdCita != cita.IdCita &&
                 c.FechaHoraCita == fechaHora.Value);
@@ -383,19 +480,19 @@ namespace MiMundoHuellitas.Controllers
 
             db.SaveChanges();
 
-            // Correo de actualización
+            // Correo de actualización (bonito)
             try
             {
-                string cuerpo = $@"
-                    <p>Hola {usuario.NombreCompleto},</p>
-                    <p>Tu cita ha sido actualizada:</p>
-                    <ul>
-                        <li><strong>Fecha:</strong> {cita.FechaHoraCita:dd/MM/yyyy HH:mm}</li>
-                        <li><strong>Mascota:</strong> {cita.MH_Mascotas_TB.NombreMascota}</li>
-                        <li><strong>Servicio:</strong> {servicio.NombreServicio}</li>
-                    </ul>";
+                var nombreMostrar = string.IsNullOrWhiteSpace(usuario.NombreCompleto) ? usuario.Correo : usuario.NombreCompleto;
 
-                EnviarCorreo(usuario.Correo, "Actualización de cita", cuerpo);
+                string html = EmailActualizacionCita(
+                    nombreMostrar,
+                    cita.FechaHoraCita,
+                    cita.MH_Mascotas_TB?.NombreMascota ?? "N/D",
+                    servicio.NombreServicio
+                );
+
+                EnviarCorreo(usuario.Correo, "Actualización de cita - Mi Mundo de Huellitas", html);
             }
             catch { }
 
@@ -419,19 +516,22 @@ namespace MiMundoHuellitas.Controllers
             if (cita == null)
                 return HttpNotFound();
 
-            // Marca como cancelada (ajusta el IdEstado real que uses para "Cancelada")
+            // Marca como cancelada (ajusta el IdEstado real)
             cita.IdEstado = 3;
             cita.FechaActualiza = DateTime.Now;
             db.SaveChanges();
 
+            // Correo de cancelación (bonito)
             try
             {
-                string cuerpo = $@"
-                    <p>Hola {usuario.NombreCompleto},</p>
-                    <p>Tu cita para el {cita.FechaHoraCita:dd/MM/yyyy HH:mm} ha sido <strong>cancelada</strong>.</p>
-                    <p>Si fue un error, puedes agendar una nueva cita desde el sistema.</p>";
+                var nombreMostrar = string.IsNullOrWhiteSpace(usuario.NombreCompleto) ? usuario.Correo : usuario.NombreCompleto;
 
-                EnviarCorreo(usuario.Correo, "Cita cancelada", cuerpo);
+                string html = EmailCancelacionCita(
+                    nombreMostrar,
+                    cita.FechaHoraCita
+                );
+
+                EnviarCorreo(usuario.Correo, "Cita cancelada - Mi Mundo de Huellitas", html);
             }
             catch { }
 

@@ -3,70 +3,170 @@
     ViewBag.Title = "Mi perfil";
 }
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Mi perfil</h5>
-                </div>
-                <div class="card-body">
+<!-- HERO PERFIL -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 240px;
+            background: linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+                        url('/StaticFiles/img/gallery-2.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold mb-1">Mi perfil</h1>
+        <p class="lead mb-0">
+            Administra tu información personal y seguridad
+        </p>
+    </div>
+</div>
 
-                    @if (TempData["PerfilOk"] != null)
-                    {
-                        <div class="alert alert-success">
-                            @TempData["PerfilOk"]
+<!-- FONDO TIPO CONTACTENOS -->
+<div style="background:#e9f7f3; padding-top:40px; padding-bottom:60px;">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+
+                @* Mensaje OK *@
+                @if (TempData["PerfilOk"] != null)
+                {
+                    <div class="alert alert-success d-flex align-items-center">
+                        <i class="fa fa-check-circle me-2"></i>
+                        <div>@TempData["PerfilOk"]</div>
+                    </div>
+                }
+
+                <div class="card border-0 shadow-sm" style="border-radius:18px;">
+
+                    <!-- HEADER CARD -->
+                    <div class="card-header bg-white border-0 pb-0" style="border-radius:18px 18px 0 0;">
+                        <div class="d-flex align-items-start justify-content-between">
+                            <div>
+                                <h4 class="mb-1">
+                                    <i class="fa fa-user-circle me-2 text-success"></i>
+                                    Información personal
+                                </h4>
+                                <p class="text-muted mb-0">
+                                    Datos asociados a tu cuenta
+                                </p>
+                            </div>
+
+                            <a href="@Url.Action("EditarPerfil","Usuario")"
+                               class="btn btn-sm btn-success"
+                               style="border-radius:10px;">
+                                <i class="fa fa-pencil me-1"></i> Editar
+                            </a>
                         </div>
-                    }
-
-                    <dl class="row mb-0">
-                        <dt class="col-sm-4">Nombre</dt>
-                        <dd class="col-sm-8">@Model.Nombre</dd>
-
-                        <dt class="col-sm-4">Correo</dt>
-                        <dd class="col-sm-8">@Model.Correo</dd>
-
-                        <dt class="col-sm-4">Teléfono</dt>
-                        <dd class="col-sm-8">@Model.Telefono</dd>
-
-                        <dt class="col-sm-4">Dirección</dt>
-                        <dd class="col-sm-8">
-                            @if (!string.IsNullOrWhiteSpace(Model.DireccionDetalle))
-                            {
-                                @Model.DireccionDetalle
-                            }
-                            else
-                            {
-                                <span class="text-muted">Sin dirección registrada</span>
-                            }
-                        </dd>
-
-                        @if (!string.IsNullOrWhiteSpace(Model.CodigoPostal))
-                        {
-                            <dt class="col-sm-4">Código postal</dt>
-                            <dd class="col-sm-8">@Model.CodigoPostal</dd>
-                        }
-                    </dl>
-
-                    <div class="mt-4 d-flex justify-content-between">
-                        @Html.ActionLink(
-                            "Cambiar contraseña",
-                            "CambiarContrasena",   
-                            "Usuario",
-                            null,
-                            new { @class = "btn btn-outline-secondary" }
-                        )
-
-                        @Html.ActionLink(
-                            "Editar perfil",
-                            "EditarPerfil",
-                            "Usuario",
-                            null,
-                            new { @class = "btn btn-primary" }
-                        )
                     </div>
 
+                    <div class="card-body pt-4 px-4 px-md-5 pb-4">
+
+                        <!-- AVATAR -->
+                        <div class="d-flex align-items-center mb-4">
+                            @{
+                                var inicial = !string.IsNullOrWhiteSpace(Model.Nombre)
+                                    ? Model.Nombre.Trim().Substring(0, 1).ToUpper()
+                                    : "U";
+                            }
+
+                            <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
+                                 style="width:72px;height:72px;
+                                        background:linear-gradient(135deg,#0a7b48,#0e768c);
+                                        color:#fff;
+                                        font-weight:800;
+                                        font-size:1.8rem;">
+                                @inicial
+                            </div>
+
+                            <div>
+                                <h5 class="mb-0 fw-bold">@Model.Nombre</h5>
+                                <div class="text-muted">
+                                    <i class="fa fa-envelope me-1"></i> @Model.Correo
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DATOS -->
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <div class="p-3 border rounded h-100 bg-light">
+                                    <div class="text-muted small mb-1">
+                                        <i class="fa fa-phone me-1"></i> Teléfono
+                                    </div>
+                                    <div class="fw-semibold">
+                                        @(!string.IsNullOrWhiteSpace(Model.Telefono)
+                                            ? Model.Telefono
+                                            : "No registrado")
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="p-3 border rounded h-100 bg-light">
+                                    <div class="text-muted small mb-1">
+                                        <i class="fa fa-map-marker me-1"></i> Dirección
+                                    </div>
+                                    <div class="fw-semibold">
+                                        @if (!string.IsNullOrWhiteSpace(Model.DireccionDetalle))
+                                        {
+                                            @Model.DireccionDetalle
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted fw-normal">
+                                                Sin dirección registrada
+                                            </span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (!string.IsNullOrWhiteSpace(Model.CodigoPostal))
+                            {
+                                <div class="col-md-6">
+                                    <div class="p-3 border rounded h-100 bg-light">
+                                        <div class="text-muted small mb-1">
+                                            <i class="fa fa-envelope-open me-1"></i> Código postal
+                                        </div>
+                                        <div class="fw-semibold">
+                                            @Model.CodigoPostal
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="col-md-6">
+                                <div class="p-3 border rounded h-100 bg-light">
+                                    <div class="text-muted small mb-1">
+                                        <i class="fa fa-shield me-1"></i> Seguridad
+                                    </div>
+                                    <div class="fw-semibold">
+                                        Cambia tu contraseña periódicamente
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <!-- ACCIONES -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-between gap-2">
+                            <a href="@Url.Action("CambiarContrasena","Usuario")"
+                               class="btn btn-outline-secondary"
+                               style="border-radius:12px;">
+                                <i class="fa fa-lock me-1"></i>
+                                Cambiar contraseña
+                            </a>
+
+                            <a href="@Url.Action("EditarPerfil","Usuario")"
+                               class="btn btn-success"
+                               style="border-radius:12px;">
+                                <i class="fa fa-user me-1"></i>
+                                Editar perfil
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

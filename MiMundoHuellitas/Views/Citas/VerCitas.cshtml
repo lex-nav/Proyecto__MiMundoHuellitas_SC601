@@ -1,65 +1,154 @@
 ﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Cita_TB>
+
 @{
     ViewBag.Title = "Mis citas";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-<div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3>Mis citas</h3>
-        <a href="@Url.Action("Agendar", "Citas")" class="btn btn-primary">Agendar nueva cita</a>
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-2.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Mis citas</h1>
+        <p class="lead mb-0">
+            Revisa, edita o cancela tus citas 🗓️
+        </p>
     </div>
+</div>
 
-    @if (TempData["CitaOk"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["CitaOk"]
+<!-- FONDO GENERAL -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <div>
+                <h3 class="mb-1 fw-bold">Mis citas</h3>
+                <div class="text-muted">Gestiona tus próximas visitas</div>
+            </div>
+
+            <a href="@Url.Action("Agendar", "Citas")"
+               class="btn btn-success btn-lg"
+               style="border-radius:12px;">
+                Agendar nueva cita
+            </a>
         </div>
-    }
 
-    @if (!Model.Any())
-    {
-        <p class="text-muted">No tienes citas registradas.</p>
-    }
-    else
-    {
-        <table class="table table-striped align-middle">
-            <thead>
-                <tr>
-                    <th>Fecha y hora</th>
-                    <th>Mascota</th>
-                    <th>Servicio</th>
-                    <th>Estado</th>
-                    <th style="width: 160px;"></th>
-                </tr>
-            </thead>
-            <tbody>
+        <!-- MENSAJES -->
+        @if (TempData["CitaOk"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["CitaOk"]
+            </div>
+        }
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="card border-0 shadow-sm" style="border-radius:18px;">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div style="font-size:42px;">📅</div>
+                    <h5 class="mt-2 mb-1 fw-bold">No tienes citas registradas</h5>
+                    <p class="text-muted mb-4">
+                        Agenda tu primera cita para consentir a tu peludito.
+                    </p>
+
+                    <a href="@Url.Action("Agendar", "Citas")"
+                       class="btn btn-success btn-lg"
+                       style="border-radius:12px;">
+                        Agendar cita
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
                 @foreach (var c in Model)
                 {
                     var detalle = c.MH_Servicios_Cita_TB.FirstOrDefault();
-                    <tr>
-                        <td>@c.FechaHoraCita.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>@c.MH_Mascotas_TB.NombreMascota</td>
-                        <td>@(detalle != null ? detalle.MH_Servicios_TB.NombreServicio : "-")</td>
-                        <td>@(c.MH_Estado_TB != null ? c.MH_Estado_TB.NombreEstado : c.IdEstado.ToString())</td>
-                        <td class="text-end">
-                            <a href="@Url.Action("EditarCitas", "Citas", new { id = c.IdCita })"
-                               class="btn btn-sm btn-outline-primary me-1">
-                                Editar
-                            </a>
+                    var estado = c.MH_Estado_TB != null
+                        ? c.MH_Estado_TB.NombreEstado
+                        : c.IdEstado.ToString();
 
-                            @using (Html.BeginForm("CancelarCita", "Citas", FormMethod.Post, new { @class = "d-inline" }))
-                            {
-                                @Html.AntiForgeryToken()
-                                @Html.Hidden("id", c.IdCita)
-                                <button type="submit" class="btn btn-sm btn-outline-danger"
-                                        onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
-                                    Cancelar
-                                </button>
-                            }
-                        </td>
-                    </tr>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0"
+                             style="border-radius:18px;">
+                            <div class="card-body p-4">
+
+                                <div class="mb-3">
+                                    <h5 class="fw-bold mb-1">
+                                        @c.FechaHoraCita.ToString("dd/MM/yyyy")
+                                    </h5>
+                                    <div class="text-muted">
+                                        ⏰ @c.FechaHoraCita.ToString("HH:mm")
+                                    </div>
+                                </div>
+
+                                <ul class="list-unstyled mb-3 small">
+                                    <li class="mb-1">
+                                        🐾 <strong>Mascota:</strong>
+                                        @c.MH_Mascotas_TB.NombreMascota
+                                    </li>
+                                    <li class="mb-1">
+                                        ✂️ <strong>Servicio:</strong>
+                                        @(detalle != null
+                                            ? detalle.MH_Servicios_TB.NombreServicio
+                                            : "-")
+                                    </li>
+                                    <li>
+                                        📌 <strong>Estado:</strong>
+                                        <span class="badge rounded-pill bg-light text-dark"
+                                              style="border:1px solid rgba(0,0,0,0.1);">
+                                            @estado
+                                        </span>
+                                    </li>
+                                </ul>
+
+                                <div class="d-flex gap-2">
+                                    <a href="@Url.Action("EditarCitas", "Citas", new { id = c.IdCita })"
+                                       class="btn btn-outline-primary w-100"
+                                       style="border-radius:12px;">
+                                        Editar
+                                    </a>
+
+                                    @using (Html.BeginForm("CancelarCita", "Citas", FormMethod.Post,
+                                        new { @class = "w-100" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("id", c.IdCita)
+                                        <button type="submit"
+                                                class="btn btn-outline-danger w-100"
+                                                style="border-radius:12px;"
+                                                onclick="return confirm('¿Seguro que deseas cancelar esta cita?');">
+                                            Cancelar
+                                        </button>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 }
-            </tbody>
-        </table>
-    }
+            </div>
+
+            <div class="mt-4 text-muted small">
+                Tip: Puedes modificar o cancelar tus citas con anticipación.
+            </div>
+        }
+
+    </div>
 </div>

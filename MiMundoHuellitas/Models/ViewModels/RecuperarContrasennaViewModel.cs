@@ -4,12 +4,14 @@ namespace MiMundoHuellitas.Models.ViewModels
 {
     public class RecuperarContrasenaViewModel
     {
-        [Required, StringLength(100)]
-        [Display(Name = "Nombre")]
-        public string Nombre { get; set; }
-
-        [Required, EmailAddress]
         [Display(Name = "Correo")]
+        [Required(ErrorMessage = "Debe completar todos los campos.")]
+        [EmailAddress(ErrorMessage = "Ingrese un correo válido.")]
         public string Correo { get; set; }
+
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Debe completar todos los campos.")]
+        [StringLength(80, ErrorMessage = "Máximo 80 caracteres.")]
+        public string Nombre { get; set; }
     }
 }

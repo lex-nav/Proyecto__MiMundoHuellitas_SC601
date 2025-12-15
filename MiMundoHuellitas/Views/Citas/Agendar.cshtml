@@ -1,52 +1,155 @@
 ﻿@model MiMundoHuellitas.Models.ViewModels.AgendarCitaViewModel
+
 @{
     ViewBag.Title = "Agendar cita";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-<div class="container py-5">
-    <div class="col-md-6 mx-auto">
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Agendar cita</h4>
-            </div>
-            <div class="card-body">
-                @using (Html.BeginForm("Agendar", "Citas", FormMethod.Post))
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-1.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Agendar cita</h1>
+        <p class="lead mb-0">
+            Programa el cuidado ideal para tu peludito
+        </p>
+    </div>
+</div>
+
+<!-- FONDO GENERAL (estilo Contactenos) -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
+
+    <div class="container d-flex justify-content-center">
+
+        <div class="card shadow-sm border-0"
+             style="max-width:720px; width:100%; border-radius:18px;">
+            <div class="card-body p-4 p-md-5">
+
+                <!-- HEADER -->
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <img src="~/StaticFiles/img/Huellitas.png"
+                         alt="Mi Mundo de Huellitas"
+                         style="width:56px; height:auto;" />
+                    <div>
+                        <h3 class="mb-0 fw-bold">Agendar cita</h3>
+                        <div class="text-muted">
+                            Selecciona tu mascota, el servicio y la fecha/hora
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MENSAJES -->
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["Error"]</div>
+                }
+                @if (TempData["Ok"] != null)
+                {
+                    <div class="alert alert-success">@TempData["Ok"]</div>
+                }
+
+                @using (Html.BeginForm("Agendar", "Citas", FormMethod.Post, new { autocomplete = "off" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger small mb-3" })
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.IdMascota)
-                        @Html.DropDownListFor(m => m.IdMascota, Model.Mascotas, "Seleccione una mascota", new { @class = "form-select" })
-                        @Html.ValidationMessageFor(m => m.IdMascota, "", new { @class = "text-danger" })
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.IdMascota, new { @class = "form-label fw-semibold" })
+                            @Html.DropDownListFor(
+                                m => m.IdMascota,
+                                Model.Mascotas,
+                                "Seleccione una mascota",
+                                new { @class = "form-select form-select-lg" }
+                            )
+                            @Html.ValidationMessageFor(m => m.IdMascota, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.IdServicio, new { @class = "form-label fw-semibold" })
+                            @Html.DropDownListFor(
+                                m => m.IdServicio,
+                                Model.Servicios,
+                                "Seleccione un servicio",
+                                new { @class = "form-select form-select-lg" }
+                            )
+                            @Html.ValidationMessageFor(m => m.IdServicio, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Fecha, new { @class = "form-label fw-semibold" })
+                            @Html.TextBoxFor(m => m.Fecha, "{0:yyyy-MM-dd}", new
+                            {
+                                @class = "form-control form-control-lg",
+                                type = "date",
+                                min = DateTime.Now.ToString("yyyy-MM-dd")
+                            })
+                            @Html.ValidationMessageFor(m => m.Fecha, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-md-6">
+                            @Html.LabelFor(m => m.Hora, new { @class = "form-label fw-semibold" })
+                            @Html.DropDownListFor(
+                                m => m.Hora,
+                                Model.Horarios,
+                                "Seleccione una hora",
+                                new { @class = "form-select form-select-lg" }
+                            )
+                            @Html.ValidationMessageFor(m => m.Hora, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="col-12">
+                            @Html.LabelFor(m => m.NotasCliente, new { @class = "form-label fw-semibold" })
+                            @Html.TextAreaFor(m => m.NotasCliente, new
+                            {
+                                @class = "form-control",
+                                rows = 4,
+                                placeholder = "Ej: Mi mascota es nerviosa, tiene alergias o requiere cuidado especial"
+                            })
+                            <div class="form-text">
+                                Opcional: agrega detalles que ayuden al grooming.
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <button type="submit"
+                                    class="btn btn-success btn-lg w-100"
+                                    style="border-radius:12px;">
+                                Agendar cita
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.IdServicio)
-                        @Html.DropDownListFor(m => m.IdServicio, Model.Servicios, "Seleccione un servicio", new { @class = "form-select" })
-                        @Html.ValidationMessageFor(m => m.IdServicio, "", new { @class = "text-danger" })
-                    </div>
+                    <hr class="my-4" />
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.Fecha)
-                        @Html.TextBoxFor(m => m.Fecha, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-                        @Html.ValidationMessageFor(m => m.Fecha, "", new { @class = "text-danger" })
+                    <!-- NOTA -->
+                    <div class="p-3 rounded"
+                         style="background: rgba(0,0,0,0.04);">
+                        <div class="fw-bold mb-1">🧾 Nota</div>
+                        <div class="text-muted small">
+                            Una vez agendada, podrás ver tus citas en la sección
+                            <strong>“Mis citas”</strong>.
+                            Si no aparecen horarios, el día podría estar completo.
+                        </div>
                     </div>
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.Hora)
-                        @Html.DropDownListFor(m => m.Hora, Model.Horarios, "Seleccione una hora", new { @class = "form-select" })
-                        @Html.ValidationMessageFor(m => m.Hora, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.NotasCliente)
-                        @Html.TextAreaFor(m => m.NotasCliente, new { @class = "form-control", rows = 3 })
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100">Agendar cita</button>
                 }
+
             </div>
         </div>
+
     </div>
 </div>

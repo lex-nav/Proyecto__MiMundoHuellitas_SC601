@@ -1,47 +1,147 @@
-﻿@{
+﻿@model MiMundoHuellitas.Models.ViewModels.HomeProductosViewModel
+@{
     Layout = "~/Views/Shared/_LayoutInterno.cshtml";
     ViewBag.Title = "Productos";
 }
 
-<div class="container my-4">
-    <h1 class="mb-3">Productos</h1>
+<div style="background:#f4f6f8; min-height: calc(100vh - 120px);">
+    <div class="container py-5">
 
-    <p>Aquí puedes mostrar los productos disponibles para mascotas, como alimentos, snacks, accesorios, juguetes, collares, cepillos, ropa y más.</p>
+        <!-- HERO -->
+        <div class="card border-0 shadow-sm mb-4" style="border-radius:18px; overflow:hidden;">
+            <div class="p-4 p-md-5"
+                 style="background:linear-gradient(135deg, rgba(10,123,72,.10), rgba(14,118,140,.10));">
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                    <div>
+                        <h2 class="mb-2 fw-bold">Productos para tus mascotas 🐾</h2>
+                        <div class="text-muted">
+                            Agrega rápido al carrito y compra en minutos.
+                        </div>
+                    </div>
 
-    <div class="row g-4 mt-4">
+                    <div class="d-flex gap-2">
+                        <a href="@Url.Action("Cart","Carrito")"
+                           class="btn btn-success btn-lg"
+                           style="border-radius:12px;">
+                            <i class="fa fa-shopping-cart"></i> Ir al carrito
+                        </a>
 
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <img src="~/StaticFiles/img/producto1.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body">
-                    <h5 class="card-title">Alimento Premium</h5>
-                    <p class="card-text">Nutrición completa para perros de todas las edades.</p>
-                    <button class="btn btn-success">Ver más</button>
+                        <a href="@Url.Action("Catalogo","Carrito")"
+                           class="btn btn-outline-secondary btn-lg"
+                           style="border-radius:12px;">
+                            Ver catálogo completo
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <img src="~/StaticFiles/img/producto2.jpg" class="card-img-top" alt="Producto 2">
-                <div class="card-body">
-                    <h5 class="card-title">Shampoo Antipulgas</h5>
-                    <p class="card-text">Protección efectiva para la piel y pelaje.</p>
-                    <button class="btn btn-success">Ver más</button>
+        <!-- MENSAJES -->
+        @if (TempData["Ok"] != null)
+        {
+            <div class="alert alert-success">@TempData["Ok"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+
+        <!-- LISTA -->
+        @if (Model == null || Model.Productos == null || !Model.Productos.Any())
+        {
+            <div class="card border-0 shadow-sm" style="border-radius:18px;">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div style="font-size:42px;">🛒</div>
+                    <h5 class="mt-2 mb-1 fw-bold">No hay productos disponibles</h5>
+                    <p class="text-muted mb-0">En este momento no tenemos inventario activo.</p>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var p in Model.Productos)
+                {
+                    var img = string.IsNullOrWhiteSpace(p.ImagenUrl)
+                        ? Url.Content("~/StaticFiles/img/producto-default.jpg")
+                        : p.ImagenUrl;
 
-        <div class="col-md-4">
-            <div class="card shadow-sm">
-                <img src="~/StaticFiles/img/producto3.jpg" class="card-img-top" alt="Producto 3">
-                <div class="card-body">
-                    <h5 class="card-title">Juguete Mordedera</h5>
-                    <p class="card-text">Ideal para perros activos que necesitan entretenerse.</p>
-                    <button class="btn btn-success">Ver más</button>
-                </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm" style="border-radius:18px; overflow:hidden;">
+                            <div style="height:190px; background:#fff;">
+                                <img src="@img"
+                                     alt="@p.NombreProducto"
+                                     style="width:100%; height:190px; object-fit:cover;" />
+                            </div>
+
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-start gap-2">
+                                    <h5 class="mb-1 fw-bold">@p.NombreProducto</h5>
+                                    <span class="badge rounded-pill text-bg-light"
+                                          style="border:1px solid rgba(0,0,0,.08);">
+                                        @(!string.IsNullOrWhiteSpace(p.Categoria) ? p.Categoria : "Producto")
+                                    </span>
+                                </div>
+
+                                <div class="text-muted small mb-2">
+                                    Stock: <span class="fw-semibold">@p.StockActual</span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="h5 mb-0 fw-bold">@p.PrecioUnitario.ToString("C")</div>
+                                </div>
+
+                                @using (Html.BeginForm("Agregar", "Carrito", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("idProducto", p.IdProducto)
+                                    @Html.Hidden("cantidad", 1)
+
+                                    <button type="submit"
+                                            class="btn btn-success w-100"
+                                            style="border-radius:12px;">
+                                        <i class="fa fa-cart-plus"></i> Agregar al carrito
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
-        </div>
 
+            <!-- PAGINACIÓN (6 por página) -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-4">
+                <div class="text-muted small">
+                    Página <strong>@Model.CurrentPage</strong> de <strong>@Model.TotalPages</strong>
+                </div>
+
+                <nav>
+                    <ul class="pagination mb-0">
+                        <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                            <a class="page-link"
+                               href="@Url.Action("Productos","Home", new { page = Model.CurrentPage - 1 })">Anterior</a>
+                        </li>
+
+                        @{
+                            // Ventana simple: muestra hasta 7 páginas alrededor
+                            var start = Math.Max(1, Model.CurrentPage - 3);
+                            var end = Math.Min(Model.TotalPages, Model.CurrentPage + 3);
+
+                            for (int i = start; i <= end; i++)
+                            {
+                                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Productos","Home", new { page = i })">@i</a>
+                                </li>
+                            }
+                        }
+
+                        <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
+                            <a class="page-link"
+                               href="@Url.Action("Productos","Home", new { page = Model.CurrentPage + 1 })">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        }
     </div>
 </div>

@@ -265,6 +265,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -343,6 +344,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Citas.cs" />
+    <Compile Include="Models\ViewModels\HomeProductosViewModel.cs" />
+    <Compile Include="Models\ViewModels\ProductosListadoViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckoutViewModel.cs" />
     <Compile Include="Models\ViewModels\CarritoItemViewModel.cs" />
     <Compile Include="Models\ViewModels\AgendarCitaViewModel.cs" />

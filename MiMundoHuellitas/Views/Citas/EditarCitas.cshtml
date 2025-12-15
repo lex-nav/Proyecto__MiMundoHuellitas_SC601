@@ -1,53 +1,161 @@
 ﻿@model MiMundoHuellitas.Models.ViewModels.AgendarCitaViewModel
+
 @{
     ViewBag.Title = "Editar cita";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-<div class="container py-5">
-    <div class="col-md-6 mx-auto">
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Editar cita</h4>
-            </div>
-            <div class="card-body">
-                @using (Html.BeginForm("EditarCitas", "Citas", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(m => m.IdCita)
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-3.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Editar cita</h1>
+        <p class="lead mb-0">
+            Actualiza la información de tu cita 🐾
+        </p>
+    </div>
+</div>
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.IdMascota)
-                        @Html.DropDownListFor(m => m.IdMascota, Model.Mascotas, "Seleccione una mascota", new { @class = "form-select" })
-                        @Html.ValidationMessageFor(m => m.IdMascota, "", new { @class = "text-danger" })
+<!-- FONDO GENERAL -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-7">
+
+                <div class="card shadow-sm border-0" style="border-radius:18px;">
+                    <div class="card-body p-4 p-md-5">
+
+                        <!-- Encabezado -->
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <img src="~/StaticFiles/img/Huellitas.png"
+                                 alt="Mi Mundo Huellitas"
+                                 style="width:56px;height:auto;" />
+                            <div>
+                                <h3 class="mb-0 fw-bold">Editar cita</h3>
+                                <div class="text-muted">
+                                    Cambia mascota, servicio o fecha/hora.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mensajes opcionales -->
+                        @if (TempData["Error"] != null)
+                        {
+                            <div class="alert alert-danger">@TempData["Error"]</div>
+                        }
+                        @if (TempData["Ok"] != null)
+                        {
+                            <div class="alert alert-success">@TempData["Ok"]</div>
+                        }
+
+                        @using (Html.BeginForm("EditarCitas", "Citas", FormMethod.Post, new { autocomplete = "off" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => m.IdCita)
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger small mb-3" })
+
+                            <div class="row g-3">
+
+                                <div class="col-12 col-md-6">
+                                    @Html.LabelFor(m => m.IdMascota, new { @class = "form-label fw-semibold" })
+                                    @Html.DropDownListFor(
+                                        m => m.IdMascota,
+                                        Model.Mascotas,
+                                        "Seleccione una mascota",
+                                        new { @class = "form-select form-select-lg" }
+                                    )
+                                    @Html.ValidationMessageFor(m => m.IdMascota, "", new { @class = "text-danger small" })
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    @Html.LabelFor(m => m.IdServicio, new { @class = "form-label fw-semibold" })
+                                    @Html.DropDownListFor(
+                                        m => m.IdServicio,
+                                        Model.Servicios,
+                                        "Seleccione un servicio",
+                                        new { @class = "form-select form-select-lg" }
+                                    )
+                                    @Html.ValidationMessageFor(m => m.IdServicio, "", new { @class = "text-danger small" })
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    @Html.LabelFor(m => m.Fecha, new { @class = "form-label fw-semibold" })
+                                    @Html.TextBoxFor(m => m.Fecha, "{0:yyyy-MM-dd}", new
+                                    {
+                                        @class = "form-control form-control-lg",
+                                        type = "date",
+                                        min = DateTime.Now.ToString("yyyy-MM-dd")
+                                    })
+                                    @Html.ValidationMessageFor(m => m.Fecha, "", new { @class = "text-danger small" })
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    @Html.LabelFor(m => m.Hora, new { @class = "form-label fw-semibold" })
+                                    @Html.DropDownListFor(
+                                        m => m.Hora,
+                                        Model.Horarios,
+                                        "Seleccione una hora",
+                                        new { @class = "form-select form-select-lg" }
+                                    )
+                                    @Html.ValidationMessageFor(m => m.Hora, "", new { @class = "text-danger small" })
+                                </div>
+
+                                <div class="col-12">
+                                    @Html.LabelFor(m => m.NotasCliente, new { @class = "form-label fw-semibold" })
+                                    @Html.TextAreaFor(m => m.NotasCliente, new
+                                    {
+                                        @class = "form-control",
+                                        rows = 4,
+                                        placeholder = "Ej: Mi mascota es nerviosa, tiene alergias, requiere cuidado especial, etc."
+                                    })
+                                    <div class="form-text">
+                                        Opcional: agrega detalles que nos ayuden a darte un mejor servicio.
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-2">
+                                    <button type="submit"
+                                            class="btn btn-success btn-lg w-100"
+                                            style="border-radius:12px;">
+                                        Guardar cambios
+                                    </button>
+
+                                    <a href="@Url.Action("VerCitas", "Citas")"
+                                       class="btn btn-outline-secondary w-100 mt-2"
+                                       style="border-radius:12px;">
+                                        Cancelar
+                                    </a>
+                                </div>
+                            </div>
+
+                            <hr class="my-4" />
+
+                            <div class="p-3 rounded" style="background: rgba(0,0,0,0.03);">
+                                <div class="fw-bold mb-1">🧾 Nota</div>
+                                <div class="text-muted small">
+                                    Si no ves horarios disponibles, es posible que el día esté lleno o que el servicio
+                                    no tenga disponibilidad en ese rango.
+                                </div>
+                            </div>
+                        }
+
                     </div>
+                </div>
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.IdServicio)
-                        @Html.DropDownListFor(m => m.IdServicio, Model.Servicios, "Seleccione un servicio", new { @class = "form-select" })
-                        @Html.ValidationMessageFor(m => m.IdServicio, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.Fecha)
-                        @Html.TextBoxFor(m => m.Fecha, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-                        @Html.ValidationMessageFor(m => m.Fecha, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.Hora)
-                        @Html.DropDownListFor(m => m.Hora, Model.Horarios, "Seleccione una hora", new { @class = "form-select" })
-                        @Html.ValidationMessageFor(m => m.Hora, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.NotasCliente)
-                        @Html.TextAreaFor(m => m.NotasCliente, new { @class = "form-control", rows = 3 })
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100 mb-2">Guardar cambios</button>
-                    <a href="@Url.Action("VerCitas", "Citas")" class="btn btn-secondary w-100">Cancelar</a>
-                }
             </div>
         </div>
     </div>

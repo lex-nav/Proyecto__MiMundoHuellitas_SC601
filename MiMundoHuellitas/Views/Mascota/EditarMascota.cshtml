@@ -1,81 +1,119 @@
 ﻿@model MiMundoHuellitas.Models.ViewModels.MascotaViewModel
+
 @{
     ViewBag.Title = "Editar mascota";
+    // Layout = "~/Views/Shared/_LayoutInterno.cshtml"; // si aplica
 }
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Editar mascota</h5>
+<div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 80px);">
+    <div class="card shadow-sm border-0" style="max-width:720px; width:100%; border-radius:18px;">
+        <div class="card-body p-4 p-md-5">
+
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <img src="~/StaticFiles/img/Huellitas.png" alt="Mi Mundo Huellitas" style="width:56px; height:auto;" />
+                <div class="flex-grow-1">
+                    <h3 class="mb-0 fw-bold">Editar mascota</h3>
+                    <div class="text-muted">Actualiza la información de tu mascota 🐾</div>
                 </div>
-                <div class="card-body">
-                    @using (Html.BeginForm("EditarMascota", "Mascota", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.HiddenFor(m => m.IdMascota)
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
 
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.NombreMascota, new { @class = "form-label" })
-                            @Html.TextBoxFor(m => m.NombreMascota, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.NombreMascota, "", new { @class = "text-danger" })
-                        </div>
+            @using (Html.BeginForm("EditarMascota", "Mascota", FormMethod.Post, new { autocomplete = "off" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.IdMascota)
 
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.IdEspecie, new { @class = "form-label" })
-                            @Html.DropDownListFor(
-                                m => m.IdEspecie,
-                                Model.Especies,
-                                "-- Seleccione especie --",
-                                new { @class = "form-select" })
-                            @Html.ValidationMessageFor(m => m.IdEspecie, "", new { @class = "text-danger" })
-                        </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger small mb-3" })
 
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.IdRaza, new { @class = "form-label" })
-                            @Html.DropDownListFor(
-                                m => m.IdRaza,
-                                Model.Razas,
-                                "-- Seleccione raza --",
-                                new { @class = "form-select" })
-                            @Html.ValidationMessageFor(m => m.IdRaza, "", new { @class = "text-danger" })
-                        </div>
+                <div class="row g-3">
 
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.FechaNacimiento, new { @class = "form-label" })
-                            @Html.TextBoxFor(
-                                m => m.FechaNacimiento,
-                                "{0:yyyy-MM-dd}",
-                                new { @class = "form-control", type = "date" })
-                            @Html.ValidationMessageFor(m => m.FechaNacimiento, "", new { @class = "text-danger" })
-                        </div>
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.NombreMascota, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.NombreMascota, new
+                        {
+                            @class = "form-control form-control-lg",
+                            placeholder = "Ej: Luna, Max, Toby…"
+                        })
+                        @Html.ValidationMessageFor(m => m.NombreMascota, "", new { @class = "text-danger small" })
+                    </div>
 
-                        <div class="mb-3">
-                            @Html.LabelFor(m => m.Observaciones, new { @class = "form-label" })
-                            @Html.TextAreaFor(
-                                m => m.Observaciones,
-                                3,
-                                40,
-                                new { @class = "form-control" })
-                        </div>
+                    <div class="col-12 col-md-6">
+                        @Html.LabelFor(m => m.IdEspecie, new { @class = "form-label" })
+                        @Html.DropDownListFor(
+                            m => m.IdEspecie,
+                            Model.Especies,
+                            "-- Seleccione especie --",
+                            new { @class = "form-select form-select-lg" })
+                        @Html.ValidationMessageFor(m => m.IdEspecie, "", new { @class = "text-danger small" })
+                    </div>
 
-                        <div class="form-check mb-3">
+                    <div class="col-12 col-md-6">
+                        @Html.LabelFor(m => m.IdRaza, new { @class = "form-label" })
+                        @Html.DropDownListFor(
+                            m => m.IdRaza,
+                            Model.Razas,
+                            "-- Seleccione raza --",
+                            new { @class = "form-select form-select-lg" })
+                        @Html.ValidationMessageFor(m => m.IdRaza, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        @Html.LabelFor(m => m.FechaNacimiento, new { @class = "form-label" })
+                        @Html.TextBoxFor(
+                            m => m.FechaNacimiento,
+                            "{0:yyyy-MM-dd}",
+                            new
+                            {
+                                @class = "form-control form-control-lg",
+                                type = "date",
+                                max = DateTime.Now.ToString("yyyy-MM-dd")
+                            })
+                        @Html.ValidationMessageFor(m => m.FechaNacimiento, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.Observaciones, new { @class = "form-label" })
+                        @Html.TextAreaFor(
+                            m => m.Observaciones,
+                            new
+                            {
+                                @class = "form-control",
+                                rows = 4,
+                                placeholder = "Ej: alergias, comportamiento, medicamentos, cuidados especiales…"
+                            })
+                        <div class="form-text">Opcional: esto ayuda a brindar un mejor servicio.</div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-check">
                             @Html.CheckBoxFor(m => m.Activo, new { @class = "form-check-input", id = "chkActivo" })
-                            <label class="form-check-label" for="chkActivo">Activo</label>
+                            <label class="form-check-label" for="chkActivo">
+                                Activo
+                            </label>
                         </div>
+                    </div>
 
-                        <button type="submit" class="btn btn-primary w-100 mb-2">
+                    <div class="col-12 d-grid gap-2 mt-2">
+                        <button type="submit" class="btn btn-primary btn-lg" style="border-radius:12px;">
                             Guardar cambios
                         </button>
 
-                        <a href="@Url.Action("VerMascotas", "Mascota")" class="btn btn-secondary w-100">
+                        <a href="@Url.Action("VerMascotas", "Mascota")"
+                           class="btn btn-outline-secondary btn-lg"
+                           style="border-radius:12px;">
                             Cancelar
                         </a>
-                    }
+                    </div>
                 </div>
-            </div>
+
+                <hr class="my-4" />
+
+                <div class="p-3 rounded" style="background: rgba(0,0,0,0.03);">
+                    <div class="fw-bold mb-1">💡 Tip</div>
+                    <div class="text-muted small">
+                        Mantener la raza, especie y observaciones actualizadas ayuda a recomendar servicios y tiempos de atención.
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>

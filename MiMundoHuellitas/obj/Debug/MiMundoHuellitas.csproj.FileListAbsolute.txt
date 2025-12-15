@@ -1,82 +1,3 @@
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.dll.config
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.pdb
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csc.exe
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csc.exe.config
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csc.rsp
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csi.exe
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csi.exe.config
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csi.rsp
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.AppContext.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Collections.Immutable.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Console.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Globalization.Calendars.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.IO.Compression.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.IO.FileSystem.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Net.Http.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Net.Sockets.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Reflection.Metadata.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.ValueTuple.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Xml.XPath.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\vbc.exe
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\vbc.exe.config
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\vbc.rsp
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\VBCSCompiler.exe
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\VBCSCompiler.exe.config
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Antlr3.Runtime.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Web.Infrastructure.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Newtonsoft.Json.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Helpers.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Mvc.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Optimization.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Razor.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Razor.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\WebGrease.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Helpers.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Mvc.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Optimization.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Razor.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Razor.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Newtonsoft.Json.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Antlr3.Runtime.pdb
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.AssemblyReference.cache
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.CoreCompileInputs.cache
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.pdb
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\MiMundoHuellitas.dll.config
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\MiMundoHuellitas.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\MiMundoHuellitas.pdb
@@ -95,10 +16,15 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\Microsoft.CSharp.Core.targets
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\Microsoft.Managed.Core.targets
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Buffers.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Collections.Immutable.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Memory.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Numerics.Vectors.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Reflection.Metadata.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Text.Encoding.CodePages.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Threading.Tasks.Extensions.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\vbc.exe
@@ -107,49 +33,6 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\VBCSCompiler.exe
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\VBCSCompiler.exe.config
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Antlr3.Runtime.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Web.Infrastructure.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Newtonsoft.Json.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Helpers.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Mvc.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Optimization.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Razor.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Razor.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\WebGrease.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Helpers.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Mvc.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Optimization.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Razor.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Razor.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Newtonsoft.Json.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Antlr3.Runtime.pdb
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.Helpers.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.Mvc.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.Razor.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.Deployment.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.Razor.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.AssemblyReference.cache
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.CoreCompileInputs.cache
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.pdb
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Helpers.resources.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Mvc.resources.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Razor.resources.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.resources.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.Deployment.resources.dll
-C:\Universidad\RepoKN\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.Razor.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Buffers.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Memory.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Numerics.Vectors.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Azure.Core.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Azure.Identity.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\EntityFramework.dll
@@ -157,6 +40,7 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Bcl.AsyncInterfaces.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Bcl.Cryptography.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Bcl.TimeProvider.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.SqlClient.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.Tools.Components.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll
@@ -175,6 +59,8 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.IdentityModel.Tokens.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Web.Infrastructure.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Newtonsoft.Json.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Buffers.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.ClientModel.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Configuration.ConfigurationManager.dll
@@ -195,6 +81,14 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Text.Encodings.Web.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Text.Json.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Threading.Tasks.Extensions.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Helpers.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Mvc.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Optimization.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Razor.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Razor.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\WebGrease.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Azure.Core.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Azure.Identity.xml
@@ -203,6 +97,7 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Bcl.AsyncInterfaces.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Bcl.Cryptography.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Bcl.TimeProvider.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.SqlClient.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Abstractions.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Memory.xml
@@ -218,6 +113,7 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.IdentityModel.Tokens.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Newtonsoft.Json.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Buffers.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.ClientModel.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Configuration.ConfigurationManager.xml
@@ -238,6 +134,14 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Text.Encodings.Web.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Text.Json.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Threading.Tasks.Extensions.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Helpers.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Mvc.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Razor.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Razor.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.Optimization.xml
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Antlr3.Runtime.pdb
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\cs\Microsoft.Data.SqlClient.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\de\Microsoft.Data.SqlClient.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\Microsoft.Data.SqlClient.resources.dll
@@ -251,175 +155,16 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\tr\Microsoft.Data.SqlClient.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.Helpers.resources.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.Mvc.resources.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.Razor.resources.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.resources.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.Deployment.resources.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.Razor.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\Microsoft.Data.Tools.Schema.Sql.UnitTesting.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.dll.config
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.pdb
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csc.exe
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csc.exe.config
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csc.rsp
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csi.exe
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csi.exe.config
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\csi.rsp
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.Managed.Core.CurrentVersions.targets
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Buffers.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Collections.Immutable.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Memory.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Numerics.Vectors.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Reflection.Metadata.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\vbc.exe
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\vbc.exe.config
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\vbc.rsp
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\VBCSCompiler.exe
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\roslyn\VBCSCompiler.exe.config
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Antlr3.Runtime.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Azure.Core.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Azure.Identity.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\EntityFramework.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\EntityFramework.SqlServer.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Bcl.Cryptography.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Bcl.TimeProvider.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Data.SqlClient.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Data.Tools.Components.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Memory.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Options.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Primitives.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Identity.Client.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Abstractions.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Logging.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Tokens.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Web.Infrastructure.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Newtonsoft.Json.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Buffers.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.ClientModel.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Configuration.ConfigurationManager.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Diagnostics.DiagnosticSource.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Formats.Asn1.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.IdentityModel.Tokens.Jwt.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.IO.FileSystem.AccessControl.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.IO.Pipelines.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Memory.Data.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Memory.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Numerics.Vectors.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Runtime.CompilerServices.Unsafe.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.AccessControl.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Cryptography.Pkcs.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Cryptography.ProtectedData.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Permissions.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Principal.Windows.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Text.Encodings.Web.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Text.Json.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Threading.Tasks.Extensions.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Helpers.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Mvc.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Optimization.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Razor.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Razor.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\WebGrease.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Azure.Core.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Azure.Identity.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\EntityFramework.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\EntityFramework.SqlServer.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Bcl.Cryptography.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Bcl.TimeProvider.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Data.SqlClient.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Abstractions.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Memory.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Logging.Abstractions.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Options.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Extensions.Primitives.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Identity.Client.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.Identity.Client.Extensions.Msal.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Abstractions.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.JsonWebTokens.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Logging.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Microsoft.IdentityModel.Tokens.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Newtonsoft.Json.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Buffers.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.ClientModel.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Configuration.ConfigurationManager.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Diagnostics.DiagnosticSource.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Formats.Asn1.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.IdentityModel.Tokens.Jwt.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.IO.FileSystem.AccessControl.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.IO.Pipelines.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Memory.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Memory.Data.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Numerics.Vectors.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Runtime.CompilerServices.Unsafe.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.AccessControl.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Cryptography.Pkcs.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Cryptography.ProtectedData.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Permissions.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Security.Principal.Windows.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Text.Encodings.Web.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Text.Json.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Threading.Tasks.Extensions.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Helpers.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Mvc.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Razor.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Deployment.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.WebPages.Razor.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\System.Web.Optimization.xml
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\Antlr3.Runtime.pdb
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\cs\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\de\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\fr\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\it\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\ja\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\ko\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\pl\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\pt-BR\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\ru\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\tr\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Helpers.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Mvc.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.Razor.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.Deployment.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\Microsoft.Data.Tools.Schema.Sql.UnitTesting.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.AssemblyReference.cache
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.CoreCompileInputs.cache
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.dll
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.pdb
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.AssemblyReference.cache
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.CoreCompileInputs.cache
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.dll
+E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.pdb
