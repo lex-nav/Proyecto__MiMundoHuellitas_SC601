@@ -168,8 +168,6 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.pdb
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.AssemblyReference.cache
-C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.CoreCompileInputs.cache
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.dll.config
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.dll
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\MiMundoHuellitas.pdb
@@ -335,6 +333,8 @@ C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\Microsoft.Data.Tools.Schema.Sql.UnitTesting.resources.dll
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\bin\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.AssemblyReference.cache
+C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.CoreCompileInputs.cache
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.dll
 C:\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.pdb

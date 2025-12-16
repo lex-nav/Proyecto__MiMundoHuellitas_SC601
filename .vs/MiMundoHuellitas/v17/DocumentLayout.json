@@ -3,31 +3,55 @@
   "WorkspaceRootPath": "C:\\Proyecto__MiMundoHuellitas_SC601\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\views\\shared\\_layoutinterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\shared\\_layoutinterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\reportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\views\\reportes\\citas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\reportes\\citas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\views\\reportes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\reportes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\models\\viewmodels\\reportes\\reportecitasvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\models\\viewmodels\\reportes\\reportecitasvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\mascotacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\ef\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\ef\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\ef\\model1.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\ef\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\ef\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\ef\\model1.context.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -35,44 +59,40 @@
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\ef\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\ef\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\ef\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\ef\\model1.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\ef\\model1.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\ef\\model1.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\ef\\model1.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\ef\\model1.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\ef\\model1.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\ef\\model1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\ef\\model1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\ef\\model1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\carritocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\servicioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\ef\\model1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\ef\\model1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\ef\\model1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\views\\shared\\_layoutinterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\shared\\_layoutinterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|C:\\Proyecto__MiMundoHuellitas_SC601\\mimundohuellitas\\views\\home\\productos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -102,37 +122,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Global.asax.cs",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Global.asax.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Global.asax.cs",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Global.asax.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Global.asax.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAACcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T16:23:56.998Z",
+              "WhenOpened": "2025-12-16T05:57:07.153Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CitasController.cs",
-              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA8AAABBAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ReportesController.cs",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\ReportesController.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\ReportesController.cs",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\ReportesController.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\ReportesController.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAMwJoAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T03:36:10.578Z",
+              "WhenOpened": "2025-12-16T05:02:17.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_LayoutInterno.cshtml",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
+              "RelativeToolTip": "MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
+              "ViewState": "AgIAAOEAAAAAAAAAAAAAAOQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-15T16:36:11.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MascotaController.cs",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\MascotaController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAD4vzYAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T03:36:39.19Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "ReporteCitasVM.cs",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Models\\ViewModels\\Reportes\\ReporteCitasVM.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Models\\ViewModels\\Reportes\\ReporteCitasVM.cs",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Models\\ViewModels\\Reportes\\ReporteCitasVM.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Models\\ViewModels\\Reportes\\ReporteCitasVM.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA+wBYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T05:06:15.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "ProductosController.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\ProductosController.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\ProductosController.cs",
@@ -140,24 +199,73 @@
               "RelativeToolTip": "MiMundoHuellitas\\Controllers\\ProductosController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T16:21:17.991Z",
+              "WhenOpened": "2025-12-15T16:21:17.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CitasController.cs",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\CitasController.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\CitasController.cs",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\CitasController.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\CitasController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAA8AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T03:36:10.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAcwAsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T02:54:18.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Reportes\\Index.cshtml",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Reportes\\Index.cshtml",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Reportes\\Index.cshtml",
+              "RelativeToolTip": "MiMundoHuellitas\\Views\\Reportes\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-16T05:08:19.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Citas.cshtml",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Reportes\\Citas.cshtml",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Reportes\\Citas.cshtml",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Reportes\\Citas.cshtml",
+              "RelativeToolTip": "MiMundoHuellitas\\Views\\Reportes\\Citas.cshtml",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAAwJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-16T05:09:01.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Model1.edmx [Diagram1]",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.edmx",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\EF\\Model1.edmx",
               "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.edmx [Diagram1]",
               "RelativeToolTip": "MiMundoHuellitas\\EF\\Model1.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2025-12-16T03:25:19.341Z",
-              "EditorCaption": " [Diagram1]"
+              "WhenOpened": "2025-12-16T03:25:19.341Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Web.config",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Web.config",
@@ -170,7 +278,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T16:23:56.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Model1.Context.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.Context.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\EF\\Model1.Context.cs",
@@ -178,38 +298,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\EF\\Model1.Context.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAAABEAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T03:33:27.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T03:33:27.367Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAkwGIAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T02:54:18.395Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MascotaController.cs",
-              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\MascotaController.cs",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\MascotaController.cs",
-              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\MascotaController.cs",
-              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\MascotaController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T03:36:39.19Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "Model1.Context.tt",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.Context.tt",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\EF\\Model1.Context.tt",
@@ -217,12 +310,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\EF\\Model1.Context.tt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-12-16T04:06:54.131Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T04:06:54.131Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "Model1.tt",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.tt",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\EF\\Model1.tt",
@@ -230,12 +322,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\EF\\Model1.tt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-12-16T04:06:52.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T04:06:52.713Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "Model1.Designer.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.Designer.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\EF\\Model1.Designer.cs",
@@ -243,12 +334,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\EF\\Model1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T04:06:59.013Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T04:06:59.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "Model1.edmx.diagram",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.edmx.diagram",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\EF\\Model1.edmx.diagram",
@@ -256,12 +346,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\EF\\Model1.edmx.diagram",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-16T04:07:00.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T04:07:00.308Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "CarritoController.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\CarritoController.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\CarritoController.cs",
@@ -269,12 +358,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Controllers\\CarritoController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T03:35:52.009Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T03:35:52.009Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "UsuarioController.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\UsuarioController.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\UsuarioController.cs",
@@ -282,12 +370,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Controllers\\UsuarioController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T03:37:08.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T03:37:08.584Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "ServiciosController.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\ServiciosController.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\ServiciosController.cs",
@@ -295,12 +382,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Controllers\\ServiciosController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T03:37:04.167Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T03:37:04.167Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "Model1.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\EF\\Model1.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\EF\\Model1.cs",
@@ -308,12 +394,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\EF\\Model1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T03:33:14.155Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T03:33:14.155Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 22,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Web.config",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Web.config",
@@ -321,12 +406,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Views\\Web.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-12-16T03:16:32.331Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T03:16:32.331Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "Catalogo.cshtml",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Carrito\\Catalogo.cshtml",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Carrito\\Catalogo.cshtml",
@@ -334,25 +418,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Views\\Carrito\\Catalogo.cshtml",
               "ViewState": "AgIAAB0AAAAAAAAAAAAowDcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-15T16:35:05.652Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-15T16:35:05.652Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "_LayoutInterno.cshtml",
-              "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "ToolTip": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "RelativeToolTip": "MiMundoHuellitas\\Views\\Shared\\_LayoutInterno.cshtml",
-              "ViewState": "AgIAAOIAAAAAAAAAAAAwwO4AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-15T16:36:11.895Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "ProductosListadoViewModel.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Models\\ViewModels\\ProductosListadoViewModel.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Models\\ViewModels\\ProductosListadoViewModel.cs",
@@ -360,12 +430,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Models\\ViewModels\\ProductosListadoViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T16:21:08.318Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-15T16:21:08.318Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "Productos.cshtml",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Home\\Productos.cshtml",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Home\\Productos.cshtml",
@@ -373,12 +442,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Views\\Home\\Productos.cshtml",
               "ViewState": "AgIAAG8AAAAAAAAAAAAqwJMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-15T16:12:59.021Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-15T16:12:59.021Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "HomeProductosViewModel.cs",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Models\\ViewModels\\HomeProductosViewModel.cs",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Models\\ViewModels\\HomeProductosViewModel.cs",
@@ -386,12 +454,11 @@
               "RelativeToolTip": "MiMundoHuellitas\\Models\\ViewModels\\HomeProductosViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T16:34:01.919Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-15T16:34:01.919Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "Perfil.cshtml",
               "DocumentMoniker": "C:\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Usuario\\Perfil.cshtml",
               "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Usuario\\Perfil.cshtml",
@@ -399,8 +466,7 @@
               "RelativeToolTip": "MiMundoHuellitas\\Views\\Usuario\\Perfil.cshtml",
               "ViewState": "AgIAAIkAAAAAAAAAAAAuwK0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-15T16:08:38.366Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-15T16:08:38.366Z"
             }
           ]
         }

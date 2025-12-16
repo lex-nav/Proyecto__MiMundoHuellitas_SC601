@@ -2,13 +2,12 @@
 using MiMundoHuellitas.Models.ViewModels;
 using System;
 using System.Configuration;
-using System.Globalization;
+using System.Data.Entity;               // ✅ Include()
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -17,14 +16,15 @@ namespace MiMundoHuellitas.Controllers
 {
     public class AccountController : Controller
     {
-        private BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
 
-        // ===================== LOGIN =====================
+        // =========================
+        //          LOGIN
+        // =========================
         [AllowAnonymous]
-        [HttpGet]
         public ActionResult Login()
         {
-            return View(new LoginViewModel());
+            return View();
         }
 
         [HttpPost]
@@ -35,57 +35,67 @@ namespace MiMundoHuellitas.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            string correo = (model.Correo ?? "").Trim().ToLowerInvariant();
-            string hash = HashPassword(model.Contrasena ?? "");
+            string hash = HashPassword(model.Contrasena);
 
+            // ✅ Traemos el tipo para definir rol (Admin/Cliente)
             var usuario = db.MH_Usuario_TB
-                .FirstOrDefault(u => (u.Correo ?? "").ToLower() == correo && u.Activo == true);
+                .Include(u => u.MH_Tipo_Usuario_TB)
+                .FirstOrDefault(u =>
+                    u.Correo == model.Correo &&
+                    u.ContrasennaHash == hash &&
+                    u.Activo);
 
-            if (usuario == null ||
-                !string.Equals(usuario.ContrasennaHash, hash, StringComparison.OrdinalIgnoreCase))
+            if (usuario == null)
             {
                 ModelState.AddModelError("", "Correo o contraseña incorrectos.");
                 return View(model);
             }
 
-            // Rol fijo por ahora (si luego mapeas desde tabla, aquí lo cambias)
-            string rol = "Cliente";
+            // ✅ Rol real según MH_Tipo_Usuario_TB.NombreTipoUsuario
+            string tipo = (usuario.MH_Tipo_Usuario_TB?.NombreTipoUsuario ?? "").Trim();
+            string rol = tipo.Equals("Admin", StringComparison.OrdinalIgnoreCase) ? "Admin" : "Cliente";
 
             var ticket = new FormsAuthenticationTicket(
                 1,
-                usuario.Correo,
+                usuario.Correo,                     // User.Identity.Name
                 DateTime.Now,
                 DateTime.Now.AddMinutes(60),
                 model.Recordarme,
-                rol
+                rol                                 // ✅ aquí va el rol (UserData)
             );
 
-            var cookie = new HttpCookie(
-                FormsAuthentication.FormsCookieName,
-                FormsAuthentication.Encrypt(ticket))
+            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
             {
-                HttpOnly = true
+                HttpOnly = true,
+                Path = FormsAuthentication.FormsCookiePath
             };
 
+            // ✅ si marca "Recordarme", persistimos la cookie
             if (model.Recordarme)
+            {
                 cookie.Expires = ticket.Expiration;
+            }
 
             Response.Cookies.Add(cookie);
 
-            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                 return Redirect(returnUrl);
 
             return RedirectToAction("Index", "Home");
         }
 
-        // ===================== REGISTER =====================
+        // =========================
+        //        REGISTER
+        // =========================
         [AllowAnonymous]
-        [HttpGet]
         public ActionResult Register()
         {
-            return View(new RegisterViewModel());
+            return View();
         }
 
+        // ✅ REGISTRO SIEMPRE COMO CLIENTE (nunca Admin)
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -94,128 +104,65 @@ namespace MiMundoHuellitas.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            string correo = (model.Correo ?? "").Trim().ToLowerInvariant();
+            string correo = (model.Correo ?? "").Trim();
 
-            if (db.MH_Usuario_TB.Any(u => (u.Correo ?? "").ToLower() == correo))
+            bool correoExiste = db.MH_Usuario_TB.Any(u => u.Correo == correo);
+            if (correoExiste)
             {
                 ModelState.AddModelError("Correo", "Ya existe un usuario con ese correo.");
                 return View(model);
             }
 
-            var usuario = new MH_Usuario_TB
+            // ✅ Buscar IdTipoUsuario del tipo "Cliente" (para no amarrarnos al ID)
+            int idTipoCliente = db.MH_Tipo_Usuario_TB
+                .Where(t => t.Activo)
+                .Where(t => t.NombreTipoUsuario.Trim().Equals("Cliente", StringComparison.OrdinalIgnoreCase))
+                .Select(t => t.IdTipoUsuario)
+                .FirstOrDefault();
+
+            // Fallback si por alguna razón no existe
+            if (idTipoCliente <= 0) idTipoCliente = 2;
+
+            var nuevoUsuario = new MH_Usuario_TB
             {
-                IdTipoUsuario = 1,
-                NombreCompleto = (model.Nombre ?? "").Trim(),
+                IdTipoUsuario = idTipoCliente,
+                NombreCompleto = (model.Nombre ?? "").Trim(), // Ajusta si tu VM usa otro nombre
                 Correo = correo,
+                ContrasennaHash = HashPassword(model.Contrasena),
                 Telefono = (model.Telefono ?? "").Trim(),
-                ContrasennaHash = HashPassword(model.Contrasena ?? ""),
+                FechaRegistro = DateTime.Now,
                 Activo = true
+                // IdDireccion queda null
             };
 
-            db.MH_Usuario_TB.Add(usuario);
+            db.MH_Usuario_TB.Add(nuevoUsuario);
             db.SaveChanges();
 
-            // Auto-login al registrar
+            // ✅ Opcional: Autologin como Cliente
             var ticket = new FormsAuthenticationTicket(
                 1,
-                usuario.Correo,
+                nuevoUsuario.Correo,
                 DateTime.Now,
                 DateTime.Now.AddMinutes(60),
                 false,
                 "Cliente"
             );
 
-            Response.Cookies.Add(new HttpCookie(
-                FormsAuthentication.FormsCookieName,
-                FormsAuthentication.Encrypt(ticket))
-            { HttpOnly = true });
+            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+            {
+                HttpOnly = true,
+                Path = FormsAuthentication.FormsCookiePath
+            };
+
+            Response.Cookies.Add(cookie);
 
             return RedirectToAction("Index", "Home");
         }
 
-        // ===================== RECUPERAR CONTRASEÑA =====================
-        [AllowAnonymous]
-        [HttpGet]
-        public ActionResult RecuperarContrasena()
-        {
-            return View(new RecuperarContrasenaViewModel());
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult RecuperarContrasena(RecuperarContrasenaViewModel model)
-        {
-
-            // ✅ Respaldo por si el binder falla (inputs renameados, etc.)
-            string correoPosted = (Request.Form["Correo"] ?? model?.Correo ?? "").Trim();
-            string nombrePosted = (Request.Form["Nombre"] ?? model?.Nombre ?? "").Trim();
-
-            model = model ?? new RecuperarContrasenaViewModel();
-            model.Correo = correoPosted;
-            model.Nombre = nombrePosted;
-
-            // ✅ Validación manual clara
-            if (string.IsNullOrWhiteSpace(model.Correo) || string.IsNullOrWhiteSpace(model.Nombre))
-            {
-                ModelState.AddModelError("", "Debe completar todos los campos.");
-                return View(model);
-            }
-
-            // Validaciones de DataAnnotations (EmailAddress, etc.)
-            TryValidateModel(model);
-            if (!ModelState.IsValid)
-                return View(model);
-
-            string correoNorm = NormalizarTexto(model.Correo);
-            string nombreNorm = NormalizarTexto(model.Nombre);
-
-            // ✅ Buscar primero por correo
-            var usuario = db.MH_Usuario_TB.FirstOrDefault(u =>
-                u.Activo == true &&
-                (u.Correo ?? "").ToLower() == correoNorm
-            );
-
-            if (usuario == null)
-            {
-                ModelState.AddModelError("", "No se encontró un usuario con ese correo.");
-                return View(model);
-            }
-
-            // ✅ Validar nombre tolerante (tildes/espacios/mayúsculas)
-            string nombreDbNorm = NormalizarTexto(usuario.NombreCompleto ?? "");
-            if (nombreDbNorm != nombreNorm)
-            {
-                ModelState.AddModelError("", "El nombre no coincide con el registrado para ese correo.");
-                return View(model);
-            }
-
-            // Generar nueva contraseña temporal
-            string nuevaPass = Guid.NewGuid().ToString("N").Substring(0, 8);
-            usuario.ContrasennaHash = HashPassword(nuevaPass);
-            db.SaveChanges();
-
-            try
-            {
-                string html = GenerarCorreoRecuperacion(usuario.NombreCompleto, nuevaPass);
-
-                EnviarCorreo(
-                    usuario.Correo,
-                    "Recuperación de contraseña - Mi Mundo de Huellitas",
-                    html
-                );
-
-                TempData["Ok"] = "Se envió una nueva contraseña a tu correo.";
-                return RedirectToAction("Login");
-            }
-            catch
-            {
-                ModelState.AddModelError("", "No se pudo enviar el correo. Verifica la configuración SMTP.");
-                return View(model);
-            }
-        }
-
-        // ===================== LOGOUT =====================
+        // =========================
+        //         LOGOUT
+        // =========================
         [Authorize]
         public ActionResult Logout()
         {
@@ -223,19 +170,71 @@ namespace MiMundoHuellitas.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        // ===================== UTILIDADES =====================
+        // =========================
+        //   RECUPERAR CONTRASEÑA
+        // =========================
+        [AllowAnonymous]
+        public ActionResult RecuperarContrasena()
+        {
+            return View();
+        }
 
-        private string HashPassword(string password)
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult RecuperarContrasena(string Email, string Nombre)
+        {
+            Email = (Email ?? "").Trim();
+            Nombre = (Nombre ?? "").Trim();
+
+            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Nombre))
+            {
+                TempData["Error"] = "Debe completar todos los campos.";
+                return View();
+            }
+
+            var usuario = db.MH_Usuario_TB
+                .FirstOrDefault(u => u.Activo &&
+                                     u.Correo == Email &&
+                                     u.NombreCompleto == Nombre);
+
+            if (usuario == null)
+            {
+                TempData["Error"] = "No se encontró un usuario con esos datos.";
+                return View();
+            }
+
+            string nuevaPass = Guid.NewGuid().ToString("N").Substring(0, 8);
+
+            usuario.ContrasennaHash = HashPassword(nuevaPass);
+            db.SaveChanges();
+
+            EnviarCorreo(
+                usuario.Correo,
+                "Recuperación de Contraseña - Mi Mundo Huellitas",
+                $"Hola {usuario.NombreCompleto},<br><br>" +
+                $"Tu nueva contraseña temporal es:<br><h2>{nuevaPass}</h2><br>" +
+                $"Te recomendamos cambiarla después de iniciar sesión."
+            );
+
+            TempData["Ok"] = "Se envió una nueva contraseña a tu correo.";
+            return RedirectToAction("Login");
+        }
+
+        // =========================
+        //        HELPERS
+        // =========================
+        private static string HashPassword(string password)
         {
             using (var sha = SHA256.Create())
             {
                 var bytes = Encoding.UTF8.GetBytes(password ?? "");
-                return BitConverter.ToString(sha.ComputeHash(bytes))
-                    .Replace("-", "").ToLowerInvariant();
+                var hash = sha.ComputeHash(bytes);
+                return BitConverter.ToString(hash).Replace("-", "").ToLower();
             }
         }
 
-        private void EnviarCorreo(string destino, string asunto, string mensajeHtml)
+        private static void EnviarCorreo(string destino, string asunto, string mensaje)
         {
             string user = ConfigurationManager.AppSettings["smtp.user"];
             string pass = ConfigurationManager.AppSettings["smtp.pass"];
@@ -251,7 +250,7 @@ namespace MiMundoHuellitas.Controllers
                 var mail = new MailMessage(user, destino)
                 {
                     Subject = asunto,
-                    Body = mensajeHtml,
+                    Body = mensaje,
                     IsBodyHtml = true
                 };
 
@@ -259,85 +258,9 @@ namespace MiMundoHuellitas.Controllers
             }
         }
 
-        // ✅ Normaliza: lower, sin tildes, colapsa espacios
-        private string NormalizarTexto(string input)
-        {
-            input = (input ?? "").Trim().ToLowerInvariant();
-
-            // quitar tildes
-            var normalized = input.Normalize(NormalizationForm.FormD);
-            var sb = new StringBuilder();
-            foreach (var c in normalized)
-            {
-                var cat = CharUnicodeInfo.GetUnicodeCategory(c);
-                if (cat != UnicodeCategory.NonSpacingMark)
-                    sb.Append(c);
-            }
-            var sinTildes = sb.ToString().Normalize(NormalizationForm.FormC);
-
-            // colapsar espacios múltiples
-            sinTildes = Regex.Replace(sinTildes, @"\s+", " ").Trim();
-
-            return sinTildes;
-        }
-
-        // ✅ HTML bonito para recuperación
-        private string GenerarCorreoRecuperacion(string nombre, string nuevaPass)
-        {
-            string n = string.IsNullOrWhiteSpace(nombre) ? "cliente" : nombre.Trim();
-
-            return $@"
-<!DOCTYPE html>
-<html lang='es'>
-<body style='margin:0;background:#f4f7f6;font-family:Arial,Helvetica,sans-serif'>
-<table width='100%' cellpadding='0' cellspacing='0' style='padding:30px 0'>
-<tr><td align='center'>
-<table width='600' style='background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08)'>
-
-<tr>
-<td style='background:linear-gradient(135deg,#0a7b48,#0e768c);padding:25px;text-align:center;color:#fff'>
-  <h1 style='margin:0;font-size:22px'>Mi Mundo de Huellitas</h1>
-  <p style='margin:6px 0 0;font-size:14px'>Recuperación de contraseña</p>
-</td>
-</tr>
-
-<tr>
-<td style='padding:30px'>
-  <p style='margin-top:0'>Hola <strong>{System.Net.WebUtility.HtmlEncode(n)}</strong>,</p>
-
-  <p>Hemos generado una contraseña temporal para que puedas acceder a tu cuenta:</p>
-
-  <div style='background:#f1fdf8;border:1px dashed #0a7b48;padding:18px;margin:20px 0;text-align:center;border-radius:10px'>
-    <div style='font-size:22px;font-weight:bold;color:#0a7b48;letter-spacing:1px'>
-      {System.Net.WebUtility.HtmlEncode(nuevaPass)}
-    </div>
-  </div>
-
-  <p>Te recomendamos cambiarla inmediatamente después de iniciar sesión.</p>
-
-  <p style='margin:22px 0 0'>
-    🐾 <strong>Equipo Mi Mundo de Huellitas</strong>
-  </p>
-</td>
-</tr>
-
-<tr>
-<td style='background:#f8f8f8;padding:15px;text-align:center;font-size:12px;color:#777'>
-  © {DateTime.Now.Year} Mi Mundo de Huellitas · Costa Rica
-</td>
-</tr>
-
-</table>
-</td></tr>
-</table>
-</body>
-</html>";
-        }
-
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-                db.Dispose();
+            if (disposing) db.Dispose();
             base.Dispose(disposing);
         }
     }

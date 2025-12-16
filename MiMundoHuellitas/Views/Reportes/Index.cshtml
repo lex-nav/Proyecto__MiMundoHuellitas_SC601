@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Reportes - Mi Mundo de Huellitas";
+    ViewBag.ActiveMenu = "Reportes";
+}
+
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px;
+            background: linear-gradient(rgba(10,123,72,0.85), rgba(14,118,140,0.85)),
+                        url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Reportes</h1>
+        <p class="lead mb-0">Control y estadísticas del sistema</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold" style="color:#0A7B48;">Reporte de Citas</h5>
+                    <p class="text-muted">Filtra por fechas y estado, revisa detalle y exporta a CSV.</p>
+                    <a class="btn btn-success" style="background:#0A7B48;border:none;"
+                       href="@Url.Action("Citas","Reportes")">
+                        Ver reporte
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold" style="color:#0E768C;">(Luego) Reporte de Ventas</h5>
+                    <p class="text-muted mb-0">Lo agregamos después para facturas/detalles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

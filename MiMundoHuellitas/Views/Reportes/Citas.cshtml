@@ -1,0 +1,144 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.Reportes.ReporteCitasVM
+@{
+    ViewBag.Title = "Reporte de Citas - Mi Mundo de Huellitas";
+    ViewBag.ActiveMenu = "Reportes";
+}
+
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px;
+            background: linear-gradient(rgba(10,123,72,0.85), rgba(14,118,140,0.85)),
+                        url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Reporte de Citas</h1>
+        <p class="lead mb-0">Filtra, consulta y exporta el historial</p>
+    </div>
+</div>
+
+<div class="container my-5">
+
+    <!-- FILTROS -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            @using (Html.BeginForm("Citas", "Reportes", FormMethod.Get))
+            {
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label">Desde</label>
+                        <input type="date" name="desde" class="form-control"
+                               value="@(Model.Desde.HasValue ? Model.Desde.Value.ToString("yyyy-MM-dd") : "")" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Hasta</label>
+                        <input type="date" name="hasta" class="form-control"
+                               value="@(Model.Hasta.HasValue ? Model.Hasta.Value.ToString("yyyy-MM-dd") : "")" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Estado</label>
+                        @Html.DropDownList("idEstado", Model.EstadosCita, new { @class = "form-select" })
+                    </div>
+                    <div class="col-md-3 d-flex gap-2">
+                        <button class="btn btn-success w-100" style="background:#0A7B48;border:none;">
+                            Filtrar
+                        </button>
+                        <a class="btn btn-outline-secondary w-100" href="@Url.Action("Citas","Reportes")">
+                            Limpiar
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- RESUMEN -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Total de citas</div>
+                    <div class="fs-2 fw-bold" style="color:#0A7B48;">@Model.Total</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Próximas</div>
+                    <div class="fs-2 fw-bold" style="color:#0E768C;">@Model.Proximas</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Canceladas</div>
+                    <div class="fs-2 fw-bold text-danger">@Model.Canceladas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPORT -->
+    <div class="d-flex justify-content-end mb-3">
+        <a class="btn btn-outline-success"
+           style="border-color:#0A7B48;color:#0A7B48;"
+           href="@Url.Action("ExportCitasCsv","Reportes", new { desde = Model.Desde, hasta = Model.Hasta, idEstado = Model.IdEstado })">
+            Exportar CSV
+        </a>
+    </div>
+
+    <!-- TABLA -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha / Hora</th>
+                        <th>Cliente</th>
+                        <th>Mascota</th>
+                        <th>Servicios</th>
+                        <th>Estado</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Filas == null || !Model.Filas.Any())
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-4">
+                                No hay citas con los filtros seleccionados.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var x in Model.Filas)
+                        {
+                            var esCancelada = (x.Estado ?? "").ToLower().Contains("cancel");
+
+                            <tr>
+                                <td>@x.IdCita</td>
+                                <td>@x.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    <div class="fw-semibold">@x.Cliente</div>
+                                    <div class="text-muted" style="font-size:0.9rem;">@x.CorreoCliente</div>
+                                </td>
+                                <td>@x.Mascota</td>
+                                <td>@x.Servicios</td>
+                                <td>
+                                    <span class="badge" style="background:@(esCancelada ? "#dc3545" : "#0A7B48");">
+                                        @x.Estado
+                                    </span>
+                                </td>
+                                <td style="max-width:280px;" class="text-truncate" title="@x.NotasCliente">
+                                    @x.NotasCliente
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

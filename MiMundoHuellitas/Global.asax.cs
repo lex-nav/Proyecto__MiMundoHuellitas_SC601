@@ -21,15 +21,27 @@ namespace MiMundoHuellitas
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
             var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie == null) return;
+            if (authCookie == null || string.IsNullOrWhiteSpace(authCookie.Value))
+                return;
 
-            var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-            if (authTicket == null) return;
+            FormsAuthenticationTicket ticket;
+            try
+            {
+                ticket = FormsAuthentication.Decrypt(authCookie.Value);
+            }
+            catch
+            {
+                return;
+            }
+
+            if (ticket == null)
+                return;
 
             
-            string[] roles = new[] { authTicket.UserData };
+            var roles = (ticket.UserData ?? "")
+                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var identity = new GenericIdentity(authTicket.Name);
+            var identity = new FormsIdentity(ticket);
             var principal = new GenericPrincipal(identity, roles);
 
             HttpContext.Current.User = principal;
