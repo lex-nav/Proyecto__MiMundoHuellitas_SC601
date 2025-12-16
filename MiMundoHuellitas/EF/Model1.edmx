@@ -1023,7 +1023,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BD_MiMundoHuellitasEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MiMundoHuellitasEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="MH_Canton_TB" EntityType="Self.MH_Canton_TB" />
           <EntitySet Name="MH_Cita_TB" EntityType="Self.MH_Cita_TB" />
           <EntitySet Name="MH_DetalleFactura_TB" EntityType="Self.MH_DetalleFactura_TB" />
@@ -1131,7 +1131,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MiMundoHuellitasModelStoreContainer" CdmEntityContainer="BD_MiMundoHuellitasEntities">
+        <EntityContainerMapping StorageEntityContainer="MiMundoHuellitasModelStoreContainer" CdmEntityContainer="MiMundoHuellitasEntities">
           <EntitySetMapping Name="MH_Canton_TB">
             <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Canton_TB">
               <MappingFragment StoreEntitySet="MH_Canton_TB">
@@ -1348,7 +1348,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
