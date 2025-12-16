@@ -265,6 +265,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminUsuariosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -625,6 +626,7 @@
     <Content Include="Views\Reportes\Mascotas.cshtml" />
     <Content Include="Views\Reportes\Facturas.cshtml" />
     <Content Include="Views\Reportes\_ReportesHeader.cshtml" />
+    <Content Include="Views\AdminUsuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
