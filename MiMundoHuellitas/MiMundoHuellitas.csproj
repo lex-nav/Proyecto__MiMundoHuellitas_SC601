@@ -442,6 +442,10 @@
     <Content Include="StaticFiles\img\achi.jpg" />
     <Content Include="StaticFiles\img\ali.jpg" />
     <Content Include="StaticFiles\img\almohadilla.jpg" />
+    <Content Include="StaticFiles\img\antes2.jpg" />
+    <Content Include="StaticFiles\img\antes3.jpg" />
+    <Content Include="StaticFiles\img\antes4.jpg" />
+    <Content Include="StaticFiles\img\antes5.jpg" />
     <Content Include="StaticFiles\img\Banos1.jpg" />
     <Content Include="StaticFiles\img\Banos2.jpg" />
     <Content Include="StaticFiles\img\bg_1.jpg" />
@@ -454,6 +458,12 @@
     <Content Include="StaticFiles\img\carousel-4.jpg" />
     <Content Include="StaticFiles\img\chabu.jpg" />
     <Content Include="StaticFiles\img\corte.jpg" />
+    <Content Include="StaticFiles\img\despues1.jpg" />
+    <Content Include="StaticFiles\img\despues2.jpg" />
+    <Content Include="StaticFiles\img\despues3.jpg" />
+    <Content Include="StaticFiles\img\despues4.jpg" />
+    <Content Include="StaticFiles\img\despues5.jpg" />
+    <Content Include="StaticFiles\img\despues6.jpeg" />
     <Content Include="StaticFiles\img\dientes.JPG" />
     <Content Include="StaticFiles\img\feature.jpg" />
     <Content Include="StaticFiles\img\Fondo_Huellitas.jpg" />
