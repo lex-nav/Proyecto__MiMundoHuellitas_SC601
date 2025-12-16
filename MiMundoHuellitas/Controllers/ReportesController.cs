@@ -8,8 +8,9 @@ using System.Data.Entity;
 
 namespace MiMundoHuellitas.Controllers
 {
-    // 🔐 SOLO ADMIN (descomenta cuando ya quieras bloquearlo)
-    // [Authorize(Roles = "Admin")]
+    // 🔐 SOLO ADMIN: todo lo que está en /Reportes es exclusivamente para administradores.
+    // Requiere que el rol se cargue en Application_AuthenticateRequest (Global.asax) desde el FormsAuth ticket.
+    [Authorize(Roles = "Admin")]
     public class ReportesController : Controller
     {
         private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
@@ -261,7 +262,6 @@ namespace MiMundoHuellitas.Controllers
                 Texto = (texto ?? "").Trim()
             };
 
-            // Especies (tu tabla no tiene Activo)
             var especies = db.MH_Especie_TB.OrderBy(e => e.NombreEspecie).ToList();
             vm.Especies.Add(new SelectListItem { Text = "Todas", Value = "" });
             vm.Especies.AddRange(especies.Select(e => new SelectListItem
@@ -271,7 +271,6 @@ namespace MiMundoHuellitas.Controllers
                 Selected = idEspecie.HasValue && e.IdEspecie == idEspecie.Value
             }));
 
-            // Razas (IMPORTANTE: tu MH_Raza_TB NO tiene Activo)
             var razasQuery = db.MH_Raza_TB.AsQueryable();
             if (idEspecie.HasValue)
                 razasQuery = razasQuery.Where(r => r.IdEspecie == idEspecie.Value);
@@ -402,7 +401,6 @@ namespace MiMundoHuellitas.Controllers
                 Texto = (texto ?? "").Trim()
             };
 
-            // Estados (TipoEntidad = "Factura")
             vm.Estados.Add(new SelectListItem { Text = "Todos", Value = "" });
 
             var estados = db.MH_Estado_TB
@@ -417,7 +415,6 @@ namespace MiMundoHuellitas.Controllers
                 Selected = idEstado.HasValue && idEstado.Value == e.IdEstado
             }));
 
-            // Métodos de pago (distinct de Facturas)
             vm.MetodosPago.Add(new SelectListItem { Text = "Todos", Value = "" });
 
             var metodos = db.MH_Factura_TB
