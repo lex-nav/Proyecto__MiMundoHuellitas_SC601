@@ -1,0 +1,13 @@
+﻿@model MiMundoHuellitas.EF.MH_Productos_TB
+
+<h3>Eliminar Producto</h3>
+<p>¿Seguro que deseas eliminar el producto <strong>@Model.NombreProducto</strong>?</p>
+
+@using (Html.BeginForm("ConfirmDelete", "AdminProductos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.IdProducto)
+
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="@Url.Action("Index","AdminProductos")" class="btn btn-secondary">Cancelar</a>
+}

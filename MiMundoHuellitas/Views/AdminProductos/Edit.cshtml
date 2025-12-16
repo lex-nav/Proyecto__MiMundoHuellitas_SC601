@@ -1,0 +1,55 @@
+﻿@model MiMundoHuellitas.EF.MH_Productos_TB
+
+@{
+    ViewBag.Title = "Editar Producto";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "AdminProductos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.IdProducto)
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.NombreProducto)
+        @Html.TextBoxFor(m => m.NombreProducto, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Descripcion)
+        @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", rows = 3 })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Categoria)
+        @Html.TextBoxFor(m => m.Categoria, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.PrecioUnitario)
+        @Html.TextBoxFor(m => m.PrecioUnitario, new { @class = "form-control", type = "number", step = "0.01" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.StockActual)
+        @Html.TextBoxFor(m => m.StockActual, new { @class = "form-control", type = "number" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.ImagenUrl)
+        @Html.TextBoxFor(m => m.ImagenUrl, new { @class = "form-control" })
+    </div>
+
+    <div class="mb-3 form-check">
+        @Html.CheckBoxFor(m => m.Activo, new { @class = "form-check-input" })
+        @Html.LabelFor(m => m.Activo, htmlAttributes: new { @class = "form-check-label" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Guardar
+    </button>
+
+    <a href="@Url.Action("Index","AdminProductos")" class="btn btn-secondary">
+        Cancelar
+    </a>
+}

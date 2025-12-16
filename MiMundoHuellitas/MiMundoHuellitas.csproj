@@ -265,6 +265,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminProductosController.cs" />
     <Compile Include="Controllers\AdminUsuariosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
@@ -408,6 +409,7 @@
     <Content Include="EF\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="credencialesMail.config" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -629,6 +631,9 @@
     <Content Include="Views\AdminUsuarios\Index.cshtml" />
     <Content Include="Views\AdminUsuarios\Edit.cshtml" />
     <Content Include="Views\AdminUsuarios\Delete.cshtml" />
+    <Content Include="Views\AdminProductos\Index.cshtml" />
+    <Content Include="Views\AdminProductos\Edit.cshtml" />
+    <Content Include="Views\AdminProductos\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

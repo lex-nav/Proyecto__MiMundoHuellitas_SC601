@@ -5,37 +5,53 @@
     ViewBag.Title = "Administrar Usuarios";
 }
 
-<h3 class="mb-3">Usuarios</h3>
 
 <!-- AQUÍ VA LA TABLA -->
-<table class="table table-hover align-middle">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Teléfono</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var u in Model)
-        {
-            <tr>
-                <td>@u.NombreCompleto</td>
-                <td>@u.Correo</td>
-                <td>@u.Telefono</td>
-                <td>
-                    <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
-                       class="btn btn-sm btn-primary">
-                        <i class="fas fa-edit"></i>
-                    </a>
+<div class="card border-0 shadow-sm" style="border-radius:18px;">
+    <div class="card-body p-4">
 
-                    <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
-                       class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <h5 class="fw-bold mb-3">
+            <i class="fas fa-users me-2 text-primary"></i>
+            Lista de usuarios
+        </h5>
+
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead style="background:#f8f9fa;">
+                    <tr class="text-muted">
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var u in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@u.NombreCompleto</td>
+                            <td>@u.Correo</td>
+                            <td>@u.Telefono</td>
+
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
+                                   class="btn btn-sm btn-outline-primary me-1"
+                                   title="Editar">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+
+                                <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
+                                   class="btn btn-sm btn-outline-danger"
+                                   title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Productos_TB>
+
+<h3 class="mb-3">Productos</h3>
+
+<table class="table table-hover align-middle">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.NombreProducto</td>
+                <td>@p.Descripcion</td>
+                <td>@p.Categoria</td>
+                <td>₡@p.PrecioUnitario.ToString("N2")</td>
+                <td>@p.StockActual</td>
+                <td class="text-center">
+                    <a href="@Url.Action("Edit","AdminProductos", new { id = p.IdProducto })" class="btn btn-sm btn-outline-primary me-1">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a href="@Url.Action("Delete","AdminProductos", new { id = p.IdProducto })" class="btn btn-sm btn-outline-danger">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
