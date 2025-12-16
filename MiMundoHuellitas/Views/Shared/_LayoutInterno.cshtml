@@ -238,15 +238,12 @@
                                href="@Url.Action("VerMascotas", "Mascota")">MIS MASCOTAS</a>
                         </li>
 
-                        <!-- ✅ REPORTES SOLO PARA ADMIN -->
-                        if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link @(ViewBag.ActiveMenu=="Reportes" ? "active" : "")"
-                                   href="@Url.Action("Index", "Reportes")">REPORTES</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewBag.ActiveMenu=="Reportes" ? "active" : "")"
+                               href="@Url.Action("Index", "Reportes")">REPORTES</a>
+                        </li>
                     }
+
                 </ul>
             </div>
         </div>

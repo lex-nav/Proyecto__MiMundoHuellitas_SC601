@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Principal;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -20,7 +21,7 @@ namespace MiMundoHuellitas
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-            var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null || string.IsNullOrWhiteSpace(authCookie.Value))
                 return;
 
@@ -37,14 +38,16 @@ namespace MiMundoHuellitas
             if (ticket == null)
                 return;
 
-            
             var roles = (ticket.UserData ?? "")
                 .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             var identity = new FormsIdentity(ticket);
             var principal = new GenericPrincipal(identity, roles);
 
+            // ✅ Setear en los 3 lugares ayuda a que MVC/Authorize lo tome siempre
             HttpContext.Current.User = principal;
+            Context.User = principal;
+            Thread.CurrentPrincipal = principal;
         }
     }
 }

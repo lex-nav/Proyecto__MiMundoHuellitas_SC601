@@ -37,7 +37,7 @@ namespace MiMundoHuellitas.Controllers
 
             string hash = HashPassword(model.Contrasena);
 
-            // ✅ Traemos el tipo para definir rol (Admin/Cliente)
+            // ✅ Traemos el usuario (y tipo por si lo ocupás en otros lados)
             var usuario = db.MH_Usuario_TB
                 .Include(u => u.MH_Tipo_Usuario_TB)
                 .FirstOrDefault(u =>
@@ -51,9 +51,9 @@ namespace MiMundoHuellitas.Controllers
                 return View(model);
             }
 
-            // ✅ Rol real según MH_Tipo_Usuario_TB.NombreTipoUsuario
-            string tipo = (usuario.MH_Tipo_Usuario_TB?.NombreTipoUsuario ?? "").Trim();
-            string rol = tipo.Equals("Admin", StringComparison.OrdinalIgnoreCase) ? "Admin" : "Cliente";
+            // ✅ Rol por ID (según tu BD: 1=Admin, 2=Cliente)
+            const int ID_ADMIN = 1;
+            string rol = (usuario.IdTipoUsuario == ID_ADMIN) ? "Admin" : "Cliente";
 
             var ticket = new FormsAuthenticationTicket(
                 1,
@@ -265,3 +265,4 @@ namespace MiMundoHuellitas.Controllers
         }
     }
 }
+
