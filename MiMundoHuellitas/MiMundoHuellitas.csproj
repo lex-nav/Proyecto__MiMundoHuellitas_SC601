@@ -627,6 +627,8 @@
     <Content Include="Views\Reportes\Facturas.cshtml" />
     <Content Include="Views\Reportes\_ReportesHeader.cshtml" />
     <Content Include="Views\AdminUsuarios\Index.cshtml" />
+    <Content Include="Views\AdminUsuarios\Edit.cshtml" />
+    <Content Include="Views\AdminUsuarios\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

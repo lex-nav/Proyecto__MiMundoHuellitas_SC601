@@ -1,0 +1,30 @@
+﻿@model MiMundoHuellitas.EF.MH_Usuario_TB
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<h4 class="text-danger">
+    ¿Seguro que deseas eliminar este usuario?
+</h4>
+
+<div class="mb-3">
+    <strong>@Model.NombreCompleto</strong><br />
+    @Model.Correo
+</div>
+
+@using (Html.BeginForm("ConfirmDelete", "AdminUsuarios", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.IdUsuario" />
+
+    <button type="submit" class="btn btn-danger">
+        <i class="fas fa-trash"></i> Eliminar
+    </button>
+
+    <a href="@Url.Action("Index")" class="btn btn-secondary">
+        Cancelar
+    </a>
+}
+

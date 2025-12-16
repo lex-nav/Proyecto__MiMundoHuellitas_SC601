@@ -1,69 +1,41 @@
-﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Usuario_TB>
+﻿
+@model IEnumerable<MiMundoHuellitas.EF.MH_Usuario_TB>
 
 @{
-    ViewBag.Title = "Administración de Usuarios";
-    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+    ViewBag.Title = "Administrar Usuarios";
 }
 
-<div style="background:#f4f6f8; min-height: calc(100vh - 120px);">
-    <div class="container py-5">
+<h3 class="mb-3">Usuarios</h3>
 
-        <h2 class="fw-bold mb-4">Administración de Usuarios 👤⚙️</h2>
-
-        @if (TempData["Ok"] != null)
+<!-- AQUÍ VA LA TABLA -->
+<table class="table table-hover align-middle">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
         {
-            <div class="alert alert-success">@TempData["Ok"]</div>
+            <tr>
+                <td>@u.NombreCompleto</td>
+                <td>@u.Correo</td>
+                <td>@u.Telefono</td>
+                <td>
+                    <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
+                       class="btn btn-sm btn-primary">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
+                    <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
+                       class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
         }
-
-        <div class="card border-0 shadow-sm" style="border-radius:18px;">
-            <div class="card-body p-4">
-
-                @if (!Model.Any())
-                {
-                    <div class="text-center text-muted py-5">
-                        <h5>No hay usuarios registrados</h5>
-                    </div>
-                }
-                else
-                {
-                    <div class="table-responsive">
-                        <table class="table align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Correo</th>
-                                    <th>Teléfono</th>
-                                    <th class="text-end">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var u in Model)
-                                {
-                                    <tr>
-                                        <td class="fw-semibold">@u.NombreCompleto</td>
-                                        <td>@u.Correo</td>
-                                        <td>@u.Telefono</td>
-                                        <td class="text-end">
-                                            <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
-                                               class="btn btn-sm btn-outline-primary">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-
-                                            <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
-                                               class="btn btn-sm btn-outline-danger ms-1"
-                                               onclick="return confirm('¿Eliminar usuario?');">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                }
-
-            </div>
-        </div>
-
-    </div>
-</div>
+    </tbody>
+</table>
