@@ -1,9 +1,9 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Reportes - Mi Mundo de Huellitas";
     ViewBag.ActiveMenu = "Reportes";
 }
 
+<!-- HERO -->
 <div class="hero-section d-flex align-items-center text-white"
      style="height: 260px;
             background: linear-gradient(rgba(10,123,72,0.85), rgba(14,118,140,0.85)),
@@ -13,30 +13,95 @@
         <p class="lead mb-0">Control y estadísticas del sistema</p>
     </div>
 </div>
-<a class="btn btn-outline-primary" href="@Url.Action("Servicios","Reportes")">Reporte de Servicios</a>
 
 <div class="container my-5">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+        <div>
+            <h3 class="mb-1" style="color:#0A7B48;">Panel de reportes</h3>
+            <p class="text-muted mb-0">Accedé a los reportes disponibles y exportá resultados a CSV.</p>
+        </div>
+
+    </div>
+
     <div class="row g-4">
-        <div class="col-md-6">
+
+        <!-- CITAS -->
+        <div class="col-md-6 col-lg-3">
             <div class="card shadow-sm border-0 h-100">
-                <div class="card-body">
-                    <h5 class="fw-bold" style="color:#0A7B48;">Reporte de Citas</h5>
-                    <p class="text-muted">Filtra por fechas y estado, revisa detalle y exporta a CSV.</p>
-                    <a class="btn btn-success" style="background:#0A7B48;border:none;"
-                       href="@Url.Action("Citas","Reportes")">
-                        Ver reporte
-                    </a>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="fw-bold mb-2" style="color:#0A7B48;">Reporte de Citas</h5>
+                    <p class="text-muted flex-grow-1">
+                        Filtrá por fechas/estado, revisá detalle y exportá.
+                    </p>
+
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-success" style="background:#0A7B48;border:none;"
+                           href="@Url.Action("Citas","Reportes")">
+                            Ver reporte
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <!-- SERVICIOS -->
+        <div class="col-md-6 col-lg-3">
             <div class="card shadow-sm border-0 h-100">
-                <div class="card-body">
-                    <h5 class="fw-bold" style="color:#0E768C;">(Luego) Reporte de Ventas</h5>
-                    <p class="text-muted mb-0">Lo agregamos después para facturas/detalles.</p>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="fw-bold mb-2" style="color:#0E768C;">Reporte de Servicios</h5>
+                    <p class="text-muted flex-grow-1">
+                        Filtrá por categoría, precio, activos/inactivos.
+                    </p>
+
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-primary" style="background:#0E768C;border:none;"
+                           href="@Url.Action("Servicios","Reportes")">
+                            Ver reporte
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- MASCOTAS -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="fw-bold mb-2" style="color:#0A7B48;">Reporte de Mascotas</h5>
+                    <p class="text-muted flex-grow-1">
+                        Consultá por especie/raza, estado y búsqueda.
+                    </p>
+
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-success" style="background:#0A7B48;border:none;"
+                           href="@Url.Action("Mascotas","Reportes")">
+                            Ver reporte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VENTAS / FACTURAS -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="fw-bold mb-2" style="color:#0E768C;">Reporte de Ventas</h5>
+                    <p class="text-muted flex-grow-1">
+                        Basado en facturas: fechas, estado, método de pago y totales.
+                    </p>
+
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-primary" style="background:#0E768C;border:none;"
+                           href="@Url.Action("Facturas","Reportes")">
+                            Ver reporte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </div>

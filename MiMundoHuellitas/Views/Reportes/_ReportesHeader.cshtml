@@ -1,0 +1,20 @@
+﻿@* Header común para todos los reportes *@
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2 class="mb-1" style="color:#0A7B48;">
+            @ViewBag.ReportTitle
+        </h2>
+        <p class="text-muted mb-0">
+            @ViewBag.ReportSubtitle
+        </p>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a href="@Url.Action("Index", "Reportes")"
+           class="btn btn-outline-secondary">
+            ← Volver a Reportes
+        </a>
+    </div>
+
+</div>

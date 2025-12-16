@@ -614,6 +614,7 @@
     <Content Include="Views\Reportes\Servicios.cshtml" />
     <Content Include="Views\Reportes\Mascotas.cshtml" />
     <Content Include="Views\Reportes\Facturas.cshtml" />
+    <Content Include="Views\Reportes\_ReportesHeader.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
