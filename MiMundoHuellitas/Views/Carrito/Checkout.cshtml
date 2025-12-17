@@ -2,58 +2,206 @@
 
 @{
     ViewBag.Title = "Confirmar compra";
+    var items = Model?.Items ?? new List<MiMundoHuellitas.Models.CarritoItemViewModel>();
 }
 
-<h2>Confirmar compra</h2>
+@section FullWidthTop {
+    <!-- HERO -->
+    <div class="hero-checkout">
+        <div class="hero-overlay"></div>
 
-@using (Html.BeginForm("Checkout", "Carrito", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="mb-3">
-        <label class="form-label">Correo electrónico</label>
-        @Html.TextBoxFor(m => m.CorreoCliente, new { @class = "form-control" })
+        <div class="container hero-content">
+            <h1 class="hero-title">Confirmar compra</h1>
+            <p class="hero-subtitle">Completá tus datos y revisá el resumen antes de finalizar</p>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label">Método de pago</label>
-        @Html.TextBoxFor(m => m.MetodoPago, new { @class = "form-control" })
-    </div>
+    <style>
+        .hero-checkout {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 220px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(3,169,244,0.75), rgba(0,230,118,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
 
-    <div class="mb-3">
-        <label class="form-label">Número de referencia</label>
-        @Html.TextBoxFor(m => m.NumeroReferencia, new { @class = "form-control" })
-    </div>
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
 
-    <div class="mb-3">
-        <label class="form-label">Observaciones</label>
-        @Html.TextAreaFor(m => m.Observaciones, new { @class = "form-control" })
-    </div>
+        .hero-content {
+            position: relative;
+            padding: 60px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
 
-    <h4>Resumen</h4>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Cant.</th>
-                <th>Precio</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Items)
-            {
-                <tr>
-                    <td>@item.NombreProducto</td>
-                    <td>@item.Cantidad</td>
-                    <td>@item.PrecioUnitario.ToString("C")</td>
-                    <td>@item.Subtotal.ToString("C")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        .hero-title {
+            font-weight: 800;
+            font-size: clamp(28px, 4vw, 46px);
+            margin: 0;
+        }
 
-    <h4>Total: @Model.MontoTotal.ToString("C")</h4>
+        .hero-subtitle {
+            margin-top: 8px;
+            font-weight: 600;
+            color: rgba(11,15,20,0.82);
+        }
 
-    <button type="submit" class="btn btn-primary">Finalizar compra</button>
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .table thead th {
+            font-size: 12px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #6b7280;
+            background: #f8fafc !important;
+        }
+
+        .btn-round {
+            border-radius: 12px;
+        }
+
+        .total-box {
+            background: rgba(0,200,83,0.08);
+            border: 1px solid rgba(0,200,83,0.16);
+            border-radius: 16px;
+            padding: 16px 18px;
+        }
+
+        .section-title {
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .section-sub {
+            color: #6b7280;
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+    </style>
 }
+
+<div class="container my-4">
+
+    @using (Html.BeginForm("Checkout", "Carrito", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row g-3">
+
+            <!-- Datos de pago -->
+            <div class="col-lg-5">
+                <div class="card card-soft border-0 h-100">
+                    <div class="card-body p-4">
+
+                        <div class="mb-3">
+                            <div class="section-title">
+                                <i class="fa-solid fa-credit-card me-2 text-primary"></i>
+                                Datos de compra
+                            </div>
+                            <p class="section-sub">Ingresá los datos requeridos para confirmar el pago.</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo electrónico</label>
+                            @Html.TextBoxFor(m => m.CorreoCliente, new { @class = "form-control", type = "email", placeholder = "usuario@correo.com" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Método de pago</label>
+                            @Html.TextBoxFor(m => m.MetodoPago, new { @class = "form-control", placeholder = "SINPE / Transferencia / Tarjeta" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Número de referencia</label>
+                            @Html.TextBoxFor(m => m.NumeroReferencia, new { @class = "form-control", placeholder = "Ej: 12345678" })
+                        </div>
+
+                        <div class="mb-0">
+                            <label class="form-label">Observaciones</label>
+                            @Html.TextAreaFor(m => m.Observaciones, new { @class = "form-control", rows = 3, placeholder = "Notas adicionales (opcional)" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen -->
+            <div class="col-lg-7">
+                <div class="card card-soft border-0">
+                    <div class="card-body p-4">
+
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <div>
+                                <div class="section-title">
+                                    <i class="fa-solid fa-receipt me-2 text-success"></i>
+                                    Resumen del pedido
+                                </div>
+                                <p class="section-sub">Verificá productos, cantidades y subtotales.</p>
+                            </div>
+
+                            <span class="badge rounded-pill bg-light text-secondary px-3 py-2">
+                                @items.Count ítems
+                            </span>
+                        </div>
+
+                        <div class="table-responsive mt-3">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th style="width:90px;">Cant.</th>
+                                        <th style="width:140px;">Precio</th>
+                                        <th style="width:140px;">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in items)
+                                    {
+                                        <tr>
+                                            <td class="fw-semibold">@item.NombreProducto</td>
+                                            <td class="text-muted">@item.Cantidad</td>
+                                            <td class="text-muted">@item.PrecioUnitario.ToString("C")</td>
+                                            <td class="fw-semibold">@item.Subtotal.ToString("C")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-between gap-3 mt-4">
+                            <div class="total-box">
+                                <div class="text-muted small">Total</div>
+                                <div class="fs-4 fw-bold mb-0">@Model.MontoTotal.ToString("C")</div>
+                            </div>
+
+                            <div class="d-flex gap-2 justify-content-end">
+                                <a href="@Url.Action("Carrito","Carrito")" class="btn btn-outline-secondary btn-round px-4">
+                                    <i class="fa-solid fa-arrow-left me-2"></i> Volver al carrito
+                                </a>
+
+                                <button type="submit" class="btn btn-success btn-round px-4">
+                                    <i class="fa-solid fa-check me-2"></i> Finalizar compra
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>

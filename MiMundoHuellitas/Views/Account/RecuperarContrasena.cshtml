@@ -1,4 +1,6 @@
 ﻿@model MiMundoHuellitas.Models.ViewModels.RecuperarContrasenaViewModel
+@using System.Linq
+
 @{
     ViewBag.Title = "Recuperar contraseña - MiMundoHuellitas";
     Layout = null;
@@ -14,15 +16,13 @@
     <!-- Bootstrap -->
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-    <!-- Tus CSS (puedes dejarlos) -->
+    <!-- Tus CSS -->
     <link href="~/StaticFiles/css/style.css" rel="stylesheet" />
     <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
-    <link href="~/StaticFiles/fonts/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
     <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css">
 
-    <!-- Estilo mínimo inline para que se vea bien aunque falle algo -->
     <style>
         body {
             background: #f6f7fb;
@@ -68,22 +68,30 @@
                     <div class="card-body p-4 p-md-5">
 
                         <div class="text-center mb-4">
-                            <img src="~/StaticFiles/img/Huellitas.png" class="auth-logo" alt="Mi Mundo de Huellitas" />
+                            <img src="~/StaticFiles/img/Huellitas.png"
+                                 class="auth-logo"
+                                 alt="Mi Mundo de Huellitas" />
+
                             <h2 class="mt-3 mb-1 fw-bold">Recuperar contraseña</h2>
-                            <div class="auth-sub">Te enviaremos una contraseña temporal a tu correo 🐾</div>
+                            <div class="auth-sub">
+                                Te enviaremos una contraseña temporal a tu correo 🐾
+                            </div>
                         </div>
 
-                        @* TempData *@
+                        @* Mensajes desde el controller *@
                         @if (TempData["Error"] != null)
                         {
                             <div class="error-box">@TempData["Error"]</div>
                         }
+
                         @if (TempData["Ok"] != null)
                         {
-                            <div class="alert alert-success text-center">@TempData["Ok"]</div>
+                            <div class="alert alert-success text-center">
+                                @TempData["Ok"]
+                            </div>
                         }
 
-                        @* Errores del ModelState (siempre visibles) *@
+                        @* Errores del ModelState *@
                         @{
                             var errores = ViewData.ModelState.Values
                                 .SelectMany(v => v.Errors)
@@ -91,6 +99,7 @@
                                 .Where(m => !string.IsNullOrWhiteSpace(m))
                                 .ToList();
                         }
+
                         @if (errores.Any())
                         {
                             <div class="error-box">
@@ -105,42 +114,49 @@
                         {
                             @Html.AntiForgeryToken()
 
+                            <!-- CORREO -->
                             <div class="mb-3">
-                                <label class="form-label fw-semibold" for="Correo">Correo</label>
-                                @Html.TextBox(
-                                    "Correo",
-                                    Model?.Correo,
-                                    new
-                                    {
-                                        @class = "form-control",
-                                        type = "email",
-                                        placeholder = "usuario@correo.com",
-                                        id = "Correo"
-                                    }
-                                )
+                                @Html.LabelFor(m => m.Correo, new { @class = "form-label fw-semibold" })
+
+                                @Html.TextBoxFor(m => m.Correo, new
+                                {
+                                    @class = "form-control",
+                                    type = "email",
+                                    placeholder = "usuario@correo.com",
+                                    id = "Correo"
+                                })
+
+                                @Html.ValidationMessageFor(m => m.Correo, "", new { @class = "text-danger" })
                             </div>
 
+                            <!-- NOMBRE -->
                             <div class="mb-3">
-                                <label class="form-label fw-semibold" for="Nombre">Nombre</label>
-                                @Html.TextBox(
-                                    "Nombre",
-                                    Model?.Nombre,
-                                    new
-                                    {
-                                        @class = "form-control",
-                                        placeholder = "Nombre completo",
-                                        id = "Nombre"
-                                    }
-                                )
-                                <div class="form-text">Debe coincidir con el nombre usado al crear la cuenta.</div>
+                                @Html.LabelFor(m => m.Nombre, new { @class = "form-label fw-semibold" })
+
+                                @Html.TextBoxFor(m => m.Nombre, new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Nombre completo",
+                                    id = "Nombre"
+                                })
+
+                                @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
+
+                                <div class="form-text">
+                                    Debe coincidir con el nombre usado al crear la cuenta.
+                                </div>
                             </div>
 
-                            <button type="submit" class="btn btn-success w-100 py-2 btn-radius">
+                            <button type="submit"
+                                    class="btn btn-success w-100 py-2 btn-radius">
                                 ENVIAR CONTRASEÑA TEMPORAL
                             </button>
 
                             <div class="text-center mt-3">
-                                <a href="@Url.Action("Login", "Account")" class="text-decoration-none">Volver a iniciar sesión</a>
+                                <a href="@Url.Action("Login", "Account")"
+                                   class="text-decoration-none">
+                                    Volver a iniciar sesión
+                                </a>
                             </div>
                         }
 
@@ -151,8 +167,6 @@
         </div>
     </div>
 
-    <!-- ✅ IMPORTANTE: NO cargamos main.js ni scripts de plantilla aquí -->
-    <!-- Solo bootstrap bundle si lo ocupas; si no, puedes quitarlo también -->
     <script src="~/StaticFiles/js/bootstrap.bundle.min.js"></script>
 
 </body>

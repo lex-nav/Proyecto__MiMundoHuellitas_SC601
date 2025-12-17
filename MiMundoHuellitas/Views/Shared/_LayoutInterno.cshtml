@@ -1,5 +1,4 @@
 ﻿@{
-    // ✅ Flags de roles para controlar menú
     bool isAuth = (Request != null && Request.IsAuthenticated);
     bool esAdmin = (User != null && User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"));
 }
@@ -16,12 +15,15 @@
 
     <link href="~/StaticFiles/css/style.css" rel="stylesheet" />
     <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
-    <link href="~/StaticFiles/fonts/font-awesome.min.css" rel="stylesheet" />
     <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css" />
 
+    <!-- ✅ Font Awesome 6 (única versión, correcta) -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
-        /* Footer pegado abajo */
         html, body {
             height: 100%;
         }
@@ -35,7 +37,6 @@
             flex: 1;
         }
 
-        /* Barra celestita */
         .top-contact-bar {
             background: linear-gradient(90deg, #03a9f4, #00e676);
             padding: 8px 0;
@@ -47,7 +48,6 @@
             max-width: 1140px;
             margin: 0 auto;
             padding: 0 12px;
-            /* Usar Flex para distribuir los elementos */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,37 +59,28 @@
         }
 
         .top-contact-left i {
-            margin-right: 5px;
+            margin-right: 6px;
         }
 
-        /* Ajuste: Contenedor derecho de la barra celeste */
         .top-contact-right {
             display: flex;
-            align-items: center; /* Alinear verticalmente todos los elementos */
+            align-items: center;
         }
 
-            /* Ajuste: Estilo para los enlaces de sesión/perfil en la barra celeste */
-            .top-contact-right a.auth-link {
-                color: #fff; /* Enlaces blancos */
-                margin-left: 15px; /* Separación entre enlaces */
-                white-space: nowrap; /* Evita que el texto se rompa */
-                text-decoration: none; /* Asegura que no tengan subrayado */
-            }
-
+            .top-contact-right a.auth-link,
             .top-contact-right .user-greeting {
                 color: #fff;
                 margin-left: 15px;
                 white-space: nowrap;
+                text-decoration: none;
             }
 
-            /* Iconos de redes sociales */
             .top-contact-right a.social-icon {
                 font-size: 1.2rem;
-                margin-left: 15px; /* Separación de las redes sociales */
+                margin-left: 15px;
+                color: #fff;
             }
 
-
-        /* Menú principal */
         .menu-principal .nav-link {
             text-transform: uppercase;
             font-weight: 600;
@@ -102,7 +93,6 @@
                 color: #00c853 !important;
             }
 
-        /* Alinear mejor logo y texto */
         .menu-principal .navbar-brand {
             display: flex;
             align-items: center;
@@ -111,49 +101,38 @@
             .menu-principal .navbar-brand img {
                 height: 40px;
             }
-
-            .menu-principal .navbar-brand span {
-                line-height: 1;
-            }
     </style>
-    
-    <!-- Linea para incluir fontsawesome, pls no tocar-->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-..."
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="has-fixed-nav">
 
+    <!-- TOP BAR -->
     <div class="top-contact-bar">
         <div class="top-contact-inner">
+
             <div class="top-contact-left">
                 <span>
-                    <i class="fa fa-phone"></i> +506 7263-7460
+                    <i class="fa-solid fa-phone"></i> +506 7263-7460
                 </span>
                 <span class="ms-3">
-                    <i class="fa fa-envelope"></i> mundodehuellitascr@outlook.com
+                    <i class="fa-solid fa-envelope"></i> mundodehuellitascr@outlook.com
                 </span>
             </div>
 
             <div class="top-contact-right">
-                @* Lógica de Autenticación Movida Aquí *@
                 @if (isAuth)
                 {
                     <span class="user-greeting">Hola, @User.Identity.Name</span>
 
-                    @* ✅ ADMIN: solo cerrar sesión (sin carrito/perfil/citas) *@
                     if (esAdmin)
                     {
-                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
                         @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
+                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
                     }
                     else
                     {
-                        @* ✅ CLIENTE: mantiene lo que ya tenías *@
                         <a class="auth-link" href="@Url.Action("Carrito", "Productos")" title="Carrito">
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="fa-solid fa-cart-shopping"></i>
                         </a>
 
                         @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
@@ -166,17 +145,17 @@
                     @Html.ActionLink("Iniciar sesión", "Login", "Account", null, new { @class = "auth-link" })
                 }
 
-                @* Redes Sociales *@
-                <a href="#" class="social-icon text-white" aria-label="Facebook">
-                    <i class="fa fa-facebook"></i>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
                 </a>
-                <a href="#" class="social-icon text-white" aria-label="Instagram">
-                    <i class="fa fa-instagram"></i>
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom menu-principal sticky-top">
         <div class="container">
 
@@ -185,104 +164,48 @@
                 <span class="ms-2 fw-bold">Mi Mundo de Huellitas</span>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
-                    aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="mainMenu">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto">
 
-                    @* ✅ ADMIN: SOLO REPORTES (como pediste "de momento") *@
                     @if (esAdmin)
                     {
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Reportes" ? "active" : "")"
-                               href="@Url.Action("Index", "Reportes")">REPORTES</a>
+                            <a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link"
-                               href="@Url.Action("Index", "AdminUsuarios")">
-                                ADMIN USUARIOS
-                            </a>
+                            <a class="nav-link" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link"
-                               href="@Url.Action("Index", "AdminProductos")">
-                                ADMIN PRODUCTOS
-                            </a>
+                            <a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a>
                         </li>
-
-                
                     }
                     else
                     {
-                        @* ✅ CLIENTE/PÚBLICO: menú normal *@
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Inicio" ? "active" : "")"
-                               href="@Url.Action("Index","Home")">INICIO</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("SobreNosotros","Home")">SOBRE NOSOTROS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Equipo","Home")">EQUIPO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Servicios","Home")">SERVICIOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Galeria","Home")">GALERÍA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Productos","Home")">PRODUCTOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog","Home")">BLOG</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contacto","Home")">CONTÁCTENOS</a></li>
 
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Nosotros" ? "active" : "")"
-                               href="@Url.Action("SobreNosotros","Home")">SOBRE NOSOTROS</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Equipo" ? "active" : "")"
-                               href="@Url.Action("Equipo","Home")">EQUIPO</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Servicios" ? "active" : "")"
-                               href="@Url.Action("Servicios","Home")">SERVICIOS</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Galeria" ? "active" : "")"
-                               href="@Url.Action("Galeria","Home")">GALERÍA</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Productos" ? "active" : "")"
-                               href="@Url.Action("Productos","Home")">PRODUCTOS</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Blog" ? "active" : "")"
-                               href="@Url.Action("Blog","Home")">BLOG</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.ActiveMenu=="Contacto" ? "active" : "")"
-                               href="@Url.Action("Contacto","Home")">CONTÁCTENOS</a>
-                        </li>
-
-                        @* ✅ Opciones solo para usuarios autenticados (clientes) *@
                         if (isAuth)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link @(ViewBag.ActiveMenu=="AgendarCita" ? "active" : "")"
-                                   href="@Url.Action("Agendar", "Citas")">AGENDAR CITA</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link @(ViewBag.ActiveMenu=="MisMascotas" ? "active" : "")"
-                                   href="@Url.Action("VerMascotas", "Mascota")">MIS MASCOTAS</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Agendar", "Citas")">AGENDAR CITA</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">MIS MASCOTAS</a></li>
                         }
-
-                        @* ❌ Reportes NO para cliente *@
-
                     }
-
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- ✅ FIX: permite que vistas definan secciones sin romper el layout -->
     @RenderSection("FullWidthTop", required: false)
 
     <main class="container-fluid body-content px-3">
@@ -293,10 +216,12 @@
         </footer>
     </main>
 
+    <!-- ✅ FIX: sección opcional inferior -->
     @RenderSection("FullWidthBottom", required: false)
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

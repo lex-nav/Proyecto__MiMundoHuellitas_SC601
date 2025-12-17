@@ -1,35 +1,128 @@
 ﻿@model MiMundoHuellitas.EF.MH_Usuario_TB
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Usuario";
     Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-@using (Html.BeginForm("Edit", "AdminUsuarios", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.IdUsuario)
+@section FullWidthTop {
+    <!-- HERO -->
+    <div class="hero-edit-usuario">
+        <div class="hero-overlay"></div>
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.NombreCompleto)
-        @Html.TextBoxFor(m => m.NombreCompleto, new { @class = "form-control" })
+        <div class="container hero-content">
+            <h1 class="hero-title">Editar usuario</h1>
+            <p class="hero-subtitle">Actualizá la información del usuario</p>
+        </div>
     </div>
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Correo)
-        @Html.TextBoxFor(m => m.Correo, new { @class = "form-control" })
-    </div>
+    <style>
+        .hero-edit-usuario {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 220px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(3,169,244,0.75), rgba(0,230,118,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Telefono)
-        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
-    </div>
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
 
-    <button type="submit" class="btn btn-primary">
-        <i class="fas fa-save"></i> Guardar
-    </button>
+        .hero-content {
+            position: relative;
+            padding: 60px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
 
-    <a href="@Url.Action("Index")" class="btn btn-secondary">
-        Cancelar
-    </a>
+        .hero-title {
+            font-weight: 800;
+            font-size: clamp(28px, 4vw, 46px);
+            margin: 0;
+        }
+
+        .hero-subtitle {
+            margin-top: 8px;
+            font-weight: 600;
+            color: rgba(11,15,20,0.82);
+        }
+
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .btn-round {
+            border-radius: 12px;
+        }
+    </style>
 }
+
+<div class="container my-4">
+
+    <!-- Header panel -->
+    <div class="mb-3">
+        <h3 class="fw-bold mb-1">Formulario de edición</h3>
+        <p class="text-muted">
+            Modificá los datos del usuario y guardá los cambios.
+        </p>
+    </div>
+
+    <div class="card card-soft border-0">
+        <div class="card-body p-4">
+
+            @using (Html.BeginForm("Edit", "AdminUsuarios", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.IdUsuario)
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.NombreCompleto, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.NombreCompleto, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.NombreCompleto, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.Correo, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", type = "email" })
+                        @Html.ValidationMessageFor(m => m.Correo, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.Telefono, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Telefono, "", new { @class = "text-danger small" })
+                    </div>
+
+                </div>
+
+                <hr class="my-4" />
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="@Url.Action("Index","AdminUsuarios")"
+                       class="btn btn-outline-secondary btn-round px-4">
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="btn btn-success btn-round px-4">
+                        <i class="fa-solid fa-save me-2"></i>
+                        Guardar cambios
+                    </button>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

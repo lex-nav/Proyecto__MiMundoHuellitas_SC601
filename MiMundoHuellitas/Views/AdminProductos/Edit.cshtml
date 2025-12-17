@@ -5,51 +5,157 @@
     Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-@using (Html.BeginForm("Edit", "AdminProductos", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.IdProducto)
+@section FullWidthTop {
+    <!-- HERO -->
+    <div class="hero-edit-producto">
+        <div class="hero-overlay"></div>
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.NombreProducto)
-        @Html.TextBoxFor(m => m.NombreProducto, new { @class = "form-control" })
+        <div class="container hero-content">
+            <h1 class="hero-title">Editar producto</h1>
+            <p class="hero-subtitle">Actualizá la información del producto</p>
+        </div>
     </div>
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Descripcion)
-        @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", rows = 3 })
-    </div>
+    <style>
+        .hero-edit-producto {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 220px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(0,200,83,0.75), rgba(3,169,244,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Categoria)
-        @Html.TextBoxFor(m => m.Categoria, new { @class = "form-control" })
-    </div>
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.PrecioUnitario)
-        @Html.TextBoxFor(m => m.PrecioUnitario, new { @class = "form-control", type = "number", step = "0.01" })
-    </div>
+        .hero-content {
+            position: relative;
+            padding: 60px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.StockActual)
-        @Html.TextBoxFor(m => m.StockActual, new { @class = "form-control", type = "number" })
-    </div>
+        .hero-title {
+            font-weight: 800;
+            font-size: clamp(28px, 4vw, 46px);
+            margin: 0;
+        }
 
-    <div class="mb-3">
-        @Html.LabelFor(m => m.ImagenUrl)
-        @Html.TextBoxFor(m => m.ImagenUrl, new { @class = "form-control" })
-    </div>
+        .hero-subtitle {
+            margin-top: 8px;
+            font-weight: 600;
+            color: rgba(11,15,20,0.82);
+        }
 
-    <div class="mb-3 form-check">
-        @Html.CheckBoxFor(m => m.Activo, new { @class = "form-check-input" })
-        @Html.LabelFor(m => m.Activo, htmlAttributes: new { @class = "form-check-label" })
-    </div>
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
 
-    <button type="submit" class="btn btn-primary">
-        <i class="fas fa-save"></i> Guardar
-    </button>
+        .form-label {
+            font-weight: 600;
+        }
 
-    <a href="@Url.Action("Index","AdminProductos")" class="btn btn-secondary">
-        Cancelar
-    </a>
+        .btn-round {
+            border-radius: 12px;
+        }
+    </style>
 }
+
+<div class="container my-4">
+
+    <!-- Header panel -->
+    <div class="mb-3">
+        <h3 class="fw-bold mb-1">Formulario de edición</h3>
+        <p class="text-muted">
+            Modificá los datos del producto y guardá los cambios.
+        </p>
+    </div>
+
+    <div class="card card-soft border-0">
+        <div class="card-body p-4">
+
+            @using (Html.BeginForm("Edit", "AdminProductos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.IdProducto)
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.NombreProducto, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.NombreProducto, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.NombreProducto, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(m => m.Categoria, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Categoria, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Categoria, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-12">
+                        @Html.LabelFor(m => m.Descripcion, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", rows = 3 })
+                        @Html.ValidationMessageFor(m => m.Descripcion, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.PrecioUnitario, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.PrecioUnitario, new
+                        {
+                            @class = "form-control",
+                            type = "number",
+                            step = "0.01"
+                        })
+                        @Html.ValidationMessageFor(m => m.PrecioUnitario, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.StockActual, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.StockActual, new
+                        {
+                            @class = "form-control",
+                            type = "number"
+                        })
+                        @Html.ValidationMessageFor(m => m.StockActual, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.ImagenUrl, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.ImagenUrl, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ImagenUrl, "", new { @class = "text-danger small" })
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-check mt-2">
+                            @Html.CheckBoxFor(m => m.Activo, new { @class = "form-check-input" })
+                            @Html.LabelFor(m => m.Activo, new { @class = "form-check-label fw-semibold" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="my-4" />
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="@Url.Action("Index","AdminProductos")"
+                       class="btn btn-outline-secondary btn-round px-4">
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="btn btn-success btn-round px-4">
+                        <i class="fa-solid fa-save me-2"></i> Guardar cambios
+                    </button>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

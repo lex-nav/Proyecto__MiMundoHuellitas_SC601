@@ -2,7 +2,7 @@
 using MiMundoHuellitas.Models.ViewModels;
 using System;
 using System.Configuration;
-using System.Data.Entity;               // ✅ Include()
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -37,7 +37,6 @@ namespace MiMundoHuellitas.Controllers
 
             string hash = HashPassword(model.Contrasena);
 
-            // ✅ Traemos el usuario (y tipo por si lo ocupás en otros lados)
             var usuario = db.MH_Usuario_TB
                 .Include(u => u.MH_Tipo_Usuario_TB)
                 .FirstOrDefault(u =>
@@ -61,7 +60,7 @@ namespace MiMundoHuellitas.Controllers
                 DateTime.Now,
                 DateTime.Now.AddMinutes(60),
                 model.Recordarme,
-                rol                                 // ✅ aquí va el rol (UserData)
+                rol                                 // ✅ rol (UserData)
             );
 
             string encryptedTicket = FormsAuthentication.Encrypt(ticket);
@@ -72,7 +71,6 @@ namespace MiMundoHuellitas.Controllers
                 Path = FormsAuthentication.FormsCookiePath
             };
 
-            // ✅ si marca "Recordarme", persistimos la cookie
             if (model.Recordarme)
             {
                 cookie.Expires = ticket.Expiration;
@@ -113,26 +111,24 @@ namespace MiMundoHuellitas.Controllers
                 return View(model);
             }
 
-            // ✅ Buscar IdTipoUsuario del tipo "Cliente" (para no amarrarnos al ID)
+            // ✅ Buscar IdTipoUsuario del tipo "Cliente"
             int idTipoCliente = db.MH_Tipo_Usuario_TB
                 .Where(t => t.Activo)
                 .Where(t => t.NombreTipoUsuario.Trim().Equals("Cliente", StringComparison.OrdinalIgnoreCase))
                 .Select(t => t.IdTipoUsuario)
                 .FirstOrDefault();
 
-            // Fallback si por alguna razón no existe
             if (idTipoCliente <= 0) idTipoCliente = 2;
 
             var nuevoUsuario = new MH_Usuario_TB
             {
                 IdTipoUsuario = idTipoCliente,
-                NombreCompleto = (model.Nombre ?? "").Trim(), // Ajusta si tu VM usa otro nombre
+                NombreCompleto = (model.Nombre ?? "").Trim(),
                 Correo = correo,
                 ContrasennaHash = HashPassword(model.Contrasena),
                 Telefono = (model.Telefono ?? "").Trim(),
                 FechaRegistro = DateTime.Now,
                 Activo = true
-                // IdDireccion queda null
             };
 
             db.MH_Usuario_TB.Add(nuevoUsuario);
@@ -176,32 +172,39 @@ namespace MiMundoHuellitas.Controllers
         [AllowAnonymous]
         public ActionResult RecuperarContrasena()
         {
-            return View();
+            return View(new RecuperarContrasenaViewModel());
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult RecuperarContrasena(string Email, string Nombre)
+        public ActionResult RecuperarContrasena(RecuperarContrasenaViewModel model)
         {
-            Email = (Email ?? "").Trim();
-            Nombre = (Nombre ?? "").Trim();
-
-            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Nombre))
+            if (!ModelState.IsValid)
             {
-                TempData["Error"] = "Debe completar todos los campos.";
-                return View();
+                // Muestra Required / EmailAddress / etc.
+                return View(model);
             }
 
+            string correo = (model.Correo ?? "").Trim();
+            string nombre = (model.Nombre ?? "").Trim();
+
+            if (string.IsNullOrWhiteSpace(correo) || string.IsNullOrWhiteSpace(nombre))
+            {
+                TempData["Error"] = "Debe completar todos los campos.";
+                return View(model);
+            }
+
+            // ✅ Búsqueda exacta (dejamos tu lógica tal cual)
             var usuario = db.MH_Usuario_TB
                 .FirstOrDefault(u => u.Activo &&
-                                     u.Correo == Email &&
-                                     u.NombreCompleto == Nombre);
+                                     u.Correo == correo &&
+                                     u.NombreCompleto == nombre);
 
             if (usuario == null)
             {
                 TempData["Error"] = "No se encontró un usuario con esos datos.";
-                return View();
+                return View(model);
             }
 
             string nuevaPass = Guid.NewGuid().ToString("N").Substring(0, 8);
@@ -209,16 +212,17 @@ namespace MiMundoHuellitas.Controllers
             usuario.ContrasennaHash = HashPassword(nuevaPass);
             db.SaveChanges();
 
+            // ✅ HTML bonito como tu screenshot
+            string html = GenerarHtmlRecuperacion(usuario.NombreCompleto, nuevaPass);
+
             EnviarCorreo(
                 usuario.Correo,
                 "Recuperación de Contraseña - Mi Mundo Huellitas",
-                $"Hola {usuario.NombreCompleto},<br><br>" +
-                $"Tu nueva contraseña temporal es:<br><h2>{nuevaPass}</h2><br>" +
-                $"Te recomendamos cambiarla después de iniciar sesión."
+                html
             );
 
             TempData["Ok"] = "Se envió una nueva contraseña a tu correo.";
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "Account");
         }
 
         // =========================
@@ -258,6 +262,80 @@ namespace MiMundoHuellitas.Controllers
             }
         }
 
+        // ✅ Plantilla HTML inline para email (se ve bien en Outlook/Gmail móvil)
+        private static string GenerarHtmlRecuperacion(string nombreCompleto, string passTemporal)
+        {
+            string nombre = WebUtility.HtmlEncode(nombreCompleto ?? "");
+            string pass = WebUtility.HtmlEncode(passTemporal ?? "");
+
+            return $@"
+<!doctype html>
+<html lang=""es"">
+<head>
+  <meta charset=""utf-8"">
+  <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+  <title>Recuperación de contraseña</title>
+</head>
+<body style=""margin:0;padding:0;background:#0b0f14;font-family:Arial,Helvetica,sans-serif;"">
+  <table role=""presentation"" width=""100%"" cellpadding=""0"" cellspacing=""0"" style=""background:#0b0f14;padding:24px 0;"">
+    <tr>
+      <td align=""center"">
+
+        <table role=""presentation"" width=""600"" cellpadding=""0"" cellspacing=""0""
+               style=""width:600px;max-width:92vw;background:#121826;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);"">
+
+          <tr>
+            <td style=""background:linear-gradient(90deg,#00c853,#03a9f4);padding:22px 24px;text-align:center;"">
+              <div style=""font-size:22px;font-weight:800;color:#0b0f14;letter-spacing:0.3px;"">Mi Mundo de Huellitas</div>
+              <div style=""font-size:14px;font-weight:600;color:rgba(11,15,20,0.8);margin-top:4px;"">Recuperación de contraseña</div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style=""padding:26px 26px 10px;color:#e8eef6;"">
+              <div style=""font-size:18px;line-height:1.45;margin:0 0 14px;"">
+                Hola <strong style=""color:#ffffff;"">{nombre}</strong>,
+              </div>
+
+              <div style=""font-size:15px;line-height:1.6;color:rgba(232,238,246,0.85);margin:0 0 18px;"">
+                Hemos generado una contraseña temporal para que puedas acceder a tu cuenta:
+              </div>
+
+              <div style=""background:#0f172a;border:2px dashed rgba(0,200,83,0.6);border-radius:14px;padding:18px;text-align:center;margin:0 0 18px;"">
+                <div style=""font-size:30px;font-weight:900;letter-spacing:2px;color:#9ef6c3;"">{pass}</div>
+              </div>
+
+              <div style=""font-size:14px;line-height:1.6;color:rgba(232,238,246,0.8);margin:0 0 12px;"">
+                Te recomendamos cambiarla inmediatamente después de iniciar sesión.
+              </div>
+
+              <div style=""margin-top:18px;color:rgba(232,238,246,0.75);font-size:14px;"">
+                🐾 <strong>Equipo Mi Mundo de Huellitas</strong>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td style=""padding:18px 24px 22px;color:rgba(232,238,246,0.45);font-size:12px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);"">
+              © {DateTime.Now.Year} Mi Mundo de Huellitas · Costa Rica
+            </td>
+          </tr>
+
+        </table>
+
+        <div style=""height:18px;line-height:18px;"">&nbsp;</div>
+
+        <div style=""max-width:600px;color:rgba(232,238,246,0.35);font-size:11px;line-height:1.5;text-align:center;padding:0 18px;"">
+          Si tú no solicitaste esta recuperación, puedes ignorar este correo.
+        </div>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>";
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing) db.Dispose();
@@ -265,4 +343,3 @@ namespace MiMundoHuellitas.Controllers
         }
     }
 }
-

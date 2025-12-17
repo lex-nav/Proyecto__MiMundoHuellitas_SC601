@@ -1,57 +1,194 @@
-﻿
-@model IEnumerable<MiMundoHuellitas.EF.MH_Usuario_TB>
+﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Usuario_TB>
 
 @{
-    ViewBag.Title = "Administrar Usuarios";
+    ViewBag.Title = "Admin Usuarios";
 }
 
+@section FullWidthTop {
+    <!-- HERO (igual vibe que Reportes) -->
+    <div class="hero-adminusers">
+        <div class="hero-overlay"></div>
 
-<!-- AQUÍ VA LA TABLA -->
-<div class="card border-0 shadow-sm" style="border-radius:18px;">
-    <div class="card-body p-4">
+        <div class="container hero-content">
+            <h1 class="hero-title">Administrar usuarios</h1>
+            <p class="hero-subtitle">Control y gestión de cuentas del sistema</p>
+        </div>
+    </div>
 
-        <h5 class="fw-bold mb-3">
-            <i class="fas fa-users me-2 text-primary"></i>
-            Lista de usuarios
-        </h5>
+    <style>
+        /* HERO similar al de Reportes */
+        .hero-adminusers {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 240px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(3,169,244,0.75), rgba(0,230,118,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
 
-        <div class="table-responsive">
-            <table class="table align-middle mb-0">
-                <thead style="background:#f8f9fa;">
-                    <tr class="text-muted">
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th class="text-center">Acciones</th>
-                    </tr>
-                </thead>
+        /* Si no tenés slider-bg.jpg, podés cambiar la url por otra imagen o quitarla */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
 
-                <tbody>
-                    @foreach (var u in Model)
-                    {
-                        <tr>
-                            <td class="fw-semibold">@u.NombreCompleto</td>
-                            <td>@u.Correo</td>
-                            <td>@u.Telefono</td>
+        .hero-content {
+            position: relative;
+            padding: 70px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
 
-                            <td class="text-center">
-                                <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
-                                   class="btn btn-sm btn-outline-primary me-1"
-                                   title="Editar">
-                                    <i class="fas fa-pen"></i>
-                                </a>
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            font-size: clamp(32px, 4vw, 52px);
+            margin: 0;
+        }
 
-                                <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
-                                   class="btn btn-sm btn-outline-danger"
-                                   title="Eliminar">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        .hero-subtitle {
+            margin: 10px 0 0;
+            font-weight: 600;
+            color: rgba(11,15,20,0.82);
+            font-size: 16px;
+        }
+
+        /* Panel */
+        .panel-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0b3d2e;
+            margin-bottom: 6px;
+        }
+
+        .panel-subtitle {
+            color: #6b7280;
+            margin-bottom: 18px;
+        }
+
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .table thead th {
+            font-size: 12px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #6b7280;
+            background: #f8fafc !important;
+        }
+
+        .btn-round {
+            border-radius: 12px;
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .badge-soft {
+            background: rgba(3,169,244,0.10);
+            color: #0369a1;
+            border: 1px solid rgba(3,169,244,0.15);
+        }
+    </style>
+}
+
+<div class="container my-4">
+
+    <!-- Header del panel -->
+    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mb-3">
+        <div>
+            <div class="panel-title">Panel de usuarios</div>
+            <div class="panel-subtitle">
+                Revisá usuarios registrados, editá datos o eliminá cuentas.
+            </div>
         </div>
 
+        <div class="d-flex align-items-center gap-2 mt-2 mt-md-0">
+            <span class="badge badge-soft rounded-pill px-3 py-2">
+                @((Model == null) ? 0 : Model.Count()) usuarios
+            </span>
+
+            @* Si tenés acción Create, descomentá:
+                <a href="@Url.Action("Create","AdminUsuarios")" class="btn btn-success btn-round px-3">
+                    <i class="fa-solid fa-user-plus me-2"></i> Nuevo
+                </a>
+            *@
+        </div>
     </div>
+
+    <!-- Card tabla -->
+    <div class="card card-soft border-0">
+        <div class="card-body p-3 p-md-4">
+
+            @if (Model == null || !Model.Any())
+            {
+                <div class="alert alert-light border rounded-3 text-center py-4 mb-0">
+                    <i class="fa-solid fa-user-slash fa-2x text-muted mb-2"></i>
+                    <div class="fw-semibold text-muted">No hay usuarios registrados</div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th class="text-center" style="width:160px;">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var u in Model)
+                            {
+                                <tr>
+                                    <td class="fw-semibold">@u.NombreCompleto</td>
+                                    <td class="text-muted">@u.Correo</td>
+                                    <td>
+                                        @if (!string.IsNullOrWhiteSpace(u.Telefono))
+                                        {
+                                            @u.Telefono
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted fst-italic">No registrado</span>
+                                        }
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
+                                           class="btn btn-outline-primary btn-icon me-1"
+                                           title="Editar">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </a>
+
+                                        <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
+                                           class="btn btn-outline-danger btn-icon"
+                                           title="Eliminar">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+        </div>
+    </div>
+
 </div>

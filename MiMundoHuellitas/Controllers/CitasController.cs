@@ -159,9 +159,7 @@ namespace MiMundoHuellitas.Controllers
             return fecha.Add(hora);
         }
 
-        // =========================
-        // EMAILS BONITOS (HTML)
-        // =========================
+
 
         private string EmailLayout(string titulo, string subtitulo, string contenidoHtml)
         {

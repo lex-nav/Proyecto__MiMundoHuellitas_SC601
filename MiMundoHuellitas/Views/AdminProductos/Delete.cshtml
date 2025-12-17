@@ -1,13 +1,109 @@
 ﻿@model MiMundoHuellitas.EF.MH_Productos_TB
 
-<h3>Eliminar Producto</h3>
-<p>¿Seguro que deseas eliminar el producto <strong>@Model.NombreProducto</strong>?</p>
-
-@using (Html.BeginForm("ConfirmDelete", "AdminProductos", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.IdProducto)
-
-    <button type="submit" class="btn btn-danger">Eliminar</button>
-    <a href="@Url.Action("Index","AdminProductos")" class="btn btn-secondary">Cancelar</a>
+@{
+    ViewBag.Title = "Eliminar Producto";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
+
+@section FullWidthTop {
+    <!-- HERO -->
+    <div class="hero-delete-producto">
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+            <h1 class="hero-title">Eliminar producto</h1>
+            <p class="hero-subtitle">Esta acción no se puede deshacer</p>
+        </div>
+    </div>
+
+    <style>
+        .hero-delete-producto {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 220px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(220,53,69,0.75), rgba(255,193,7,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 60px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            font-size: clamp(28px, 4vw, 46px);
+            margin: 0;
+        }
+
+        .hero-subtitle {
+            margin-top: 8px;
+            font-weight: 600;
+            color: rgba(11,15,20,0.85);
+        }
+
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .btn-round {
+            border-radius: 12px;
+        }
+    </style>
+}
+
+<div class="container my-4">
+
+    <!-- Panel -->
+    <div class="card card-soft border-0">
+        <div class="card-body p-4 p-md-5 text-center">
+
+            <div class="mb-3">
+                <i class="fa-solid fa-triangle-exclamation fa-3x text-danger"></i>
+            </div>
+
+            <h4 class="fw-bold mb-2">¿Confirmar eliminación?</h4>
+
+            <p class="text-muted mb-4">
+                Estás a punto de eliminar el producto:<br />
+                <strong class="text-dark">@Model.NombreProducto</strong>
+            </p>
+
+            <div class="alert alert-warning border-0 rounded-3 mb-4">
+                Esta acción eliminará el producto de forma permanente.
+            </div>
+
+            @using (Html.BeginForm("ConfirmDelete", "AdminProductos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.IdProducto)
+
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="@Url.Action("Index","AdminProductos")"
+                       class="btn btn-outline-secondary btn-round px-4">
+                        Cancelar
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-danger btn-round px-4">
+                        <i class="fa-solid fa-trash me-2"></i>
+                        Eliminar producto
+                    </button>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
