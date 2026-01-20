@@ -25,6 +25,7 @@ namespace MiMundoHuellitas.EF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<MH_Canton_TB> MH_Canton_TB { get; set; }
         public virtual DbSet<MH_Cita_TB> MH_Cita_TB { get; set; }
         public virtual DbSet<MH_DetalleFactura_TB> MH_DetalleFactura_TB { get; set; }
@@ -42,5 +43,6 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_Servicios_TB> MH_Servicios_TB { get; set; }
         public virtual DbSet<MH_Tipo_Usuario_TB> MH_Tipo_Usuario_TB { get; set; }
         public virtual DbSet<MH_Usuario_TB> MH_Usuario_TB { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }
