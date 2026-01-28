@@ -1,0 +1,233 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.Comisiones.ComisionesIndexVM
+
+@{
+    ViewBag.Title = "Comisiones - Mi Mundo de Huellitas";
+    ViewBag.ActiveMenu = "Comisiones";
+}
+
+@Html.Partial("~/Views/Reportes/_ReportesHeader.cshtml")
+
+<a href="@Url.Action("Create","Comisiones")"
+   class="btn btn-success mb-3">
+    + Nueva Comisión
+</a>
+
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="height:260px;
+     background:linear-gradient(rgba(10,123,72,.85),rgba(14,118,140,.85)),
+     url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat;">
+
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Gestión de Comisiones</h1>
+        <p class="lead mb-0">Administración por colaborador</p>
+    </div>
+
+</div>
+
+
+<div class="container my-5">
+
+    <!-- ================= FILTROS ================= -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+
+            @using (Html.BeginForm("Index", "Comisiones", FormMethod.Get))
+            {
+                <div class="row g-3 align-items-end">
+
+                    <!-- Empleado -->
+                    <div class="col-md-4">
+                        <label class="form-label">Empleado</label>
+                        @Html.DropDownList(
+                            "idUsuario",
+                            Model.Usuarios,
+                            "Todos",
+                            new { @class = "form-select" }
+                        )
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="col-md-4">
+                        <label class="form-label">Estado</label>
+
+                        <select name="activo" class="form-select">
+                            <option value="">Todos</option>
+                            <option value="true">Activas</option>
+                            <option value="false">Inactivas</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="col-md-4 d-flex gap-2">
+
+                        <button type="submit"
+                                class="btn btn-success w-100"
+                                style="background:#0A7B48;border:none;">
+                            Filtrar
+                        </button>
+
+                        <a href="@Url.Action("Index","Comisiones")"
+                           class="btn btn-outline-secondary w-100">
+                            Limpiar
+                        </a>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+    <!-- ================= RESUMEN ================= -->
+    <div class="row g-3 mb-4">
+
+        <!-- Total -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Total</div>
+                    <div class="fs-2 fw-bold" style="color:#0A7B48;">
+                        @Model.Total
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activas -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Activas</div>
+                    <div class="fs-2 fw-bold text-success">
+                        @Model.Activas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inactivas -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Inactivas</div>
+                    <div class="fs-2 fw-bold text-danger">
+                        @Model.Inactivas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ================= BOTÓN NUEVO ================= -->
+    <div class="d-flex justify-content-end mb-3">
+
+        <a href="@Url.Action("Create","Comisiones")"
+           class="btn btn-outline-success"
+           style="border-color:#0A7B48;color:#0A7B48;">
+
+            <i class="fas fa-plus"></i> Nueva Comisión
+        </a>
+
+    </div>
+
+
+    <!-- ================= TABLA ================= -->
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body table-responsive">
+
+            <table class="table align-middle">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Empleado</th>
+                        <th>Tipo</th>
+                        <th>Monto</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Estado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @if (Model.Filas == null || !Model.Filas.Any())
+                    {
+                        <tr>
+                            <td colspan="8"
+                                class="text-center text-muted py-4">
+                                No hay comisiones registradas.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var x in Model.Filas)
+                        {
+                            <tr>
+
+                                <td>@x.IdComision</td>
+
+                                <td>
+                                    <div class="fw-semibold">
+                                        @x.Empleado
+                                    </div>
+                                </td>
+
+                                <td>@x.Tipo</td>
+
+                                <td>@x.Monto</td>
+
+                                <td>
+                                    @x.FechaInicio.ToString("dd/MM/yyyy")
+                                </td>
+
+                                <td>
+                                    @(x.FechaFin?.ToString("dd/MM/yyyy") ?? "-")
+                                </td>
+
+                                <td>
+                                    <span class="badge @(x.Activo ? "bg-success" : "bg-danger")">
+                                        @(x.Activo ? "Activa" : "Inactiva")
+                                    </span>
+                                </td>
+
+                                <!-- Acciones -->
+                                <td class="text-center">
+
+                                    <a href="@Url.Action("Edit","Comisiones", new { id = x.IdComision })"
+                                       class="btn btn-sm btn-outline-primary me-1"
+                                       title="Editar">
+
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <a href="@Url.Action("Delete","Comisiones", new { id = x.IdComision })"
+                                       class="btn btn-sm btn-outline-danger"
+                                       title="Eliminar">
+
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

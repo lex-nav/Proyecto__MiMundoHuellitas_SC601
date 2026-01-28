@@ -13,7 +13,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize]
     public class CitasController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
 
         // =========================
         // Helpers

@@ -1,8 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\",
+  "WorkspaceRootPath": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|e:\\ingenieria en sistemas\\6to cuatrimestre\\programacion avanzada sc-601\\mimundohuellitas\\mimundohuellitas\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\citascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -66,6 +67,22 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lexan\\AppData\\Local\\Temp\\meabalp3..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
+=======
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\universidad\\repokn\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\views\\comisiones\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\comisiones\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\universidad\\repokn\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\views\\comisiones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\views\\comisiones\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\universidad\\repokn\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\controllers\\comisionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\controllers\\comisionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|c:\\universidad\\repokn\\proyecto__mimundohuellitas_sc601\\mimundohuellitas\\models\\viewmodels\\comisiones\\comisionformvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D199DA54-D0DC-4542-8562-58727D6CBB0C}|MiMundoHuellitas\\MiMundoHuellitas.csproj|solutionrelative:mimundohuellitas\\models\\viewmodels\\comisiones\\comisionformvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -80,14 +97,54 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CitasController.cs",
-              "DocumentMoniker": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "ToolTip": "E:\\Ingenieria en Sistemas\\6to Cuatrimestre\\Programacion Avanzada SC-601\\MiMundoHuellitas\\MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\CitasController.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAqwJMAAAAcAAAAAAAAAA==",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Comisiones\\Index.cshtml",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Comisiones\\Index.cshtml",
+              "ToolTip": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Comisiones\\Index.cshtml",
+              "RelativeToolTip": "MiMundoHuellitas\\Views\\Comisiones\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-28T02:06:51.7Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Comisiones\\Create.cshtml",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Views\\Comisiones\\Create.cshtml",
+              "ToolTip": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Views\\Comisiones\\Create.cshtml",
+              "RelativeToolTip": "MiMundoHuellitas\\Views\\Comisiones\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-28T03:22:21.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ComisionesController.cs",
+              "DocumentMoniker": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\ComisionesController.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Controllers\\ComisionesController.cs",
+              "ToolTip": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Controllers\\ComisionesController.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Controllers\\ComisionesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T00:52:16.279Z",
+              "WhenOpened": "2026-01-28T02:48:00.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ComisionFormVM.cs",
+              "DocumentMoniker": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Models\\ViewModels\\Comisiones\\ComisionFormVM.cs",
+              "RelativeDocumentMoniker": "MiMundoHuellitas\\Models\\ViewModels\\Comisiones\\ComisionFormVM.cs",
+              "ToolTip": "C:\\Universidad\\RepoKN\\Proyecto__MiMundoHuellitas_SC601\\MiMundoHuellitas\\Models\\ViewModels\\Comisiones\\ComisionFormVM.cs",
+              "RelativeToolTip": "MiMundoHuellitas\\Models\\ViewModels\\Comisiones\\ComisionFormVM.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowCAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T02:45:58.452Z",
               "EditorCaption": ""
             },
             {

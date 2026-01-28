@@ -4,7 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9027468abf9948abb9f7dd839be7a9ec" Name="Diagram1">
+      <Diagram DiagramId="cef01795ba3a448db5387b1ad5b8abb4" Name="Diagram1">
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.C__MigrationHistory" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Canton_TB" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Cita_TB" Width="1.5" PointX="12" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_DetalleFactura_TB" Width="1.5" PointX="20.25" PointY="5.625" IsExpanded="true" />
@@ -22,6 +23,7 @@
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_TB" Width="1.5" PointX="15" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Tipo_Usuario_TB" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Usuario_TB" Width="1.5" PointX="9.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.Usuarios" Width="1.5" PointX="2.25" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Canton_Provincia" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Distrito_Canton" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Cita_Estado" ManuallyRouted="false" />
@@ -43,6 +45,8 @@
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Productos_Proveedor" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Servicios_Cita_Servicio" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Comision_TB" Width="1.5" PointX="12" PointY="13.75" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_Comision_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
