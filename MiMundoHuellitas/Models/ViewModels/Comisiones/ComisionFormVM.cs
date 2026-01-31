@@ -27,7 +27,7 @@ namespace MiMundoHuellitas.Models.ViewModels.Comisiones
 
         public bool Activo { get; set; }
 
-        // Para combo
+        // Para combo de usuarios
         public SelectList Usuarios { get; set; }
     }
 }

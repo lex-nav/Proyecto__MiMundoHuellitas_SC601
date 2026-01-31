@@ -6,7 +6,7 @@
 
 <h2>Nueva Comisión</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Comisiones", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

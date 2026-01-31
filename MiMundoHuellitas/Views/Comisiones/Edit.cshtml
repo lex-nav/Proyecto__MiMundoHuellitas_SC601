@@ -1,0 +1,20 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.Comisiones.ComisionFormVM
+
+@{
+    ViewBag.Title = "Editar Comisión";
+}
+
+<h2>Editar Comisión</h2>
+
+@using (Html.BeginForm("Edit", "Comisiones", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.IdComision)
+
+    @Html.Partial("_CreateEditForm", Model)
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+
+}

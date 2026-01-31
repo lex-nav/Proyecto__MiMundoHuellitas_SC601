@@ -51,6 +51,8 @@ namespace MiMundoHuellitas.Controllers
 
             return View(vm);
         }
+
+        // NUEVA COMISION
         public ActionResult Create()
         {
             var vm = new ComisionFormVM();
@@ -71,6 +73,14 @@ namespace MiMundoHuellitas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ComisionFormVM vm)
         {
+
+            // Regla de negocio: debe haber porcentaje o monto
+            if (vm.Porcentaje == null && vm.MontoFijo == null)
+            {
+                ModelState.AddModelError("",
+                    "Debe indicar un porcentaje o un monto fijo.");
+            }
+
             if (!ModelState.IsValid)
             {
                 vm.Usuarios = new SelectList(
@@ -99,6 +109,78 @@ namespace MiMundoHuellitas.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // EDITAR COMISION 
+
+        // GET: Edit
+        public ActionResult Edit(int? id)
+        {
+
+            if (id == null)
+                return RedirectToAction("Index");
+
+            var entidad = db.MH_Comision_TB.Find(id);
+
+            if (entidad == null)
+                return HttpNotFound();
+
+            var vm = new ComisionFormVM
+            {
+                IdComision = entidad.IdComision,
+                IdUsuario = entidad.IdUsuario,
+                TipoComision = entidad.TipoComision,
+                Porcentaje = entidad.Porcentaje,
+                MontoFijo = entidad.MontoFijo,
+                FechaInicio = entidad.FechaInicio,
+                FechaFin = entidad.FechaFin,
+                Activo = entidad.Activo ?? false
+            };
+
+            vm.Usuarios = new SelectList(
+                db.MH_Usuario_TB,
+                "IdUsuario",
+                "NombreCompleto",
+                vm.IdUsuario
+            );
+
+            return View(vm);
+        }
+
+        // GUARDAR CAMBIOS
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ComisionFormVM vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                vm.Usuarios = new SelectList(
+                    db.MH_Usuario_TB,
+                    "IdUsuario",
+                    "NombreCompleto",
+                    vm.IdUsuario
+                );
+
+                return View(vm);
+            }
+
+            var entidad = db.MH_Comision_TB.Find(vm.IdComision);
+
+            if (entidad == null)
+                return HttpNotFound();
+
+            entidad.IdUsuario = vm.IdUsuario;
+            entidad.TipoComision = vm.TipoComision;
+            entidad.Porcentaje = vm.Porcentaje;
+            entidad.MontoFijo = vm.MontoFijo;
+            entidad.FechaInicio = vm.FechaInicio;
+            entidad.FechaFin = vm.FechaFin;
+            entidad.Activo = vm.Activo;
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
 

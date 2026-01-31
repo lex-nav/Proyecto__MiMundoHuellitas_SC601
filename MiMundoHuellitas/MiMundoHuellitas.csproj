@@ -649,6 +649,8 @@
     <Content Include="Views\AdminProductos\Delete.cshtml" />
     <Content Include="Views\Comisiones\Index.cshtml" />
     <Content Include="Views\Comisiones\Create.cshtml" />
+    <Content Include="Views\Comisiones\Edit.cshtml" />
+    <Content Include="Views\Comisiones\_CreateEditForm.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
