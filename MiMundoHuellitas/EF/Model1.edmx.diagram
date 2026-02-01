@@ -22,7 +22,7 @@
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_Cita_TB" Width="1.5" PointX="17.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_TB" Width="1.5" PointX="15" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Tipo_Usuario_TB" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Usuario_TB" Width="1.5" PointX="9.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Usuario_TB" Width="1.75" PointX="9.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.Usuarios" Width="1.5" PointX="2.25" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Canton_Provincia" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Distrito_Canton" ManuallyRouted="false" />

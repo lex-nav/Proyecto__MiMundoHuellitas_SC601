@@ -32,6 +32,7 @@ namespace MiMundoHuellitas.EF
         public string Telefono { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public bool Activo { get; set; }
+        public Nullable<System.DateTime> FechaSalida { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Cita_TB> MH_Cita_TB { get; set; }

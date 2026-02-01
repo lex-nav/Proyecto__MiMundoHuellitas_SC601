@@ -210,6 +210,7 @@
           <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
           <Property Name="FechaRegistro" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaSalida" Type="datetime" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -833,6 +834,7 @@
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Mascotas_TB" />
           <NavigationProperty Name="MH_Tipo_Usuario_TB" Relationship="Self.FK_MH_Usuario_TipoUsuario" FromRole="MH_Usuario_TB" ToRole="MH_Tipo_Usuario_TB" />
           <NavigationProperty Name="MH_Comision_TB" Relationship="MiMundoHuellitasModel.FK_Comision_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Comision_TB" />
+          <Property Name="FechaSalida" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -1436,6 +1438,7 @@
           <EntitySetMapping Name="MH_Usuario_TB">
             <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Usuario_TB">
               <MappingFragment StoreEntitySet="MH_Usuario_TB">
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
                 <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />

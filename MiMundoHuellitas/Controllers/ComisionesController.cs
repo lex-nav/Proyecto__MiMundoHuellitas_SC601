@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace MiMundoHuellitas.Controllers
 {
+    [Authorize(Roles = "Admin")] //Línea de permisos de acceso
     public class ComisionesController : Controller
     {
         private readonly MiMundoHuellitasEntities db =
