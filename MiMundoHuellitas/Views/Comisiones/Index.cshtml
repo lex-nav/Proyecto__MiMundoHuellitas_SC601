@@ -5,12 +5,7 @@
     ViewBag.ActiveMenu = "Comisiones";
 }
 
-@Html.Partial("~/Views/Reportes/_ReportesHeader.cshtml")
-
-<a href="@Url.Action("Create","Comisiones")"
-   class="btn btn-success mb-3">
-    + Nueva Comisión
-</a>
+@*@Html.Partial("~/Views/Reportes/_ReportesHeader.cshtml")*@
 
 <!-- HERO -->
 <div class="hero-section d-flex align-items-center text-white"
@@ -183,7 +178,7 @@
 
                                 <td>@x.Tipo</td>
 
-                                <td>@x.Porcentaje</td>
+                                <td>@x.Monto</td>
 
                                 <td>
                                     @x.FechaInicio.ToString("dd/MM/yyyy")
@@ -211,7 +206,8 @@
 
                                     <a href="@Url.Action("Delete","Comisiones", new { id = x.IdComision })"
                                        class="btn btn-sm btn-outline-danger"
-                                       title="Eliminar">
+                                       title="Eliminar"
+                                       onclick="return confirm('¿Seguro que desea eliminar esta comisión?');">
 
                                         <i class="fas fa-trash"></i>
                                     </a>

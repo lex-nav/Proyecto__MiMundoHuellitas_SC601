@@ -146,7 +146,6 @@ namespace MiMundoHuellitas.Controllers
             return View(vm);
         }
 
-        // GUARDAR CAMBIOS
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ComisionFormVM vm)
@@ -181,6 +180,19 @@ namespace MiMundoHuellitas.Controllers
             return RedirectToAction("Index");
         }
 
+        // ELIMINAR COMISION
+        public ActionResult Delete(int id)
+        {
+            var comision = db.MH_Comision_TB.Find(id);
+
+            if (comision == null)
+                return HttpNotFound();
+
+            db.MH_Comision_TB.Remove(comision);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
 
