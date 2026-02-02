@@ -25,6 +25,71 @@ namespace MiMundoHuellitas.Controllers
         }
 
         // ============================
+        // REPORTE DE MARCACIONES (EMPLEADOS)
+        // ============================
+        public ActionResult Marcaciones(DateTime? desde, DateTime? hasta, int? idEmpleado)
+        {
+            ViewBag.ActiveMenu = "Reportes";
+
+            var vm = new ReporteMarcacionesVM
+            {
+                Desde = desde,
+                Hasta = hasta,
+                IdEmpleado = idEmpleado
+            };
+
+            // Dropdown empleados (solo tipo empleado = 3)
+            var empleados = db.MH_Usuario_TB
+                .Where(u => u.Activo && u.IdTipoUsuario == 3)
+                .OrderBy(u => u.NombreCompleto)
+                .Select(u => new SelectListItem
+                {
+                    Value = u.IdUsuario.ToString(),
+                    Text = u.NombreCompleto,
+                    Selected = (idEmpleado.HasValue && u.IdUsuario == idEmpleado.Value)
+                })
+                .ToList();
+
+            empleados.Insert(0, new SelectListItem { Text = "Todos", Value = "" });
+            vm.Empleados = empleados;
+
+            // Query marcaciones
+            var q = db.MH_Marcacion_TB
+                .Include(m => m.MH_Usuario_TB)
+                .AsQueryable();
+
+            if (desde.HasValue)
+            {
+                DateTime d = new DateTime(desde.Value.Year, desde.Value.Month, desde.Value.Day);
+                q = q.Where(x => x.Fecha >= d);
+            }
+
+            if (hasta.HasValue)
+            {
+                DateTime h = new DateTime(hasta.Value.Year, hasta.Value.Month, hasta.Value.Day).AddDays(1);
+                q = q.Where(x => x.Fecha < h);
+            }
+
+
+            if (idEmpleado.HasValue)
+                q = q.Where(x => x.IdUsuario == idEmpleado.Value);
+
+            var data = q
+                .OrderByDescending(x => x.Fecha)
+                .ToList();
+
+            vm.Filas = data.Select(x => new ReporteMarcacionesRowVM
+            {
+                Empleado = x.MH_Usuario_TB?.NombreCompleto ?? "(Sin nombre)",
+                Fecha = x.Fecha,
+                HoraEntrada = x.HoraEntrada,
+                HoraSalida = x.HoraSalida
+            }).ToList();
+
+            return View(vm);
+        }
+
+        // ============================
         // REPORTE DE CITAS
         // ============================
         public ActionResult Citas(DateTime? desde, DateTime? hasta, int? idEstado)

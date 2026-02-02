@@ -44,5 +44,7 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_Tipo_Usuario_TB> MH_Tipo_Usuario_TB { get; set; }
         public virtual DbSet<MH_Usuario_TB> MH_Usuario_TB { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<MH_Jornada_TB> MH_Jornada_TB { get; set; }
+        public virtual DbSet<MH_Marcacion_TB> MH_Marcacion_TB { get; set; }
     }
 }

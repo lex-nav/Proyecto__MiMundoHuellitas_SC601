@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using MiMundoHuellitas.EF;
+using System.Data.Entity;
+
 
 namespace MiMundoHuellitas.Controllers
 {
@@ -23,9 +25,24 @@ namespace MiMundoHuellitas.Controllers
         // GET: /AdminUsuarios/Edit/5
         public ActionResult Edit(int id)
         {
-            var usuario = db.MH_Usuario_TB.Find(id);
-            if (usuario == null)
-                return HttpNotFound();
+            var usuario = db.MH_Usuario_TB
+        .Include(u => u.MH_Tipo_Usuario_TB)
+        .Include(u => u.MH_Jornada_TB)
+        .FirstOrDefault(u => u.IdUsuario == id);
+
+            if (usuario == null) return HttpNotFound();
+
+            // Jornadas activas para dropdown
+            ViewBag.Jornadas = db.MH_Jornada_TB
+                .Where(j => j.Activo)
+                .OrderBy(j => j.Nombre)
+                .Select(j => new SelectListItem
+                {
+                    Value = j.IdJornada.ToString(),
+                    Text = j.Nombre + " (" + j.HoraEntrada + " - " + j.HoraSalida + ")",
+                    Selected = (usuario.IdJornada != null && usuario.IdJornada == j.IdJornada)
+                })
+                .ToList();
 
             return View(usuario);
         }
@@ -39,12 +56,14 @@ namespace MiMundoHuellitas.Controllers
                 return View(model);
 
             var usuario = db.MH_Usuario_TB.Find(model.IdUsuario);
-            if (usuario == null)
-                return HttpNotFound();
+            if (usuario == null) return HttpNotFound();
 
             usuario.NombreCompleto = model.NombreCompleto;
             usuario.Correo = model.Correo;
             usuario.Telefono = model.Telefono;
+
+            // ✅ NUEVO: asignación de jornada
+            usuario.IdJornada = model.IdJornada;
 
             db.SaveChanges();
 

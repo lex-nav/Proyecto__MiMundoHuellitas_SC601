@@ -50,9 +50,14 @@ namespace MiMundoHuellitas.Controllers
                 return View(model);
             }
 
-            // ✅ Rol por ID (según tu BD: 1=Admin, 2=Cliente)
-            const int ID_ADMIN = 1;
-            string rol = (usuario.IdTipoUsuario == ID_ADMIN) ? "Admin" : "Cliente";
+           
+            string rolDb = (usuario.MH_Tipo_Usuario_TB?.NombreTipoUsuario ?? "Cliente").Trim();
+
+            
+            string rol = rolDb.Equals("Administrador", StringComparison.OrdinalIgnoreCase)
+                ? "Admin,Administrador"
+                : rolDb; 
+
 
             var ticket = new FormsAuthenticationTicket(
                 1,
@@ -182,7 +187,7 @@ namespace MiMundoHuellitas.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Muestra Required / EmailAddress / etc.
+              
                 return View(model);
             }
 
@@ -195,7 +200,7 @@ namespace MiMundoHuellitas.Controllers
                 return View(model);
             }
 
-            // ✅ Búsqueda exacta (dejamos tu lógica tal cual)
+           
             var usuario = db.MH_Usuario_TB
                 .FirstOrDefault(u => u.Activo &&
                                      u.Correo == correo &&
@@ -212,7 +217,7 @@ namespace MiMundoHuellitas.Controllers
             usuario.ContrasennaHash = HashPassword(nuevaPass);
             db.SaveChanges();
 
-            // ✅ HTML bonito como tu screenshot
+           
             string html = GenerarHtmlRecuperacion(usuario.NombreCompleto, nuevaPass);
 
             EnviarCorreo(

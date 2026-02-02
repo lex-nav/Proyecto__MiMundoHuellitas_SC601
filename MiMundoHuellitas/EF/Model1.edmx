@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MiMundoHuellitasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MiMundoHuellitasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -96,6 +96,28 @@
           <Property Name="NumeroReferencia" Type="nvarchar" MaxLength="80" />
           <Property Name="MontoTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="MH_Jornada_TB">
+          <Key>
+            <PropertyRef Name="IdJornada" />
+          </Key>
+          <Property Name="IdJornada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HoraEntrada" Type="time" Precision="7" Nullable="false" />
+          <Property Name="HoraSalida" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ToleranciaMinutos" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Marcacion_TB">
+          <Key>
+            <PropertyRef Name="IdMarcacion" />
+          </Key>
+          <Property Name="IdMarcacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="HoraEntrada" Type="datetime2" Precision="0" />
+          <Property Name="HoraSalida" Type="datetime2" Precision="0" />
+          <Property Name="Observacion" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="MH_Mascotas_TB">
           <Key>
@@ -196,6 +218,7 @@
           <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
           <Property Name="FechaRegistro" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="IdJornada" Type="int" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -339,6 +362,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MH_Marcacion_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Marcacion_TB" Type="Self.MH_Marcacion_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Marcacion_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MH_Mascotas_Especie">
           <End Role="MH_Especie_TB" Type="Self.MH_Especie_TB" Multiplicity="1" />
           <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="*" />
@@ -447,6 +482,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MH_Usuario_Jornada">
+          <End Role="MH_Jornada_TB" Type="Self.MH_Jornada_TB" Multiplicity="0..1" />
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Jornada_TB">
+              <PropertyRef Name="IdJornada" />
+            </Principal>
+            <Dependent Role="MH_Usuario_TB">
+              <PropertyRef Name="IdJornada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MH_Usuario_TipoUsuario">
           <End Role="MH_Tipo_Usuario_TB" Type="Self.MH_Tipo_Usuario_TB" Multiplicity="1" />
           <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="*" />
@@ -469,6 +516,8 @@
           <EntitySet Name="MH_Especie_TB" EntityType="Self.MH_Especie_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Estado_TB" EntityType="Self.MH_Estado_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Factura_TB" EntityType="Self.MH_Factura_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Jornada_TB" EntityType="Self.MH_Jornada_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Marcacion_TB" EntityType="Self.MH_Marcacion_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Mascotas_TB" EntityType="Self.MH_Mascotas_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Productos_TB" EntityType="Self.MH_Productos_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Proveedor_TB" EntityType="Self.MH_Proveedor_TB" Schema="dbo" store:Type="Tables" />
@@ -523,6 +572,10 @@
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
           </AssociationSet>
+          <AssociationSet Name="FK_MH_Marcacion_Usuario" Association="Self.FK_MH_Marcacion_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Marcacion_TB" EntitySet="MH_Marcacion_TB" />
+          </AssociationSet>
           <AssociationSet Name="FK_MH_Mascotas_Especie" Association="Self.FK_MH_Mascotas_Especie">
             <End Role="MH_Especie_TB" EntitySet="MH_Especie_TB" />
             <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
@@ -559,13 +612,16 @@
             <End Role="MH_Direccion_TB" EntitySet="MH_Direccion_TB" />
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
           </AssociationSet>
+          <AssociationSet Name="FK_MH_Usuario_Jornada" Association="Self.FK_MH_Usuario_Jornada">
+            <End Role="MH_Jornada_TB" EntitySet="MH_Jornada_TB" />
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+          </AssociationSet>
           <AssociationSet Name="FK_MH_Usuario_TipoUsuario" Association="Self.FK_MH_Usuario_TipoUsuario">
             <End Role="MH_Tipo_Usuario_TB" EntitySet="MH_Tipo_Usuario_TB" />
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MiMundoHuellitasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -802,6 +858,9 @@
           <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Mascotas_TB" />
           <NavigationProperty Name="MH_Tipo_Usuario_TB" Relationship="Self.FK_MH_Usuario_TipoUsuario" FromRole="MH_Usuario_TB" ToRole="MH_Tipo_Usuario_TB" />
+          <Property Name="IdJornada" Type="Int32" />
+          <NavigationProperty Name="MH_Jornada_TB" Relationship="MiMundoHuellitasModel.FK_MH_Usuario_Jornada" FromRole="MH_Usuario_TB" ToRole="MH_Jornada_TB" />
+          <NavigationProperty Name="MH_Marcacion_TB" Relationship="MiMundoHuellitasModel.FK_MH_Marcacion_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Marcacion_TB" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -1169,7 +1228,65 @@
             <End Role="MH_Tipo_Usuario_TB" EntitySet="MH_Tipo_Usuario_TB" />
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
           </AssociationSet>
+          <EntitySet Name="MH_Jornada_TB" EntityType="MiMundoHuellitasModel.MH_Jornada_TB" />
+          <EntitySet Name="MH_Marcacion_TB" EntityType="MiMundoHuellitasModel.MH_Marcacion_TB" />
+          <AssociationSet Name="FK_MH_Usuario_Jornada" Association="MiMundoHuellitasModel.FK_MH_Usuario_Jornada">
+            <End Role="MH_Jornada_TB" EntitySet="MH_Jornada_TB" />
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Marcacion_Usuario" Association="MiMundoHuellitasModel.FK_MH_Marcacion_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Marcacion_TB" EntitySet="MH_Marcacion_TB" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MH_Jornada_TB">
+          <Key>
+            <PropertyRef Name="IdJornada" />
+          </Key>
+          <Property Name="IdJornada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HoraEntrada" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="HoraSalida" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ToleranciaMinutos" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="MiMundoHuellitasModel.FK_MH_Usuario_Jornada" FromRole="MH_Jornada_TB" ToRole="MH_Usuario_TB" />
+        </EntityType>
+        <EntityType Name="MH_Marcacion_TB">
+          <Key>
+            <PropertyRef Name="IdMarcacion" />
+          </Key>
+          <Property Name="IdMarcacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HoraEntrada" Type="DateTime" Precision="0" />
+          <Property Name="HoraSalida" Type="DateTime" Precision="0" />
+          <Property Name="Observacion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="MiMundoHuellitasModel.FK_MH_Marcacion_Usuario" FromRole="MH_Marcacion_TB" ToRole="MH_Usuario_TB" />
+        </EntityType>
+        <Association Name="FK_MH_Usuario_Jornada">
+          <End Type="MiMundoHuellitasModel.MH_Jornada_TB" Role="MH_Jornada_TB" Multiplicity="0..1" />
+          <End Type="MiMundoHuellitasModel.MH_Usuario_TB" Role="MH_Usuario_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Jornada_TB">
+              <PropertyRef Name="IdJornada" />
+            </Principal>
+            <Dependent Role="MH_Usuario_TB">
+              <PropertyRef Name="IdJornada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Marcacion_Usuario">
+          <End Type="MiMundoHuellitasModel.MH_Usuario_TB" Role="MH_Usuario_TB" Multiplicity="1" />
+          <End Type="MiMundoHuellitasModel.MH_Marcacion_TB" Role="MH_Marcacion_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Marcacion_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1373,6 +1490,7 @@
           <EntitySetMapping Name="MH_Usuario_TB">
             <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Usuario_TB">
               <MappingFragment StoreEntitySet="MH_Usuario_TB">
+                <ScalarProperty Name="IdJornada" ColumnName="IdJornada" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
                 <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
@@ -1393,6 +1511,30 @@
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="ContrasenaHash" ColumnName="ContrasenaHash" />
                 <ScalarProperty Name="Rol" ColumnName="Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Jornada_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Jornada_TB">
+              <MappingFragment StoreEntitySet="MH_Jornada_TB">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="ToleranciaMinutos" ColumnName="ToleranciaMinutos" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdJornada" ColumnName="IdJornada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Marcacion_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Marcacion_TB">
+              <MappingFragment StoreEntitySet="MH_Marcacion_TB">
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdMarcacion" ColumnName="IdMarcacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

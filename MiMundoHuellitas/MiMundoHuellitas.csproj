@@ -267,6 +267,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminProductosController.cs" />
     <Compile Include="Controllers\AdminUsuariosController.cs" />
+    <Compile Include="Controllers\MarcacionesController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -302,6 +303,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_Factura_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Jornada_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Marcacion_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_Mascotas_TB.cs">
@@ -369,6 +376,7 @@
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteCitasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteFacturasVM.cs" />
+    <Compile Include="Models\ViewModels\Reportes\ReporteMarcacionesVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteMascotasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteServiciosVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -641,8 +649,12 @@
     <Content Include="Views\AdminProductos\Index.cshtml" />
     <Content Include="Views\AdminProductos\Edit.cshtml" />
     <Content Include="Views\AdminProductos\Delete.cshtml" />
+    <Content Include="Views\Marcaciones\Index.cshtml" />
+    <Content Include="Views\Reportes\Marcaciones.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />

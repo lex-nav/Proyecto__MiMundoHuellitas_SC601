@@ -1,6 +1,13 @@
 ﻿@{
     bool isAuth = (Request != null && Request.IsAuthenticated);
-    bool esAdmin = (User != null && User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"));
+
+
+    bool esAdmin = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
+                    (User.IsInRole("Admin") || User.IsInRole("Administrador")));
+
+    
+    bool esEmpleado = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
+                       User.IsInRole("Empleado"));
 }
 
 <!DOCTYPE html>
@@ -18,7 +25,6 @@
     <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css" />
 
-    <!-- ✅ Font Awesome 6 (única versión, correcta) -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -124,11 +130,19 @@
                 {
                     <span class="user-greeting">Hola, @User.Identity.Name</span>
 
+                    @* ================== ADMIN ================== *@
                     if (esAdmin)
                     {
                         @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
                         @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
                     }
+                    @* ================== EMPLEADO ================== *@
+                    else if (esEmpleado)
+                    {
+                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
+                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
+                    }
+                    @* ================== CLIENTE ================== *@
                     else
                     {
                         <a class="auth-link" href="@Url.Action("Carrito", "Productos")" title="Carrito">
@@ -171,6 +185,7 @@
             <div class="collapse navbar-collapse" id="mainMenu">
                 <ul class="navbar-nav ms-auto">
 
+                    @* ================= ADMIN ================= *@
                     @if (esAdmin)
                     {
                         <li class="nav-item">
@@ -182,7 +197,27 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Marcaciones")">MARCACIONES</a>
+                        </li>
                     }
+
+                    @* ================= EMPLEADO ================= *@
+                    else if (esEmpleado)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-success"
+                               href="@Url.Action("Index", "Marcaciones")">
+                                MARCACIONES
+                            </a>
+                        </li>
+                    }
+
+                    @* ================= CLIENTE ================= *@
                     else
                     {
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a></li>
@@ -200,12 +235,13 @@
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">MIS MASCOTAS</a></li>
                         }
                     }
+
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ✅ FIX: permite que vistas definan secciones sin romper el layout -->
+
     @RenderSection("FullWidthTop", required: false)
 
     <main class="container-fluid body-content px-3">
@@ -216,7 +252,6 @@
         </footer>
     </main>
 
-    <!-- ✅ FIX: sección opcional inferior -->
     @RenderSection("FullWidthBottom", required: false)
 
     @Scripts.Render("~/bundles/jquery")

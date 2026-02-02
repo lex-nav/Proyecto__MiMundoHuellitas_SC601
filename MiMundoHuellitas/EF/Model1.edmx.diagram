@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1302abdef94e425a913a1dcd15de6a60" Name="Diagram1">
+      <Diagram DiagramId="1302abdef94e425a913a1dcd15de6a60" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="MiMundoHuellitasModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Canton_TB" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Cita_TB" Width="1.5" PointX="12" PointY="5.375" IsExpanded="true" />
@@ -45,6 +45,10 @@
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Productos_Proveedor" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Servicios_Cita_Servicio" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Jornada_TB" Width="1.5" PointX="7.5" PointY="9.25" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Marcacion_TB" Width="1.5" PointX="12" PointY="13.25" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Usuario_Jornada" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Marcacion_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
