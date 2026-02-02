@@ -12,22 +12,24 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class MH_Proveedor_TB
+    public partial class MH_Jornada_TB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MH_Proveedor_TB()
+        public MH_Jornada_TB()
         {
-            this.MH_Productos_TB = new HashSet<MH_Productos_TB>();
+            this.MH_EmpleadoJornada_TB = new HashSet<MH_EmpleadoJornada_TB>();
         }
     
-        public int IdProveedor { get; set; }
-        public string NombreProveedor { get; set; }
-        public string Telefono { get; set; }
-        public string Correo { get; set; }
-        public string Observaciones { get; set; }
-        public bool Activo { get; set; }
+        public int IdJornada { get; set; }
+        public string Nombre { get; set; }
+        public System.TimeSpan HoraEntradaBase { get; set; }
+        public System.TimeSpan HoraSalidaBase { get; set; }
+        public int MinAlmuerzo { get; set; }
+        public int ToleranciaMin { get; set; }
+        public Nullable<decimal> HorasPorDia { get; set; }
+        public bool Activa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MH_Productos_TB> MH_Productos_TB { get; set; }
+        public virtual ICollection<MH_EmpleadoJornada_TB> MH_EmpleadoJornada_TB { get; set; }
     }
 }

@@ -12,16 +12,12 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class MH_Servicios_Cita_TB
+    public partial class sysdiagrams
     {
-        public int IdServicioCita { get; set; }
-        public int IdCita { get; set; }
-        public int IdServicio { get; set; }
-        public int Cantidad { get; set; }
-        public decimal PrecioUnitario { get; set; }
-        public decimal Subtotal { get; set; }
-    
-        public virtual MH_Cita_TB MH_Cita_TB { get; set; }
-        public virtual MH_Servicios_TB MH_Servicios_TB { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

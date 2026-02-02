@@ -12,16 +12,16 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class MH_Servicios_Cita_TB
+    public partial class MH_EmpleadoJornada_TB
     {
-        public int IdServicioCita { get; set; }
-        public int IdCita { get; set; }
-        public int IdServicio { get; set; }
-        public int Cantidad { get; set; }
-        public decimal PrecioUnitario { get; set; }
-        public decimal Subtotal { get; set; }
+        public int IdEmpleadoJornada { get; set; }
+        public int IdUsuario { get; set; }
+        public int IdJornada { get; set; }
+        public System.DateTime FechaInicio { get; set; }
+        public Nullable<System.DateTime> FechaFin { get; set; }
+        public bool Activa { get; set; }
     
-        public virtual MH_Cita_TB MH_Cita_TB { get; set; }
-        public virtual MH_Servicios_TB MH_Servicios_TB { get; set; }
+        public virtual MH_Jornada_TB MH_Jornada_TB { get; set; }
+        public virtual MH_Usuario_TB MH_Usuario_TB { get; set; }
     }
 }
