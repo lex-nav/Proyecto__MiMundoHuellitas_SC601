@@ -1,0 +1,198 @@
+﻿@{
+    ViewBag.Title = "Calcular";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<style>
+     /* Contenedor principal */
+     .page-wrap {
+         max-width: 980px;
+         margin: 0 auto;
+         padding: 24px 12px;
+     }
+
+     /* Header estilo MiMundo (gradiente) */
+     .page-header {
+         background: linear-gradient(90deg, #03a9f4, #00e676);
+         color: #fff;
+         border-radius: 18px;
+         padding: 18px 18px;
+         box-shadow: 0 10px 22px rgba(0,0,0,.10);
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 12px;
+         margin-bottom: 18px;
+     }
+
+     .page-header h2 {
+         margin: 0;
+         font-weight: 800;
+         letter-spacing: .3px;
+         font-size: 1.35rem;
+         display: flex;
+         align-items: center;
+         gap: 10px;
+     }
+
+     .page-header .hint {
+         opacity: .95;
+         font-size: .92rem;
+         margin: 0;
+         white-space: nowrap;
+     }
+
+     /* Card estilo moderno */
+     .calc-card {
+         background: #fff;
+         border-radius: 18px;
+         box-shadow: 0 10px 22px rgba(0,0,0,.08);
+         padding: 18px;
+         border: 1px solid rgba(0,0,0,.06);
+     }
+
+     .calc-card .card-title {
+         font-weight: 700;
+         margin-bottom: 10px;
+         color: #1f2937;
+         display: flex;
+         align-items: center;
+         gap: 10px;
+     }
+
+     /* Inputs */
+     .m-input {
+         border-radius: 14px !important;
+         padding: 10px 12px !important;
+         border: 1px solid rgba(0,0,0,.14) !important;
+         box-shadow: none !important;
+     }
+
+     .m-input:focus {
+         border-color: #03a9f4 !important;
+         box-shadow: 0 0 0 .2rem rgba(3,169,244,.18) !important;
+     }
+
+     .label-strong {
+         font-weight: 700;
+         color: #374151;
+         margin-bottom: 6px;
+         display: inline-flex;
+         gap: 8px;
+         align-items: center;
+     }
+
+     /* Botones estilo gradiente */
+     .btn-gradient {
+         border: none;
+         border-radius: 14px;
+         padding: 10px 14px;
+         font-weight: 800;
+         letter-spacing: .2px;
+         color: #fff;
+         background: linear-gradient(90deg, #03a9f4, #00e676);
+         box-shadow: 0 10px 18px rgba(0,0,0,.12);
+         transition: transform .12s ease, filter .12s ease;
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+     }
+
+     .btn-gradient:hover {
+         filter: brightness(1.02);
+         transform: translateY(-1px);
+         color: #fff;
+     }
+
+     .btn-soft {
+         border-radius: 14px;
+         padding: 10px 14px;
+         font-weight: 700;
+         border: 1px solid rgba(0,0,0,.12);
+         background: #f9fafb;
+         color: #111827;
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+     }
+
+     /* Footer info */
+     .note {
+         margin-top: 12px;
+         color: #6b7280;
+         font-size: .92rem;
+     }
+
+     /* Responsive */
+    @@media (max-width: 576px) {
+         .page-header {
+             flex-direction: column;
+             align-items: flex-start;
+         }
+         .page-header .hint {
+             white-space: normal;
+         }
+     }
+</style>
+
+<div class="page-wrap">
+    <div class="page-header">
+        <h2>
+            <i class="fa-solid fa-calculator"></i>
+            Calcular Planilla
+        </h2>
+        <p class="hint">
+            <i class="fa-solid fa-circle-info"></i>
+            Selecciona el rango de fechas a procesar
+        </p>
+    </div>
+
+    <div class="calc-card">
+        <div class="card-title">
+            <i class="fa-solid fa-calendar-days" style="color:#03a9f4;"></i>
+            Parámetros de cálculo
+        </div>
+
+        @using (Html.BeginForm("Calcular", "Planilla", FormMethod.Post, new { @class = "mt-2" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="label-strong">
+                        <i class="fa-regular fa-calendar"></i>
+                        Fecha Inicio
+                    </label>
+                    <input type="date" name="fechaInicio" class="form-control m-input" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="label-strong">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        Fecha Fin
+                    </label>
+                    <input type="date" name="fechaFin" class="form-control m-input" required />
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <button type="submit" class="btn-gradient">
+                    <i class="fa-solid fa-bolt"></i>
+                    Calcular
+                </button>
+
+                <a href="@Url.Action("Index","Planilla")" class="btn-soft">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Volver
+                </a>
+            </div>
+
+            <div class="note">
+                <i class="fa-solid fa-shield-heart"></i>
+                Tip: Si el rango es grande, el cálculo puede tardar más. Usa rangos por quincena o mes.
+            </div>
+        }
+    </div>
+</div>
+
+

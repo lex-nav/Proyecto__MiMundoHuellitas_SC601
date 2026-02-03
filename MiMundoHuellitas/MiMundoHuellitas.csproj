@@ -267,6 +267,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminProductosController.cs" />
     <Compile Include="Controllers\AdminUsuariosController.cs" />
+    <Compile Include="Controllers\PlanillaController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -276,6 +277,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="DAL\MarcacionRepository.cs" />
+    <Compile Include="DAL\PlanillaRepository.cs" />
     <Compile Include="EF\ApplicationDbContext.cs" />
     <Compile Include="EF\C__MigrationHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -377,6 +380,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Citas.cs" />
+    <Compile Include="Models\ViewModels\PlanillaDetalleVM.cs" />
     <Compile Include="Models\ViewModels\HomeProductosViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductosListadoViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckoutViewModel.cs" />
@@ -665,6 +669,8 @@
     <Content Include="Views\AdminProductos\Index.cshtml" />
     <Content Include="Views\AdminProductos\Edit.cshtml" />
     <Content Include="Views\AdminProductos\Delete.cshtml" />
+    <Content Include="Views\Planilla\Calcular.cshtml" />
+    <Content Include="Views\Planilla\Resultado.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
