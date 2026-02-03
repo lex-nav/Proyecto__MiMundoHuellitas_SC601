@@ -136,6 +136,20 @@
                     if (esAdmin)
                     {
                         @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
+
+                        <form action="@Url.Action("Logout", "Account")" method="post" id="logoutForm" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:void(0);" class="auth-link"
+                               onclick="document.getElementById('logoutForm').submit();">
+                                Cerrar sesión
+                            </a>
+                        </form>
+
+                    }
+                    @* ================== EMPLEADO ================== *@
+                    else if (esEmpleado)
+                    {
+                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
                         @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
                     }
                     @* ================== EMPLEADO ================== *@

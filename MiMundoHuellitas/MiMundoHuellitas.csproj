@@ -278,6 +278,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="DAL\MarcacionRepository.cs" />
+    <Compile Include="DAL\PlanillaRepository.cs" />
     <Compile Include="EF\ApplicationDbContext.cs" />
     <Compile Include="EF\C__MigrationHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>

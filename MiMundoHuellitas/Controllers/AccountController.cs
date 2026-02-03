@@ -1,4 +1,6 @@
-﻿using MiMundoHuellitas.EF;
+﻿// ✅ Ajustá este using al namespace real donde pusiste MarcacionRepository
+using MiMundoHuellitas.DAL;
+using MiMundoHuellitas.EF;
 using MiMundoHuellitas.Models.ViewModels;
 using System;
 using System.Configuration;
@@ -11,12 +13,21 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using TuProyecto.DAL;
 
 namespace MiMundoHuellitas.Controllers
 {
     public class AccountController : Controller
     {
         private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+
+        // ✅ Repositorio de marcación (SP: usp_MH_MarcarEntrada / usp_MH_MarcarSalida)
+        private readonly MarcacionRepository _marcRepo = new MarcacionRepository();
+
+        // ✅ IDs según tu BD
+        private const int ID_ADMIN = 1;
+        private const int ID_CLIENTE = 2;
+        private const int ID_EMPLEADO = 3;
 
         // =========================
         //          LOGIN
@@ -50,14 +61,11 @@ namespace MiMundoHuellitas.Controllers
                 return View(model);
             }
 
-           
-            string rolDb = (usuario.MH_Tipo_Usuario_TB?.NombreTipoUsuario ?? "Cliente").Trim();
-
-            
-            string rol = rolDb.Equals("Administrador", StringComparison.OrdinalIgnoreCase)
-                ? "Admin,Administrador"
-                : rolDb; 
-
+            // ✅ Rol según IdTipoUsuario
+            string rol =
+                (usuario.IdTipoUsuario == ID_ADMIN) ? "Admin" :
+                (usuario.IdTipoUsuario == ID_EMPLEADO) ? "Empleado" :
+                "Cliente";
 
             var ticket = new FormsAuthenticationTicket(
                 1,
@@ -82,6 +90,27 @@ namespace MiMundoHuellitas.Controllers
             }
 
             Response.Cookies.Add(cookie);
+
+            // ✅ Guardar info para Logout / otros usos
+            Session["IdUsuario"] = usuario.IdUsuario;
+            Session["IdTipoUsuario"] = usuario.IdTipoUsuario;
+
+            // ✅ MARCAR ENTRADA AUTOMÁTICA para EMPLEADO (3) o ADMIN (1)
+            if (usuario.IdTipoUsuario == ID_EMPLEADO || usuario.IdTipoUsuario == ID_ADMIN)
+            {
+                try { _marcRepo.MarcarEntrada(usuario.IdUsuario); } catch { }
+            }
+
+            {
+                try
+                {
+                    _marcRepo.MarcarEntrada(usuario.IdUsuario);
+                }
+                catch
+                {
+                    // Recomendado: log, pero NO bloquear login
+                }
+            }
 
             if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                 return Redirect(returnUrl);
@@ -123,7 +152,7 @@ namespace MiMundoHuellitas.Controllers
                 .Select(t => t.IdTipoUsuario)
                 .FirstOrDefault();
 
-            if (idTipoCliente <= 0) idTipoCliente = 2;
+            if (idTipoCliente <= 0) idTipoCliente = ID_CLIENTE;
 
             var nuevoUsuario = new MH_Usuario_TB
             {
@@ -158,6 +187,12 @@ namespace MiMundoHuellitas.Controllers
 
             Response.Cookies.Add(cookie);
 
+            // ✅ Guardar Session (por consistencia)
+            Session["IdUsuario"] = nuevoUsuario.IdUsuario;
+            Session["IdTipoUsuario"] = nuevoUsuario.IdTipoUsuario;
+
+            // ❌ NO marcamos entrada porque Register es Cliente
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -165,11 +200,40 @@ namespace MiMundoHuellitas.Controllers
         //         LOGOUT
         // =========================
         [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
+            int idUsuario = 0;
+            int idTipoUsuario = 0;
+
+            if (Session["IdUsuario"] != null)
+                int.TryParse(Session["IdUsuario"].ToString(), out idUsuario);
+
+            if (Session["IdTipoUsuario"] != null)
+                int.TryParse(Session["IdTipoUsuario"].ToString(), out idTipoUsuario);
+
+            // ✅ Marcar SALIDA para:
+            // - Empleado (3)
+            // - Admin (1)
+            if ((idTipoUsuario == ID_EMPLEADO || idTipoUsuario == ID_ADMIN) && idUsuario > 0)
+            {
+                try
+                {
+                    _marcRepo.MarcarSalida(idUsuario);
+                }
+                catch
+                {
+                    // No bloquear logout si falla
+                }
+            }
+
+            Session.Clear();
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account");
         }
+
+
 
         // =========================
         //   RECUPERAR CONTRASEÑA
@@ -200,7 +264,7 @@ namespace MiMundoHuellitas.Controllers
                 return View(model);
             }
 
-           
+            // ✅ Búsqueda exacta (tu lógica)
             var usuario = db.MH_Usuario_TB
                 .FirstOrDefault(u => u.Activo &&
                                      u.Correo == correo &&
