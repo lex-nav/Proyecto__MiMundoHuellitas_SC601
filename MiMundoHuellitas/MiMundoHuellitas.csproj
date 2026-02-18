@@ -437,6 +437,7 @@
     <Content Include="StaticFiles\CSS\animaciones.css" />
     <Content Include="StaticFiles\CSS\animate.css" />
     <Content Include="StaticFiles\CSS\bootstrap-datepicker.css" />
+    <Content Include="StaticFiles\CSS\chatbot.css" />
     <Content Include="StaticFiles\CSS\flaticon.css" />
     <Content Include="StaticFiles\CSS\jquery.timepicker.css" />
     <Content Include="StaticFiles\CSS\magnific-popup.css" />
@@ -570,6 +571,7 @@
     <Content Include="StaticFiles\img\user.jpg" />
     <Content Include="StaticFiles\JS\bootstrap-datepicker.js" />
     <Content Include="StaticFiles\JS\bootstrap.min.js" />
+    <Content Include="StaticFiles\JS\chatbot.js" />
     <Content Include="StaticFiles\JS\google-map.js" />
     <Content Include="StaticFiles\JS\jquery-3.2.1.min.js" />
     <Content Include="StaticFiles\JS\jquery-migrate-3.0.1.min.js" />
