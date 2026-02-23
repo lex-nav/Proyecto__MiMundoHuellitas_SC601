@@ -1,20 +1,58 @@
-﻿@* Header común para todos los reportes *@
-<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+﻿@{
+    var active = (ViewBag.ActiveSubMenu ?? "").ToString();
+}
 
+<style>
+    .rep-hero {
+        border-radius: 16px;
+        padding: 16px 18px;
+        color: #fff;
+        background: linear-gradient(90deg, #0ea5e9, #22c55e);
+        box-shadow: 0 8px 18px rgba(0,0,0,.10);
+        margin-bottom: 16px;
+    }
+
+        .rep-hero .title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .rep-hero .sub {
+            opacity: .9;
+            font-size: .9rem;
+            margin-top: 2px;
+        }
+
+    .rep-nav a {
+        border-radius: 999px;
+        padding: .45rem .8rem;
+        font-weight: 600;
+        border: 1px solid rgba(255,255,255,.35);
+        color: #fff;
+        margin-right: 8px;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+        .rep-nav a.active, .rep-nav a:hover {
+            background: rgba(255,255,255,.18);
+            color: #fff;
+            text-decoration: none;
+        }
+</style>
+
+<div class="rep-hero d-flex flex-wrap justify-content-between align-items-center">
     <div>
-        <h2 class="mb-1" style="color:#0A7B48;">
-            @ViewBag.ReportTitle
-        </h2>
-        <p class="text-muted mb-0">
-            @ViewBag.ReportSubtitle
-        </p>
+        <p class="title">Reportes</p>
+        <div class="sub">Panel del sistema (reportes, auditoría y control).</div>
     </div>
 
-    <div class="d-flex gap-2">
-        <a href="@Url.Action("Index", "Reportes")"
-           class="btn btn-outline-secondary">
-            ← Volver a Reportes
-        </a>
+    <div class="rep-nav mt-2 mt-md-0">
+        <a class="@(active=="Index" ? "active" : "")" href="@Url.Action("Index","Reportes")">Inicio</a>
+        <a class="@(active=="Auditoria" ? "active" : "")" href="@Url.Action("Auditoria","Reportes")">Auditoría</a>
+        <a class="@(active=="Citas" ? "active" : "")" href="@Url.Action("Citas","Reportes")">Citas</a>
+        <a class="@(active=="Facturas" ? "active" : "")" href="@Url.Action("Facturas","Reportes")">Facturas</a>
     </div>
-
 </div>
+

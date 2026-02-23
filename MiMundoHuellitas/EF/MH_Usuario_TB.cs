@@ -17,10 +17,12 @@ namespace MiMundoHuellitas.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MH_Usuario_TB()
         {
+            this.MH_Auditoria_TB = new HashSet<MH_Auditoria_TB>();
+            this.MH_Auditoria_TB1 = new HashSet<MH_Auditoria_TB>();
             this.MH_Cita_TB = new HashSet<MH_Cita_TB>();
             this.MH_Factura_TB = new HashSet<MH_Factura_TB>();
-            this.MH_Mascotas_TB = new HashSet<MH_Mascotas_TB>();
             this.MH_Marcacion_TB = new HashSet<MH_Marcacion_TB>();
+            this.MH_Mascotas_TB = new HashSet<MH_Mascotas_TB>();
         }
     
         public int IdUsuario { get; set; }
@@ -35,15 +37,19 @@ namespace MiMundoHuellitas.EF
         public Nullable<int> IdJornada { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_Auditoria_TB> MH_Auditoria_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_Auditoria_TB> MH_Auditoria_TB1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Cita_TB> MH_Cita_TB { get; set; }
         public virtual MH_Direccion_TB MH_Direccion_TB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Factura_TB> MH_Factura_TB { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MH_Mascotas_TB> MH_Mascotas_TB { get; set; }
-        public virtual MH_Tipo_Usuario_TB MH_Tipo_Usuario_TB { get; set; }
         public virtual MH_Jornada_TB MH_Jornada_TB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Marcacion_TB> MH_Marcacion_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_Mascotas_TB> MH_Mascotas_TB { get; set; }
+        public virtual MH_Tipo_Usuario_TB MH_Tipo_Usuario_TB { get; set; }
     }
 }

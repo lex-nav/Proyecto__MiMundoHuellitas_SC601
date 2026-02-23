@@ -12,6 +12,8 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class BD_MiMundoHuellitasEntities : DbContext
     {
@@ -26,6 +28,7 @@ namespace MiMundoHuellitas.EF
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<MH_Auditoria_TB> MH_Auditoria_TB { get; set; }
         public virtual DbSet<MH_Canton_TB> MH_Canton_TB { get; set; }
         public virtual DbSet<MH_Cita_TB> MH_Cita_TB { get; set; }
         public virtual DbSet<MH_DetalleFactura_TB> MH_DetalleFactura_TB { get; set; }
@@ -34,6 +37,8 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_Especie_TB> MH_Especie_TB { get; set; }
         public virtual DbSet<MH_Estado_TB> MH_Estado_TB { get; set; }
         public virtual DbSet<MH_Factura_TB> MH_Factura_TB { get; set; }
+        public virtual DbSet<MH_Jornada_TB> MH_Jornada_TB { get; set; }
+        public virtual DbSet<MH_Marcacion_TB> MH_Marcacion_TB { get; set; }
         public virtual DbSet<MH_Mascotas_TB> MH_Mascotas_TB { get; set; }
         public virtual DbSet<MH_Productos_TB> MH_Productos_TB { get; set; }
         public virtual DbSet<MH_Proveedor_TB> MH_Proveedor_TB { get; set; }
@@ -44,7 +49,42 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_Tipo_Usuario_TB> MH_Tipo_Usuario_TB { get; set; }
         public virtual DbSet<MH_Usuario_TB> MH_Usuario_TB { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
-        public virtual DbSet<MH_Jornada_TB> MH_Jornada_TB { get; set; }
-        public virtual DbSet<MH_Marcacion_TB> MH_Marcacion_TB { get; set; }
+    
+        public virtual int SP_MH_Auditoria_Insert(Nullable<int> idAdmin, Nullable<int> idUsuarioAfectado, string modulo, string accion, string campo, string valorAnterior, string valorNuevo, string observacion)
+        {
+            var idAdminParameter = idAdmin.HasValue ?
+                new ObjectParameter("IdAdmin", idAdmin) :
+                new ObjectParameter("IdAdmin", typeof(int));
+    
+            var idUsuarioAfectadoParameter = idUsuarioAfectado.HasValue ?
+                new ObjectParameter("IdUsuarioAfectado", idUsuarioAfectado) :
+                new ObjectParameter("IdUsuarioAfectado", typeof(int));
+    
+            var moduloParameter = modulo != null ?
+                new ObjectParameter("Modulo", modulo) :
+                new ObjectParameter("Modulo", typeof(string));
+    
+            var accionParameter = accion != null ?
+                new ObjectParameter("Accion", accion) :
+                new ObjectParameter("Accion", typeof(string));
+    
+            var campoParameter = campo != null ?
+                new ObjectParameter("Campo", campo) :
+                new ObjectParameter("Campo", typeof(string));
+    
+            var valorAnteriorParameter = valorAnterior != null ?
+                new ObjectParameter("ValorAnterior", valorAnterior) :
+                new ObjectParameter("ValorAnterior", typeof(string));
+    
+            var valorNuevoParameter = valorNuevo != null ?
+                new ObjectParameter("ValorNuevo", valorNuevo) :
+                new ObjectParameter("ValorNuevo", typeof(string));
+    
+            var observacionParameter = observacion != null ?
+                new ObjectParameter("Observacion", observacion) :
+                new ObjectParameter("Observacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MH_Auditoria_Insert", idAdminParameter, idUsuarioAfectadoParameter, moduloParameter, accionParameter, campoParameter, valorAnteriorParameter, valorNuevoParameter, observacionParameter);
+        }
     }
 }

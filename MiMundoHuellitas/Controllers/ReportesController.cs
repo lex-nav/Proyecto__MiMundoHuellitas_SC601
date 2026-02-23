@@ -89,7 +89,78 @@ namespace MiMundoHuellitas.Controllers
             return View(vm);
         }
 
-        // ============================
+        public ActionResult Auditoria(DateTime? desde, DateTime? hasta, string modulo, string accion, int? idUsuarioAfectado)
+        {
+            ViewBag.ActiveMenu = "Reportes";
+
+            var vm = new ReporteAuditoriaVM
+            {
+                Desde = desde,
+                Hasta = hasta,
+                Modulo = (modulo ?? "").Trim(),
+                Accion = (accion ?? "").Trim(),
+                IdUsuarioAfectado = idUsuarioAfectado
+            };
+
+            // Dropdown: usuarios afectados (puedes filtrar solo empleados si quieres IdTipoUsuario==3)
+            var usuarios = db.MH_Usuario_TB
+                .Where(u => u.Activo)
+                .OrderBy(u => u.NombreCompleto)
+                .Select(u => new SelectListItem
+                {
+                    Value = u.IdUsuario.ToString(),
+                    Text = u.NombreCompleto,
+                    Selected = (idUsuarioAfectado.HasValue && u.IdUsuario == idUsuarioAfectado.Value)
+                })
+                .ToList();
+
+            usuarios.Insert(0, new SelectListItem { Text = "Todos", Value = "" });
+            vm.Usuarios = usuarios;
+
+            // Query auditoría
+            var q = db.MH_Auditoria_TB
+                .Include(a => a.MH_Usuario_TB)   // Admin (según tu modelo)
+                .Include(a => a.MH_Usuario_TB1)  // Usuario afectado (según tu modelo)
+                .AsQueryable();
+
+            if (desde.HasValue)
+                q = q.Where(x => x.Fecha >= desde.Value.Date);
+
+            if (hasta.HasValue)
+                q = q.Where(x => x.Fecha < hasta.Value.Date.AddDays(1));
+
+            if (!string.IsNullOrWhiteSpace(vm.Modulo))
+                q = q.Where(x => x.Modulo.Contains(vm.Modulo));
+
+            if (!string.IsNullOrWhiteSpace(vm.Accion))
+                q = q.Where(x => x.Accion.Contains(vm.Accion));
+
+            if (idUsuarioAfectado.HasValue)
+                q = q.Where(x => x.IdUsuarioAfectado == idUsuarioAfectado.Value);
+
+            var data = q
+                .OrderByDescending(x => x.Fecha)
+                .ToList();
+
+            vm.Filas = data.Select(x => new ReporteAuditoriaRowVM
+            {
+                IdAuditoria = x.IdAuditoria,
+                Fecha = x.Fecha,
+                Admin = x.MH_Usuario_TB?.NombreCompleto ?? "(Sin admin)",
+                UsuarioAfectado = x.MH_Usuario_TB1?.NombreCompleto ?? "(Sin usuario)",
+                Modulo = x.Modulo ?? "",
+                Accion = x.Accion ?? "",
+                Campo = x.Campo ?? "",
+                ValorAnterior = x.ValorAnterior ?? "",
+                ValorNuevo = x.ValorNuevo ?? "",
+                Observacion = x.Observacion ?? ""
+            }).ToList();
+
+            return View(vm);
+        }
+
+
+
         // REPORTE DE CITAS
         // ============================
         public ActionResult Citas(DateTime? desde, DateTime? hasta, int? idEstado)
