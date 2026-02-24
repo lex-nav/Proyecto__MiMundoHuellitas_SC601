@@ -383,8 +383,6 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.SqlClient.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.Tools.Components.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Abstractions.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Extensions.Caching.Memory.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
@@ -429,7 +427,6 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\System.Web.WebPages.Razor.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\WebGrease.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Azure.Core.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\Azure.Identity.xml
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\EntityFramework.xml
@@ -501,8 +498,6 @@ E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoH
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.Deployment.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\System.Web.WebPages.Razor.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\Microsoft.Data.Tools.Schema.Sql.UnitTesting.resources.dll
-E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\bin\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.AssemblyReference.cache
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoHuellitas.csproj.CoreCompileInputs.cache
 E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\obj\Debug\MiMundoH.56FB7773.Up2Date
