@@ -267,7 +267,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminProductosController.cs" />
     <Compile Include="Controllers\AdminUsuariosController.cs" />
-    <Compile Include="Controllers\ComisionesController.cs" />
+    <Compile Include="Controllers\PlanillaController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -277,6 +277,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="DAL\MarcacionRepository.cs" />
+    <Compile Include="DAL\PlanillaCierreRepository.cs" />
+    <Compile Include="DAL\PlanillaRepository.cs" />
     <Compile Include="EF\ApplicationDbContext.cs" />
     <Compile Include="EF\C__MigrationHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -285,9 +288,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_Cita_TB.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\MH_Comision_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_DetalleFactura_TB.cs">
@@ -299,6 +299,12 @@
     <Compile Include="EF\MH_Distrito_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MH_EmpleadoJornada_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_EmpleadoLaboral_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MH_Especie_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -308,7 +314,22 @@
     <Compile Include="EF\MH_Factura_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MH_Feriado_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Jornada_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Marcacion_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MH_Mascotas_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_PlanillaDetalle_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Planilla_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_Productos_TB.cs">
@@ -350,6 +371,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EF\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Usuarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -357,8 +381,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Citas.cs" />
-    <Compile Include="Models\ViewModels\Comisiones\ComisionesIndexVM.cs" />
-    <Compile Include="Models\ViewModels\Comisiones\ComisionFormVM.cs" />
+    <Compile Include="Models\ViewModels\PlanillaDetalleVM.cs" />
     <Compile Include="Models\ViewModels\HomeProductosViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductosListadoViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckoutViewModel.cs" />
@@ -437,7 +460,6 @@
     <Content Include="StaticFiles\CSS\animaciones.css" />
     <Content Include="StaticFiles\CSS\animate.css" />
     <Content Include="StaticFiles\CSS\bootstrap-datepicker.css" />
-    <Content Include="StaticFiles\CSS\chatbot.css" />
     <Content Include="StaticFiles\CSS\flaticon.css" />
     <Content Include="StaticFiles\CSS\jquery.timepicker.css" />
     <Content Include="StaticFiles\CSS\magnific-popup.css" />
@@ -571,7 +593,6 @@
     <Content Include="StaticFiles\img\user.jpg" />
     <Content Include="StaticFiles\JS\bootstrap-datepicker.js" />
     <Content Include="StaticFiles\JS\bootstrap.min.js" />
-    <Content Include="StaticFiles\JS\chatbot.js" />
     <Content Include="StaticFiles\JS\google-map.js" />
     <Content Include="StaticFiles\JS\jquery-3.2.1.min.js" />
     <Content Include="StaticFiles\JS\jquery-migrate-3.0.1.min.js" />
@@ -649,10 +670,8 @@
     <Content Include="Views\AdminProductos\Index.cshtml" />
     <Content Include="Views\AdminProductos\Edit.cshtml" />
     <Content Include="Views\AdminProductos\Delete.cshtml" />
-    <Content Include="Views\Comisiones\Index.cshtml" />
-    <Content Include="Views\Comisiones\Create.cshtml" />
-    <Content Include="Views\Comisiones\Edit.cshtml" />
-    <Content Include="Views\Comisiones\_CreateEditForm.cshtml" />
+    <Content Include="Views\Planilla\Calcular.cshtml" />
+    <Content Include="Views\Planilla\Resultado.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

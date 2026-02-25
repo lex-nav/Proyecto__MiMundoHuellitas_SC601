@@ -11,7 +11,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize]
     public class UsuarioController : Controller
     {
-        private readonly MiMundoHuellitasEntities _db = new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities _db = new BD_MiMundoHuellitasEntities();
 
         // GET: /Usuario/Perfil
         public ActionResult Perfil()

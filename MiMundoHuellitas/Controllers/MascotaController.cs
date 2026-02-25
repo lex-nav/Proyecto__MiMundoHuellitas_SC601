@@ -8,7 +8,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize]
     public class MascotaController : Controller
     {
-        private readonly MiMundoHuellitasEntities _db = new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities _db = new BD_MiMundoHuellitasEntities();
 
         // =====================
         // Helpers

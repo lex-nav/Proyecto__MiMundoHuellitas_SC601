@@ -13,7 +13,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize(Roles = "Admin")]
     public class ReportesController : Controller
     {
-        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
 
         // ============================
         // MENÚ PRINCIPAL DE REPORTES

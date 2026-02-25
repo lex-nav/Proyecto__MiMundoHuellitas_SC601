@@ -11,14 +11,12 @@
     <title>@ViewBag.Title - MiMundoHuellitas</title>
 
     @Styles.Render("~/Content/css")
-
     @Scripts.Render("~/bundles/modernizr")
 
     <link href="~/StaticFiles/css/style.css" rel="stylesheet" />
     <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
     <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css" />
-    <link href="~/StaticFiles/CSS/chatbot.css" rel="stylesheet" />
 
     <!-- ✅ Font Awesome 6 (única versión, correcta) -->
     <link rel="stylesheet"
@@ -129,7 +127,15 @@
                     if (esAdmin)
                     {
                         @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
-                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
+
+                        <form action="@Url.Action("Logout", "Account")" method="post" id="logoutForm" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:void(0);" class="auth-link"
+                               onclick="document.getElementById('logoutForm').submit();">
+                                Cerrar sesión
+                            </a>
+                        </form>
+
                     }
                     else
                     {
@@ -185,7 +191,7 @@
                             <a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Comisiones")"> COMISIONES</a>
+                            <a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a>
                         </li>
                     }
                     else
@@ -224,37 +230,9 @@
     <!-- ✅ FIX: sección opcional inferior -->
     @RenderSection("FullWidthBottom", required: false)
 
-    <!-- 🐾 HUELLITAS BOT -->
-    <div id="chat-bubble">
-        <i class="fa-solid fa-paw"></i>
-    </div>
-
-    <div id="chat-window" class="hidden">
-        <div id="chat-header">
-            🐾 HuellitasBot
-            <span id="close-chat">✖</span>
-        </div>
-
-        <div id="chat-body">
-            <div class="bot-message">
-                ¡Hola! Bienvenido a Mi Mundo Huellitas 🐶
-                ¿Cómo puedo ayudarte hoy?
-            </div>
-
-            <div class="options">
-                <button onclick="respuesta(1)">¿Cómo agendar?</button>
-                <button onclick="respuesta(2)">Cuáles servicios ofrecemos?</button>
-                <button onclick="respuesta(3)">Horarios</button>
-                <button onclick="respuesta(4)">Ubicación</button>
-            </div>
-        </div>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-    <script src="~/StaticFiles/JS/chatbot.js"></script>
 
 </body>
 </html>

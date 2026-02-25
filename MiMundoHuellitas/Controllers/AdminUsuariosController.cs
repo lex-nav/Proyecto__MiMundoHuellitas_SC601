@@ -1,14 +1,14 @@
-﻿using MiMundoHuellitas.EF;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
+using MiMundoHuellitas.EF;
 
 namespace MiMundoHuellitas.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize] // luego puedes restringir por rol Admin
     public class AdminUsuariosController : Controller
     {
-        private readonly MiMundoHuellitasEntities db =   new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities db =
+            new BD_MiMundoHuellitasEntities();
 
         // GET: /AdminUsuarios
         public ActionResult Index()
@@ -71,18 +71,10 @@ namespace MiMundoHuellitas.Controllers
             if (usuario == null)
                 return HttpNotFound();
 
-            // Marcar salida
-            usuario.FechaSalida = DateTime.Now;
-
-            // Anonimizar datos
-            usuario.NombreCompleto = "Ex-Empleado #" + usuario.IdUsuario;
-            usuario.Correo = $"anon{usuario.IdUsuario}@system.local";
-            usuario.Telefono = null;
-            usuario.Activo = false;
-
+            db.MH_Usuario_TB.Remove(usuario);
             db.SaveChanges();
 
-            TempData["Ok"] = "Usuario desactivado y anonimizado correctamente";
+            TempData["Ok"] = "Usuario eliminado correctamente";
             return RedirectToAction("Index");
         }
     }
