@@ -19,7 +19,7 @@ namespace MiMundoHuellitas.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
 
         // ✅ Repositorio de marcación (SP: usp_MH_MarcarEntrada / usp_MH_MarcarSalida)
         private readonly MarcacionRepository _marcRepo = new MarcacionRepository();
