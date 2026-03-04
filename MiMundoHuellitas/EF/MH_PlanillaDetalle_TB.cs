@@ -12,16 +12,21 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class MH_Marcacion_TB
+    public partial class MH_PlanillaDetalle_TB
     {
-        public long IdMarcacion { get; set; }
+        public long IdPlanillaDetalle { get; set; }
+        public long IdPlanilla { get; set; }
         public int IdUsuario { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public System.DateTime HoraEntrada { get; set; }
-        public Nullable<System.DateTime> HoraSalida { get; set; }
-        public string Observacion { get; set; }
-        public bool Aprobada { get; set; }
+        public decimal HorasNormales { get; set; }
+        public decimal HorasExtra { get; set; }
+        public decimal HorasDoble { get; set; }
+        public decimal SalarioHora { get; set; }
+        public decimal MontoNormales { get; set; }
+        public decimal MontoExtra { get; set; }
+        public decimal MontoDoble { get; set; }
+        public decimal TotalPagar { get; set; }
     
+        public virtual MH_Planilla_TB MH_Planilla_TB { get; set; }
         public virtual MH_Usuario_TB MH_Usuario_TB { get; set; }
     }
 }

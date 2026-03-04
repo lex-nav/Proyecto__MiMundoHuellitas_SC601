@@ -4,31 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fd0eae314f934be19ffd2074e49eba8c" Name="Diagram1">
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Auditoria_TB" Width="1.5" PointX="12" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Canton_TB" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Cita_TB" Width="1.5" PointX="12" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_DetalleFactura_TB" Width="1.5" PointX="17.25" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Direccion_TB" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Distrito_TB" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Especie_TB" Width="1.5" PointX="12.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Estado_TB" Width="1.5" PointX="12.75" PointY="23.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Factura_TB" Width="1.5" PointX="15" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Jornada_TB" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Marcacion_TB" Width="1.5" PointX="12" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Mascotas_TB" Width="1.5" PointX="15" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Productos_TB" Width="1.5" PointX="15" PointY="27.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Proveedor_TB" Width="1.5" PointX="12.75" PointY="28.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Provincia_TB" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Raza_TB" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_Cita_TB" Width="1.5" PointX="14.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_TB" Width="1.5" PointX="15" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Tipo_Usuario_TB" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Usuario_TB" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MiMundoHuellitasModel.Usuarios" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Auditoria_Admin" ManuallyRouted="false" />
-        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Auditoria_Afectado" ManuallyRouted="false" />
+      <Diagram DiagramId="d3571c4634ad4c51b440600c456dc1dd" Name="Diagram1">
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Canton_TB" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Cita_TB" Width="1.5" PointX="12" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_DetalleFactura_TB" Width="1.5" PointX="17.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Direccion_TB" Width="1.5" PointX="7.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Distrito_TB" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_EmpleadoJornada_TB" Width="1.5" PointX="15" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_EmpleadoLaboral_TB" Width="1.5" PointX="12" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Especie_TB" Width="1.5" PointX="12.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Estado_TB" Width="1.5" PointX="12.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Factura_TB" Width="1.5" PointX="15" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Feriado_TB" Width="1.5" PointX="2.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Jornada_TB" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Marcacion_TB" Width="1.5" PointX="12" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Mascotas_TB" Width="1.5" PointX="15" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Planilla_TB" Width="1.5" PointX="12" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_PlanillaDetalle_TB" Width="1.5" PointX="14.25" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Productos_TB" Width="1.5" PointX="15" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Proveedor_TB" Width="1.5" PointX="12.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Provincia_TB" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Raza_TB" Width="1.5" PointX="12.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_Cita_TB" Width="1.5" PointX="17.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicios_TB" Width="1.5" PointX="15" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Tipo_Usuario_TB" Width="1.5" PointX="7.5" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Usuario_TB" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.Usuarios" Width="1.5" PointX="2.75" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Canton_Provincia" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Distrito_Canton" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Cita_Estado" ManuallyRouted="false" />
@@ -40,15 +43,20 @@
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_DetalleFactura_Servicio" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Direccion_Distrito" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Usuario_Direccion" ManuallyRouted="false" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_EmpleadoJornada_Jornada" ManuallyRouted="false" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_EmpleadoJornada_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_EmpleadoLaboral_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Mascotas_Especie" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Raza_Especie" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Factura_Estado" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Productos_Estado" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Factura_Usuario" ManuallyRouted="false" />
-        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Usuario_Jornada" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Marcacion_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Mascotas_Raza" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Mascotas_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Planilla_CerradaPor" ManuallyRouted="false" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_PlanillaDetalle_Planilla" ManuallyRouted="false" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_PlanillaDetalle_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Productos_Proveedor" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Servicios_Cita_Servicio" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Usuario_TipoUsuario" ManuallyRouted="false" />

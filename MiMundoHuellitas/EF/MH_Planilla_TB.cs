@@ -12,24 +12,26 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class MH_Jornada_TB
+    public partial class MH_Planilla_TB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MH_Jornada_TB()
+        public MH_Planilla_TB()
         {
-            this.MH_EmpleadoJornada_TB = new HashSet<MH_EmpleadoJornada_TB>();
+            this.MH_PlanillaDetalle_TB = new HashSet<MH_PlanillaDetalle_TB>();
         }
     
-        public int IdJornada { get; set; }
-        public string Nombre { get; set; }
-        public System.TimeSpan HoraEntradaBase { get; set; }
-        public System.TimeSpan HoraSalidaBase { get; set; }
-        public int MinAlmuerzo { get; set; }
-        public int ToleranciaMin { get; set; }
-        public Nullable<decimal> HorasPorDia { get; set; }
-        public bool Activa { get; set; }
+        public long IdPlanilla { get; set; }
+        public System.DateTime FechaInicio { get; set; }
+        public System.DateTime FechaFin { get; set; }
+        public System.DateTime FechaCalculo { get; set; }
+        public string Observacion { get; set; }
+        public bool Cerrada { get; set; }
+        public Nullable<System.DateTime> FechaCierre { get; set; }
+        public Nullable<int> CerradaPorIdUsuario { get; set; }
+        public string MotivoCierre { get; set; }
     
+        public virtual MH_Usuario_TB MH_Usuario_TB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MH_EmpleadoJornada_TB> MH_EmpleadoJornada_TB { get; set; }
+        public virtual ICollection<MH_PlanillaDetalle_TB> MH_PlanillaDetalle_TB { get; set; }
     }
 }

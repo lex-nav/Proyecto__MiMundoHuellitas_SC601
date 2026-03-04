@@ -17,12 +17,14 @@ namespace MiMundoHuellitas.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MH_Usuario_TB()
         {
-            this.MH_Auditoria_TB = new HashSet<MH_Auditoria_TB>();
-            this.MH_Auditoria_TB1 = new HashSet<MH_Auditoria_TB>();
             this.MH_Cita_TB = new HashSet<MH_Cita_TB>();
+            this.MH_EmpleadoJornada_TB = new HashSet<MH_EmpleadoJornada_TB>();
+            this.MH_EmpleadoLaboral_TB = new HashSet<MH_EmpleadoLaboral_TB>();
             this.MH_Factura_TB = new HashSet<MH_Factura_TB>();
             this.MH_Marcacion_TB = new HashSet<MH_Marcacion_TB>();
             this.MH_Mascotas_TB = new HashSet<MH_Mascotas_TB>();
+            this.MH_Planilla_TB = new HashSet<MH_Planilla_TB>();
+            this.MH_PlanillaDetalle_TB = new HashSet<MH_PlanillaDetalle_TB>();
         }
     
         public int IdUsuario { get; set; }
@@ -34,22 +36,24 @@ namespace MiMundoHuellitas.EF
         public string Telefono { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public bool Activo { get; set; }
-        public Nullable<int> IdJornada { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MH_Auditoria_TB> MH_Auditoria_TB { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MH_Auditoria_TB> MH_Auditoria_TB1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Cita_TB> MH_Cita_TB { get; set; }
         public virtual MH_Direccion_TB MH_Direccion_TB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_EmpleadoJornada_TB> MH_EmpleadoJornada_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_EmpleadoLaboral_TB> MH_EmpleadoLaboral_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Factura_TB> MH_Factura_TB { get; set; }
-        public virtual MH_Jornada_TB MH_Jornada_TB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Marcacion_TB> MH_Marcacion_TB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Mascotas_TB> MH_Mascotas_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_Planilla_TB> MH_Planilla_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_PlanillaDetalle_TB> MH_PlanillaDetalle_TB { get; set; }
         public virtual MH_Tipo_Usuario_TB MH_Tipo_Usuario_TB { get; set; }
     }
 }
