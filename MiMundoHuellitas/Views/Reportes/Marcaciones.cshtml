@@ -1,0 +1,118 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.Reportes.ReporteMarcacionesVM
+@{
+    ViewBag.Title = "Reporte de Marcaciones";
+}
+
+<div class="container" style="max-width:1100px; margin-top:18px;">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="mb-0">Reporte de Marcaciones</h2>
+        <span class="badge bg-dark">Admin</span>
+    </div>
+
+    <div class="card shadow-sm mb-3">
+        <div class="card-body">
+            @using (Html.BeginForm("Marcaciones", "Reportes", FormMethod.Get))
+            {
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label">Desde</label>
+                        <input type="date" name="desde" class="form-control"
+                               value="@(Model.Desde.HasValue ? Model.Desde.Value.ToString("yyyy-MM-dd") : "")" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Hasta</label>
+                        <input type="date" name="hasta" class="form-control"
+                               value="@(Model.Hasta.HasValue ? Model.Hasta.Value.ToString("yyyy-MM-dd") : "")" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Empleado</label>
+                        @Html.DropDownList("idEmpleado", Model.Empleados, new { @class = "form-select" })
+                    </div>
+
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="text-muted">Total</div>
+                    <div class="fs-3 fw-bold">@Model.Total</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="text-muted">Completas</div>
+                    <div class="fs-3 fw-bold text-success">@Model.Completas</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="text-muted">Incompletas</div>
+                    <div class="fs-3 fw-bold text-warning">@Model.Incompletas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Empleado</th>
+                            <th>Fecha</th>
+                            <th>Entrada</th>
+                            <th>Salida</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Filas == null || !Model.Filas.Any())
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    No hay marcaciones con los filtros seleccionados.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var row in Model.Filas)
+                            {
+                                <tr>
+                                    <td>@row.Empleado</td>
+                                    <td>@row.Fecha.ToString("dd/MM/yyyy")</td>
+                                    <td>@(row.HoraEntrada?.ToString("HH:mm") ?? "—")</td>
+                                    <td>@(row.HoraSalida?.ToString("HH:mm") ?? "—")</td>
+                                    <td>
+                                        @if (row.EsCompleta)
+                                        {
+                                            <span class="badge bg-success">Completo</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning text-dark">Incompleto</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

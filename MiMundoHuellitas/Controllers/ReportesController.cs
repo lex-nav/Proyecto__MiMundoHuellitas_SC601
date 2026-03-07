@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace MiMundoHuellitas.Controllers
 {
@@ -25,6 +26,144 @@ namespace MiMundoHuellitas.Controllers
         }
 
         // ============================
+        // REPORTE DE MARCACIONES (EMPLEADOS)
+        // ============================
+        public ActionResult Marcaciones(DateTime? desde, DateTime? hasta, int? idEmpleado)
+        {
+            ViewBag.ActiveMenu = "Reportes";
+
+            var vm = new ReporteMarcacionesVM
+            {
+                Desde = desde,
+                Hasta = hasta,
+                IdEmpleado = idEmpleado
+            };
+
+            // Dropdown empleados (solo tipo empleado = 3)
+            var empleados = db.MH_Usuario_TB
+                .Where(u => u.Activo && u.IdTipoUsuario == 3)
+                .OrderBy(u => u.NombreCompleto)
+                .Select(u => new SelectListItem
+                {
+                    Value = u.IdUsuario.ToString(),
+                    Text = u.NombreCompleto,
+                    Selected = (idEmpleado.HasValue && u.IdUsuario == idEmpleado.Value)
+                })
+                .ToList();
+
+            empleados.Insert(0, new SelectListItem { Text = "Todos", Value = "" });
+            vm.Empleados = empleados;
+
+            // Query marcaciones
+            var q = db.MH_Marcacion_TB
+                .Include(m => m.MH_Usuario_TB)
+                .AsQueryable();
+
+            if (desde.HasValue)
+            {
+                DateTime d = new DateTime(desde.Value.Year, desde.Value.Month, desde.Value.Day);
+                q = q.Where(x => x.Fecha >= d);
+            }
+
+            if (hasta.HasValue)
+            {
+                DateTime h = new DateTime(hasta.Value.Year, hasta.Value.Month, hasta.Value.Day).AddDays(1);
+                q = q.Where(x => x.Fecha < h);
+            }
+
+
+            if (idEmpleado.HasValue)
+                q = q.Where(x => x.IdUsuario == idEmpleado.Value);
+
+            var data = q
+                .OrderByDescending(x => x.Fecha)
+                .ToList();
+
+            vm.Filas = data.Select(x => new ReporteMarcacionesRowVM
+            {
+                Empleado = x.MH_Usuario_TB?.NombreCompleto ?? "(Sin nombre)",
+                Fecha = x.Fecha,
+                HoraEntrada = x.HoraEntrada,
+                HoraSalida = x.HoraSalida
+            }).ToList();
+
+            return View(vm);
+        }
+
+        public ActionResult Auditoria(DateTime? desde, DateTime? hasta, string modulo, string accion, int? idUsuarioAfectado)
+        {
+            ViewBag.ActiveMenu = "Reportes";
+
+            var vm = new ReporteAuditoriaVM
+            {
+                Desde = desde,
+                Hasta = hasta,
+                Modulo = (modulo ?? "").Trim(),
+                Accion = (accion ?? "").Trim(),
+                IdUsuarioAfectado = idUsuarioAfectado
+            };
+
+            // Dropdown: usuarios afectados (puedes filtrar solo empleados si quieres IdTipoUsuario==3)
+            var usuarios = db.MH_Usuario_TB
+                .Where(u => u.Activo)
+                .OrderBy(u => u.NombreCompleto)
+                .Select(u => new SelectListItem
+                {
+                    Value = u.IdUsuario.ToString(),
+                    Text = u.NombreCompleto,
+                    Selected = (idUsuarioAfectado.HasValue && u.IdUsuario == idUsuarioAfectado.Value)
+                })
+                .ToList();
+
+            usuarios.Insert(0, new SelectListItem { Text = "Todos", Value = "" });
+            vm.Usuarios = usuarios;
+
+            // Query auditoría
+            // Temporalmente se comenta porque la entidad MH_Auditoria_TB
+            // no existe en el modelo EF actual.
+            //var q = db.MH_Auditoria_TB
+            //  .Include(a => a.MH_Usuario_TB)   // Admin (según tu modelo)
+            //  .Include(a => a.MH_Usuario_TB1)  // Usuario afectado (según tu modelo)
+            //.AsQueryable();
+
+            //if (desde.HasValue)
+            //    q = q.Where(x => x.Fecha >= desde.Value.Date);
+
+            //if (hasta.HasValue)
+            //    q = q.Where(x => x.Fecha < hasta.Value.Date.AddDays(1));
+
+            //if (!string.IsNullOrWhiteSpace(vm.Modulo))
+            //    q = q.Where(x => x.Modulo.Contains(vm.Modulo));
+
+            //if (!string.IsNullOrWhiteSpace(vm.Accion))
+            //    q = q.Where(x => x.Accion.Contains(vm.Accion));
+
+            //if (idUsuarioAfectado.HasValue)
+            //    q = q.Where(x => x.IdUsuarioAfectado == idUsuarioAfectado.Value);
+
+            //var data = q
+            //    .OrderByDescending(x => x.Fecha)
+            //    .ToList();
+
+            //vm.Filas = data.Select(x => new ReporteAuditoriaRowVM
+            //{
+            //    IdAuditoria = x.IdAuditoria,
+            //    Fecha = x.Fecha,
+            //    Admin = x.MH_Usuario_TB?.NombreCompleto ?? "(Sin admin)",
+            //    UsuarioAfectado = x.MH_Usuario_TB1?.NombreCompleto ?? "(Sin usuario)",
+            //    Modulo = x.Modulo ?? "",
+            //    Accion = x.Accion ?? "",
+            //    Campo = x.Campo ?? "",
+            //    ValorAnterior = x.ValorAnterior ?? "",
+            //    ValorNuevo = x.ValorNuevo ?? "",
+            //    Observacion = x.Observacion ?? ""
+            //}).ToList();
+            vm.Filas = new List<ReporteAuditoriaRowVM>();
+            return View(vm);
+        }
+
+
+
         // REPORTE DE CITAS
         // ============================
         public ActionResult Citas(DateTime? desde, DateTime? hasta, int? idEstado)

@@ -31,10 +31,17 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_DetalleFactura_TB> MH_DetalleFactura_TB { get; set; }
         public virtual DbSet<MH_Direccion_TB> MH_Direccion_TB { get; set; }
         public virtual DbSet<MH_Distrito_TB> MH_Distrito_TB { get; set; }
+        public virtual DbSet<MH_EmpleadoJornada_TB> MH_EmpleadoJornada_TB { get; set; }
+        public virtual DbSet<MH_EmpleadoLaboral_TB> MH_EmpleadoLaboral_TB { get; set; }
         public virtual DbSet<MH_Especie_TB> MH_Especie_TB { get; set; }
         public virtual DbSet<MH_Estado_TB> MH_Estado_TB { get; set; }
         public virtual DbSet<MH_Factura_TB> MH_Factura_TB { get; set; }
+        public virtual DbSet<MH_Feriado_TB> MH_Feriado_TB { get; set; }
+        public virtual DbSet<MH_Jornada_TB> MH_Jornada_TB { get; set; }
+        public virtual DbSet<MH_Marcacion_TB> MH_Marcacion_TB { get; set; }
         public virtual DbSet<MH_Mascotas_TB> MH_Mascotas_TB { get; set; }
+        public virtual DbSet<MH_Planilla_TB> MH_Planilla_TB { get; set; }
+        public virtual DbSet<MH_PlanillaDetalle_TB> MH_PlanillaDetalle_TB { get; set; }
         public virtual DbSet<MH_Productos_TB> MH_Productos_TB { get; set; }
         public virtual DbSet<MH_Proveedor_TB> MH_Proveedor_TB { get; set; }
         public virtual DbSet<MH_Provincia_TB> MH_Provincia_TB { get; set; }
@@ -43,6 +50,7 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_Servicios_TB> MH_Servicios_TB { get; set; }
         public virtual DbSet<MH_Tipo_Usuario_TB> MH_Tipo_Usuario_TB { get; set; }
         public virtual DbSet<MH_Usuario_TB> MH_Usuario_TB { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<MH_Comision_TB> MH_Comision_TB { get; set; }
     }
