@@ -16,7 +16,7 @@ namespace MiMundoHuellitas.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
 
         // =========================
         //          LOGIN

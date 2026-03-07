@@ -20,6 +20,7 @@ namespace MiMundoHuellitas.EF
             this.MH_Cita_TB = new HashSet<MH_Cita_TB>();
             this.MH_Factura_TB = new HashSet<MH_Factura_TB>();
             this.MH_Mascotas_TB = new HashSet<MH_Mascotas_TB>();
+            this.MH_Comision_TB = new HashSet<MH_Comision_TB>();
         }
     
         public int IdUsuario { get; set; }
@@ -31,6 +32,7 @@ namespace MiMundoHuellitas.EF
         public string Telefono { get; set; }
         public System.DateTime FechaRegistro { get; set; }
         public bool Activo { get; set; }
+        public Nullable<System.DateTime> FechaSalida { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Cita_TB> MH_Cita_TB { get; set; }
@@ -40,5 +42,7 @@ namespace MiMundoHuellitas.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_Mascotas_TB> MH_Mascotas_TB { get; set; }
         public virtual MH_Tipo_Usuario_TB MH_Tipo_Usuario_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_Comision_TB> MH_Comision_TB { get; set; }
     }
 }

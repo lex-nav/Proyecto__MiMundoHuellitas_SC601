@@ -1,0 +1,96 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.Comisiones.ComisionFormVM
+
+<!-- Mostrar errores generales -->
+@Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+@Html.HiddenFor(x => x.IdComision)
+
+<!-- Usuario -->
+<div class="form-group mb-3">
+    @Html.LabelFor(x => x.IdUsuario)
+
+    @Html.DropDownListFor(
+        x => x.IdUsuario,
+        Model.Usuarios,
+        "Seleccione un empleado",
+        new { @class = "form-control" }
+    )
+
+    @Html.ValidationMessageFor(x => x.IdUsuario, "", new { @class = "text-danger" })
+</div>
+
+<!-- Tipo -->
+<div class="form-group mb-3">
+    @Html.LabelFor(x => x.TipoComision)
+
+    @Html.TextBoxFor(
+        x => x.TipoComision,
+        new { @class = "form-control" }
+    )
+
+    @Html.ValidationMessageFor(x => x.TipoComision, "", new { @class = "text-danger" })
+</div>
+
+<!-- Porcentaje -->
+<div class="form-group mb-3">
+    @Html.LabelFor(x => x.Porcentaje)
+
+    @Html.TextBoxFor(
+        x => x.Porcentaje,
+        new { @class = "form-control", type = "number", step = "0.01" }
+    )
+
+    @Html.ValidationMessageFor(x => x.Porcentaje, "", new { @class = "text-danger" })
+</div>
+
+<!-- Monto fijo -->
+<div class="form-group mb-3">
+    @Html.LabelFor(x => x.MontoFijo)
+
+    @Html.TextBoxFor(
+        x => x.MontoFijo,
+        new { @class = "form-control", type = "number", step = "0.01" }
+    )
+
+    @Html.ValidationMessageFor(x => x.MontoFijo, "", new { @class = "text-danger" })
+</div>
+
+<!-- Fecha inicio -->
+<div class="form-group mb-3">
+    @Html.LabelFor(x => x.FechaInicio)
+
+    @Html.TextBoxFor(
+        x => x.FechaInicio,
+        "{0:yyyy-MM-dd}",
+        new { type = "date", @class = "form-control" }
+    )
+
+    @Html.ValidationMessageFor(x => x.FechaInicio, "", new { @class = "text-danger" })
+</div>
+
+<!-- Fecha fin -->
+<div class="form-group mb-3">
+    @Html.LabelFor(x => x.FechaFin)
+
+    @Html.TextBoxFor(
+        x => x.FechaFin,
+        "{0:yyyy-MM-dd}",
+        new { type = "date", @class = "form-control" }
+    )
+
+    @Html.ValidationMessageFor(x => x.FechaFin, "", new { @class = "text-danger" })
+</div>
+
+<!-- Activo -->
+<div class="form-group form-check mb-3">
+
+    @Html.CheckBoxFor(
+        x => x.Activo,
+        new { @class = "form-check-input" }
+    )
+
+    @Html.LabelFor(
+        x => x.Activo,
+        new { @class = "form-check-label" }
+    )
+</div>
