@@ -269,6 +269,7 @@
     <Compile Include="Controllers\AdminUsuariosController.cs" />
     <Compile Include="Controllers\ComisionesController.cs" />
     <Compile Include="Controllers\MarcacionesController.cs" />
+    <Compile Include="Controllers\PlanillaController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -377,9 +378,6 @@
     <Compile Include="EF\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\Usuarios.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -387,6 +385,7 @@
     <Compile Include="Models\ViewModels\Comisiones\ComisionesIndexVM.cs" />
     <Compile Include="Models\ViewModels\Comisiones\ComisionFormVM.cs" />
     <Compile Include="Models\ViewModels\HomeProductosViewModel.cs" />
+    <Compile Include="Models\ViewModels\PlanillaDetalleVM.cs" />
     <Compile Include="Models\ViewModels\ProductosListadoViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckoutViewModel.cs" />
     <Compile Include="Models\ViewModels\CarritoItemViewModel.cs" />
@@ -685,10 +684,10 @@
     <Content Include="Views\Marcaciones\Index.cshtml" />
     <Content Include="Views\Reportes\Marcaciones.cshtml" />
     <Content Include="Views\Reportes\Auditoria.cshtml" />
+    <Content Include="Views\Planilla\Calcular.cshtml" />
+    <Content Include="Views\Planilla\Resultado.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />

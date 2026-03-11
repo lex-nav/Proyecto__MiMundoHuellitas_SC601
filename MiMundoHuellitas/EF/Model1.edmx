@@ -296,7 +296,6 @@
           <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
           <Property Name="FechaRegistro" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
-          <Property Name="FechaSalida" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -307,16 +306,6 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Correo" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContrasenaHash" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Rol" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK_Comision_Usuario">
           <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
@@ -694,7 +683,6 @@
           <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Usuario_TB" EntityType="Self.MH_Usuario_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comision_Usuario" Association="Self.FK_Comision_Usuario">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_Comision_TB" EntitySet="MH_Comision_TB" />
@@ -812,7 +800,8 @@
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MiMundoHuellitasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -853,6 +842,21 @@
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Cita_Mascota" FromRole="MH_Cita_TB" ToRole="MH_Mascotas_TB" />
           <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
           <NavigationProperty Name="MH_Servicios_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Cita" FromRole="MH_Cita_TB" ToRole="MH_Servicios_Cita_TB" />
+        </EntityType>
+        <EntityType Name="MH_Comision_TB">
+          <Key>
+            <PropertyRef Name="IdComision" />
+          </Key>
+          <Property Name="IdComision" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="TipoComision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Porcentaje" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="MontoFijo" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Precision="0" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_Comision_Usuario" FromRole="MH_Comision_TB" ToRole="MH_Usuario_TB" />
         </EntityType>
         <EntityType Name="MH_DetalleFactura_TB">
           <Key>
@@ -1140,6 +1144,7 @@
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Comision_TB" Relationship="Self.FK_Comision_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Comision_TB" />
           <NavigationProperty Name="MH_Direccion_TB" Relationship="Self.FK_MH_Usuario_Direccion" FromRole="MH_Usuario_TB" ToRole="MH_Direccion_TB" />
           <NavigationProperty Name="MH_EmpleadoJornada_TB" Relationship="Self.FK_MH_EmpleadoJornada_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_EmpleadoJornada_TB" />
           <NavigationProperty Name="MH_EmpleadoLaboral_TB" Relationship="Self.FK_MH_EmpleadoLaboral_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_EmpleadoLaboral_TB" />
@@ -1149,8 +1154,6 @@
           <NavigationProperty Name="MH_Planilla_TB" Relationship="Self.FK_MH_Planilla_CerradaPor" FromRole="MH_Usuario_TB" ToRole="MH_Planilla_TB" />
           <NavigationProperty Name="MH_PlanillaDetalle_TB" Relationship="Self.FK_MH_PlanillaDetalle_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_PlanillaDetalle_TB" />
           <NavigationProperty Name="MH_Tipo_Usuario_TB" Relationship="Self.FK_MH_Usuario_TipoUsuario" FromRole="MH_Usuario_TB" ToRole="MH_Tipo_Usuario_TB" />
-          <NavigationProperty Name="MH_Comision_TB" Relationship="MiMundoHuellitasModel.FK_Comision_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Comision_TB" />
-          <Property Name="FechaSalida" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1161,16 +1164,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Correo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContrasenaHash" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Rol" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK_MH_Canton_Provincia">
           <End Role="MH_Provincia_TB" Type="Self.MH_Provincia_TB" Multiplicity="1" />
@@ -1241,6 +1234,18 @@
             </Principal>
             <Dependent Role="MH_Servicios_Cita_TB">
               <PropertyRef Name="IdCita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comision_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Comision_TB" Type="Self.MH_Comision_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Comision_TB">
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1508,10 +1513,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MiMundoHuellitasEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MiMundoHuellitasEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="MH_Canton_TB" EntityType="Self.MH_Canton_TB" />
           <EntitySet Name="MH_Cita_TB" EntityType="Self.MH_Cita_TB" />
+          <EntitySet Name="MH_Comision_TB" EntityType="Self.MH_Comision_TB" />
           <EntitySet Name="MH_DetalleFactura_TB" EntityType="Self.MH_DetalleFactura_TB" />
           <EntitySet Name="MH_Direccion_TB" EntityType="Self.MH_Direccion_TB" />
           <EntitySet Name="MH_Distrito_TB" EntityType="Self.MH_Distrito_TB" />
@@ -1535,7 +1541,6 @@
           <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" />
           <EntitySet Name="MH_Usuario_TB" EntityType="Self.MH_Usuario_TB" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <AssociationSet Name="FK_MH_Canton_Provincia" Association="Self.FK_MH_Canton_Provincia">
             <End Role="MH_Provincia_TB" EntitySet="MH_Provincia_TB" />
             <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
@@ -1559,6 +1564,10 @@
           <AssociationSet Name="FK_MH_Servicios_Cita_Cita" Association="Self.FK_MH_Servicios_Cita_Cita">
             <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
             <End Role="MH_Servicios_Cita_TB" EntitySet="MH_Servicios_Cita_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comision_Usuario" Association="Self.FK_Comision_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Comision_TB" EntitySet="MH_Comision_TB" />
           </AssociationSet>
           <AssociationSet Name="FK_MH_DetalleFactura_Factura" Association="Self.FK_MH_DetalleFactura_Factura">
             <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
@@ -1648,45 +1657,13 @@
             <End Role="MH_Tipo_Usuario_TB" EntitySet="MH_Tipo_Usuario_TB" />
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
           </AssociationSet>
-          <EntitySet Name="MH_Comision_TB" EntityType="MiMundoHuellitasModel.MH_Comision_TB" />
-          <AssociationSet Name="FK_Comision_Usuario" Association="MiMundoHuellitasModel.FK_Comision_Usuario">
-            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
-            <End Role="MH_Comision_TB" EntitySet="MH_Comision_TB" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="MH_Comision_TB">
-          <Key>
-            <PropertyRef Name="IdComision" />
-          </Key>
-          <Property Name="IdComision" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <Property Name="TipoComision" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Porcentaje" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="MontoFijo" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FechaFin" Type="DateTime" Precision="0" />
-          <Property Name="Activo" Type="Boolean" />
-          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="MH_Usuario_TB" Relationship="MiMundoHuellitasModel.FK_Comision_Usuario" FromRole="MH_Comision_TB" ToRole="MH_Usuario_TB" />
-        </EntityType>
-        <Association Name="FK_Comision_Usuario">
-          <End Type="MiMundoHuellitasModel.MH_Usuario_TB" Role="MH_Usuario_TB" Multiplicity="1" />
-          <End Type="MiMundoHuellitasModel.MH_Comision_TB" Role="MH_Comision_TB" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MH_Usuario_TB">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="MH_Comision_TB">
-              <PropertyRef Name="IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MiMundoHuellitasModelStoreContainer" CdmEntityContainer="MiMundoHuellitasEntities">
+        <EntityContainerMapping StorageEntityContainer="MiMundoHuellitasModelStoreContainer" CdmEntityContainer="MiMundoHuellitasEntities2">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="MiMundoHuellitasModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1718,6 +1695,21 @@
                 <ScalarProperty Name="NotasInternas" ColumnName="NotasInternas" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="FechaActualiza" ColumnName="FechaActualiza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Comision_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Comision_TB">
+              <MappingFragment StoreEntitySet="MH_Comision_TB">
+                <ScalarProperty Name="IdComision" ColumnName="IdComision" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="TipoComision" ColumnName="TipoComision" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+                <ScalarProperty Name="MontoFijo" ColumnName="MontoFijo" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1977,7 +1969,6 @@
           <EntitySetMapping Name="MH_Usuario_TB">
             <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Usuario_TB">
               <MappingFragment StoreEntitySet="MH_Usuario_TB">
-                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
                 <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
@@ -2001,32 +1992,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="MiMundoHuellitasModel.Usuarios">
-              <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="ContrasenaHash" ColumnName="ContrasenaHash" />
-                <ScalarProperty Name="Rol" ColumnName="Rol" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MH_Comision_TB">
-            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Comision_TB">
-              <MappingFragment StoreEntitySet="MH_Comision_TB">
-                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
-                <ScalarProperty Name="MontoFijo" ColumnName="MontoFijo" />
-                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
-                <ScalarProperty Name="TipoComision" ColumnName="TipoComision" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdComision" ColumnName="IdComision" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2044,7 +2009,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
