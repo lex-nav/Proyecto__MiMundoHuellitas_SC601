@@ -8,7 +8,7 @@ namespace MiMundoHuellitas.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
 
         public ActionResult Index()
         {

@@ -1,0 +1,47 @@
+﻿@model List<MiMundoHuellitas.Models.ViewModels.PlanillaDetalleVM>
+
+@{
+    ViewBag.Title = "Resultado Planilla";
+}
+
+<h2>Resultado Planilla</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>No hay datos para el rango indicado.</p>
+}
+else
+{
+    <p>
+        <b>Periodo:</b> @Model[0].FechaInicio.ToString("yyyy-MM-dd") - @Model[0].FechaFin.ToString("yyyy-MM-dd")
+        <br />
+        <b>Calculado:</b> @Model[0].FechaCalculo.ToString("yyyy-MM-dd HH:mm")
+    </p>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Colaborador</th>
+                <th>Horas Normales</th>
+                <th>Horas Extra</th>
+                <th>Horas Doble</th>
+                <th>Salario/Hora</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NombreCompleto</td>
+                    <td>@item.HorasNormales</td>
+                    <td>@item.HorasExtra</td>
+                    <td>@item.HorasDoble</td>
+                    <td>@item.SalarioHora</td>
+                    <td><b>@item.TotalPagar</b></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
