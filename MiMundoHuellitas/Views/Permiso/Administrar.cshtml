@@ -1,0 +1,451 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.AdminPermisosVM
+@{
+    ViewBag.Title = "Administrar Permisos";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@section FullWidthTop {
+    <div class="hero-adminpermisos">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Administrar permisos</h1>
+            <p class="hero-subtitle">Gestión de solicitudes de ausencias y vacaciones</p>
+        </div>
+    </div>
+
+    <style>
+        .hero-adminpermisos {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 240px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(0,200,83,0.75), rgba(3,169,244,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 70px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: .4px;
+            font-size: clamp(32px,4vw,52px);
+            margin: 0;
+        }
+
+        .hero-subtitle {
+            margin: 10px 0 0;
+            font-weight: 600;
+            color: rgba(11,15,20,0.82);
+            font-size: 16px;
+        }
+
+        .panel-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0b3d2e;
+            margin-bottom: 6px;
+        }
+
+        .panel-subtitle {
+            color: #6b7280;
+            margin-bottom: 18px;
+        }
+
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .table thead th {
+            font-size: 12px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #6b7280;
+            background: #f8fafc !important;
+        }
+
+        .badge-soft {
+            background: rgba(0,200,83,0.12);
+            color: #0b6b3a;
+            border: 1px solid rgba(0,200,83,0.18);
+        }
+
+        .btn-round {
+            border-radius: 12px;
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        /* Filtros */
+        .filter-pill {
+            padding: 5px 16px;
+            border-radius: 50px;
+            border: 1.5px solid #e0dcd4;
+            background: #fff;
+            font-size: .82rem;
+            font-weight: 600;
+            color: #6b7280;
+            text-decoration: none;
+            transition: all .15s;
+        }
+
+            .filter-pill.active,
+            .filter-pill:hover {
+                background: #0b3d2e;
+                color: #fff;
+                border-color: #0b3d2e;
+                text-decoration: none;
+            }
+
+        /* Badges estado */
+        .badge-Pendiente {
+            background: rgba(253,243,205,1);
+            color: #856404;
+            border: 1px solid #f5d97a;
+        }
+
+        .badge-Aprobado {
+            background: rgba(209,242,225,1);
+            color: #1a7a42;
+            border: 1px solid #6fd49e;
+        }
+
+        .badge-Rechazado {
+            background: rgba(253,232,232,1);
+            color: #c0392b;
+            border: 1px solid #f5a9a9;
+        }
+
+        /* Botones acción tabla */
+        .btn-aprobar {
+            background: rgba(209,242,225,1);
+            color: #1e8449;
+            border: none;
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: .78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity .15s;
+        }
+
+        .btn-rechazar {
+            background: rgba(253,232,232,1);
+            color: #c0392b;
+            border: none;
+            border-radius: 8px;
+            padding: 5px 12px;
+            font-size: .78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity .15s;
+        }
+
+            .btn-aprobar:hover, .btn-rechazar:hover {
+                opacity: .75;
+            }
+
+        /* Modal */
+        .modal-content {
+            border-radius: 16px;
+            border: none;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(90deg,#00c853,#03a9f4);
+            color: #0b0f14;
+            padding: 18px 22px;
+            border: none;
+        }
+
+            .modal-header .close {
+                color: #0b0f14;
+                opacity: .6;
+                font-size: 1.4rem;
+            }
+
+        .modal-title {
+            font-weight: 800;
+            font-size: 1.15rem;
+        }
+
+        .info-permiso {
+            background: #f8fafc;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+            font-size: .87rem;
+            line-height: 1.8;
+        }
+
+        .decision-btns {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+            .decision-btns label {
+                flex: 1;
+                border: 2px solid #e0dcd4;
+                border-radius: 10px;
+                padding: 10px;
+                text-align: center;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: .88rem;
+                transition: all .15s;
+            }
+
+            .decision-btns input[type=radio] {
+                display: none;
+            }
+
+            .decision-btns input[value=Aprobado]:checked + label {
+                border-color: #1e8449;
+                background: #eafaf1;
+                color: #1e8449;
+            }
+
+            .decision-btns input[value=Rechazado]:checked + label {
+                border-color: #c0392b;
+                background: #fdf2f2;
+                color: #c0392b;
+            }
+
+        .fc-modal {
+            border-radius: 10px;
+            border: 1px solid #e0dcd4;
+            padding: 9px 12px;
+            width: 100%;
+            font-size: .88rem;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+            .fc-modal:focus {
+                border-color: #00c853;
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(0,200,83,.12);
+            }
+
+        .btn-modal-submit {
+            background: linear-gradient(90deg,#00c853,#03a9f4);
+            color: #0b0f14;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 24px;
+            font-weight: 800;
+            font-size: .9rem;
+            width: 100%;
+            cursor: pointer;
+            transition: opacity .2s;
+        }
+
+            .btn-modal-submit:hover {
+                opacity: .85;
+            }
+    </style>
+}
+
+<div class="container my-4">
+
+    @if (TempData["Success"] != null)
+    {<div class="alert alert-success rounded-3 mb-3">✔ @TempData["Success"]</div>}
+    @if (TempData["Error"] != null)
+    {<div class="alert alert-danger rounded-3 mb-3">✖ @TempData["Error"]</div>}
+
+    <!-- Header panel -->
+    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mb-3">
+        <div>
+            <div class="panel-title">Panel de permisos</div>
+            <div class="panel-subtitle">Revisá, aprobá o rechazá solicitudes de tus colaboradores.</div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-2 mt-md-0">
+            <span class="badge badge-soft rounded-pill px-3 py-2">
+                @Model.Permisos.Count solicitud(es)
+            </span>
+        </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="d-flex gap-2 flex-wrap mb-3">
+        <a href="@Url.Action("Administrar","Permiso")" class="filter-pill @(Model.FiltroEstado == null         ? "active" : "")">Todos</a>
+        <a href="@Url.Action("Administrar","Permiso", new { estado = "Pendiente" })" class="filter-pill @(Model.FiltroEstado == "Pendiente"  ? "active" : "")">⏳ Pendientes</a>
+        <a href="@Url.Action("Administrar","Permiso", new { estado = "Aprobado" })" class="filter-pill @(Model.FiltroEstado == "Aprobado"   ? "active" : "")">✔ Aprobados</a>
+        <a href="@Url.Action("Administrar","Permiso", new { estado = "Rechazado" })" class="filter-pill @(Model.FiltroEstado == "Rechazado"  ? "active" : "")">✖ Rechazados</a>
+    </div>
+
+    <!-- Card tabla -->
+    <div class="card card-soft border-0">
+        <div class="card-body p-3 p-md-4">
+
+            @if (Model.Permisos.Count == 0)
+            {
+                <div class="alert alert-light border rounded-3 text-center py-4 mb-0">
+                    <i class="fa-solid fa-calendar-xmark fa-2x text-muted mb-2"></i>
+                    <div class="fw-semibold text-muted">Sin solicitudes para mostrar.</div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Empleado</th>
+                                <th>Tipo</th>
+                                <th>Desde</th>
+                                <th>Hasta</th>
+                                <th>Días</th>
+                                <th>Motivo</th>
+                                <th>Estado</th>
+                                <th>Solicitado</th>
+                                <th class="text-center" style="width:160px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var p in Model.Permisos)
+                            {
+                                <tr>
+                                    <td class="text-muted">@p.IdPermiso</td>
+                                    <td class="fw-semibold">@p.Empleado</td>
+                                    <td>@p.TipoPermiso</td>
+                                    <td>@p.FechaInicio.ToString("dd/MM/yy")</td>
+                                    <td>@p.FechaFin.ToString("dd/MM/yy")</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary px-2 py-1 rounded-pill">
+                                            @p.DiasSolicitados
+                                        </span>
+                                    </td>
+                                    <td class="text-muted"
+                                        style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+                                        title="@p.Motivo">
+                                        @p.Motivo
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill px-3 py-2 badge-@p.Estado">@p.Estado</span>
+                                    </td>
+                                    <td class="text-muted" style="font-size:.82rem;">
+                                        @p.FechaSolicitud.ToString("dd/MM/yy HH:mm")
+                                    </td>
+                                    <td class="text-center">
+                                        @if (p.Estado == "Pendiente")
+                                        {
+                                            <button class="btn-aprobar me-1"
+                                                    onclick="abrirModal(@p.IdPermiso,'@Html.Raw(p.Empleado.Replace("'","\\'"))','@p.TipoPermiso','@p.FechaInicio.ToString("dd/MM/yyyy")','@p.FechaFin.ToString("dd/MM/yyyy")','@Html.Raw(p.Motivo.Replace("'","\\'").Replace("\r\n"," "))','Aprobado')">
+                                                <i class="fa-solid fa-check"></i> Aprobar
+                                            </button>
+                                            <button class="btn-rechazar"
+                                                    onclick="abrirModal(@p.IdPermiso,'@Html.Raw(p.Empleado.Replace("'","\\'"))','@p.TipoPermiso','@p.FechaInicio.ToString("dd/MM/yyyy")','@p.FechaFin.ToString("dd/MM/yyyy")','@Html.Raw(p.Motivo.Replace("'","\\'").Replace("\r\n"," "))','Rechazado')">
+                                                <i class="fa-solid fa-xmark"></i> Rechazar
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted" style="font-size:.8rem;">
+                                                @(p.AdminResolvio ?? "—")
+                                            </span>
+                                            if (!string.IsNullOrEmpty(p.ComentarioAdmin))
+                                            {
+                                                <br />
+                                                <span class="text-muted" style="font-size:.78rem;" title="@p.ComentarioAdmin">
+                                                    💬 @(p.ComentarioAdmin.Length > 28 ? p.ComentarioAdmin.Substring(0,28) + "…" : p.ComentarioAdmin)
+                                                </span>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="modalResolver" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fa-solid fa-clipboard-check me-2"></i>Resolver solicitud</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding:24px;">
+
+                <div class="info-permiso" id="infoPermiso"></div>
+
+                @using (Html.BeginForm("Resolver", "Permiso", FormMethod.Post, new { id = "formResolver" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("IdPermiso", 0, new { id = "hidIdPermiso" })
+
+                    <div class="decision-btns">
+                        <input type="radio" name="NuevoEstado" id="rdAprobar" value="Aprobado" />
+                        <label for="rdAprobar"><i class="fa-solid fa-check me-1"></i>Aprobar</label>
+                        <input type="radio" name="NuevoEstado" id="rdRechazar" value="Rechazado" />
+                        <label for="rdRechazar"><i class="fa-solid fa-xmark me-1"></i>Rechazar</label>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label style="font-weight:700;font-size:.87rem;display:block;margin-bottom:6px;">
+                            Comentario <span style="font-weight:400;color:#9ca3af;">(opcional)</span>
+                        </label>
+                        <textarea name="ComentarioAdmin" rows="3" class="fc-modal"
+                                  placeholder="Explique el motivo de su decisión..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-modal-submit">
+                        <i class="fa-solid fa-floppy-disk me-2"></i>Guardar resolución
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function abrirModal(id, empleado, tipo, desde, hasta, motivo, accion) {
+        document.getElementById('hidIdPermiso').value = id;
+        document.getElementById('infoPermiso').innerHTML =
+            '<strong>Empleado:</strong> ' + empleado + '<br>' +
+            '<strong>Tipo:</strong> ' + tipo + '<br>' +
+            '<strong>Período:</strong> ' + desde + ' — ' + hasta + '<br>' +
+            '<strong>Motivo:</strong> ' + motivo;
+
+        document.getElementById(accion === 'Aprobado' ? 'rdAprobar' : 'rdRechazar').checked = true;
+        document.querySelector('textarea[name=ComentarioAdmin]').value = '';
+        $('#modalResolver').modal('show');
+    }
+
+    document.getElementById('formResolver').addEventListener('submit', function (e) {
+        if (!document.querySelector('input[name=NuevoEstado]:checked')) {
+            e.preventDefault();
+            alert('Seleccione Aprobar o Rechazar antes de continuar.');
+        }
+    });
+</script>

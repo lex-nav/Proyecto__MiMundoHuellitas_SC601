@@ -1,6 +1,16 @@
 ﻿@{
-    bool isAuth = (Request != null && Request.IsAuthenticated);
-    bool esAdmin = (User != null && User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"));
+    bool isAuth = User.Identity.IsAuthenticated;
+
+    int? idTipoUsuario = null;
+
+    if (Session["IdTipoUsuario"] != null)
+    {
+        idTipoUsuario = Convert.ToInt32(Session["IdTipoUsuario"]);
+    }
+
+    bool esCliente = idTipoUsuario == 1;
+    bool esAdmin = idTipoUsuario == 2;
+    bool esEmpleado = idTipoUsuario == 3;
 }
 
 <!DOCTYPE html>
@@ -18,7 +28,6 @@
     <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css" />
 
-    <!-- ✅ Font Awesome 6 (única versión, correcta) -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -103,20 +112,14 @@
             }
     </style>
 </head>
-
 <body class="has-fixed-nav">
 
-    <!-- TOP BAR -->
     <div class="top-contact-bar">
         <div class="top-contact-inner">
 
             <div class="top-contact-left">
-                <span>
-                    <i class="fa-solid fa-phone"></i> +506 7263-7460
-                </span>
-                <span class="ms-3">
-                    <i class="fa-solid fa-envelope"></i> mundodehuellitascr@outlook.com
-                </span>
+                <span><i class="fa-solid fa-phone"></i> +506 7263-7460</span>
+                <span class="ms-3"><i class="fa-solid fa-envelope"></i> mundodehuellitascr@outlook.com</span>
             </div>
 
             <div class="top-contact-right">
@@ -124,29 +127,24 @@
                 {
                     <span class="user-greeting">Hola, @User.Identity.Name</span>
 
-                    if (esAdmin)
-                    {
-                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
+                    @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
 
-                        <form action="@Url.Action("Logout", "Account")" method="post" id="logoutForm" style="display:inline;">
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:void(0);" class="auth-link"
-                               onclick="document.getElementById('logoutForm').submit();">
-                                Cerrar sesión
-                            </a>
-                        </form>
-
-                    }
-                    else
+                    if (esCliente)
                     {
                         <a class="auth-link" href="@Url.Action("Carrito", "Productos")" title="Carrito">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </a>
 
-                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
                         @Html.ActionLink("Mis citas", "VerCitas", "Citas", null, new { @class = "auth-link" })
-                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
                     }
+
+                    <form action="@Url.Action("Logout", "Account")" method="post" id="logoutFormGeneral" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:void(0);" class="auth-link"
+                           onclick="document.getElementById('logoutFormGeneral').submit();">
+                            Cerrar sesión
+                        </a>
+                    </form>
                 }
                 else
                 {
@@ -163,7 +161,6 @@
         </div>
     </div>
 
-    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom menu-principal sticky-top">
         <div class="container">
 
@@ -181,18 +178,17 @@
 
                     @if (esAdmin)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">ADMIN MASCOTAS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Administrar", "Permiso")">ADMIN PERMISOS</a></li>
+                    }
+                    else if (esEmpleado)
+                    {
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MisPermisos", "Permiso")">MIS PERMISOS</a></li>
                     }
                     else
                     {
@@ -216,7 +212,6 @@
         </div>
     </nav>
 
-    <!-- ✅ FIX: permite que vistas definan secciones sin romper el layout -->
     @RenderSection("FullWidthTop", required: false)
 
     <main class="container-fluid body-content px-3">
@@ -227,7 +222,6 @@
         </footer>
     </main>
 
-    <!-- ✅ FIX: sección opcional inferior -->
     @RenderSection("FullWidthBottom", required: false)
 
     @Scripts.Render("~/bundles/jquery")

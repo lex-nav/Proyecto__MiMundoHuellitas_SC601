@@ -267,6 +267,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminProductosController.cs" />
     <Compile Include="Controllers\AdminUsuariosController.cs" />
+    <Compile Include="Controllers\PermisoController.cs" />
     <Compile Include="Controllers\PlanillaController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
@@ -278,16 +279,23 @@
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="DAL\MarcacionRepository.cs" />
+    <Compile Include="DAL\PermisoRepository.cs" />
     <Compile Include="DAL\PlanillaCierreRepository.cs" />
     <Compile Include="DAL\PlanillaRepository.cs" />
     <Compile Include="EF\ApplicationDbContext.cs" />
     <Compile Include="EF\C__MigrationHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MH_Auditoria_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MH_Canton_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_Cita_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Comision_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_DetalleFactura_TB.cs">
@@ -326,6 +334,9 @@
     <Compile Include="EF\MH_Mascotas_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MH_Permiso_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MH_PlanillaDetalle_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -350,6 +361,9 @@
     <Compile Include="EF\MH_Servicios_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MH_TipoPermiso_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MH_Tipo_Usuario_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -371,10 +385,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EF\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\Usuarios.cs">
+    <Compile Include="EF\usp_MH_CalcularPlanilla_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_CerrarPlanilla_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_MarcarEntrada_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_MarcarSalida_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_ReabrirPlanilla_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\vw_MH_AsistenciaDiaria.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VW_MH_Auditoria.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\vw_MH_PlanillaDetalle.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -400,6 +441,7 @@
     <Compile Include="Models\ViewModels\Reportes\ReporteFacturasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteMascotasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteServiciosVM.cs" />
+    <Compile Include="Models\ViewModels\TipoPermisoVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -672,6 +714,9 @@
     <Content Include="Views\AdminProductos\Delete.cshtml" />
     <Content Include="Views\Planilla\Calcular.cshtml" />
     <Content Include="Views\Planilla\Resultado.cshtml" />
+    <Content Include="Views\Permiso\Administrar.cshtml" />
+    <Content Include="Views\Permiso\MisPermisos.cshtml" />
+    <Content Include="Views\Permiso\Solicitar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

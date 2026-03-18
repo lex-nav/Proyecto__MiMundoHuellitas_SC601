@@ -12,26 +12,22 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class MH_Planilla_TB
+    public partial class MH_TipoPermiso_TB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MH_Planilla_TB()
+        public MH_TipoPermiso_TB()
         {
-            this.MH_PlanillaDetalle_TB = new HashSet<MH_PlanillaDetalle_TB>();
+            this.MH_Permiso_TB = new HashSet<MH_Permiso_TB>();
         }
     
-        public long IdPlanilla { get; set; }
-        public System.DateTime FechaInicio { get; set; }
-        public System.DateTime FechaFin { get; set; }
-        public System.DateTime FechaCalculo { get; set; }
-        public string Observacion { get; set; }
-        public bool Cerrada { get; set; }
-        public Nullable<System.DateTime> FechaCierre { get; set; }
-        public Nullable<int> CerradaPorIdUsuario { get; set; }
-        public string MotivoCierre { get; set; }
+        public int IdTipoPermiso { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public bool RequiereDoc { get; set; }
+        public bool AfectaSalario { get; set; }
+        public bool Activo { get; set; }
     
-        public virtual MH_Usuario_TB MH_Usuario_TB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MH_PlanillaDetalle_TB> MH_PlanillaDetalle_TB { get; set; }
+        public virtual ICollection<MH_Permiso_TB> MH_Permiso_TB { get; set; }
     }
 }

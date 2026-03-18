@@ -25,8 +25,8 @@ namespace MiMundoHuellitas.Controllers
         private readonly MarcacionRepository _marcRepo = new MarcacionRepository();
 
         // ✅ IDs según tu BD
-        private const int ID_ADMIN = 1;
-        private const int ID_CLIENTE = 2;
+        private const int ID_ADMIN = 2;
+        private const int ID_CLIENTE = 1;
         private const int ID_EMPLEADO = 3;
 
         // =========================

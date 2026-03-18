@@ -1,0 +1,305 @@
+﻿@* Views/Permiso/Solicitar.cshtml — Formulario EMPLEADO *@
+@model MiMundoHuellitas.Models.ViewModels.SolicitarPermisoVM
+@{
+    ViewBag.Title = "Nueva Solicitud de Permiso";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@section FullWidthTop {
+    <div class="hero-solicitar">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Nueva Solicitud</h1>
+            <p class="hero-subtitle">Completá el formulario para solicitar un permiso o ausencia</p>
+        </div>
+    </div>
+
+    <style>
+        .hero-solicitar {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 240px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(0,200,83,0.75), rgba(3,169,244,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 70px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: .4px;
+            font-size: clamp(32px,4vw,52px);
+            margin: 0;
+        }
+
+        .hero-subtitle {
+            margin: 10px 0 0;
+            font-weight: 600;
+            color: rgba(11,15,20,0.82);
+            font-size: 16px;
+        }
+
+        .panel-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0b3d2e;
+            margin-bottom: 6px;
+        }
+
+        .panel-subtitle {
+            color: #6b7280;
+            margin-bottom: 0;
+        }
+
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        /* Campos del form */
+        .form-label-custom {
+            font-weight: 700;
+            font-size: .86rem;
+            color: #374151;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .form-control-custom {
+            border-radius: 10px;
+            border: 1.5px solid #e5e7eb;
+            padding: 10px 14px;
+            font-size: .92rem;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border .2s, box-shadow .2s;
+            background: #fff;
+        }
+
+            .form-control-custom:focus {
+                border-color: #00c853;
+                box-shadow: 0 0 0 3px rgba(0,200,83,.12);
+                outline: none;
+            }
+
+        select.form-control-custom {
+            appearance: auto;
+        }
+
+        .field-error {
+            font-size: .81rem;
+            color: #c0392b;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* Nota informativa */
+        .info-nota {
+            background: rgba(0,200,83,0.07);
+            border: 1px solid rgba(0,200,83,0.25);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: .84rem;
+            color: #0b6b3a;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+            .info-nota i {
+                margin-top: 2px;
+                flex-shrink: 0;
+            }
+
+        /* Resumen de días */
+        .dias-preview {
+            background: rgba(3,169,244,0.07);
+            border: 1px solid rgba(3,169,244,0.2);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: .86rem;
+            color: #0369a1;
+            margin-top: 8px;
+            display: none;
+        }
+
+            .dias-preview.visible {
+                display: block;
+            }
+
+        /* Botones */
+        .btn-enviar {
+            background: linear-gradient(90deg,#00c853,#03a9f4);
+            color: #0b0f14;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 28px;
+            font-size: .95rem;
+            font-weight: 800;
+            width: 100%;
+            cursor: pointer;
+            transition: opacity .2s;
+            margin-top: 6px;
+        }
+
+            .btn-enviar:hover {
+                opacity: .85;
+            }
+
+        .btn-volver {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            font-size: .85rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .btn-volver:hover {
+                color: #0b3d2e;
+                text-decoration: none;
+            }
+    </style>
+}
+
+<div class="container my-4" style="max-width:680px;">
+
+    @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ContainsKey("") &&
+         ViewData.ModelState[""].Errors.Count > 0)
+    {
+        <div class="alert alert-danger rounded-3 mb-3">
+            <i class="fa-solid fa-circle-exclamation me-2"></i>@Html.ValidationMessage("")
+        </div>
+    }
+
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+        <div>
+            <div class="panel-title">Solicitar permiso</div>
+            <div class="panel-subtitle">Completá todos los campos para enviar tu solicitud.</div>
+        </div>
+    </div>
+
+    <!-- Card formulario -->
+    <div class="card card-soft border-0">
+        <div class="card-body p-4">
+
+            <div class="info-nota">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>
+                    Los permisos aprobados <strong>no afectan tu salario</strong>.
+                    Son registrados únicamente para control de asistencia.
+                </span>
+            </div>
+
+            @using (Html.BeginForm("Solicitar", "Permiso", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Tipo de permiso -->
+                <div class="mb-3">
+                    <label class="form-label-custom">
+                        <i class="fa-solid fa-tag me-1 text-success"></i> Tipo de permiso
+                    </label>
+                    @Html.DropDownListFor(m => m.IdTipoPermiso,
+                             new SelectList(Model.TiposPermiso, "IdTipoPermiso", "Nombre"),
+                             "— Seleccione un tipo —",
+                             new { @class = "form-control-custom" })
+                    @Html.ValidationMessageFor(m => m.IdTipoPermiso, "", new { @class = "field-error" })
+                </div>
+
+                <!-- Fechas -->
+                <div class="row g-3 mb-1">
+                    <div class="col-sm-6">
+                        <label class="form-label-custom">
+                            <i class="fa-regular fa-calendar me-1 text-success"></i> Fecha inicio
+                        </label>
+                        @Html.TextBoxFor(m => m.FechaInicio, "{0:yyyy-MM-dd}",
+                                 new { @class = "form-control-custom", type = "date", id = "FechaInicio" })
+                        @Html.ValidationMessageFor(m => m.FechaInicio, "", new { @class = "field-error" })
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label-custom">
+                            <i class="fa-regular fa-calendar-check me-1 text-success"></i> Fecha fin
+                        </label>
+                        @Html.TextBoxFor(m => m.FechaFin, "{0:yyyy-MM-dd}",
+                                 new { @class = "form-control-custom", type = "date", id = "FechaFin" })
+                        @Html.ValidationMessageFor(m => m.FechaFin, "", new { @class = "field-error" })
+                    </div>
+                </div>
+
+                <!-- Preview días -->
+                <div class="dias-preview mb-3" id="diasPreview">
+                    <i class="fa-solid fa-sun me-1"></i>
+                    <span id="diasTexto"></span>
+                </div>
+
+                <!-- Motivo -->
+                <div class="mb-3">
+                    <label class="form-label-custom">
+                        <i class="fa-solid fa-pen-to-square me-1 text-success"></i> Motivo
+                    </label>
+                    @Html.TextAreaFor(m => m.Motivo,
+                             new
+                             {
+                                 @class = "form-control-custom",
+                                 rows = 4,
+                                 placeholder = "Describí el motivo de tu solicitud..."
+                             })
+                    @Html.ValidationMessageFor(m => m.Motivo, "", new { @class = "field-error" })
+                </div>
+
+                <button type="submit" class="btn-enviar">
+                    <i class="fa-solid fa-paper-plane me-2"></i> Enviar solicitud
+                </button>
+            }
+
+        </div>
+    </div>
+
+    @Html.ActionLink("← Volver a mis permisos", "MisPermisos", "Permiso", null, new { @class = "btn-volver" })
+
+</div>
+
+<script>var fi = document.getElementById('FechaInicio');
+    var ff = document.getElementById('FechaFin');
+    var preview  = document.getElementById('diasPreview');
+    var diasText = document.getElementById('diasTexto');
+
+    function actualizarDias() {
+        if (!fi.value || !ff.value) { preview.classList.remove('visible'); return; }
+        var inicio = new Date(fi.value);
+        var fin    = new Date(ff.value);
+        if (fin < inicio)           { preview.classList.remove('visible'); return; }
+        var dias = Math.round((fin - inicio) / (1000 * 60 * 60 * 24)) + 1;
+        diasText.textContent = 'Duración: ' + dias + ' día' + (dias !== 1 ? 's' : '') +
+            ' (' + inicio.toLocaleDateString('es-CR') + ' al ' + fin.toLocaleDateString('es-CR') + ')';
+        preview.classList.add('visible');
+    }
+
+    fi.addEventListener('change', actualizarDias);
+    ff.addEventListener('change', actualizarDias);
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+        if (fi.value && ff.value && ff.value < fi.value) {
+            e.preventDefault();
+            alert('La fecha de fin no puede ser anterior al inicio.');
+        }
+    });</script>
+
