@@ -1,0 +1,56 @@
+﻿@model List<MiMundoHuellitas.Models.ViewModels.EmpleadoLaboralVM>
+
+@{
+    ViewBag.Title = "Personal";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<h2 class="mb-4">Personal - Empleados</h2>
+
+@if (TempData["Ok"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Ok"]
+    </div>
+}
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Empleado</th>
+            <th>Correo</th>
+            <th>Salario Hora</th>
+            <th>Salario Mensual</th>
+            <th>Activo</th>
+            <th>Jornada</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreCompleto</td>
+                <td>@item.Correo</td>
+
+                <td>@(item.SalarioHora?.ToString("N2") ?? "0.00")</td>
+                <td>@(item.SalarioMensual?.ToString("N2") ?? "0.00")</td>
+
+                <td>
+                    <span class="badge @(item.Activo ? "bg-success" : "bg-danger")">
+                        @(item.Activo ? "Activo" : "Inactivo")
+                    </span>
+                </td>
+
+                <td>@item.NombreJornada</td>
+
+                <td>
+                    <a href="@Url.Action("LaboralEdit", "Personal", new { id = item.IdEmpleadoLaboral })"
+                       class="btn btn-sm btn-primary">
+                        Editar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

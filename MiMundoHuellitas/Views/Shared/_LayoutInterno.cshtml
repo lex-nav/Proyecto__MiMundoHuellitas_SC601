@@ -164,7 +164,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom menu-principal sticky-top">
         <div class="container">
 
-            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                 <img src="~/StaticFiles/img/Huellitas.png" alt="Logo" />
                 <span class="ms-2 fw-bold">Mi Mundo de Huellitas</span>
             </a>
@@ -184,22 +184,24 @@
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">ADMIN MASCOTAS</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Administrar", "Permiso")">ADMIN PERMISOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Auditoria")">AUDITORÍA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("LaboralIndex", "Personal")">PERSONAL</a></li>
                     }
                     else if (esEmpleado)
                     {
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("MisPermisos", "Permiso")">MIS PERMISOS</a></li>
                     }
                     else
                     {
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("SobreNosotros","Home")">SOBRE NOSOTROS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Equipo","Home")">EQUIPO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Servicios","Home")">SERVICIOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Galeria","Home")">GALERÍA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Productos","Home")">PRODUCTOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog","Home")">BLOG</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contacto","Home")">CONTÁCTENOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("SobreNosotros", "Home")">SOBRE NOSOTROS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Equipo", "Home")">EQUIPO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Servicios", "Home")">SERVICIOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Galeria", "Home")">GALERÍA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Productos", "Home")">PRODUCTOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog", "Home")">BLOG</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contacto", "Home")">CONTÁCTENOS</a></li>
 
                         if (isAuth)
                         {
