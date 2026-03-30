@@ -1,14 +1,32 @@
-﻿@{
+﻿@using System.Web.Security
+
+@{
     bool isAuth = (Request != null && Request.IsAuthenticated);
 
+    string rol = "";
 
-    bool esAdmin = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
-                    (User.IsInRole("Admin") || User.IsInRole("Administrador")));
+    if (User.Identity.IsAuthenticated)
+    {
+        var identity = (FormsIdentity)User.Identity;
+        var ticket = identity.Ticket;
+        rol = ticket.UserData; // 👈 AQUÍ viene "Admin", "Empleado", "Cliente"
+    }
 
-    
-    bool esEmpleado = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
-                       User.IsInRole("Empleado"));
+    bool esAdmin = rol == "Admin";
+    bool esEmpleado = rol == "Empleado";
+    bool esCliente = rol == "Cliente";
 }
+
+@*bool isAuth = (Request != null && Request.IsAuthenticated);
+
+
+        bool esAdmin = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
+                        (User.IsInRole("Admin") || User.IsInRole("Administrador")));
+
+
+        bool esEmpleado = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
+                           User.IsInRole("Empleado"));
+    }*@
 
 <!DOCTYPE html>
 <html lang="es">
@@ -114,6 +132,8 @@
 
 <body class="has-fixed-nav">
 
+    <p style="color:red; font-weight:bold;">ROL: @rol</p>
+
     <!-- TOP BAR -->
     <div class="top-contact-bar">
         <div class="top-contact-inner">
@@ -146,17 +166,26 @@
                         </form>
 
                     }
+                    @* ================== EMPLEADO ==================
+                                ESTABA DUPLICADO
+                            else if (esEmpleado)
+                            {
+                                @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
+                                @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
+                        }
+                    *@
                     @* ================== EMPLEADO ================== *@
                     else if (esEmpleado)
                     {
                         @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
-                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
-                    }
-                    @* ================== EMPLEADO ================== *@
-                    else if (esEmpleado)
-                    {
-                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
-                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
+                        <form action="@Url.Action("Logout", "Account")" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:void(0);" class="auth-link"
+                               onclick="this.closest('form').submit();">
+                                Cerrar sesión
+                            </a>
+                        </form>
+
                     }
                     @* ================== CLIENTE ================== *@
                     else
@@ -167,7 +196,13 @@
 
                         @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
                         @Html.ActionLink("Mis citas", "VerCitas", "Citas", null, new { @class = "auth-link" })
-                        @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
+                        <form action="@Url.Action("Logout", "Account")" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:void(0);" class="auth-link"
+                               onclick="this.closest('form').submit();">
+                                Cerrar sesión
+                            </a>
+                        </form>
                     }
                 }
                 else
@@ -227,9 +262,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Auditoria")">Auditoria</a>
                         </li>
                     }
 
