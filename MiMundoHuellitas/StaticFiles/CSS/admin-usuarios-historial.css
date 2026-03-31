@@ -192,6 +192,97 @@
     }
 }
 
+
+
+
+/* HERO */
+.hero-adminusers {
+    position: relative;
+    border-radius: 0 0 22px 22px;
+    overflow: hidden;
+    min-height: 240px;
+    margin: 0 0 22px 0;
+    background: linear-gradient(90deg, rgba(46, 204, 113, 0.82), rgba(39, 174, 96, 0.82)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.hero-content {
+    position: relative;
+    padding: 70px 12px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-title {
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    font-size: clamp(32px, 4vw, 52px);
+    margin: 0;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.20);
+}
+
+.hero-subtitle {
+    margin: 10px 0 0;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    font-size: 16px;
+}
+
+/* PANEL */
+.panel-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #14532d;
+    margin-bottom: 6px;
+}
+
+.panel-subtitle {
+    color: #6b7280;
+    margin-bottom: 18px;
+}
+
+.card-soft {
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+    background: #fff;
+}
+
+.badge-soft {
+    background: #e8f8ee;
+    color: #1e7e34;
+    border: 1px solid #b7e4c7;
+    font-weight: 600;
+}
+
+/* TABLA */
+.tabla-usuarios thead th {
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #6b7280;
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-usuarios tbody td {
+    vertical-align: middle;
+}
+
+.tabla-usuarios tbody tr:hover {
+    background-color: #f6fdf8;
+}
+
+.acciones-columna {
+    width: 190px;
+}
+
+/* ACCIONES */
 .acciones-usuarios {
     display: flex;
     justify-content: center;
@@ -200,8 +291,8 @@
 }
 
 .icon-btn {
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     display: inline-flex;
     justify-content: center;
@@ -209,41 +300,50 @@
     text-decoration: none;
     transition: all 0.2s ease;
     border: 1px solid transparent;
-    font-size: 14px;
+    font-size: 16px;
 }
 
+    .icon-btn i {
+        font-size: 16px;
+    }
+
+    .icon-btn:hover {
+        transform: translateY(-1px) scale(1.06);
+        text-decoration: none;
+    }
+
+/* Historial */
 .icon-historial {
     background-color: #e8f8ee;
-    color: #239b56;
+    color: #28a745;
     border-color: #b7e4c7;
 }
 
     .icon-historial:hover {
         background-color: #d4efdf;
-        color: #1e8449;
-        text-decoration: none;
+        color: #1e7e34;
     }
 
+/* Editar */
 .icon-editar {
-    background-color: #eaf4ff;
-    color: #2e86de;
-    border-color: #bcdcff;
+    background-color: #eaf2ff;
+    color: #0d6efd;
+    border-color: #b6d4fe;
 }
 
     .icon-editar:hover {
-        background-color: #d6eaff;
-        color: #2168b3;
-        text-decoration: none;
+        background-color: #dbeafe;
+        color: #0a58ca;
     }
 
+/* Eliminar */
 .icon-eliminar {
-    background-color: #fdeeee;
+    background-color: #fdecec;
     color: #dc3545;
     border-color: #f5c2c7;
 }
 
     .icon-eliminar:hover {
-        background-color: #f9d6d8;
+        background-color: #f8d7da;
         color: #b02a37;
-        text-decoration: none;
     }
