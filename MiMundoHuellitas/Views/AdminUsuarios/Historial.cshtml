@@ -1,0 +1,215 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.HistorialClienteViewModel
+
+
+@{
+    ViewBag.Title = "Historial del Cliente";
+}
+
+@section Styles {
+    <link href="~/StaticFiles/CSS/admin-usuarios-historial.css" rel="stylesheet" />
+}
+<div class="historial-container">
+
+    <div class="top-actions">
+        <div>
+            <h2>Historial del Cliente</h2>
+            <div class="subtitulo">Consulta general de información, mascotas, citas y facturas.</div>
+        </div>
+        <div>
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+
+    @if (Model.Cliente != null)
+    {
+        <div class="section-card">
+            <div class="section-header header-cliente">
+                Datos del Cliente
+            </div>
+
+            <div class="cliente-body">
+                <div class="cliente-grid">
+                    <div class="cliente-box">
+                        <h5>Información Personal</h5>
+
+                        <div class="dato-item">
+                            <span class="dato-label">Nombre completo</span>
+                            <span class="dato-valor">@Model.Cliente.NombreCompleto</span>
+                        </div>
+
+                        <div class="dato-item">
+                            <span class="dato-label">Correo</span>
+                            <span class="dato-valor">@Model.Cliente.Correo</span>
+                        </div>
+
+                        <div class="dato-item">
+                            <span class="dato-label">Teléfono</span>
+                            <span class="dato-valor">@(string.IsNullOrEmpty(Model.Cliente.Telefono) ? "-" : Model.Cliente.Telefono)</span>
+                        </div>
+                    </div>
+
+                    <div class="cliente-box">
+                        <h5>Información de Cuenta</h5>
+
+                        <div class="dato-item">
+                            <span class="dato-label">Tipo de usuario</span>
+                            <span class="dato-valor">@Model.Cliente.TipoUsuario</span>
+                        </div>
+
+                        <div class="dato-item">
+                            <span class="dato-label">Estado</span>
+                            <span class="dato-valor">
+                                @if (Model.Cliente.Activo)
+                                {
+                                    <span class="estado-badge estado-activo">Activo</span>
+                                }
+                                else
+                                {
+                                    <span class="estado-badge estado-inactivo">Inactivo</span>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="section-card">
+        <div class="section-header header-mascotas">
+            Mascotas
+        </div>
+        <div class="tabla-wrap">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover tabla-mascotas">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Especie</th>
+                            <th>Raza</th>
+                            <th>Fecha Nacimiento</th>
+                            <th class="text-center">Activo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Mascotas != null && Model.Mascotas.Any())
+                        {
+                            foreach (var item in Model.Mascotas)
+                            {
+                                <tr>
+                                    <td>@item.NombreMascota</td>
+                                    <td>@item.Especie</td>
+                                    <td>@(string.IsNullOrEmpty(item.Raza) ? "-" : item.Raza)</td>
+                                    <td>@(item.FechaNacimiento.HasValue ? item.FechaNacimiento.Value.ToString("dd/MM/yyyy") : "-")</td>
+                                    <td class="text-center">
+                                        @if (item.Activo)
+                                        {
+                                            <span class="mini-badge mini-ok">Sí</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="mini-badge mini-no">No</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">No hay mascotas registradas.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header header-citas">
+            Citas
+        </div>
+        <div class="tabla-wrap">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover tabla-citas">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Mascota</th>
+                            <th>Servicio</th>
+                            <th class="text-right">Precio Unitario</th>
+                            <th class="text-right">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Citas != null && Model.Citas.Any())
+                        {
+                            foreach (var item in Model.Citas)
+                            {
+                                <tr>
+                                    <td>@item.FechaHoraCita.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>@item.Estado</td>
+                                    <td>@item.Mascota</td>
+                                    <td>@(string.IsNullOrEmpty(item.Servicio) ? "-" : item.Servicio)</td>
+                                    <td class="text-money">@(item.PrecioUnitario.HasValue ? item.PrecioUnitario.Value.ToString("C") : "-")</td>
+                                    <td class="text-money">@(item.Subtotal.HasValue ? item.Subtotal.Value.ToString("C") : "-")</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center text-muted">No hay citas registradas.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card">
+        <div class="section-header header-facturas">
+            Facturas
+        </div>
+        <div class="tabla-wrap">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover tabla-facturas">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Método de Pago</th>
+                            <th>Número de Referencia</th>
+                            <th class="text-right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Facturas != null && Model.Facturas.Any())
+                        {
+                            foreach (var item in Model.Facturas)
+                            {
+                                <tr>
+                                    <td>@item.FechaFactura.ToString("dd/MM/yyyy")</td>
+                                    <td>@item.Estado</td>
+                                    <td>@(string.IsNullOrEmpty(item.MetodoPago) ? "-" : item.MetodoPago)</td>
+                                    <td>@(string.IsNullOrEmpty(item.NumeroReferencia) ? "-" : item.NumeroReferencia)</td>
+                                    <td class="text-money">@item.MontoTotal.ToString("C")</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">No hay facturas registradas.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using MiMundoHuellitas.EF;
+using MiMundoHuellitas.DAL;
+using MiMundoHuellitas.Models.ViewModels;
 
 namespace MiMundoHuellitas.Controllers
 {
@@ -77,6 +79,23 @@ namespace MiMundoHuellitas.Controllers
             TempData["Ok"] = "Usuario eliminado correctamente";
             return RedirectToAction("Index");
         }
-        
+
+        public ActionResult Historial(int id)
+        {
+            var repo = new HistorialClienteRepository();
+
+            var model = new HistorialClienteViewModel
+            {
+                Cliente = repo.ObtenerCliente(id),
+                Mascotas = repo.ObtenerMascotas(id),
+                Citas = repo.ObtenerCitas(id),
+                Facturas = repo.ObtenerFacturas(id)
+            };
+
+            if (model.Cliente == null)
+                return HttpNotFound();
+
+            return View(model);
+        }
     }
 }

@@ -119,11 +119,7 @@
                 @((Model == null) ? 0 : Model.Count()) usuarios
             </span>
 
-            @* Si tenés acción Create, descomentá:
-                <a href="@Url.Action("Create","AdminUsuarios")" class="btn btn-success btn-round px-3">
-                    <i class="fa-solid fa-user-plus me-2"></i> Nuevo
-                </a>
-            *@
+          
         </div>
     </div>
 
@@ -147,7 +143,7 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Teléfono</th>
-                                <th class="text-center" style="width:160px;">Acciones</th>
+                                <th class="text-center" style="width:220px;">Acciones</th>
                             </tr>
                         </thead>
 
@@ -167,19 +163,26 @@
                                             <span class="text-muted fst-italic">No registrado</span>
                                         }
                                     </td>
-
                                     <td class="text-center">
-                                        <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
-                                           class="btn btn-outline-primary btn-icon me-1"
-                                           title="Editar">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </a>
+                                        <div class="acciones-usuarios">
+                                            <a href="@Url.Action("Historial","AdminUsuarios", new { id = u.IdUsuario })"
+                                               class="icon-btn icon-historial"
+                                               title="Ver historial">
+                                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                            </a>
 
-                                        <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
-                                           class="btn btn-outline-danger btn-icon"
-                                           title="Eliminar">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
+                                            <a href="@Url.Action("Edit","AdminUsuarios", new { id = u.IdUsuario })"
+                                               class="icon-btn icon-editar"
+                                               title="Editar">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </a>
+
+                                            <a href="@Url.Action("Delete","AdminUsuarios", new { id = u.IdUsuario })"
+                                               class="icon-btn icon-eliminar"
+                                               title="Eliminar">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             }
