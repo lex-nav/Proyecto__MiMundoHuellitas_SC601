@@ -106,9 +106,9 @@ namespace MiMundoHuellitas.Controllers
                 {
                     _marcRepo.MarcarEntrada(usuario.IdUsuario);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // Recomendado: log, pero NO bloquear login
+                    System.Diagnostics.Debug.WriteLine("Error al marcar entrada: " + ex.Message);
                 }
             }
 
@@ -222,9 +222,9 @@ namespace MiMundoHuellitas.Controllers
                 {
                     _marcRepo.MarcarSalida(idUsuario);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // No bloquear logout si falla
+                    System.Diagnostics.Debug.WriteLine("Error al marcar salida: " + ex.Message);
                 }
             }
 
