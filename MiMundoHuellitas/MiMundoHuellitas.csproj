@@ -752,6 +752,10 @@
     <Content Include="Views\Personal\LaboralEdit.cshtml" />
     <Content Include="Views\AdminUsuarios\Historial.cshtml" />
     <Content Include="Views\Reportes\ProductividadColaborador.cshtml" />
+    <Content Include="Views\Planilla\MisPlanillas.cshtml" />
+    <Content Include="Views\Planilla\Detalle.cshtml" />
+    <Content Include="Views\Planilla\AdminPlanillas.cshtml" />
+    <Content Include="Views\Planilla\DetalleAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\NewFolder1\" />

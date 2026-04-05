@@ -1,38 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Configuration;
+﻿using MiMundoHuellitas.EF;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
-namespace TuProyecto.DAL
+namespace MiMundoHuellitas.DAL
 {
-    public class MarcacionRepository
+    public class MarcacionRepository : IDisposable
     {
-        private readonly string _cn = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly BD_MiMundoHuellitasEntities _db;
+
+        public MarcacionRepository()
+        {
+            _db = new BD_MiMundoHuellitasEntities();
+        }
 
         public void MarcarEntrada(int idUsuario)
         {
-            EjecutarSP("dbo.usp_MH_MarcarEntrada", idUsuario);
+            var pIdUsuario = new SqlParameter("@IdUsuario", SqlDbType.Int)
+            {
+                Value = idUsuario
+            };
+
+            _db.Database.ExecuteSqlCommand(
+                "EXEC dbo.usp_MH_MarcarEntrada @IdUsuario",
+                pIdUsuario
+            );
         }
 
         public void MarcarSalida(int idUsuario)
         {
-            EjecutarSP("dbo.usp_MH_MarcarSalida", idUsuario);
+            var pIdUsuario = new SqlParameter("@IdUsuario", SqlDbType.Int)
+            {
+                Value = idUsuario
+            };
+
+            _db.Database.ExecuteSqlCommand(
+                "EXEC dbo.usp_MH_MarcarSalida @IdUsuario",
+                pIdUsuario
+            );
         }
 
-        private void EjecutarSP(string spName, int idUsuario)
+        public void CerrarMarcacionesAnterioresAbiertas(int idUsuario)
         {
-            using (var conn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand(spName, conn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+            var abiertas = _db.MH_Marcacion_TB
+                .Where(x => x.IdUsuario == idUsuario && x.HoraSalida == null && x.Aprobada)
+                .ToList();
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
+            foreach (var item in abiertas)
+            {
+                DateTime fechaBase = item.Fecha;
+                DateTime salidaAuto = fechaBase.AddHours(17); // 5 PM por defecto
+
+                if (item.HoraEntrada > salidaAuto)
+                    salidaAuto = item.HoraEntrada.AddHours(1);
+
+                item.HoraSalida = salidaAuto;
+                item.Observacion = (item.Observacion ?? "") + " | Cerrada automáticamente por nuevo login";
             }
+
+            if (abiertas.Any())
+                _db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _db.Dispose();
         }
     }
 }

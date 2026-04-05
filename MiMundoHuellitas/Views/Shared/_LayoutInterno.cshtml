@@ -1,11 +1,13 @@
 ﻿@{
     bool isAuth = User.Identity.IsAuthenticated;
 
+    int tempTipo;
     int? idTipoUsuario = null;
 
-    if (Session["IdTipoUsuario"] != null)
+    if (Session["IdTipoUsuario"] != null &&
+        int.TryParse(Session["IdTipoUsuario"].ToString(), out tempTipo))
     {
-        idTipoUsuario = Convert.ToInt32(Session["IdTipoUsuario"]);
+        idTipoUsuario = tempTipo;
     }
 
     bool esCliente = idTipoUsuario == 1;
@@ -182,7 +184,8 @@
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("AdminPlanillas", "Planilla")">ADMIN PLANILLA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Calcular", "Planilla")">CALCULAR PLANILLA</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">ADMIN MASCOTAS</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Administrar", "Permiso")">ADMIN PERMISOS</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Auditoria")">AUDITORÍA</a></li>
@@ -192,6 +195,7 @@
                     {
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("MisPermisos", "Permiso")">MIS PERMISOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MisPlanillas", "Planilla")">PLANILLA</a></li>
                     }
                     else
                     {

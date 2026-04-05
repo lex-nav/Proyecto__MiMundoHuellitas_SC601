@@ -1,75 +1,124 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+﻿using MiMundoHuellitas.EF;
 using MiMundoHuellitas.Models.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 
 namespace MiMundoHuellitas.DAL
 {
-    public class PlanillaRepository
+    public class PlanillaRepository : IDisposable
     {
-        private readonly string _cn = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        private readonly BD_MiMundoHuellitasEntities _db;
 
-        public List<PlanillaDetalleVM> CalcularPlanilla(
-     DateTime fechaInicio,
-     DateTime fechaFin,
-     string usuarioAuditoria,
-     decimal factorExtra = 1.5m,
-     decimal factorDoble = 2.0m,
-     string observacion = null)
+        public PlanillaRepository()
         {
-            var lista = new List<PlanillaDetalleVM>();
+            _db = new BD_MiMundoHuellitasEntities();
+        }
 
-            using (var conn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.usp_MH_CalcularPlanilla", conn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio.Date);
-                cmd.Parameters.AddWithValue("@FechaFin", fechaFin.Date);
-                cmd.Parameters.AddWithValue("@FactorExtra", factorExtra);
-                cmd.Parameters.AddWithValue("@FactorDoble", factorDoble);
-                cmd.Parameters.AddWithValue("@Observacion", (object)observacion ?? DBNull.Value);
+        public List<PlanillaDetalleVM> CalcularPlanilla(DateTime fechaInicio, DateTime fechaFin, string usuarioAuditoria, decimal factorExtra, decimal factorDoble)
+        {
+            var pFechaInicio = new SqlParameter("@FechaInicio", fechaInicio.Date);
+            var pFechaFin = new SqlParameter("@FechaFin", fechaFin.Date);
+            var pFactorExtra = new SqlParameter("@FactorExtra", factorExtra);
+            var pFactorDoble = new SqlParameter("@FactorDoble", factorDoble);
+            var pObservacion = new SqlParameter("@Observacion", $"Cálculo generado por {usuarioAuditoria}");
 
-                conn.Open();
+            var result = _db.Database.SqlQuery<PlanillaDetalleVM>(
+                @"EXEC dbo.usp_MH_CalcularPlanilla 
+                    @FechaInicio,
+                    @FechaFin,
+                    @FactorExtra,
+                    @FactorDoble,
+                    @Observacion",
+                pFechaInicio, pFechaFin, pFactorExtra, pFactorDoble, pObservacion
+            ).ToList();
 
-                using (var cmdSession = new SqlCommand("EXEC sp_set_session_context @key=N'UsuarioAuditoria', @value=@valor;", conn))
-                {
-                    cmdSession.Parameters.AddWithValue("@valor", (object)usuarioAuditoria ?? DBNull.Value);
-                    cmdSession.ExecuteNonQuery();
-                }
+            return result;
+        }
 
-                using (var rd = cmd.ExecuteReader())
-                {
-                    while (rd.Read())
-                    {
-                        lista.Add(new PlanillaDetalleVM
-                        {
-                            IdPlanilla = rd.GetInt64(rd.GetOrdinal("IdPlanilla")),
-                            FechaInicio = rd.GetDateTime(rd.GetOrdinal("FechaInicio")),
-                            FechaFin = rd.GetDateTime(rd.GetOrdinal("FechaFin")),
-                            FechaCalculo = rd.GetDateTime(rd.GetOrdinal("FechaCalculo")),
+        public List<PlanillaDetalleVM> ObtenerPlanillasPorUsuario(int idUsuario)
+        {
+            string sql = @"
+                SELECT 
+                    IdPlanilla,
+                    FechaInicio,
+                    FechaFin,
+                    FechaCalculo,
+                    IdUsuario,
+                    NombreCompleto,
+                    HorasNormales,
+                    HorasExtra,
+                    HorasDoble,
+                    SalarioHora,
+                    MontoNormales,
+                    MontoExtra,
+                    MontoDoble,
+                    TotalPagar
+                FROM dbo.vw_MH_PlanillaDetalle
+                WHERE IdUsuario = @IdUsuario
+                ORDER BY FechaInicio DESC, IdPlanilla DESC";
 
-                            IdUsuario = rd.GetInt32(rd.GetOrdinal("IdUsuario")),
-                            NombreCompleto = rd.GetString(rd.GetOrdinal("NombreCompleto")),
+            var pIdUsuario = new SqlParameter("@IdUsuario", idUsuario);
 
-                            HorasNormales = rd.GetDecimal(rd.GetOrdinal("HorasNormales")),
-                            HorasExtra = rd.GetDecimal(rd.GetOrdinal("HorasExtra")),
-                            HorasDoble = rd.GetDecimal(rd.GetOrdinal("HorasDoble")),
+            return _db.Database.SqlQuery<PlanillaDetalleVM>(sql, pIdUsuario).ToList();
+        }
 
-                            SalarioHora = rd.GetDecimal(rd.GetOrdinal("SalarioHora")),
-                            MontoNormales = rd.GetDecimal(rd.GetOrdinal("MontoNormales")),
-                            MontoExtra = rd.GetDecimal(rd.GetOrdinal("MontoExtra")),
-                            MontoDoble = rd.GetDecimal(rd.GetOrdinal("MontoDoble")),
-                            TotalPagar = rd.GetDecimal(rd.GetOrdinal("TotalPagar"))
-                        });
-                    }
-                }
-            }
+        public PlanillaDetalleVM ObtenerDetallePlanilla(long idPlanilla, int idUsuario)
+        {
+            string sql = @"
+        SELECT TOP 1
+            IdPlanilla,
+            FechaInicio,
+            FechaFin,
+            FechaCalculo,
+            IdUsuario,
+            NombreCompleto,
+            HorasNormales,
+            HorasExtra,
+            HorasDoble,
+            SalarioHora,
+            MontoNormales,
+            MontoExtra,
+            MontoDoble,
+            TotalPagar
+        FROM dbo.vw_MH_PlanillaDetalle
+        WHERE IdPlanilla = @IdPlanilla
+          AND IdUsuario = @IdUsuario";
 
-            return lista;
+            var pIdPlanilla = new System.Data.SqlClient.SqlParameter("@IdPlanilla", idPlanilla);
+            var pIdUsuario = new System.Data.SqlClient.SqlParameter("@IdUsuario", idUsuario);
+
+            return _db.Database.SqlQuery<PlanillaDetalleVM>(sql, pIdPlanilla, pIdUsuario).FirstOrDefault();
+        }
+
+        public void Dispose()
+        {
+            _db.Dispose();
+        }
+
+        public List<PlanillaDetalleVM> ObtenerTodasLasPlanillasEmpleados()
+        {
+            string sql = @"
+        SELECT
+            IdPlanilla,
+            FechaInicio,
+            FechaFin,
+            FechaCalculo,
+            IdUsuario,
+            NombreCompleto,
+            HorasNormales,
+            HorasExtra,
+            HorasDoble,
+            SalarioHora,
+            MontoNormales,
+            MontoExtra,
+            MontoDoble,
+            TotalPagar
+        FROM dbo.vw_MH_PlanillaDetalle
+        ORDER BY FechaInicio DESC, NombreCompleto ASC, IdPlanilla DESC";
+
+            return _db.Database.SqlQuery<PlanillaDetalleVM>(sql).ToList();
         }
     }
 }
