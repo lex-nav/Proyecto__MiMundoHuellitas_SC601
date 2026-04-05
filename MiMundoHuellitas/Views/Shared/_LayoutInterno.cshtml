@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@using System.Web.Security
 
 @{
@@ -15,6 +16,21 @@
     bool esAdmin = rol == "Admin";
     bool esEmpleado = rol == "Empleado";
     bool esCliente = rol == "Cliente";
+=======
+﻿@{
+    bool isAuth = User.Identity.IsAuthenticated;
+
+    int? idTipoUsuario = null;
+
+    if (Session["IdTipoUsuario"] != null)
+    {
+        idTipoUsuario = Convert.ToInt32(Session["IdTipoUsuario"]);
+    }
+
+    bool esCliente = idTipoUsuario == 1;
+    bool esAdmin = idTipoUsuario == 2;
+    bool esEmpleado = idTipoUsuario == 3;
+>>>>>>> Sebas
 }
 
 @*bool isAuth = (Request != null && Request.IsAuthenticated);
@@ -36,14 +52,13 @@
     <title>@ViewBag.Title - MiMundoHuellitas</title>
 
     @Styles.Render("~/Content/css")
-
     @Scripts.Render("~/bundles/modernizr")
 
     <link href="~/StaticFiles/css/style.css" rel="stylesheet" />
     <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
     <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css" />
-    <link href="~/StaticFiles/CSS/chatbot.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -129,22 +144,20 @@
             }
     </style>
 </head>
-
 <body class="has-fixed-nav">
 
+<<<<<<< HEAD
     <p style="color:red; font-weight:bold;">ROL: @rol</p>
 
     <!-- TOP BAR -->
+=======
+>>>>>>> Sebas
     <div class="top-contact-bar">
         <div class="top-contact-inner">
 
             <div class="top-contact-left">
-                <span>
-                    <i class="fa-solid fa-phone"></i> +506 7263-7460
-                </span>
-                <span class="ms-3">
-                    <i class="fa-solid fa-envelope"></i> mundodehuellitascr@outlook.com
-                </span>
+                <span><i class="fa-solid fa-phone"></i> +506 7263-7460</span>
+                <span class="ms-3"><i class="fa-solid fa-envelope"></i> mundodehuellitascr@outlook.com</span>
             </div>
 
             <div class="top-contact-right">
@@ -152,6 +165,7 @@
                 {
                     <span class="user-greeting">Hola, @User.Identity.Name</span>
 
+<<<<<<< HEAD
                     @* ================== ADMIN ================== *@
                     if (esAdmin)
                     {
@@ -189,13 +203,18 @@
                     }
                     @* ================== CLIENTE ================== *@
                     else
+=======
+                    @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
+
+                    if (esCliente)
+>>>>>>> Sebas
                     {
                         <a class="auth-link" href="@Url.Action("Carrito", "Productos")" title="Carrito">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </a>
 
-                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
                         @Html.ActionLink("Mis citas", "VerCitas", "Citas", null, new { @class = "auth-link" })
+<<<<<<< HEAD
                         <form action="@Url.Action("Logout", "Account")" method="post" style="display:inline;">
                             @Html.AntiForgeryToken()
                             <a href="javascript:void(0);" class="auth-link"
@@ -203,7 +222,17 @@
                                 Cerrar sesión
                             </a>
                         </form>
+=======
+>>>>>>> Sebas
                     }
+
+                    <form action="@Url.Action("Logout", "Account")" method="post" id="logoutFormGeneral" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:void(0);" class="auth-link"
+                           onclick="document.getElementById('logoutFormGeneral').submit();">
+                            Cerrar sesión
+                        </a>
+                    </form>
                 }
                 else
                 {
@@ -220,11 +249,10 @@
         </div>
     </div>
 
-    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom menu-principal sticky-top">
         <div class="container">
 
-            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                 <img src="~/StaticFiles/img/Huellitas.png" alt="Logo" />
                 <span class="ms-2 fw-bold">Mi Mundo de Huellitas</span>
             </a>
@@ -239,6 +267,7 @@
                     @* ================= ADMIN ================= *@
                     @if (esAdmin)
                     {
+<<<<<<< HEAD
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a>
                         </li>
@@ -263,6 +292,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a>
                         </li>
+=======
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">ADMIN MASCOTAS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Administrar", "Permiso")">ADMIN PERMISOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Auditoria")">AUDITORÍA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("LaboralIndex", "Personal")">PERSONAL</a></li>
+                    }
+                    else if (esEmpleado)
+                    {
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MisPermisos", "Permiso")">MIS PERMISOS</a></li>
+>>>>>>> Sebas
                     }
 
                     @* ================= EMPLEADO ================= *@
@@ -283,14 +327,14 @@
                     @* ================= CLIENTE ================= *@
                     else
                     {
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("SobreNosotros","Home")">SOBRE NOSOTROS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Equipo","Home")">EQUIPO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Servicios","Home")">SERVICIOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Galeria","Home")">GALERÍA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Productos","Home")">PRODUCTOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog","Home")">BLOG</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contacto","Home")">CONTÁCTENOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("SobreNosotros", "Home")">SOBRE NOSOTROS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Equipo", "Home")">EQUIPO</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Servicios", "Home")">SERVICIOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Galeria", "Home")">GALERÍA</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Productos", "Home")">PRODUCTOS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog", "Home")">BLOG</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contacto", "Home")">CONTÁCTENOS</a></li>
 
                         if (isAuth)
                         {
@@ -304,7 +348,10 @@
         </div>
     </nav>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Sebas
     @RenderSection("FullWidthTop", required: false)
 
     <main class="container-fluid body-content px-3">
@@ -317,37 +364,9 @@
 
     @RenderSection("FullWidthBottom", required: false)
 
-    <!-- 🐾 HUELLITAS BOT -->
-    <div id="chat-bubble">
-        <i class="fa-solid fa-paw"></i>
-    </div>
-
-    <div id="chat-window" class="hidden">
-        <div id="chat-header">
-            🐾 HuellitasBot
-            <span id="close-chat">✖</span>
-        </div>
-
-        <div id="chat-body">
-            <div class="bot-message">
-                ¡Hola! Bienvenido a Mi Mundo Huellitas 🐶
-                ¿Cómo puedo ayudarte hoy?
-            </div>
-
-            <div class="options">
-                <button onclick="respuesta(1)">¿Cómo agendar?</button>
-                <button onclick="respuesta(2)">Cuáles servicios ofrecemos?</button>
-                <button onclick="respuesta(3)">Horarios</button>
-                <button onclick="respuesta(4)">Ubicación</button>
-            </div>
-        </div>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-    <script src="~/StaticFiles/JS/chatbot.js"></script>
 
 </body>
 </html>

@@ -1,11 +1,17 @@
 ﻿using MiMundoHuellitas.EF;
+using MiMundoHuellitas.Models.ViewModels;
 using MiMundoHuellitas.Models.ViewModels.Reportes;
 using System;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+<<<<<<< HEAD
 using System.Data.Entity;
 using System.Collections.Generic;
+=======
+>>>>>>> Sebas
 
 namespace MiMundoHuellitas.Controllers
 {
@@ -14,7 +20,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize(Roles = "Admin")]
     public class ReportesController : Controller
     {
-        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
 
         // ============================
         // MENÚ PRINCIPAL DE REPORTES
@@ -689,6 +695,32 @@ namespace MiMundoHuellitas.Controllers
             }
 
             return File(Encoding.UTF8.GetBytes(sb.ToString()), "text/csv", "ReporteFacturas.csv");
+        }
+        
+        //PRODUCTIVIDAD POR COLABORADOR
+        
+        public ActionResult ProductividadColaborador(DateTime? desde, DateTime? hasta)
+        {
+            ViewBag.ActiveMenu = "Reportes";
+
+            if (!desde.HasValue)
+                desde = DateTime.Today.AddDays(-30);
+
+            if (!hasta.HasValue)
+                hasta = DateTime.Today;
+
+            var pDesde = new SqlParameter("@FechaInicio", desde.Value.Date);
+            var pHasta = new SqlParameter("@FechaFin", hasta.Value.Date);
+
+            var data = db.Database.SqlQuery<ReporteProductividadColaboradorVM>(
+                "EXEC dbo.sp_ReporteProductividadColaborador @FechaInicio, @FechaFin",
+                pDesde, pHasta
+            ).ToList();
+
+            ViewBag.Desde = desde.Value.ToString("yyyy-MM-dd");
+            ViewBag.Hasta = hasta.Value.ToString("yyyy-MM-dd");
+
+            return View(data);
         }
 
         protected override void Dispose(bool disposing)

@@ -15,6 +15,22 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="MH_Auditoria_TB">
+          <Key>
+            <PropertyRef Name="IdAuditoria" />
+          </Key>
+          <Property Name="IdAuditoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TablaAfectada" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Modulo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Accion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Campo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdRegistro" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ValorAnterior" Type="nvarchar(max)" />
+          <Property Name="ValorNuevo" Type="nvarchar(max)" />
+          <Property Name="UsuarioSistema" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FechaAuditoria" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="Observacion" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="MH_Canton_TB">
           <Key>
             <PropertyRef Name="IdCanton" />
@@ -36,6 +52,7 @@
           <Property Name="NotasInternas" Type="nvarchar" MaxLength="300" />
           <Property Name="FechaCreacion" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="FechaActualiza" Type="datetime2" Precision="0" />
+          <Property Name="IdEmpleadoAsignado" Type="int" />
         </EntityType>
         <EntityType Name="MH_Comision_TB">
           <Key>
@@ -134,6 +151,7 @@
           <Property Name="NumeroReferencia" Type="nvarchar" MaxLength="80" />
           <Property Name="MontoTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdEmpleadoRegistro" Type="int" />
         </EntityType>
         <EntityType Name="MH_Feriado_TB">
           <Key>
@@ -179,6 +197,22 @@
           <Property Name="FechaNacimiento" Type="date" />
           <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MH_Permiso_TB">
+          <Key>
+            <PropertyRef Name="IdPermiso" />
+          </Key>
+          <Property Name="IdPermiso" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdTipoPermiso" Type="int" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="IdAdminResolucion" Type="int" />
+          <Property Name="FechaResolucion" Type="datetime2" Precision="0" />
+          <Property Name="ComentarioAdmin" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="MH_Planilla_TB">
           <Key>
@@ -283,6 +317,17 @@
           <Property Name="Descripcion" Type="nvarchar" MaxLength="150" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="MH_TipoPermiso_TB">
+          <Key>
+            <PropertyRef Name="IdTipoPermiso" />
+          </Key>
+          <Property Name="IdTipoPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="RequiereDoc" Type="bit" Nullable="false" />
+          <Property Name="AfectaSalario" Type="bit" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="MH_Usuario_TB">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -307,6 +352,85 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_AsistenciaDiaria' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_MH_AsistenciaDiaria">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="NombreCompleto" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="EsFeriado" />
+            <PropertyRef Name="EsFinDeSemana" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="NombreCompleto" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="HoraEntradaMin" Type="datetime2" Precision="0" />
+          <Property Name="HoraSalidaMax" Type="datetime2" Precision="0" />
+          <Property Name="HorasNormalesDia" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HorasTrabajadas" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="EsFeriado" Type="int" Nullable="false" />
+          <Property Name="EsFinDeSemana" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MiMundoHuellitas.dbo.VW_MH_Auditoria' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_MH_Auditoria">
+          <Key>
+            <PropertyRef Name="IdAuditoria" />
+            <PropertyRef Name="TablaAfectada" />
+            <PropertyRef Name="Modulo" />
+            <PropertyRef Name="Accion" />
+            <PropertyRef Name="Campo" />
+            <PropertyRef Name="IdRegistro" />
+            <PropertyRef Name="UsuarioSistema" />
+            <PropertyRef Name="FechaAuditoria" />
+          </Key>
+          <Property Name="IdAuditoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TablaAfectada" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Modulo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Accion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Campo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdRegistro" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ValorAnterior" Type="nvarchar(max)" />
+          <Property Name="ValorNuevo" Type="nvarchar(max)" />
+          <Property Name="UsuarioSistema" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FechaAuditoria" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="Observacion" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_MH_PlanillaDetalle">
+          <Key>
+            <PropertyRef Name="IdPlanilla" />
+            <PropertyRef Name="FechaInicio" />
+            <PropertyRef Name="FechaFin" />
+            <PropertyRef Name="FechaCalculo" />
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="NombreCompleto" />
+            <PropertyRef Name="HorasNormales" />
+            <PropertyRef Name="HorasExtra" />
+            <PropertyRef Name="HorasDoble" />
+            <PropertyRef Name="SalarioHora" />
+            <PropertyRef Name="MontoNormales" />
+            <PropertyRef Name="MontoExtra" />
+            <PropertyRef Name="MontoDoble" />
+            <PropertyRef Name="TotalPagar" />
+          </Key>
+          <Property Name="IdPlanilla" Type="bigint" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+          <Property Name="FechaCalculo" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="NombreCompleto" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="HorasNormales" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="HorasExtra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="HorasDoble" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SalarioHora" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoNormales" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoExtra" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoDoble" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalPagar" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Comision_Usuario">
           <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
           <End Role="MH_Comision_TB" Type="Self.MH_Comision_TB" Multiplicity="*" />
@@ -328,6 +452,18 @@
             </Principal>
             <Dependent Role="MH_Canton_TB">
               <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_EmpleadoAsignado">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdEmpleadoAsignado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -463,6 +599,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MH_Factura_EmpleadoRegistro">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdEmpleadoRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MH_Factura_Estado">
           <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="1" />
           <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
@@ -531,6 +679,42 @@
               <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Permiso_Admin">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Permiso_TB" Type="Self.MH_Permiso_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Permiso_TB">
+              <PropertyRef Name="IdAdminResolucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Permiso_TipoPermiso">
+          <End Role="MH_TipoPermiso_TB" Type="Self.MH_TipoPermiso_TB" Multiplicity="1" />
+          <End Role="MH_Permiso_TB" Type="Self.MH_Permiso_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_TipoPermiso_TB">
+              <PropertyRef Name="IdTipoPermiso" />
+            </Principal>
+            <Dependent Role="MH_Permiso_TB">
+              <PropertyRef Name="IdTipoPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Permiso_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Permiso_TB" Type="Self.MH_Permiso_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Permiso_TB">
               <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
@@ -655,8 +839,92 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ReporteProductividadColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_MH_CalcularPlanilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+          <Parameter Name="FactorExtra" Type="decimal" Mode="In" />
+          <Parameter Name="FactorDoble" Type="decimal" Mode="In" />
+          <Parameter Name="Observacion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_CerrarPlanilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+          <Parameter Name="CerradaPorIdUsuario" Type="int" Mode="In" />
+          <Parameter Name="Motivo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_MarcarEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_MarcarSalida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerCitasPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerClientePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerFacturasPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerMascotasPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ReabrirPlanilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+          <Parameter Name="ReabiertaPorIdUsuario" Type="int" Mode="In" />
+          <Parameter Name="Motivo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_RegistrarAuditoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TablaAfectada" Type="nvarchar" Mode="In" />
+          <Parameter Name="Modulo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Accion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Campo" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdRegistro" Type="nvarchar" Mode="In" />
+          <Parameter Name="ValorAnterior" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ValorNuevo" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UsuarioSistema" Type="nvarchar" Mode="In" />
+          <Parameter Name="Observacion" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="MiMundoHuellitasModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Auditoria_TB" EntityType="Self.MH_Auditoria_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Canton_TB" EntityType="Self.MH_Canton_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Cita_TB" EntityType="Self.MH_Cita_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Comision_TB" EntityType="Self.MH_Comision_TB" Schema="dbo" store:Type="Tables" />
@@ -672,6 +940,7 @@
           <EntitySet Name="MH_Jornada_TB" EntityType="Self.MH_Jornada_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Marcacion_TB" EntityType="Self.MH_Marcacion_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Mascotas_TB" EntityType="Self.MH_Mascotas_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Permiso_TB" EntityType="Self.MH_Permiso_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Planilla_TB" EntityType="Self.MH_Planilla_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_PlanillaDetalle_TB" EntityType="Self.MH_PlanillaDetalle_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Productos_TB" EntityType="Self.MH_Productos_TB" Schema="dbo" store:Type="Tables" />
@@ -681,8 +950,55 @@
           <EntitySet Name="MH_Servicios_Cita_TB" EntityType="Self.MH_Servicios_Cita_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Servicios_TB" EntityType="Self.MH_Servicios_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_TipoPermiso_TB" EntityType="Self.MH_TipoPermiso_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Usuario_TB" EntityType="Self.MH_Usuario_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_MH_AsistenciaDiaria" EntityType="Self.vw_MH_AsistenciaDiaria" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_MH_AsistenciaDiaria].[IdUsuario] AS [IdUsuario], 
+    [vw_MH_AsistenciaDiaria].[NombreCompleto] AS [NombreCompleto], 
+    [vw_MH_AsistenciaDiaria].[Fecha] AS [Fecha], 
+    [vw_MH_AsistenciaDiaria].[HoraEntradaMin] AS [HoraEntradaMin], 
+    [vw_MH_AsistenciaDiaria].[HoraSalidaMax] AS [HoraSalidaMax], 
+    [vw_MH_AsistenciaDiaria].[HorasNormalesDia] AS [HorasNormalesDia], 
+    [vw_MH_AsistenciaDiaria].[HorasTrabajadas] AS [HorasTrabajadas], 
+    [vw_MH_AsistenciaDiaria].[EsFeriado] AS [EsFeriado], 
+    [vw_MH_AsistenciaDiaria].[EsFinDeSemana] AS [EsFinDeSemana]
+    FROM [dbo].[vw_MH_AsistenciaDiaria] AS [vw_MH_AsistenciaDiaria]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_MH_Auditoria" EntityType="Self.VW_MH_Auditoria" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_MH_Auditoria].[IdAuditoria] AS [IdAuditoria], 
+    [VW_MH_Auditoria].[TablaAfectada] AS [TablaAfectada], 
+    [VW_MH_Auditoria].[Modulo] AS [Modulo], 
+    [VW_MH_Auditoria].[Accion] AS [Accion], 
+    [VW_MH_Auditoria].[Campo] AS [Campo], 
+    [VW_MH_Auditoria].[IdRegistro] AS [IdRegistro], 
+    [VW_MH_Auditoria].[ValorAnterior] AS [ValorAnterior], 
+    [VW_MH_Auditoria].[ValorNuevo] AS [ValorNuevo], 
+    [VW_MH_Auditoria].[UsuarioSistema] AS [UsuarioSistema], 
+    [VW_MH_Auditoria].[FechaAuditoria] AS [FechaAuditoria], 
+    [VW_MH_Auditoria].[Observacion] AS [Observacion]
+    FROM [dbo].[VW_MH_Auditoria] AS [VW_MH_Auditoria]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_MH_PlanillaDetalle" EntityType="Self.vw_MH_PlanillaDetalle" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_MH_PlanillaDetalle].[IdPlanilla] AS [IdPlanilla], 
+    [vw_MH_PlanillaDetalle].[FechaInicio] AS [FechaInicio], 
+    [vw_MH_PlanillaDetalle].[FechaFin] AS [FechaFin], 
+    [vw_MH_PlanillaDetalle].[FechaCalculo] AS [FechaCalculo], 
+    [vw_MH_PlanillaDetalle].[IdUsuario] AS [IdUsuario], 
+    [vw_MH_PlanillaDetalle].[NombreCompleto] AS [NombreCompleto], 
+    [vw_MH_PlanillaDetalle].[HorasNormales] AS [HorasNormales], 
+    [vw_MH_PlanillaDetalle].[HorasExtra] AS [HorasExtra], 
+    [vw_MH_PlanillaDetalle].[HorasDoble] AS [HorasDoble], 
+    [vw_MH_PlanillaDetalle].[SalarioHora] AS [SalarioHora], 
+    [vw_MH_PlanillaDetalle].[MontoNormales] AS [MontoNormales], 
+    [vw_MH_PlanillaDetalle].[MontoExtra] AS [MontoExtra], 
+    [vw_MH_PlanillaDetalle].[MontoDoble] AS [MontoDoble], 
+    [vw_MH_PlanillaDetalle].[TotalPagar] AS [TotalPagar]
+    FROM [dbo].[vw_MH_PlanillaDetalle] AS [vw_MH_PlanillaDetalle]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Comision_Usuario" Association="Self.FK_Comision_Usuario">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_Comision_TB" EntitySet="MH_Comision_TB" />
@@ -690,6 +1006,10 @@
           <AssociationSet Name="FK_MH_Canton_Provincia" Association="Self.FK_MH_Canton_Provincia">
             <End Role="MH_Provincia_TB" EntitySet="MH_Provincia_TB" />
             <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_EmpleadoAsignado" Association="Self.FK_MH_Cita_EmpleadoAsignado">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
           </AssociationSet>
           <AssociationSet Name="FK_MH_Cita_Estado" Association="Self.FK_MH_Cita_Estado">
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
@@ -735,6 +1055,10 @@
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_EmpleadoLaboral_TB" EntitySet="MH_EmpleadoLaboral_TB" />
           </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_EmpleadoRegistro" Association="Self.FK_MH_Factura_EmpleadoRegistro">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+          </AssociationSet>
           <AssociationSet Name="FK_MH_Factura_Estado" Association="Self.FK_MH_Factura_Estado">
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
             <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
@@ -758,6 +1082,18 @@
           <AssociationSet Name="FK_MH_Mascotas_Usuario" Association="Self.FK_MH_Mascotas_Usuario">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Permiso_Admin" Association="Self.FK_MH_Permiso_Admin">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Permiso_TB" EntitySet="MH_Permiso_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Permiso_TipoPermiso" Association="Self.FK_MH_Permiso_TipoPermiso">
+            <End Role="MH_TipoPermiso_TB" EntitySet="MH_TipoPermiso_TB" />
+            <End Role="MH_Permiso_TB" EntitySet="MH_Permiso_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Permiso_Usuario" Association="Self.FK_MH_Permiso_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Permiso_TB" EntitySet="MH_Permiso_TB" />
           </AssociationSet>
           <AssociationSet Name="FK_MH_Planilla_CerradaPor" Association="Self.FK_MH_Planilla_CerradaPor">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
@@ -815,6 +1151,22 @@
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="MH_Auditoria_TB">
+          <Key>
+            <PropertyRef Name="IdAuditoria" />
+          </Key>
+          <Property Name="IdAuditoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TablaAfectada" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Campo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ValorAnterior" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ValorNuevo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioSistema" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaAuditoria" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observacion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="MH_Canton_TB">
           <Key>
             <PropertyRef Name="IdCanton" />
@@ -838,9 +1190,11 @@
           <Property Name="NotasInternas" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaActualiza" Type="DateTime" Precision="0" />
+          <Property Name="IdEmpleadoAsignado" Type="Int32" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Cita_EmpleadoAsignado" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
           <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Cita_Estado" FromRole="MH_Cita_TB" ToRole="MH_Estado_TB" />
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Cita_Mascota" FromRole="MH_Cita_TB" ToRole="MH_Mascotas_TB" />
-          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Usuario_TB1" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
           <NavigationProperty Name="MH_Servicios_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Cita" FromRole="MH_Cita_TB" ToRole="MH_Servicios_Cita_TB" />
         </EntityType>
         <EntityType Name="MH_Comision_TB">
@@ -956,9 +1310,11 @@
           <Property Name="NumeroReferencia" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="MontoTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IdEmpleadoRegistro" Type="Int32" />
           <NavigationProperty Name="MH_DetalleFactura_TB" Relationship="Self.FK_MH_DetalleFactura_Factura" FromRole="MH_Factura_TB" ToRole="MH_DetalleFactura_TB" />
           <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Factura_Estado" FromRole="MH_Factura_TB" ToRole="MH_Estado_TB" />
-          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Factura_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Factura_EmpleadoRegistro" FromRole="MH_Factura_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Usuario_TB1" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Factura_TB" ToRole="MH_Usuario_TB" />
         </EntityType>
         <EntityType Name="MH_Feriado_TB">
           <Key>
@@ -1010,6 +1366,25 @@
           <NavigationProperty Name="MH_Especie_TB" Relationship="Self.FK_MH_Mascotas_Especie" FromRole="MH_Mascotas_TB" ToRole="MH_Especie_TB" />
           <NavigationProperty Name="MH_Raza_TB" Relationship="Self.FK_MH_Mascotas_Raza" FromRole="MH_Mascotas_TB" ToRole="MH_Raza_TB" />
           <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Mascotas_TB" ToRole="MH_Usuario_TB" />
+        </EntityType>
+        <EntityType Name="MH_Permiso_TB">
+          <Key>
+            <PropertyRef Name="IdPermiso" />
+          </Key>
+          <Property Name="IdPermiso" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoPermiso" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Motivo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdAdminResolucion" Type="Int32" />
+          <Property Name="FechaResolucion" Type="DateTime" Precision="0" />
+          <Property Name="ComentarioAdmin" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Permiso_Admin" FromRole="MH_Permiso_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_TipoPermiso_TB" Relationship="Self.FK_MH_Permiso_TipoPermiso" FromRole="MH_Permiso_TB" ToRole="MH_TipoPermiso_TB" />
+          <NavigationProperty Name="MH_Usuario_TB1" Relationship="Self.FK_MH_Permiso_Usuario" FromRole="MH_Permiso_TB" ToRole="MH_Usuario_TB" />
         </EntityType>
         <EntityType Name="MH_Planilla_TB">
           <Key>
@@ -1130,6 +1505,18 @@
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Usuario_TipoUsuario" FromRole="MH_Tipo_Usuario_TB" ToRole="MH_Usuario_TB" />
         </EntityType>
+        <EntityType Name="MH_TipoPermiso_TB">
+          <Key>
+            <PropertyRef Name="IdTipoPermiso" />
+          </Key>
+          <Property Name="IdTipoPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RequiereDoc" Type="Boolean" Nullable="false" />
+          <Property Name="AfectaSalario" Type="Boolean" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MH_Permiso_TB" Relationship="Self.FK_MH_Permiso_TipoPermiso" FromRole="MH_TipoPermiso_TB" ToRole="MH_Permiso_TB" />
+        </EntityType>
         <EntityType Name="MH_Usuario_TB">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -1143,14 +1530,18 @@
           <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_EmpleadoAsignado" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Cita_TB1" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
           <NavigationProperty Name="MH_Comision_TB" Relationship="Self.FK_Comision_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Comision_TB" />
           <NavigationProperty Name="MH_Direccion_TB" Relationship="Self.FK_MH_Usuario_Direccion" FromRole="MH_Usuario_TB" ToRole="MH_Direccion_TB" />
           <NavigationProperty Name="MH_EmpleadoJornada_TB" Relationship="Self.FK_MH_EmpleadoJornada_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_EmpleadoJornada_TB" />
           <NavigationProperty Name="MH_EmpleadoLaboral_TB" Relationship="Self.FK_MH_EmpleadoLaboral_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_EmpleadoLaboral_TB" />
-          <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
+          <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_Factura_EmpleadoRegistro" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
+          <NavigationProperty Name="MH_Factura_TB1" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
           <NavigationProperty Name="MH_Marcacion_TB" Relationship="Self.FK_MH_Marcacion_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Marcacion_TB" />
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Mascotas_TB" />
+          <NavigationProperty Name="MH_Permiso_TB" Relationship="Self.FK_MH_Permiso_Admin" FromRole="MH_Usuario_TB" ToRole="MH_Permiso_TB" />
+          <NavigationProperty Name="MH_Permiso_TB1" Relationship="Self.FK_MH_Permiso_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Permiso_TB" />
           <NavigationProperty Name="MH_Planilla_TB" Relationship="Self.FK_MH_Planilla_CerradaPor" FromRole="MH_Usuario_TB" ToRole="MH_Planilla_TB" />
           <NavigationProperty Name="MH_PlanillaDetalle_TB" Relationship="Self.FK_MH_PlanillaDetalle_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_PlanillaDetalle_TB" />
           <NavigationProperty Name="MH_Tipo_Usuario_TB" Relationship="Self.FK_MH_Usuario_TipoUsuario" FromRole="MH_Usuario_TB" ToRole="MH_Tipo_Usuario_TB" />
@@ -1164,6 +1555,79 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="vw_MH_AsistenciaDiaria">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="NombreCompleto" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="EsFeriado" />
+            <PropertyRef Name="EsFinDeSemana" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HoraEntradaMin" Type="DateTime" Precision="0" />
+          <Property Name="HoraSalidaMax" Type="DateTime" Precision="0" />
+          <Property Name="HorasNormalesDia" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HorasTrabajadas" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="EsFeriado" Type="Int32" Nullable="false" />
+          <Property Name="EsFinDeSemana" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_MH_Auditoria">
+          <Key>
+            <PropertyRef Name="IdAuditoria" />
+            <PropertyRef Name="TablaAfectada" />
+            <PropertyRef Name="Modulo" />
+            <PropertyRef Name="Accion" />
+            <PropertyRef Name="Campo" />
+            <PropertyRef Name="IdRegistro" />
+            <PropertyRef Name="UsuarioSistema" />
+            <PropertyRef Name="FechaAuditoria" />
+          </Key>
+          <Property Name="IdAuditoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TablaAfectada" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Campo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ValorAnterior" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ValorNuevo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioSistema" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaAuditoria" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Observacion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_MH_PlanillaDetalle">
+          <Key>
+            <PropertyRef Name="IdPlanilla" />
+            <PropertyRef Name="FechaInicio" />
+            <PropertyRef Name="FechaFin" />
+            <PropertyRef Name="FechaCalculo" />
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="NombreCompleto" />
+            <PropertyRef Name="HorasNormales" />
+            <PropertyRef Name="HorasExtra" />
+            <PropertyRef Name="HorasDoble" />
+            <PropertyRef Name="SalarioHora" />
+            <PropertyRef Name="MontoNormales" />
+            <PropertyRef Name="MontoExtra" />
+            <PropertyRef Name="MontoDoble" />
+            <PropertyRef Name="TotalPagar" />
+          </Key>
+          <Property Name="IdPlanilla" Type="Int64" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaCalculo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HorasNormales" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="HorasExtra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="HorasDoble" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SalarioHora" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoNormales" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoExtra" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MontoDoble" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalPagar" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <Association Name="FK_MH_Canton_Provincia">
           <End Role="MH_Provincia_TB" Type="Self.MH_Provincia_TB" Multiplicity="1" />
@@ -1186,6 +1650,18 @@
             </Principal>
             <Dependent Role="MH_Distrito_TB">
               <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_EmpleadoAsignado">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdEmpleadoAsignado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1393,6 +1869,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MH_Factura_EmpleadoRegistro">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdEmpleadoRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MH_Factura_Usuario">
           <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
           <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
@@ -1437,6 +1925,42 @@
               <PropertyRef Name="IdUsuario" />
             </Principal>
             <Dependent Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Permiso_Admin">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Permiso_TB" Type="Self.MH_Permiso_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Permiso_TB">
+              <PropertyRef Name="IdAdminResolucion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Permiso_TipoPermiso">
+          <End Role="MH_TipoPermiso_TB" Type="Self.MH_TipoPermiso_TB" Multiplicity="1" />
+          <End Role="MH_Permiso_TB" Type="Self.MH_Permiso_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_TipoPermiso_TB">
+              <PropertyRef Name="IdTipoPermiso" />
+            </Principal>
+            <Dependent Role="MH_Permiso_TB">
+              <PropertyRef Name="IdTipoPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Permiso_Usuario">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
+          <End Role="MH_Permiso_TB" Type="Self.MH_Permiso_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Permiso_TB">
               <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
@@ -1513,8 +2037,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MiMundoHuellitasEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MiMundoHuellitasEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="MH_Auditoria_TB" EntityType="Self.MH_Auditoria_TB" />
           <EntitySet Name="MH_Canton_TB" EntityType="Self.MH_Canton_TB" />
           <EntitySet Name="MH_Cita_TB" EntityType="Self.MH_Cita_TB" />
           <EntitySet Name="MH_Comision_TB" EntityType="Self.MH_Comision_TB" />
@@ -1530,6 +2055,7 @@
           <EntitySet Name="MH_Jornada_TB" EntityType="Self.MH_Jornada_TB" />
           <EntitySet Name="MH_Marcacion_TB" EntityType="Self.MH_Marcacion_TB" />
           <EntitySet Name="MH_Mascotas_TB" EntityType="Self.MH_Mascotas_TB" />
+          <EntitySet Name="MH_Permiso_TB" EntityType="Self.MH_Permiso_TB" />
           <EntitySet Name="MH_Planilla_TB" EntityType="Self.MH_Planilla_TB" />
           <EntitySet Name="MH_PlanillaDetalle_TB" EntityType="Self.MH_PlanillaDetalle_TB" />
           <EntitySet Name="MH_Productos_TB" EntityType="Self.MH_Productos_TB" />
@@ -1539,8 +2065,12 @@
           <EntitySet Name="MH_Servicios_Cita_TB" EntityType="Self.MH_Servicios_Cita_TB" />
           <EntitySet Name="MH_Servicios_TB" EntityType="Self.MH_Servicios_TB" />
           <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" />
+          <EntitySet Name="MH_TipoPermiso_TB" EntityType="Self.MH_TipoPermiso_TB" />
           <EntitySet Name="MH_Usuario_TB" EntityType="Self.MH_Usuario_TB" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="vw_MH_AsistenciaDiaria" EntityType="Self.vw_MH_AsistenciaDiaria" />
+          <EntitySet Name="VW_MH_Auditoria" EntityType="Self.VW_MH_Auditoria" />
+          <EntitySet Name="vw_MH_PlanillaDetalle" EntityType="Self.vw_MH_PlanillaDetalle" />
           <AssociationSet Name="FK_MH_Canton_Provincia" Association="Self.FK_MH_Canton_Provincia">
             <End Role="MH_Provincia_TB" EntitySet="MH_Provincia_TB" />
             <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
@@ -1548,6 +2078,10 @@
           <AssociationSet Name="FK_MH_Distrito_Canton" Association="Self.FK_MH_Distrito_Canton">
             <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
             <End Role="MH_Distrito_TB" EntitySet="MH_Distrito_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_EmpleadoAsignado" Association="Self.FK_MH_Cita_EmpleadoAsignado">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
           </AssociationSet>
           <AssociationSet Name="FK_MH_Cita_Estado" Association="Self.FK_MH_Cita_Estado">
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
@@ -1617,6 +2151,10 @@
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
             <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
           </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_EmpleadoRegistro" Association="Self.FK_MH_Factura_EmpleadoRegistro">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
+          </AssociationSet>
           <AssociationSet Name="FK_MH_Factura_Usuario" Association="Self.FK_MH_Factura_Usuario">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
@@ -1632,6 +2170,18 @@
           <AssociationSet Name="FK_MH_Mascotas_Usuario" Association="Self.FK_MH_Mascotas_Usuario">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Permiso_Admin" Association="Self.FK_MH_Permiso_Admin">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Permiso_TB" EntitySet="MH_Permiso_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Permiso_TipoPermiso" Association="Self.FK_MH_Permiso_TipoPermiso">
+            <End Role="MH_TipoPermiso_TB" EntitySet="MH_TipoPermiso_TB" />
+            <End Role="MH_Permiso_TB" EntitySet="MH_Permiso_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Permiso_Usuario" Association="Self.FK_MH_Permiso_Usuario">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Permiso_TB" EntitySet="MH_Permiso_TB" />
           </AssociationSet>
           <AssociationSet Name="FK_MH_Planilla_CerradaPor" Association="Self.FK_MH_Planilla_CerradaPor">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
@@ -1657,13 +2207,192 @@
             <End Role="MH_Tipo_Usuario_TB" EntitySet="MH_Tipo_Usuario_TB" />
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MiMundoHuellitasModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MiMundoHuellitasModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ReporteProductividadColaborador" ReturnType="Collection(MiMundoHuellitasModel.sp_ReporteProductividadColaborador_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="usp_MH_CalcularPlanilla" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_CalcularPlanilla_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="FactorExtra" Mode="In" Type="Decimal" />
+            <Parameter Name="FactorDoble" Mode="In" Type="Decimal" />
+            <Parameter Name="Observacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_CerrarPlanilla" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_CerrarPlanilla_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="CerradaPorIdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Motivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_MarcarEntrada" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_MarcarEntrada_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_MarcarSalida" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_MarcarSalida_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerCitasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerCitasPorCliente_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerClientePorId" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerClientePorId_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerFacturasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerFacturasPorCliente_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerMascotasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerMascotasPorCliente_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ReabrirPlanilla" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ReabrirPlanilla_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="ReabiertaPorIdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Motivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_RegistrarAuditoria">
+            <Parameter Name="TablaAfectada" Mode="In" Type="String" />
+            <Parameter Name="Modulo" Mode="In" Type="String" />
+            <Parameter Name="Accion" Mode="In" Type="String" />
+            <Parameter Name="Campo" Mode="In" Type="String" />
+            <Parameter Name="IdRegistro" Mode="In" Type="String" />
+            <Parameter Name="ValorAnterior" Mode="In" Type="String" />
+            <Parameter Name="ValorNuevo" Mode="In" Type="String" />
+            <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
+            <Parameter Name="Observacion" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_ReporteProductividadColaborador_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="120" />
+          <Property Type="Int32" Name="TotalMarcacionesAprobadas" Nullable="false" />
+          <Property Type="Decimal" Name="HorasTrabajadas" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="CitasAsignadas" Nullable="false" />
+          <Property Type="Int32" Name="CitasPendientes" Nullable="false" />
+          <Property Type="Int32" Name="CitasConfirmadas" Nullable="false" />
+          <Property Type="Int32" Name="CitasAtendidas" Nullable="false" />
+          <Property Type="Int32" Name="CitasCanceladas" Nullable="false" />
+          <Property Type="Int32" Name="CitasNoAsistio" Nullable="false" />
+          <Property Type="Int32" Name="FacturasRegistradas" Nullable="false" />
+          <Property Type="Int32" Name="FacturasEmitidas" Nullable="false" />
+          <Property Type="Int32" Name="FacturasPagadas" Nullable="false" />
+          <Property Type="Int32" Name="FacturasAnuladas" Nullable="false" />
+          <Property Type="Decimal" Name="MontoVendido" Nullable="false" Precision="12" Scale="2" />
+          <Property Type="Decimal" Name="CitasAtendidasPorHora" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="VentaPorHora" Nullable="true" Precision="12" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_CalcularPlanilla_Result">
+          <Property Type="Int64" Name="IdPlanilla" Nullable="false" />
+          <Property Type="DateTime" Name="FechaInicio" Nullable="false" />
+          <Property Type="DateTime" Name="FechaFin" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCalculo" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="HorasNormales" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="HorasExtra" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="HorasDoble" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SalarioHora" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoNormales" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoExtra" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MontoDoble" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalPagar" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_CerrarPlanilla_Result">
+          <Property Type="Int32" Name="Ok" Nullable="false" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="31" />
+          <Property Type="Int64" Name="IdPlanilla" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_MarcarEntrada_Result">
+          <Property Type="Int32" Name="Ok" Nullable="false" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="34" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_MarcarSalida_Result">
+          <Property Type="Int32" Name="Ok" Nullable="false" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="39" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerCitasPorCliente_Result">
+          <Property Type="Int32" Name="IdCita" Nullable="false" />
+          <Property Type="DateTime" Name="FechaHoraCita" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mascota" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="Servicio" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerClientePorId_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Activo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerFacturasPorCliente_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="40" />
+          <Property Type="Decimal" Name="MontoTotal" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="String" Name="NumeroReferencia" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerMascotasPorCliente_Result">
+          <Property Type="Int32" Name="IdMascota" Nullable="false" />
+          <Property Type="String" Name="NombreMascota" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="Especie" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raza" Nullable="true" MaxLength="80" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+          <Property Type="Boolean" Name="Activo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ReabrirPlanilla_Result">
+          <Property Type="Int32" Name="Ok" Nullable="false" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="19" />
+          <Property Type="Int64" Name="IdPlanilla" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MiMundoHuellitasModelStoreContainer" CdmEntityContainer="MiMundoHuellitasEntities2">
+        <EntityContainerMapping StorageEntityContainer="MiMundoHuellitasModelStoreContainer" CdmEntityContainer="MiMundoHuellitasEntities">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="MiMundoHuellitasModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1671,6 +2400,23 @@
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Auditoria_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Auditoria_TB">
+              <MappingFragment StoreEntitySet="MH_Auditoria_TB">
+                <ScalarProperty Name="IdAuditoria" ColumnName="IdAuditoria" />
+                <ScalarProperty Name="TablaAfectada" ColumnName="TablaAfectada" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Campo" ColumnName="Campo" />
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+                <ScalarProperty Name="ValorAnterior" ColumnName="ValorAnterior" />
+                <ScalarProperty Name="ValorNuevo" ColumnName="ValorNuevo" />
+                <ScalarProperty Name="UsuarioSistema" ColumnName="UsuarioSistema" />
+                <ScalarProperty Name="FechaAuditoria" ColumnName="FechaAuditoria" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1695,6 +2441,7 @@
                 <ScalarProperty Name="NotasInternas" ColumnName="NotasInternas" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="FechaActualiza" ColumnName="FechaActualiza" />
+                <ScalarProperty Name="IdEmpleadoAsignado" ColumnName="IdEmpleadoAsignado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1802,6 +2549,7 @@
                 <ScalarProperty Name="NumeroReferencia" ColumnName="NumeroReferencia" />
                 <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdEmpleadoRegistro" ColumnName="IdEmpleadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1851,6 +2599,23 @@
                 <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Permiso_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Permiso_TB">
+              <MappingFragment StoreEntitySet="MH_Permiso_TB">
+                <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdTipoPermiso" ColumnName="IdTipoPermiso" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="IdAdminResolucion" ColumnName="IdAdminResolucion" />
+                <ScalarProperty Name="FechaResolucion" ColumnName="FechaResolucion" />
+                <ScalarProperty Name="ComentarioAdmin" ColumnName="ComentarioAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1966,6 +2731,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MH_TipoPermiso_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_TipoPermiso_TB">
+              <MappingFragment StoreEntitySet="MH_TipoPermiso_TB">
+                <ScalarProperty Name="IdTipoPermiso" ColumnName="IdTipoPermiso" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RequiereDoc" ColumnName="RequiereDoc" />
+                <ScalarProperty Name="AfectaSalario" ColumnName="AfectaSalario" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MH_Usuario_TB">
             <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Usuario_TB">
               <MappingFragment StoreEntitySet="MH_Usuario_TB">
@@ -1992,6 +2769,209 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="vw_MH_AsistenciaDiaria">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.vw_MH_AsistenciaDiaria">
+              <MappingFragment StoreEntitySet="vw_MH_AsistenciaDiaria">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="HoraEntradaMin" ColumnName="HoraEntradaMin" />
+                <ScalarProperty Name="HoraSalidaMax" ColumnName="HoraSalidaMax" />
+                <ScalarProperty Name="HorasNormalesDia" ColumnName="HorasNormalesDia" />
+                <ScalarProperty Name="HorasTrabajadas" ColumnName="HorasTrabajadas" />
+                <ScalarProperty Name="EsFeriado" ColumnName="EsFeriado" />
+                <ScalarProperty Name="EsFinDeSemana" ColumnName="EsFinDeSemana" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_MH_Auditoria">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.VW_MH_Auditoria">
+              <MappingFragment StoreEntitySet="VW_MH_Auditoria">
+                <ScalarProperty Name="IdAuditoria" ColumnName="IdAuditoria" />
+                <ScalarProperty Name="TablaAfectada" ColumnName="TablaAfectada" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Campo" ColumnName="Campo" />
+                <ScalarProperty Name="IdRegistro" ColumnName="IdRegistro" />
+                <ScalarProperty Name="ValorAnterior" ColumnName="ValorAnterior" />
+                <ScalarProperty Name="ValorNuevo" ColumnName="ValorNuevo" />
+                <ScalarProperty Name="UsuarioSistema" ColumnName="UsuarioSistema" />
+                <ScalarProperty Name="FechaAuditoria" ColumnName="FechaAuditoria" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_MH_PlanillaDetalle">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.vw_MH_PlanillaDetalle">
+              <MappingFragment StoreEntitySet="vw_MH_PlanillaDetalle">
+                <ScalarProperty Name="IdPlanilla" ColumnName="IdPlanilla" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaCalculo" ColumnName="FechaCalculo" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="HorasNormales" ColumnName="HorasNormales" />
+                <ScalarProperty Name="HorasExtra" ColumnName="HorasExtra" />
+                <ScalarProperty Name="HorasDoble" ColumnName="HorasDoble" />
+                <ScalarProperty Name="SalarioHora" ColumnName="SalarioHora" />
+                <ScalarProperty Name="MontoNormales" ColumnName="MontoNormales" />
+                <ScalarProperty Name="MontoExtra" ColumnName="MontoExtra" />
+                <ScalarProperty Name="MontoDoble" ColumnName="MontoDoble" />
+                <ScalarProperty Name="TotalPagar" ColumnName="TotalPagar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MiMundoHuellitasModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MiMundoHuellitasModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MiMundoHuellitasModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MiMundoHuellitasModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MiMundoHuellitasModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MiMundoHuellitasModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_ReporteProductividadColaborador" FunctionName="MiMundoHuellitasModel.Store.sp_ReporteProductividadColaborador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.sp_ReporteProductividadColaborador_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="TotalMarcacionesAprobadas" ColumnName="TotalMarcacionesAprobadas" />
+                <ScalarProperty Name="HorasTrabajadas" ColumnName="HorasTrabajadas" />
+                <ScalarProperty Name="CitasAsignadas" ColumnName="CitasAsignadas" />
+                <ScalarProperty Name="CitasPendientes" ColumnName="CitasPendientes" />
+                <ScalarProperty Name="CitasConfirmadas" ColumnName="CitasConfirmadas" />
+                <ScalarProperty Name="CitasAtendidas" ColumnName="CitasAtendidas" />
+                <ScalarProperty Name="CitasCanceladas" ColumnName="CitasCanceladas" />
+                <ScalarProperty Name="CitasNoAsistio" ColumnName="CitasNoAsistio" />
+                <ScalarProperty Name="FacturasRegistradas" ColumnName="FacturasRegistradas" />
+                <ScalarProperty Name="FacturasEmitidas" ColumnName="FacturasEmitidas" />
+                <ScalarProperty Name="FacturasPagadas" ColumnName="FacturasPagadas" />
+                <ScalarProperty Name="FacturasAnuladas" ColumnName="FacturasAnuladas" />
+                <ScalarProperty Name="MontoVendido" ColumnName="MontoVendido" />
+                <ScalarProperty Name="CitasAtendidasPorHora" ColumnName="CitasAtendidasPorHora" />
+                <ScalarProperty Name="VentaPorHora" ColumnName="VentaPorHora" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MiMundoHuellitasModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="usp_MH_CalcularPlanilla" FunctionName="MiMundoHuellitasModel.Store.usp_MH_CalcularPlanilla">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_CalcularPlanilla_Result">
+                <ScalarProperty Name="IdPlanilla" ColumnName="IdPlanilla" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaCalculo" ColumnName="FechaCalculo" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="HorasNormales" ColumnName="HorasNormales" />
+                <ScalarProperty Name="HorasExtra" ColumnName="HorasExtra" />
+                <ScalarProperty Name="HorasDoble" ColumnName="HorasDoble" />
+                <ScalarProperty Name="SalarioHora" ColumnName="SalarioHora" />
+                <ScalarProperty Name="MontoNormales" ColumnName="MontoNormales" />
+                <ScalarProperty Name="MontoExtra" ColumnName="MontoExtra" />
+                <ScalarProperty Name="MontoDoble" ColumnName="MontoDoble" />
+                <ScalarProperty Name="TotalPagar" ColumnName="TotalPagar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_CerrarPlanilla" FunctionName="MiMundoHuellitasModel.Store.usp_MH_CerrarPlanilla">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_CerrarPlanilla_Result">
+                <ScalarProperty Name="Ok" ColumnName="Ok" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="IdPlanilla" ColumnName="IdPlanilla" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_MarcarEntrada" FunctionName="MiMundoHuellitasModel.Store.usp_MH_MarcarEntrada">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_MarcarEntrada_Result">
+                <ScalarProperty Name="Ok" ColumnName="Ok" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_MarcarSalida" FunctionName="MiMundoHuellitasModel.Store.usp_MH_MarcarSalida">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_MarcarSalida_Result">
+                <ScalarProperty Name="Ok" ColumnName="Ok" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerCitasPorCliente" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerCitasPorCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerCitasPorCliente_Result">
+                <ScalarProperty Name="IdCita" ColumnName="IdCita" />
+                <ScalarProperty Name="FechaHoraCita" ColumnName="FechaHoraCita" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Mascota" ColumnName="Mascota" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerClientePorId" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerClientePorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerClientePorId_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerFacturasPorCliente" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerFacturasPorCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerFacturasPorCliente_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
+                <ScalarProperty Name="NumeroReferencia" ColumnName="NumeroReferencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerMascotasPorCliente" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerMascotasPorCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerMascotasPorCliente_Result">
+                <ScalarProperty Name="IdMascota" ColumnName="IdMascota" />
+                <ScalarProperty Name="NombreMascota" ColumnName="NombreMascota" />
+                <ScalarProperty Name="Especie" ColumnName="Especie" />
+                <ScalarProperty Name="Raza" ColumnName="Raza" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ReabrirPlanilla" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ReabrirPlanilla">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ReabrirPlanilla_Result">
+                <ScalarProperty Name="Ok" ColumnName="Ok" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="IdPlanilla" ColumnName="IdPlanilla" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_RegistrarAuditoria" FunctionName="MiMundoHuellitasModel.Store.usp_MH_RegistrarAuditoria" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

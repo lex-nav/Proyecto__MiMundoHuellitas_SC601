@@ -13,7 +13,17 @@ namespace MiMundoHuellitas.DAL
     {
         private readonly string _cn = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
+<<<<<<< HEAD
         public List<PlanillaDetalleVM> CalcularPlanilla(DateTime fechaInicio, DateTime fechaFin, decimal factorExtra = 1.5m, decimal factorDoble = 2.0m, string observacion = null)
+=======
+        public List<PlanillaDetalleVM> CalcularPlanilla(
+     DateTime fechaInicio,
+     DateTime fechaFin,
+     string usuarioAuditoria,
+     decimal factorExtra = 1.5m,
+     decimal factorDoble = 2.0m,
+     string observacion = null)
+>>>>>>> Sebas
         {
             var lista = new List<PlanillaDetalleVM>();
 
@@ -28,6 +38,16 @@ namespace MiMundoHuellitas.DAL
                 cmd.Parameters.AddWithValue("@Observacion", (object)observacion ?? DBNull.Value);
 
                 conn.Open();
+<<<<<<< HEAD
+=======
+
+                using (var cmdSession = new SqlCommand("EXEC sp_set_session_context @key=N'UsuarioAuditoria', @value=@valor;", conn))
+                {
+                    cmdSession.Parameters.AddWithValue("@valor", (object)usuarioAuditoria ?? DBNull.Value);
+                    cmdSession.ExecuteNonQuery();
+                }
+
+>>>>>>> Sebas
                 using (var rd = cmd.ExecuteReader())
                 {
                     while (rd.Read())

@@ -12,11 +12,13 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class MiMundoHuellitasEntities : DbContext
+    public partial class BD_MiMundoHuellitasEntities : DbContext
     {
-        public MiMundoHuellitasEntities()
-            : base("name=MiMundoHuellitasEntities")
+        public BD_MiMundoHuellitasEntities()
+            : base("name= BD_MiMundoHuellitasEntities")
         {
         }
     
@@ -26,6 +28,7 @@ namespace MiMundoHuellitas.EF
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<MH_Auditoria_TB> MH_Auditoria_TB { get; set; }
         public virtual DbSet<MH_Canton_TB> MH_Canton_TB { get; set; }
         public virtual DbSet<MH_Cita_TB> MH_Cita_TB { get; set; }
         public virtual DbSet<MH_Comision_TB> MH_Comision_TB { get; set; }
@@ -41,6 +44,7 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_Jornada_TB> MH_Jornada_TB { get; set; }
         public virtual DbSet<MH_Marcacion_TB> MH_Marcacion_TB { get; set; }
         public virtual DbSet<MH_Mascotas_TB> MH_Mascotas_TB { get; set; }
+        public virtual DbSet<MH_Permiso_TB> MH_Permiso_TB { get; set; }
         public virtual DbSet<MH_Planilla_TB> MH_Planilla_TB { get; set; }
         public virtual DbSet<MH_PlanillaDetalle_TB> MH_PlanillaDetalle_TB { get; set; }
         public virtual DbSet<MH_Productos_TB> MH_Productos_TB { get; set; }
@@ -50,7 +54,289 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<MH_Servicios_Cita_TB> MH_Servicios_Cita_TB { get; set; }
         public virtual DbSet<MH_Servicios_TB> MH_Servicios_TB { get; set; }
         public virtual DbSet<MH_Tipo_Usuario_TB> MH_Tipo_Usuario_TB { get; set; }
+        public virtual DbSet<MH_TipoPermiso_TB> MH_TipoPermiso_TB { get; set; }
         public virtual DbSet<MH_Usuario_TB> MH_Usuario_TB { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<vw_MH_AsistenciaDiaria> vw_MH_AsistenciaDiaria { get; set; }
+        public virtual DbSet<VW_MH_Auditoria> VW_MH_Auditoria { get; set; }
+        public virtual DbSet<vw_MH_PlanillaDetalle> vw_MH_PlanillaDetalle { get; set; }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual ObjectResult<sp_ReporteProductividadColaborador_Result> sp_ReporteProductividadColaborador(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReporteProductividadColaborador_Result>("sp_ReporteProductividadColaborador", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<usp_MH_CalcularPlanilla_Result> usp_MH_CalcularPlanilla(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<decimal> factorExtra, Nullable<decimal> factorDoble, string observacion)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var factorExtraParameter = factorExtra.HasValue ?
+                new ObjectParameter("FactorExtra", factorExtra) :
+                new ObjectParameter("FactorExtra", typeof(decimal));
+    
+            var factorDobleParameter = factorDoble.HasValue ?
+                new ObjectParameter("FactorDoble", factorDoble) :
+                new ObjectParameter("FactorDoble", typeof(decimal));
+    
+            var observacionParameter = observacion != null ?
+                new ObjectParameter("Observacion", observacion) :
+                new ObjectParameter("Observacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_CalcularPlanilla_Result>("usp_MH_CalcularPlanilla", fechaInicioParameter, fechaFinParameter, factorExtraParameter, factorDobleParameter, observacionParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_CerrarPlanilla_Result> usp_MH_CerrarPlanilla(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<int> cerradaPorIdUsuario, string motivo)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var cerradaPorIdUsuarioParameter = cerradaPorIdUsuario.HasValue ?
+                new ObjectParameter("CerradaPorIdUsuario", cerradaPorIdUsuario) :
+                new ObjectParameter("CerradaPorIdUsuario", typeof(int));
+    
+            var motivoParameter = motivo != null ?
+                new ObjectParameter("Motivo", motivo) :
+                new ObjectParameter("Motivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_CerrarPlanilla_Result>("usp_MH_CerrarPlanilla", fechaInicioParameter, fechaFinParameter, cerradaPorIdUsuarioParameter, motivoParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_MarcarEntrada_Result> usp_MH_MarcarEntrada(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_MarcarEntrada_Result>("usp_MH_MarcarEntrada", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_MarcarSalida_Result> usp_MH_MarcarSalida(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_MarcarSalida_Result>("usp_MH_MarcarSalida", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerCitasPorCliente_Result> usp_MH_ObtenerCitasPorCliente(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerCitasPorCliente_Result>("usp_MH_ObtenerCitasPorCliente", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerClientePorId_Result> usp_MH_ObtenerClientePorId(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerClientePorId_Result>("usp_MH_ObtenerClientePorId", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerFacturasPorCliente_Result> usp_MH_ObtenerFacturasPorCliente(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerFacturasPorCliente_Result>("usp_MH_ObtenerFacturasPorCliente", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerMascotasPorCliente_Result> usp_MH_ObtenerMascotasPorCliente(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerMascotasPorCliente_Result>("usp_MH_ObtenerMascotasPorCliente", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ReabrirPlanilla_Result> usp_MH_ReabrirPlanilla(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<int> reabiertaPorIdUsuario, string motivo)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var reabiertaPorIdUsuarioParameter = reabiertaPorIdUsuario.HasValue ?
+                new ObjectParameter("ReabiertaPorIdUsuario", reabiertaPorIdUsuario) :
+                new ObjectParameter("ReabiertaPorIdUsuario", typeof(int));
+    
+            var motivoParameter = motivo != null ?
+                new ObjectParameter("Motivo", motivo) :
+                new ObjectParameter("Motivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ReabrirPlanilla_Result>("usp_MH_ReabrirPlanilla", fechaInicioParameter, fechaFinParameter, reabiertaPorIdUsuarioParameter, motivoParameter);
+        }
+    
+        public virtual int usp_MH_RegistrarAuditoria(string tablaAfectada, string modulo, string accion, string campo, string idRegistro, string valorAnterior, string valorNuevo, string usuarioSistema, string observacion)
+        {
+            var tablaAfectadaParameter = tablaAfectada != null ?
+                new ObjectParameter("TablaAfectada", tablaAfectada) :
+                new ObjectParameter("TablaAfectada", typeof(string));
+    
+            var moduloParameter = modulo != null ?
+                new ObjectParameter("Modulo", modulo) :
+                new ObjectParameter("Modulo", typeof(string));
+    
+            var accionParameter = accion != null ?
+                new ObjectParameter("Accion", accion) :
+                new ObjectParameter("Accion", typeof(string));
+    
+            var campoParameter = campo != null ?
+                new ObjectParameter("Campo", campo) :
+                new ObjectParameter("Campo", typeof(string));
+    
+            var idRegistroParameter = idRegistro != null ?
+                new ObjectParameter("IdRegistro", idRegistro) :
+                new ObjectParameter("IdRegistro", typeof(string));
+    
+            var valorAnteriorParameter = valorAnterior != null ?
+                new ObjectParameter("ValorAnterior", valorAnterior) :
+                new ObjectParameter("ValorAnterior", typeof(string));
+    
+            var valorNuevoParameter = valorNuevo != null ?
+                new ObjectParameter("ValorNuevo", valorNuevo) :
+                new ObjectParameter("ValorNuevo", typeof(string));
+    
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            var observacionParameter = observacion != null ?
+                new ObjectParameter("Observacion", observacion) :
+                new ObjectParameter("Observacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_MH_RegistrarAuditoria", tablaAfectadaParameter, moduloParameter, accionParameter, campoParameter, idRegistroParameter, valorAnteriorParameter, valorNuevoParameter, usuarioSistemaParameter, observacionParameter);
+        }
     }
 }

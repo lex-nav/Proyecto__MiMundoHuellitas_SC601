@@ -1,22 +1,37 @@
 ﻿using System.Linq;
+<<<<<<< HEAD
 
+=======
+>>>>>>> Sebas
 using System.Web.Mvc;
+using MiMundoHuellitas.EF;
+using MiMundoHuellitas.DAL;
+using MiMundoHuellitas.Models.ViewModels;
 
 using MiMundoHuellitas.EF;
 
 namespace MiMundoHuellitas.Controllers
 
 {
+<<<<<<< HEAD
 
     [Authorize] // luego puedes restringir por rol Admin
 
+=======
+    [Authorize] // luego puedes restringir por rol Admin
+>>>>>>> Sebas
     public class AdminUsuariosController : Controller
 
     {
+<<<<<<< HEAD
 
         private readonly MiMundoHuellitasEntities db =
 
             new MiMundoHuellitasEntities();
+=======
+        private readonly BD_MiMundoHuellitasEntities db =
+            new BD_MiMundoHuellitasEntities();
+>>>>>>> Sebas
 
         // GET: /AdminUsuarios
 
@@ -117,15 +132,41 @@ namespace MiMundoHuellitas.Controllers
                 return HttpNotFound();
 
             db.MH_Usuario_TB.Remove(usuario);
+<<<<<<< HEAD
 
             db.SaveChanges();
 
             TempData["Ok"] = "Usuario eliminado correctamente";
 
+=======
+            db.SaveChanges();
+
+            TempData["Ok"] = "Usuario eliminado correctamente";
+>>>>>>> Sebas
             return RedirectToAction("Index");
 
         }
 
+<<<<<<< HEAD
+=======
+        public ActionResult Historial(int id)
+        {
+            var repo = new HistorialClienteRepository();
+
+            var model = new HistorialClienteViewModel
+            {
+                Cliente = repo.ObtenerCliente(id),
+                Mascotas = repo.ObtenerMascotas(id),
+                Citas = repo.ObtenerCitas(id),
+                Facturas = repo.ObtenerFacturas(id)
+            };
+
+            if (model.Cliente == null)
+                return HttpNotFound();
+
+            return View(model);
+        }
+>>>>>>> Sebas
     }
 
 }

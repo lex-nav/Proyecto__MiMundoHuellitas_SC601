@@ -1,0 +1,103 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.AuditoriaIndexVM
+
+@{
+    ViewBag.Title = "Auditoría";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<h2 class="mb-4">Auditoría del sistema</h2>
+
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-3">
+        <label class="form-label">Usuario</label>
+        <input type="text" name="usuario" value="@Model.Filtro.Usuario" class="form-control" />
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Módulo</label>
+        <select name="modulo" class="form-control">
+            <option value="">-- Todos --</option>
+            <option value="Planilla" @(Model.Filtro.Modulo == "Planilla" ? "selected" : "")>Planilla</option>
+            <option value="Personal" @(Model.Filtro.Modulo == "Personal" ? "selected" : "")>Personal</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Desde</label>
+        <input type="date" name="fechaDesde"
+               value="@(Model.Filtro.FechaDesde.HasValue ? Model.Filtro.FechaDesde.Value.ToString("yyyy-MM-dd") : "")"
+               class="form-control" />
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Hasta</label>
+        <input type="date" name="fechaHasta"
+               value="@(Model.Filtro.FechaHasta.HasValue ? Model.Filtro.FechaHasta.Value.ToString("yyyy-MM-dd") : "")"
+               class="form-control" />
+    </div>
+
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary me-2">Filtrar</button>
+        <a href="@Url.Action("Index", "Auditoria")" class="btn btn-secondary">Limpiar</a>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Módulo</th>
+            <th>Tabla</th>
+            <th>Acción</th>
+            <th>Campo</th>
+            <th>ID Registro</th>
+            <th>Anterior</th>
+            <th>Nuevo</th>
+            <th>Usuario</th>
+            <th>Observación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Registros != null && Model.Registros.Count > 0)
+        {
+            foreach (var item in Model.Registros)
+            {
+                <tr>
+                    <td>@item.FechaAuditoria.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@item.Modulo</td>
+                    <td>@item.TablaAfectada</td>
+                    <td>
+                        @if (item.Accion == "Crear")
+                        {
+                            <span class="badge bg-success">Crear</span>
+                        }
+                        else if (item.Accion == "Editar")
+                        {
+                            <span class="badge bg-warning text-dark">Editar</span>
+                        }
+                        else if (item.Accion == "Eliminar")
+                        {
+                            <span class="badge bg-danger">Eliminar</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@item.Accion</span>
+                        }
+                    </td>
+                    <td>@item.Campo</td>
+                    <td>@item.IdRegistro</td>
+                    <td>@item.ValorAnterior</td>
+                    <td>@item.ValorNuevo</td>
+                    <td>@item.UsuarioSistema</td>
+                    <td>@item.Observacion</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="10" class="text-center">No se encontraron registros.</td>
+            </tr>
+        }
+    </tbody>
+</table>

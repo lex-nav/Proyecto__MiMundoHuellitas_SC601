@@ -9,7 +9,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize]
     public class ProductosController : Controller
     {
-        private MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+        private BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
         private const int TAM_PAGINA = 6;
 
         public ActionResult Index(int pagina = 1)

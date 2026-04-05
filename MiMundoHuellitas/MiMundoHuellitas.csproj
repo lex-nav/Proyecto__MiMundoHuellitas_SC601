@@ -267,8 +267,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminProductosController.cs" />
     <Compile Include="Controllers\AdminUsuariosController.cs" />
-    <Compile Include="Controllers\ComisionesController.cs" />
-    <Compile Include="Controllers\MarcacionesController.cs" />
+    <Compile Include="Controllers\AuditoriaController.cs" />
+    <Compile Include="Controllers\PermisoController.cs" />
+    <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\PlanillaController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
@@ -279,10 +280,17 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MascotaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="DAL\AuditoriaRepository.cs" />
+    <Compile Include="DAL\HistorialClienteRepository.cs" />
     <Compile Include="DAL\MarcacionRepository.cs" />
+    <Compile Include="DAL\PermisoRepository.cs" />
+    <Compile Include="DAL\PlanillaCierreRepository.cs" />
     <Compile Include="DAL\PlanillaRepository.cs" />
     <Compile Include="EF\ApplicationDbContext.cs" />
     <Compile Include="EF\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Auditoria_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_Canton_TB.cs">
@@ -330,6 +338,9 @@
     <Compile Include="EF\MH_Mascotas_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MH_Permiso_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MH_PlanillaDetalle_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -354,6 +365,9 @@
     <Compile Include="EF\MH_Servicios_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MH_TipoPermiso_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MH_Tipo_Usuario_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -375,17 +389,69 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EF\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\sp_ReporteProductividadColaborador_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_CalcularPlanilla_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_CerrarPlanilla_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_MarcarEntrada_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_MarcarSalida_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_ObtenerCitasPorCliente_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_ObtenerClientePorId_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_ObtenerFacturasPorCliente_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_ObtenerMascotasPorCliente_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\usp_MH_ReabrirPlanilla_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\vw_MH_AsistenciaDiaria.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VW_MH_Auditoria.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\vw_MH_PlanillaDetalle.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Citas.cs" />
-    <Compile Include="Models\ViewModels\Comisiones\ComisionesIndexVM.cs" />
-    <Compile Include="Models\ViewModels\Comisiones\ComisionFormVM.cs" />
-    <Compile Include="Models\ViewModels\HomeProductosViewModel.cs" />
+    <Compile Include="Models\ViewModels\AuditoriaFiltroVM.cs" />
+    <Compile Include="Models\ViewModels\AuditoriaIndexVM.cs" />
+    <Compile Include="Models\ViewModels\AuditoriaVM.cs" />
+    <Compile Include="Models\ViewModels\CitaHistorialVM.cs" />
+    <Compile Include="Models\ViewModels\ClienteHistorialVM.cs" />
+    <Compile Include="Models\ViewModels\EmpleadoLaboralVM.cs" />
+    <Compile Include="Models\ViewModels\FacturaHistorialVM.cs" />
+    <Compile Include="Models\ViewModels\HistorialClienteViewModel.cs" />
+    <Compile Include="Models\ViewModels\MascotaHistorialVM.cs" />
     <Compile Include="Models\ViewModels\PlanillaDetalleVM.cs" />
+    <Compile Include="Models\ViewModels\HomeProductosViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductosListadoViewModel.cs" />
     <Compile Include="Models\ViewModels\CheckoutViewModel.cs" />
     <Compile Include="Models\ViewModels\CarritoItemViewModel.cs" />
@@ -399,12 +465,12 @@
     <Compile Include="Models\ViewModels\RecuperarContrasennaViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
-    <Compile Include="Models\ViewModels\Reportes\ReporteAuditoriaVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteCitasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteFacturasVM.cs" />
-    <Compile Include="Models\ViewModels\Reportes\ReporteMarcacionesVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteMascotasVM.cs" />
+    <Compile Include="Models\ViewModels\Reportes\ReporteProductividadColaboradorVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteServiciosVM.cs" />
+    <Compile Include="Models\ViewModels\TipoPermisoVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -462,10 +528,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="StaticFiles\CSS\admin-usuarios-historial.css" />
     <Content Include="StaticFiles\CSS\animaciones.css" />
     <Content Include="StaticFiles\CSS\animate.css" />
     <Content Include="StaticFiles\CSS\bootstrap-datepicker.css" />
-    <Content Include="StaticFiles\CSS\chatbot.css" />
     <Content Include="StaticFiles\CSS\flaticon.css" />
     <Content Include="StaticFiles\CSS\jquery.timepicker.css" />
     <Content Include="StaticFiles\CSS\magnific-popup.css" />
@@ -599,7 +665,6 @@
     <Content Include="StaticFiles\img\user.jpg" />
     <Content Include="StaticFiles\JS\bootstrap-datepicker.js" />
     <Content Include="StaticFiles\JS\bootstrap.min.js" />
-    <Content Include="StaticFiles\JS\chatbot.js" />
     <Content Include="StaticFiles\JS\google-map.js" />
     <Content Include="StaticFiles\JS\jquery-3.2.1.min.js" />
     <Content Include="StaticFiles\JS\jquery-migrate-3.0.1.min.js" />
@@ -677,17 +742,20 @@
     <Content Include="Views\AdminProductos\Index.cshtml" />
     <Content Include="Views\AdminProductos\Edit.cshtml" />
     <Content Include="Views\AdminProductos\Delete.cshtml" />
-    <Content Include="Views\Comisiones\Index.cshtml" />
-    <Content Include="Views\Comisiones\Create.cshtml" />
-    <Content Include="Views\Comisiones\Edit.cshtml" />
-    <Content Include="Views\Comisiones\_CreateEditForm.cshtml" />
-    <Content Include="Views\Marcaciones\Index.cshtml" />
-    <Content Include="Views\Reportes\Marcaciones.cshtml" />
-    <Content Include="Views\Reportes\Auditoria.cshtml" />
     <Content Include="Views\Planilla\Calcular.cshtml" />
     <Content Include="Views\Planilla\Resultado.cshtml" />
+    <Content Include="Views\Permiso\Administrar.cshtml" />
+    <Content Include="Views\Permiso\MisPermisos.cshtml" />
+    <Content Include="Views\Permiso\Solicitar.cshtml" />
+    <Content Include="Views\Auditoria\Index.cshtml" />
+    <Content Include="Views\Personal\LaboralIndex.cshtml" />
+    <Content Include="Views\Personal\LaboralEdit.cshtml" />
+    <Content Include="Views\AdminUsuarios\Historial.cshtml" />
+    <Content Include="Views\Reportes\ProductividadColaborador.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
@@ -765,20 +833,20 @@
   </PropertyGroup>
   <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets'))" />
     <Error Condition="!Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
   <Import Project="..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

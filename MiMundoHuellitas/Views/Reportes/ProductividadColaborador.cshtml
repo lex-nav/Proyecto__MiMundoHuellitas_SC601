@@ -1,0 +1,211 @@
+﻿@model List<MiMundoHuellitas.Models.ViewModels.Reportes.ReporteProductividadColaboradorVM>
+@{
+    ViewBag.Title = "Reporte de Productividad - Mi Mundo de Huellitas";
+    ViewBag.ActiveMenu = "Reportes";
+
+    var totalColaboradores = Model != null ? Model.Count : 0;
+    var totalCitasAtendidas = Model != null ? Model.Sum(x => x.CitasAtendidas) : 0;
+    var totalVendido = Model != null ? Model.Sum(x => x.MontoVendido) : 0;
+    var promedioVentaPorHora = Model != null && Model.Any() ? Model.Average(x => x.VentaPorHora) : 0;
+}
+
+@Html.Partial("_ReportesHeader")
+
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px;
+            background: linear-gradient(rgba(10,123,72,0.85), rgba(14,118,140,0.85)),
+                        url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Productividad por Colaborador</h1>
+        <p class="lead mb-0">Analiza rendimiento y eficiencia del equipo</p>
+    </div>
+</div>
+
+<div class="container my-5">
+
+    <!-- FILTROS -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            @using (Html.BeginForm("ProductividadColaborador", "Reportes", FormMethod.Get))
+            {
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4">
+                        <label class="form-label">Desde</label>
+                        <input type="date" name="desde" class="form-control"
+                               value="@ViewBag.Desde" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Hasta</label>
+                        <input type="date" name="hasta" class="form-control"
+                               value="@ViewBag.Hasta" />
+                    </div>
+                    <div class="col-md-4 d-flex gap-2">
+                        <button class="btn btn-success w-100" style="background:#0A7B48;border:none;">
+                            Generar
+                        </button>
+                        <a class="btn btn-outline-secondary w-100"
+                           href="@Url.Action("ProductividadColaborador","Reportes")">
+                            Limpiar
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- RESUMEN -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Colaboradores</div>
+                    <div class="fs-2 fw-bold" style="color:#0A7B48;">@totalColaboradores</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Citas atendidas</div>
+                    <div class="fs-2 fw-bold" style="color:#0E768C;">@totalCitasAtendidas</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Monto vendido</div>
+                    <div class="fs-2 fw-bold" style="color:#0A7B48;">@totalVendido.ToString("C")</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Promedio venta/hora</div>
+                    <div class="fs-2 fw-bold" style="color:#0E768C;">@promedioVentaPorHora.ToString("C")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRÁFICO -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3" style="color:#0A7B48;">Gráfico de venta por hora</h5>
+
+            @if (Model == null || !Model.Any())
+            {
+                <div class="text-center text-muted py-4">
+                    No hay datos para mostrar en el gráfico.
+                </div>
+            }
+            else
+            {
+                <canvas id="graficoVentaPorHora" height="110"></canvas>
+            }
+        </div>
+    </div>
+
+    <!-- TABLA -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body table-responsive">
+            <table class="table align-middle table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Colaborador</th>
+                        <th>Horas</th>
+                        <th>Citas Atendidas</th>
+                        <th>Canceladas</th>
+                        <th>Facturas</th>
+                        <th>Monto Vendido</th>
+                        <th>Citas/Hora</th>
+                        <th>Venta/Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-4">
+                                No hay datos para el rango seleccionado.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@item.NombreCompleto</td>
+                                <td>@item.HorasTrabajadas</td>
+                                <td class="text-success fw-bold">@item.CitasAtendidas</td>
+                                <td class="text-danger">@item.CitasCanceladas</td>
+                                <td>@item.FacturasRegistradas</td>
+                                <td>@item.MontoVendido.ToString("C")</td>
+                                <td>@item.CitasAtendidasPorHora</td>
+                                <td class="fw-bold" style="color:#0E768C;">@item.VentaPorHora.ToString("C")</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @if (Model != null && Model.Any())
+    {
+        <script>
+            const labels = [
+                @Html.Raw(string.Join(",", Model.Select(x => "'" + (x.NombreCompleto ?? "").Replace("'", "\\'") + "'")))
+            ];
+
+            const ventaPorHora = [
+                @Html.Raw(string.Join(",", Model.Select(x => x.VentaPorHora.ToString(System.Globalization.CultureInfo.InvariantCulture))))
+            ];
+
+            const ctx = document.getElementById('graficoVentaPorHora');
+
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Venta por hora',
+                            data: ventaPorHora,
+                            backgroundColor: 'rgba(14, 118, 140, 0.75)',
+                            borderColor: 'rgba(14, 118, 140, 1)',
+                            borderWidth: 1,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Monto'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+    }
+}

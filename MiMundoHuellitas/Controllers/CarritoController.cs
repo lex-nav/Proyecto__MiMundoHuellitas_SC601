@@ -15,7 +15,7 @@ namespace MiMundoHuellitas.Controllers
 {
     public class CarritoController : Controller
     {
-        private MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+        private BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
 
         private const string CART_KEY = "CARRITO";
 

@@ -8,7 +8,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize] // puedes restringir luego por rol Admin
     public class AdminProductosController : Controller
     {
-        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
 
         // GET: /AdminProductos
         public ActionResult Index()

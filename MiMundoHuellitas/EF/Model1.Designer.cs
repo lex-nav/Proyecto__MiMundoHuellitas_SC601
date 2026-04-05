@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Ingenieria en Sistemas\6to Cuatrimestre\Programacion Avanzada SC-601\MiMundoHuellitas\MiMundoHuellitas\EF\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\User\Documents\GitHub\Proyecto__MiMundoHuellitas_SC601\MiMundoHuellitas\EF\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

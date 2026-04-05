@@ -1,0 +1,349 @@
+﻿.historial-container {
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.section-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 28px;
+    border: 1px solid #e9ecef;
+}
+
+.section-header {
+    padding: 14px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.header-cliente {
+    background: linear-gradient(90deg, #00c853, #00b0ff);
+}
+
+.header-mascotas {
+    background: linear-gradient(90deg, #00c853, #00b0ff);
+}
+
+.header-citas {
+    background: linear-gradient(90deg, #00c853, #00b0ff);
+}
+
+.header-facturas {
+    background: linear-gradient(90deg, #00c853, #00b0ff);
+}
+
+.cliente-body {
+    padding: 24px;
+    background: #f8fbfd;
+}
+
+.cliente-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.cliente-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e8eef3;
+    min-height: 180px;
+}
+
+    .cliente-box h5 {
+        margin-top: 0;
+        margin-bottom: 18px;
+        font-weight: 700;
+        color: #1f2d3d;
+        border-bottom: 2px solid #eef3f7;
+        padding-bottom: 8px;
+    }
+
+.dato-item {
+    margin-bottom: 14px;
+}
+
+.dato-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    letter-spacing: .5px;
+}
+
+.dato-valor {
+    font-size: 16px;
+    color: #212529;
+    font-weight: 500;
+}
+
+.estado-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.estado-activo {
+    background: linear-gradient(90deg, #00c853, #43a047);
+}
+
+.estado-inactivo {
+    background: linear-gradient(90deg, #e53935, #c62828);
+}
+
+.tabla-wrap {
+    padding: 0;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+    .table thead th {
+        border-bottom: 0;
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 14px 12px;
+    }
+
+    .table thead th {
+        background: #a5d6a7; 
+        color: #1b5e20; 
+    }
+
+.tabla-citas thead th {
+    background: #a5d6a7;
+    color: #1b5e20;
+}
+
+.tabla-facturas thead th {
+    background: #a5d6a7;
+    color: #1b5e20;
+}
+
+.table tbody td {
+    vertical-align: middle !important;
+    padding: 12px;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.table tbody tr:hover {
+    background-color: #eef7ff;
+    transition: 0.2s;
+}
+
+.text-money {
+    text-align: right;
+    font-weight: 600;
+    color: #1f2d3d;
+}
+
+.mini-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.mini-ok {
+    background: #28a745;
+}
+
+.mini-no {
+    background: #dc3545;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+    .top-actions h2 {
+        margin: 0;
+        font-weight: 700;
+        color: #1f2d3d;
+    }
+
+.subtitulo {
+    margin-top: 6px;
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .cliente-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/* HERO */
+.hero-adminusers {
+    position: relative;
+    border-radius: 0 0 22px 22px;
+    overflow: hidden;
+    min-height: 240px;
+    margin: 0 0 22px 0;
+    background: linear-gradient(90deg, rgba(46, 204, 113, 0.82), rgba(39, 174, 96, 0.82)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.hero-content {
+    position: relative;
+    padding: 70px 12px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.hero-title {
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    font-size: clamp(32px, 4vw, 52px);
+    margin: 0;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.20);
+}
+
+.hero-subtitle {
+    margin: 10px 0 0;
+    font-weight: 500;
+    color: rgba(255,255,255,0.92);
+    font-size: 16px;
+}
+
+/* PANEL */
+.panel-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #14532d;
+    margin-bottom: 6px;
+}
+
+.panel-subtitle {
+    color: #6b7280;
+    margin-bottom: 18px;
+}
+
+.card-soft {
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+    background: #fff;
+}
+
+.badge-soft {
+    background: #e8f8ee;
+    color: #1e7e34;
+    border: 1px solid #b7e4c7;
+    font-weight: 600;
+}
+
+/* TABLA */
+.tabla-usuarios thead th {
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #6b7280;
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-usuarios tbody td {
+    vertical-align: middle;
+}
+
+.tabla-usuarios tbody tr:hover {
+    background-color: #f6fdf8;
+}
+
+.acciones-columna {
+    width: 190px;
+}
+
+/* ACCIONES */
+.acciones-usuarios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    font-size: 16px;
+}
+
+    .icon-btn i {
+        font-size: 16px;
+    }
+
+    .icon-btn:hover {
+        transform: translateY(-1px) scale(1.06);
+        text-decoration: none;
+    }
+
+/* Historial */
+.icon-historial {
+    background-color: #e8f8ee;
+    color: #28a745;
+    border-color: #b7e4c7;
+}
+
+    .icon-historial:hover {
+        background-color: #d4efdf;
+        color: #1e7e34;
+    }
+
+/* Editar */
+.icon-editar {
+    background-color: #eaf2ff;
+    color: #0d6efd;
+    border-color: #b6d4fe;
+}
+
+    .icon-editar:hover {
+        background-color: #dbeafe;
+        color: #0a58ca;
+    }
+
+/* Eliminar */
+.icon-eliminar {
+    background-color: #fdecec;
+    color: #dc3545;
+    border-color: #f5c2c7;
+}
+
+    .icon-eliminar:hover {
+        background-color: #f8d7da;
+        color: #b02a37;
+    }

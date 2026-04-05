@@ -28,10 +28,12 @@ namespace MiMundoHuellitas.EF
         public string NumeroReferencia { get; set; }
         public decimal MontoTotal { get; set; }
         public string Observaciones { get; set; }
+        public Nullable<int> IdEmpleadoRegistro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MH_DetalleFactura_TB> MH_DetalleFactura_TB { get; set; }
         public virtual MH_Estado_TB MH_Estado_TB { get; set; }
         public virtual MH_Usuario_TB MH_Usuario_TB { get; set; }
+        public virtual MH_Usuario_TB MH_Usuario_TB1 { get; set; }
     }
 }

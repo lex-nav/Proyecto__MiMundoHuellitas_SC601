@@ -19,7 +19,15 @@ namespace MiMundoHuellitas.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+
+        // ✅ Repositorio de marcación (SP: usp_MH_MarcarEntrada / usp_MH_MarcarSalida)
+        private readonly MarcacionRepository _marcRepo = new MarcacionRepository();
+
+        // ✅ IDs según tu BD
+        private const int ID_ADMIN = 2;
+        private const int ID_CLIENTE = 1;
+        private const int ID_EMPLEADO = 3;
 
         // ✅ Repositorio de marcación (SP: usp_MH_MarcarEntrada / usp_MH_MarcarSalida)
         private readonly MarcacionRepository _marcRepo = new MarcacionRepository();
@@ -106,9 +114,15 @@ namespace MiMundoHuellitas.Controllers
                 {
                     _marcRepo.MarcarEntrada(usuario.IdUsuario);
                 }
+<<<<<<< HEAD
                 catch
                 {
                     // Recomendado: log, pero NO bloquear login
+=======
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error al marcar entrada: " + ex.Message);
+>>>>>>> Sebas
                 }
             }
 
@@ -222,9 +236,15 @@ namespace MiMundoHuellitas.Controllers
                 {
                     _marcRepo.MarcarSalida(idUsuario);
                 }
+<<<<<<< HEAD
                 catch
                 {
                     // No bloquear logout si falla
+=======
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Error al marcar salida: " + ex.Message);
+>>>>>>> Sebas
                 }
             }
 

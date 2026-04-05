@@ -1,0 +1,249 @@
+﻿
+@model List<MiMundoHuellitas.Models.ViewModels.PermisoVM>
+@{
+    ViewBag.Title = "Mis Permisos";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@section FullWidthTop {
+    <div class="hero-mispermisos">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Mis Permisos</h1>
+            <p class="hero-subtitle">Consultá el estado de tus solicitudes de ausencia y vacaciones</p>
+        </div>
+    </div>
+
+    <style>
+        .hero-mispermisos {
+            position: relative;
+            border-radius: 0 0 22px 22px;
+            overflow: hidden;
+            min-height: 240px;
+            margin: 0 0 22px 0;
+            background: linear-gradient(90deg, rgba(0,200,83,0.75), rgba(3,169,244,0.75)), url('/StaticFiles/img/slider-bg.jpg') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 70px 12px;
+            text-align: center;
+            color: #0b0f14;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: .4px;
+            font-size: clamp(32px,4vw,52px);
+            margin: 0;
+        }
+
+        .hero-subtitle {
+            margin: 10px 0 0;
+            font-weight: 600;
+            color: rgba(11,15,20,0.82);
+            font-size: 16px;
+        }
+
+        .panel-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0b3d2e;
+            margin-bottom: 6px;
+        }
+
+        .panel-subtitle {
+            color: #6b7280;
+            margin-bottom: 18px;
+        }
+
+        .card-soft {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+        }
+
+        .badge-soft {
+            background: rgba(0,200,83,0.12);
+            color: #0b6b3a;
+            border: 1px solid rgba(0,200,83,0.18);
+        }
+
+        .btn-nueva {
+            background: linear-gradient(90deg,#00c853,#03a9f4);
+            color: #0b0f14;
+            border: none;
+            border-radius: 12px;
+            padding: 9px 22px;
+            font-size: .88rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: opacity .2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+            .btn-nueva:hover {
+                opacity: .85;
+                color: #0b0f14;
+                text-decoration: none;
+            }
+
+        /* Badges estado */
+        .badge-Pendiente {
+            background: rgba(253,243,205,1);
+            color: #856404;
+            border: 1px solid #f5d97a;
+        }
+
+        .badge-Aprobado {
+            background: rgba(209,242,225,1);
+            color: #1a7a42;
+            border: 1px solid #6fd49e;
+        }
+
+        .badge-Rechazado {
+            background: rgba(253,232,232,1);
+            color: #c0392b;
+            border: 1px solid #f5a9a9;
+        }
+
+        /* Tarjeta de permiso */
+        .permiso-item {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 18px 4px;
+            transition: background .15s;
+        }
+
+            .permiso-item:last-child {
+                border-bottom: none;
+            }
+
+            .permiso-item:hover {
+                background: #f8fafc;
+                border-radius: 10px;
+            }
+
+        .tipo-tag {
+            background: #0b3d2e;
+            color: #fff;
+            border-radius: 8px;
+            padding: 3px 12px;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .dias-chip {
+            background: rgba(0,200,83,0.10);
+            border: 1px solid rgba(0,200,83,0.20);
+            border-radius: 50px;
+            padding: 2px 11px;
+            font-size: .78rem;
+            color: #0b6b3a;
+            font-weight: 700;
+        }
+
+        .comentario-admin {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fffbf0;
+            border-left: 3px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            font-size: .84rem;
+            color: #555;
+        }
+
+        .empty-box {
+            text-align: center;
+            padding: 50px 20px;
+        }
+    </style>
+}
+
+<div class="container my-4">
+
+    @if (TempData["Success"] != null)
+    {<div class="alert alert-success rounded-3 mb-3">✔ @TempData["Success"]</div>}
+    @if (TempData["Error"] != null)
+    {<div class="alert alert-danger rounded-3 mb-3">✖ @TempData["Error"]</div>}
+
+    <!-- Header panel -->
+    <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mb-3">
+        <div>
+            <div class="panel-title">Mis solicitudes</div>
+            <div class="panel-subtitle">Seguí el estado de cada permiso que has enviado.</div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-2 mt-md-0">
+            @if (Model != null && Model.Count > 0)
+            {
+                <span class="badge badge-soft rounded-pill px-3 py-2">
+                    @Model.Count solicitud(es)
+                </span>
+            }
+            @Html.ActionLink("+ Nueva solicitud", "Solicitar", "Permiso", null, new { @class = "btn-nueva" })
+        </div>
+    </div>
+
+    <!-- Card lista -->
+    <div class="card card-soft border-0">
+        <div class="card-body p-3 p-md-4">
+
+            @if (Model == null || Model.Count == 0)
+            {
+                <div class="empty-box">
+                    <i class="fa-solid fa-calendar-xmark fa-2x text-muted mb-3" style="display:block;"></i>
+                    <div class="fw-semibold text-muted mb-3">No tenés solicitudes de permiso registradas.</div>
+                    @Html.ActionLink("+ Solicitar mi primer permiso", "Solicitar", "Permiso", null, new { @class = "btn-nueva" })
+                </div>
+            }
+            else
+            {
+                foreach (var p in Model)
+                {
+                    <div class="permiso-item">
+                        <div class="d-flex align-items-center gap-2 flex-wrap mb-2">
+                            <span class="tipo-tag">@p.TipoPermiso</span>
+                            <span class="text-muted" style="font-size:.85rem;">
+                                <i class="fa-regular fa-calendar me-1"></i>
+                                @p.FechaInicio.ToString("dd/MM/yyyy") — @p.FechaFin.ToString("dd/MM/yyyy")
+                            </span>
+                            <span class="dias-chip">
+                                @p.DiasSolicitados día@(p.DiasSolicitados != 1 ? "s" : "")
+                            </span>
+                            <span class="badge rounded-pill px-3 py-2 badge-@p.Estado">@p.Estado</span>
+                            <span class="text-muted ms-auto" style="font-size:.78rem;">
+                                <i class="fa-regular fa-clock me-1"></i>
+                                @p.FechaSolicitud.ToString("dd/MM/yyyy HH:mm")
+                            </span>
+                        </div>
+
+                        <div style="font-size:.9rem; color:#374151;">
+                            <strong>Motivo:</strong> @p.Motivo
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(p.ComentarioAdmin))
+                        {
+                            <div class="comentario-admin mt-2">
+                                <strong>Comentario del administrador</strong>
+                                @if (p.AdminResolvio != null)
+                                {
+                                    <span class="text-muted"> · @p.AdminResolvio</span>
+                                }
+                                <br />@p.ComentarioAdmin
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+

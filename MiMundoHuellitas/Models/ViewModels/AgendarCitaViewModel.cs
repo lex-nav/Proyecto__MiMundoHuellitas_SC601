@@ -24,11 +24,16 @@ namespace MiMundoHuellitas.Models.ViewModels
 
         [Required]
         [Display(Name = "Hora")]
-        public string Hora { get; set; } 
+        public string Hora { get; set; }
 
         [Display(Name = "Notas del cliente")]
         public string NotasCliente { get; set; }
 
+        [Required(ErrorMessage = "Debe seleccionar un colaborador.")]
+        [Display(Name = "Colaborador asignado")]
+        public int? IdEmpleadoAsignado { get; set; }
+
+        public IEnumerable<SelectListItem> Colaboradores { get; set; }
         public IEnumerable<SelectListItem> Mascotas { get; set; }
         public IEnumerable<SelectListItem> Servicios { get; set; }
         public IEnumerable<SelectListItem> Horarios { get; set; }
