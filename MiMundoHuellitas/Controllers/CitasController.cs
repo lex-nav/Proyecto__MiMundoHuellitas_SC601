@@ -45,6 +45,17 @@ namespace MiMundoHuellitas.Controllers
                 })
                 .ToList();
 
+            //  cargar colaboradores
+            model.Colaboradores = db.MH_Usuario_TB
+                .Where(u => u.Activo
+                    && db.MH_EmpleadoLaboral_TB.Any(e => e.IdUsuario == u.IdUsuario))
+                .Select(u => new SelectListItem
+                {
+                    Value = u.IdUsuario.ToString(),
+                    Text = u.NombreCompleto
+                })
+                .ToList();
+
             model.Horarios = GenerarHorarios();
         }
 
@@ -159,8 +170,6 @@ namespace MiMundoHuellitas.Controllers
             return fecha.Add(hora);
         }
 
-
-
         private string EmailLayout(string titulo, string subtitulo, string contenidoHtml)
         {
             return $@"
@@ -264,7 +273,6 @@ padding:16px;border-radius:12px;margin:16px 0'>
         // AGENDAR CITA
         // =========================
 
-        // GET: /Citas/Agendar
         [HttpGet]
         public ActionResult Agendar()
         {
@@ -281,7 +289,6 @@ padding:16px;border-radius:12px;margin:16px 0'>
             return View("Agendar", model);
         }
 
-        // POST: /Citas/Agendar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Agendar(AgendarCitaViewModel model)
@@ -304,7 +311,6 @@ padding:16px;border-radius:12px;margin:16px 0'>
                 return View("Agendar", model);
             }
 
-            // Validar que el horario no esté ocupado
             bool ocupado = db.MH_Cita_TB.Any(c => c.FechaHoraCita == fechaHora.Value);
             if (ocupado)
             {
@@ -313,7 +319,6 @@ padding:16px;border-radius:12px;margin:16px 0'>
                 return View("Agendar", model);
             }
 
-            // Crear cita (Estado: 1 = Pendiente)
             var cita = new MH_Cita_TB
             {
                 IdUsuario = usuario.IdUsuario,
@@ -321,13 +326,13 @@ padding:16px;border-radius:12px;margin:16px 0'>
                 IdEstado = 1,
                 FechaHoraCita = fechaHora.Value,
                 NotasCliente = model.NotasCliente,
-                FechaCreacion = DateTime.Now
+                FechaCreacion = DateTime.Now,
+                IdEmpleadoAsignado = model.IdEmpleadoAsignado
             };
 
             db.MH_Cita_TB.Add(cita);
             db.SaveChanges();
 
-            // Detalle de servicio (1 servicio por cita)
             var servicio = db.MH_Servicios_TB.First(s => s.IdServicio == model.IdServicio.Value);
 
             var det = new MH_Servicios_Cita_TB
@@ -342,7 +347,6 @@ padding:16px;border-radius:12px;margin:16px 0'>
             db.MH_Servicios_Cita_TB.Add(det);
             db.SaveChanges();
 
-            // Correo de confirmación (bonito)
             try
             {
                 var mascota = db.MH_Mascotas_TB.FirstOrDefault(m => m.IdMascota == cita.IdMascota);
@@ -405,7 +409,8 @@ padding:16px;border-radius:12px;margin:16px 0'>
                 IdServicio = det?.IdServicio,
                 Fecha = cita.FechaHoraCita.Date,
                 Hora = cita.FechaHoraCita.ToString("HH:mm"),
-                NotasCliente = cita.NotasCliente
+                NotasCliente = cita.NotasCliente,
+                IdEmpleadoAsignado = cita.IdEmpleadoAsignado
             };
 
             CargarCombos(model, usuario.IdUsuario);
@@ -453,6 +458,7 @@ padding:16px;border-radius:12px;margin:16px 0'>
             cita.FechaHoraCita = fechaHora.Value;
             cita.NotasCliente = model.NotasCliente;
             cita.FechaActualiza = DateTime.Now;
+            cita.IdEmpleadoAsignado = model.IdEmpleadoAsignado;
 
             var det = db.MH_Servicios_Cita_TB.FirstOrDefault(d => d.IdCita == cita.IdCita);
             var servicio = db.MH_Servicios_TB.First(s => s.IdServicio == model.IdServicio.Value);
@@ -478,7 +484,6 @@ padding:16px;border-radius:12px;margin:16px 0'>
 
             db.SaveChanges();
 
-            // Correo de actualización (bonito)
             try
             {
                 var nombreMostrar = string.IsNullOrWhiteSpace(usuario.NombreCompleto) ? usuario.Correo : usuario.NombreCompleto;
@@ -514,12 +519,10 @@ padding:16px;border-radius:12px;margin:16px 0'>
             if (cita == null)
                 return HttpNotFound();
 
-            // Marca como cancelada (ajusta el IdEstado real)
             cita.IdEstado = 3;
             cita.FechaActualiza = DateTime.Now;
             db.SaveChanges();
 
-            // Correo de cancelación (bonito)
             try
             {
                 var nombreMostrar = string.IsNullOrWhiteSpace(usuario.NombreCompleto) ? usuario.Correo : usuario.NombreCompleto;
