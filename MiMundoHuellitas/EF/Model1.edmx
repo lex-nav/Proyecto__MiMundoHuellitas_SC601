@@ -52,6 +52,7 @@
           <Property Name="NotasInternas" Type="nvarchar" MaxLength="300" />
           <Property Name="FechaCreacion" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="FechaActualiza" Type="datetime2" Precision="0" />
+          <Property Name="IdEmpleadoAsignado" Type="int" />
         </EntityType>
         <EntityType Name="MH_Comision_TB">
           <Key>
@@ -150,6 +151,7 @@
           <Property Name="NumeroReferencia" Type="nvarchar" MaxLength="80" />
           <Property Name="MontoTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdEmpleadoRegistro" Type="int" />
         </EntityType>
         <EntityType Name="MH_Feriado_TB">
           <Key>
@@ -453,6 +455,18 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MH_Cita_EmpleadoAsignado">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdEmpleadoAsignado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MH_Cita_Estado">
           <End Role="MH_Estado_TB" Type="Self.MH_Estado_TB" Multiplicity="1" />
           <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
@@ -582,6 +596,18 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             </Principal>
             <Dependent Role="MH_EmpleadoLaboral_TB">
               <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Factura_EmpleadoRegistro">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdEmpleadoRegistro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -843,6 +869,10 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_ReporteProductividadColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+        </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_MH_CalcularPlanilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaInicio" Type="date" Mode="In" />
@@ -861,6 +891,18 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_MH_MarcarSalida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerCitasPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerClientePorId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerFacturasPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_ObtenerMascotasPorCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_MH_ReabrirPlanilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -965,6 +1007,10 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             <End Role="MH_Provincia_TB" EntitySet="MH_Provincia_TB" />
             <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
           </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_EmpleadoAsignado" Association="Self.FK_MH_Cita_EmpleadoAsignado">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
           <AssociationSet Name="FK_MH_Cita_Estado" Association="Self.FK_MH_Cita_Estado">
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
             <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
@@ -1008,6 +1054,10 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <AssociationSet Name="FK_MH_EmpleadoLaboral_Usuario" Association="Self.FK_MH_EmpleadoLaboral_Usuario">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
             <End Role="MH_EmpleadoLaboral_TB" EntitySet="MH_EmpleadoLaboral_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_EmpleadoRegistro" Association="Self.FK_MH_Factura_EmpleadoRegistro">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
           </AssociationSet>
           <AssociationSet Name="FK_MH_Factura_Estado" Association="Self.FK_MH_Factura_Estado">
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
@@ -1140,9 +1190,11 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <Property Name="NotasInternas" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaActualiza" Type="DateTime" Precision="0" />
+          <Property Name="IdEmpleadoAsignado" Type="Int32" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Cita_EmpleadoAsignado" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
           <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Cita_Estado" FromRole="MH_Cita_TB" ToRole="MH_Estado_TB" />
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Cita_Mascota" FromRole="MH_Cita_TB" ToRole="MH_Mascotas_TB" />
-          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Usuario_TB1" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
           <NavigationProperty Name="MH_Servicios_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Cita" FromRole="MH_Cita_TB" ToRole="MH_Servicios_Cita_TB" />
         </EntityType>
         <EntityType Name="MH_Comision_TB">
@@ -1258,9 +1310,11 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <Property Name="NumeroReferencia" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="MontoTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IdEmpleadoRegistro" Type="Int32" />
           <NavigationProperty Name="MH_DetalleFactura_TB" Relationship="Self.FK_MH_DetalleFactura_Factura" FromRole="MH_Factura_TB" ToRole="MH_DetalleFactura_TB" />
           <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Factura_Estado" FromRole="MH_Factura_TB" ToRole="MH_Estado_TB" />
-          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Factura_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Factura_EmpleadoRegistro" FromRole="MH_Factura_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Usuario_TB1" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Factura_TB" ToRole="MH_Usuario_TB" />
         </EntityType>
         <EntityType Name="MH_Feriado_TB">
           <Key>
@@ -1476,12 +1530,14 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Cita_TB" Relationship="Self.FK_MH_Cita_EmpleadoAsignado" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Cita_TB1" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Cita_TB" />
           <NavigationProperty Name="MH_Comision_TB" Relationship="Self.FK_Comision_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Comision_TB" />
           <NavigationProperty Name="MH_Direccion_TB" Relationship="Self.FK_MH_Usuario_Direccion" FromRole="MH_Usuario_TB" ToRole="MH_Direccion_TB" />
           <NavigationProperty Name="MH_EmpleadoJornada_TB" Relationship="Self.FK_MH_EmpleadoJornada_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_EmpleadoJornada_TB" />
           <NavigationProperty Name="MH_EmpleadoLaboral_TB" Relationship="Self.FK_MH_EmpleadoLaboral_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_EmpleadoLaboral_TB" />
-          <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
+          <NavigationProperty Name="MH_Factura_TB" Relationship="Self.FK_MH_Factura_EmpleadoRegistro" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
+          <NavigationProperty Name="MH_Factura_TB1" Relationship="Self.FK_MH_Factura_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Factura_TB" />
           <NavigationProperty Name="MH_Marcacion_TB" Relationship="Self.FK_MH_Marcacion_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Marcacion_TB" />
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Usuario_TB" ToRole="MH_Mascotas_TB" />
           <NavigationProperty Name="MH_Permiso_TB" Relationship="Self.FK_MH_Permiso_Admin" FromRole="MH_Usuario_TB" ToRole="MH_Permiso_TB" />
@@ -1594,6 +1650,18 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             </Principal>
             <Dependent Role="MH_Distrito_TB">
               <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MH_Cita_EmpleadoAsignado">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Cita_TB">
+              <PropertyRef Name="IdEmpleadoAsignado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1801,6 +1869,18 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MH_Factura_EmpleadoRegistro">
+          <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="0..1" />
+          <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Usuario_TB">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="MH_Factura_TB">
+              <PropertyRef Name="IdEmpleadoRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MH_Factura_Usuario">
           <End Role="MH_Usuario_TB" Type="Self.MH_Usuario_TB" Multiplicity="1" />
           <End Role="MH_Factura_TB" Type="Self.MH_Factura_TB" Multiplicity="*" />
@@ -1999,6 +2079,10 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             <End Role="MH_Canton_TB" EntitySet="MH_Canton_TB" />
             <End Role="MH_Distrito_TB" EntitySet="MH_Distrito_TB" />
           </AssociationSet>
+          <AssociationSet Name="FK_MH_Cita_EmpleadoAsignado" Association="Self.FK_MH_Cita_EmpleadoAsignado">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+          </AssociationSet>
           <AssociationSet Name="FK_MH_Cita_Estado" Association="Self.FK_MH_Cita_Estado">
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
             <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
@@ -2066,6 +2150,10 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <AssociationSet Name="FK_MH_Productos_Estado" Association="Self.FK_MH_Productos_Estado">
             <End Role="MH_Estado_TB" EntitySet="MH_Estado_TB" />
             <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MH_Factura_EmpleadoRegistro" Association="Self.FK_MH_Factura_EmpleadoRegistro">
+            <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
+            <End Role="MH_Factura_TB" EntitySet="MH_Factura_TB" />
           </AssociationSet>
           <AssociationSet Name="FK_MH_Factura_Usuario" Association="Self.FK_MH_Factura_Usuario">
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
@@ -2148,6 +2236,10 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_ReporteProductividadColaborador" ReturnType="Collection(MiMundoHuellitasModel.sp_ReporteProductividadColaborador_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="usp_MH_CalcularPlanilla" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_CalcularPlanilla_Result)">
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
@@ -2166,6 +2258,18 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_MarcarSalida" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_MarcarSalida_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerCitasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerCitasPorCliente_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerClientePorId" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerClientePorId_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerFacturasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerFacturasPorCliente_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_MH_ObtenerMascotasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerMascotasPorCliente_Result)">
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_ReabrirPlanilla" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ReabrirPlanilla_Result)">
@@ -2197,6 +2301,25 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="sp_ReporteProductividadColaborador_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="120" />
+          <Property Type="Int32" Name="TotalMarcacionesAprobadas" Nullable="false" />
+          <Property Type="Decimal" Name="HorasTrabajadas" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="CitasAsignadas" Nullable="false" />
+          <Property Type="Int32" Name="CitasPendientes" Nullable="false" />
+          <Property Type="Int32" Name="CitasConfirmadas" Nullable="false" />
+          <Property Type="Int32" Name="CitasAtendidas" Nullable="false" />
+          <Property Type="Int32" Name="CitasCanceladas" Nullable="false" />
+          <Property Type="Int32" Name="CitasNoAsistio" Nullable="false" />
+          <Property Type="Int32" Name="FacturasRegistradas" Nullable="false" />
+          <Property Type="Int32" Name="FacturasEmitidas" Nullable="false" />
+          <Property Type="Int32" Name="FacturasPagadas" Nullable="false" />
+          <Property Type="Int32" Name="FacturasAnuladas" Nullable="false" />
+          <Property Type="Decimal" Name="MontoVendido" Nullable="false" Precision="12" Scale="2" />
+          <Property Type="Decimal" Name="CitasAtendidasPorHora" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="VentaPorHora" Nullable="true" Precision="12" Scale="2" />
+        </ComplexType>
         <ComplexType Name="usp_MH_CalcularPlanilla_Result">
           <Property Type="Int64" Name="IdPlanilla" Nullable="false" />
           <Property Type="DateTime" Name="FechaInicio" Nullable="false" />
@@ -2225,6 +2348,39 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
         <ComplexType Name="usp_MH_MarcarSalida_Result">
           <Property Type="Int32" Name="Ok" Nullable="false" />
           <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="39" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerCitasPorCliente_Result">
+          <Property Type="Int32" Name="IdCita" Nullable="false" />
+          <Property Type="DateTime" Name="FechaHoraCita" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mascota" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="Servicio" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerClientePorId_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="NombreCompleto" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="TipoUsuario" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Activo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerFacturasPorCliente_Result">
+          <Property Type="Int32" Name="IdFactura" Nullable="false" />
+          <Property Type="DateTime" Name="FechaFactura" Nullable="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="40" />
+          <Property Type="Decimal" Name="MontoTotal" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="String" Name="NumeroReferencia" Nullable="true" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="usp_MH_ObtenerMascotasPorCliente_Result">
+          <Property Type="Int32" Name="IdMascota" Nullable="false" />
+          <Property Type="String" Name="NombreMascota" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="Especie" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Raza" Nullable="true" MaxLength="80" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+          <Property Type="Boolean" Name="Activo" Nullable="false" />
         </ComplexType>
         <ComplexType Name="usp_MH_ReabrirPlanilla_Result">
           <Property Type="Int32" Name="Ok" Nullable="false" />
@@ -2285,6 +2441,7 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
                 <ScalarProperty Name="NotasInternas" ColumnName="NotasInternas" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="FechaActualiza" ColumnName="FechaActualiza" />
+                <ScalarProperty Name="IdEmpleadoAsignado" ColumnName="IdEmpleadoAsignado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2392,6 +2549,7 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
                 <ScalarProperty Name="NumeroReferencia" ColumnName="NumeroReferencia" />
                 <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="IdEmpleadoRegistro" ColumnName="IdEmpleadoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2686,6 +2844,29 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MiMundoHuellitasModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_ReporteProductividadColaborador" FunctionName="MiMundoHuellitasModel.Store.sp_ReporteProductividadColaborador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.sp_ReporteProductividadColaborador_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="TotalMarcacionesAprobadas" ColumnName="TotalMarcacionesAprobadas" />
+                <ScalarProperty Name="HorasTrabajadas" ColumnName="HorasTrabajadas" />
+                <ScalarProperty Name="CitasAsignadas" ColumnName="CitasAsignadas" />
+                <ScalarProperty Name="CitasPendientes" ColumnName="CitasPendientes" />
+                <ScalarProperty Name="CitasConfirmadas" ColumnName="CitasConfirmadas" />
+                <ScalarProperty Name="CitasAtendidas" ColumnName="CitasAtendidas" />
+                <ScalarProperty Name="CitasCanceladas" ColumnName="CitasCanceladas" />
+                <ScalarProperty Name="CitasNoAsistio" ColumnName="CitasNoAsistio" />
+                <ScalarProperty Name="FacturasRegistradas" ColumnName="FacturasRegistradas" />
+                <ScalarProperty Name="FacturasEmitidas" ColumnName="FacturasEmitidas" />
+                <ScalarProperty Name="FacturasPagadas" ColumnName="FacturasPagadas" />
+                <ScalarProperty Name="FacturasAnuladas" ColumnName="FacturasAnuladas" />
+                <ScalarProperty Name="MontoVendido" ColumnName="MontoVendido" />
+                <ScalarProperty Name="CitasAtendidasPorHora" ColumnName="CitasAtendidasPorHora" />
+                <ScalarProperty Name="VentaPorHora" ColumnName="VentaPorHora" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MiMundoHuellitasModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="usp_MH_CalcularPlanilla" FunctionName="MiMundoHuellitasModel.Store.usp_MH_CalcularPlanilla">
             <ResultMapping>
@@ -2729,6 +2910,55 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
               <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_MarcarSalida_Result">
                 <ScalarProperty Name="Ok" ColumnName="Ok" />
                 <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerCitasPorCliente" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerCitasPorCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerCitasPorCliente_Result">
+                <ScalarProperty Name="IdCita" ColumnName="IdCita" />
+                <ScalarProperty Name="FechaHoraCita" ColumnName="FechaHoraCita" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Mascota" ColumnName="Mascota" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerClientePorId" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerClientePorId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerClientePorId_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerFacturasPorCliente" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerFacturasPorCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerFacturasPorCliente_Result">
+                <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
+                <ScalarProperty Name="NumeroReferencia" ColumnName="NumeroReferencia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_ObtenerMascotasPorCliente" FunctionName="MiMundoHuellitasModel.Store.usp_MH_ObtenerMascotasPorCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_ObtenerMascotasPorCliente_Result">
+                <ScalarProperty Name="IdMascota" ColumnName="IdMascota" />
+                <ScalarProperty Name="NombreMascota" ColumnName="NombreMascota" />
+                <ScalarProperty Name="Especie" ColumnName="Especie" />
+                <ScalarProperty Name="Raza" ColumnName="Raza" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

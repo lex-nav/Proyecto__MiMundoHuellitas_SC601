@@ -18,7 +18,7 @@ namespace MiMundoHuellitas.EF
     public partial class BD_MiMundoHuellitasEntities : DbContext
     {
         public BD_MiMundoHuellitasEntities()
-            : base("name=BD_MiMundoHuellitasEntities")
+            : base("name= BD_MiMundoHuellitasEntities")
         {
         }
     
@@ -159,6 +159,19 @@ namespace MiMundoHuellitas.EF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
+        public virtual ObjectResult<sp_ReporteProductividadColaborador_Result> sp_ReporteProductividadColaborador(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ReporteProductividadColaborador_Result>("sp_ReporteProductividadColaborador", fechaInicioParameter, fechaFinParameter);
+        }
+    
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
@@ -226,6 +239,42 @@ namespace MiMundoHuellitas.EF
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_MarcarSalida_Result>("usp_MH_MarcarSalida", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerCitasPorCliente_Result> usp_MH_ObtenerCitasPorCliente(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerCitasPorCliente_Result>("usp_MH_ObtenerCitasPorCliente", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerClientePorId_Result> usp_MH_ObtenerClientePorId(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerClientePorId_Result>("usp_MH_ObtenerClientePorId", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerFacturasPorCliente_Result> usp_MH_ObtenerFacturasPorCliente(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerFacturasPorCliente_Result>("usp_MH_ObtenerFacturasPorCliente", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<usp_MH_ObtenerMascotasPorCliente_Result> usp_MH_ObtenerMascotasPorCliente(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_MH_ObtenerMascotasPorCliente_Result>("usp_MH_ObtenerMascotasPorCliente", idUsuarioParameter);
         }
     
         public virtual ObjectResult<usp_MH_ReabrirPlanilla_Result> usp_MH_ReabrirPlanilla(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<int> reabiertaPorIdUsuario, string motivo)
