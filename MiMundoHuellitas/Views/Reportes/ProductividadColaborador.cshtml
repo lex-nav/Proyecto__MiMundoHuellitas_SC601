@@ -3,6 +3,11 @@
 @{
     ViewBag.Title = "Reporte de Productividad - Mi Mundo de Huellitas";
     ViewBag.ActiveMenu = "Reportes";
+
+    var totalColaboradores = Model != null ? Model.Count : 0;
+    var totalCitasAtendidas = Model != null ? Model.Sum(x => x.CitasAtendidas) : 0;
+    var totalVendido = Model != null ? Model.Sum(x => x.MontoVendido) : 0;
+    var promedioVentaPorHora = Model != null && Model.Any() ? Model.Average(x => x.VentaPorHora) : 0;
 }
 
 @Html.Partial("_ReportesHeader")
@@ -50,6 +55,60 @@
         </div>
     </div>
 
+    <!-- RESUMEN -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Colaboradores</div>
+                    <div class="fs-2 fw-bold" style="color:#0A7B48;">@totalColaboradores</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Citas atendidas</div>
+                    <div class="fs-2 fw-bold" style="color:#0E768C;">@totalCitasAtendidas</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Monto vendido</div>
+                    <div class="fs-2 fw-bold" style="color:#0A7B48;">@totalVendido.ToString("C")</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted">Promedio venta/hora</div>
+                    <div class="fs-2 fw-bold" style="color:#0E768C;">@promedioVentaPorHora.ToString("C")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRÁFICO -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3" style="color:#0A7B48;">Gráfico de venta por hora</h5>
+
+            @if (Model == null || !Model.Any())
+            {
+                <div class="text-center text-muted py-4">
+                    No hay datos para mostrar en el gráfico.
+                </div>
+            }
+            else
+            {
+                <canvas id="graficoVentaPorHora" height="110"></canvas>
+            }
+        </div>
+    </div>
+
     <!-- TABLA -->
     <div class="card shadow-sm border-0">
         <div class="card-body table-responsive">
@@ -87,7 +146,7 @@
                                 <td>@item.FacturasRegistradas</td>
                                 <td>@item.MontoVendido.ToString("C")</td>
                                 <td>@item.CitasAtendidasPorHora</td>
-                                <td>@item.VentaPorHora.ToString("C")</td>
+                                <td class="fw-bold" style="color:#0E768C;">@item.VentaPorHora.ToString("C")</td>
                             </tr>
                         }
                     }
@@ -97,3 +156,57 @@
     </div>
 
 </div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @if (Model != null && Model.Any())
+    {
+        <script>
+            const labels = [
+                @Html.Raw(string.Join(",", Model.Select(x => "'" + (x.NombreCompleto ?? "").Replace("'", "\\'") + "'")))
+            ];
+
+            const ventaPorHora = [
+                @Html.Raw(string.Join(",", Model.Select(x => x.VentaPorHora.ToString(System.Globalization.CultureInfo.InvariantCulture))))
+            ];
+
+            const ctx = document.getElementById('graficoVentaPorHora');
+
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Venta por hora',
+                            data: ventaPorHora,
+                            backgroundColor: 'rgba(14, 118, 140, 0.75)',
+                            borderColor: 'rgba(14, 118, 140, 1)',
+                            borderWidth: 1,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Monto'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+    }
+}
