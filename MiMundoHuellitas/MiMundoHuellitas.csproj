@@ -453,6 +453,7 @@
     <Compile Include="Models\ViewModels\Reportes\ReporteCitasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteFacturasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteMascotasVM.cs" />
+    <Compile Include="Models\ViewModels\Reportes\ReporteProductividadColaboradorVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteServiciosVM.cs" />
     <Compile Include="Models\ViewModels\TipoPermisoVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -735,6 +736,7 @@
     <Content Include="Views\Personal\LaboralIndex.cshtml" />
     <Content Include="Views\Personal\LaboralEdit.cshtml" />
     <Content Include="Views\AdminUsuarios\Historial.cshtml" />
+    <Content Include="Views\Reportes\ProductividadColaborador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\NewFolder1\" />
