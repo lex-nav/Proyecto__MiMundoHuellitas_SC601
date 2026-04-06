@@ -1,15 +1,16 @@
 ﻿@model MiMundoHuellitas.Models.ViewModels.Reportes.ReporteFacturasVM
 @{
-    ViewBag.Title = "Reporte de ventas";
+    ViewBag.Title = "Reporte de Ventas - Mi Mundo de Huellitas";
     ViewBag.ActiveMenu = "Reportes";
 }
 
 @Html.Partial("_ReportesHeader")
 
-@section FullWidthTop{
+
     <div class="hero-section d-flex align-items-center text-white"
-         style="height:260px; background: linear-gradient(rgba(10,123,72,.80), rgba(14,118,140,.80)),
-                url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat; border-radius:0 0 24px 24px;">
+         style="height: 260px;
+                background: linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+                url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat; border-radius: 0 0 24px 24px;">
         <div class="container text-center">
             <h1 class="display-5 fw-bold mb-2">Reporte de Ventas</h1>
             <p class="lead mb-0">Facturas emitidas, filtros y exportación</p>
@@ -18,12 +19,11 @@
 }
 
 <div class="container my-4">
-
     <div class="row g-3 mb-4">
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
-                    <div class="text-muted">Total facturas</div>
+                    <div class="text-muted small fw-bold">Total facturas</div>
                     <div class="fs-3 fw-bold" style="color:#0A7B48;">@Model.TotalFacturas</div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
-                    <div class="text-muted">Monto total</div>
+                    <div class="text-muted small fw-bold">Monto total</div>
                     <div class="fs-3 fw-bold" style="color:#0E768C;">₡@Model.TotalMonto.ToString("N2")</div>
                 </div>
             </div>
@@ -39,8 +39,8 @@
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
-                    <div class="text-muted">Ticket promedio</div>
-                    <div class="fs-3 fw-bold">₡@Model.TicketPromedio.ToString("N2")</div>
+                    <div class="text-muted small fw-bold">Ticket promedio</div>
+                    <div class="fs-3 fw-bold" style="color:#0A7B48;">₡@Model.TicketPromedio.ToString("N2")</div>
                 </div>
             </div>
         </div>
@@ -52,37 +52,31 @@
             {
                 <div class="row g-3 align-items-end">
                     <div class="col-md-3">
-                        <label class="form-label">Desde</label>
+                        <label class="form-label text-muted small fw-bold">Desde</label>
                         <input type="date" name="desde"
                                value="@(Model.Desde.HasValue ? Model.Desde.Value.ToString("yyyy-MM-dd") : "")"
                                class="form-control" />
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Hasta</label>
+                        <label class="form-label text-muted small fw-bold">Hasta</label>
                         <input type="date" name="hasta"
                                value="@(Model.Hasta.HasValue ? Model.Hasta.Value.ToString("yyyy-MM-dd") : "")"
                                class="form-control" />
                     </div>
-
                     <div class="col-md-3">
-                        <label class="form-label">Estado</label>
-                        
-                        @Html.DropDownList("idEstado", Model.Estados, new { @class = "form-select" })
+                        <label class="form-label text-muted small fw-bold">Estado</label>
+                        @Html.DropDownList("idEstado", (IEnumerable<SelectListItem>)Model.Estados, new { @class = "form-select" })
                     </div>
-
                     <div class="col-md-3">
-                        <label class="form-label">Método de pago</label>
-                        @Html.DropDownList("metodoPago", Model.MetodosPago, new { @class = "form-select" })
+                        <label class="form-label text-muted small fw-bold">Método de pago</label>
+                        @Html.DropDownList("metodoPago", (IEnumerable<SelectListItem>)Model.MetodosPago, new { @class = "form-select" })
                     </div>
-
                     <div class="col-md-6">
-                        <label class="form-label">Buscar</label>
-                        <input type="text" name="texto" value="@(Model.Texto ?? "")"
-                               class="form-control" placeholder="Cliente / correo / referencia" />
+                        <label class="form-label text-muted small fw-bold">Buscar</label>
+                        <input type="text" name="texto" value="@Model.Texto" class="form-control" placeholder="Cliente / correo / referencia" />
                     </div>
-
                     <div class="col-md-3 d-grid">
-                        <button class="btn btn-primary" style="background:#0A7B48; border:none;">Filtrar</button>
+                        <button type="submit" class="btn btn-success" style="background:#0A7B48; border:none;">Filtrar</button>
                     </div>
                     <div class="col-md-3 d-grid">
                         <a class="btn btn-outline-secondary" href="@Url.Action("Facturas","Reportes")">Limpiar</a>
@@ -115,37 +109,27 @@
                         <th>Fecha</th>
                         <th>Cliente</th>
                         <th>Estado</th>
-                        <th>Método pago</th>
-                        <th>Referencia</th>
-                        <th>Ítems</th>
+                        <th>Método</th>
                         <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if (Model.Filas == null || !Model.Filas.Any())
-                    {
-                        <tr>
-                            <td colspan="8" class="text-center text-muted py-4">
-                                No hay resultados con esos filtros.
-                            </td>
-                        </tr>
-                    }
-                    else
+                    @if (Model.Filas != null && Model.Filas.Any())
                     {
                         foreach (var f in Model.Filas)
                         {
                             <tr>
-                                <td>@f.IdFactura</td>
-                                <td>@f.FechaFactura.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td class="fw-bold">@f.IdFactura</td>
+                                <td>@f.FechaFactura.ToString("dd/MM/yyyy HH:mm")</td>
                                 <td>
                                     <div class="fw-semibold">@f.Cliente</div>
                                     <div class="text-muted small">@f.CorreoCliente</div>
                                 </td>
-                                <td>@f.Estado</td>
+                                <td>
+                                    <span class="badge @(f.Estado == "Pagada" ? "bg-success" : "bg-secondary")">@f.Estado</span>
+                                </td>
                                 <td>@f.MetodoPago</td>
-                                <td>@f.NumeroReferencia</td>
-                                <td>@f.CantidadItems</td>
-                                <td class="fw-bold">₡@f.MontoTotal.ToString("N2")</td>
+                                <td class="fw-bold" style="color:#0E768C;">₡@f.MontoTotal.ToString("N2")</td>
                             </tr>
                         }
                     }
@@ -157,50 +141,36 @@
 
 @section scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     @if (Model.Filas != null && Model.Filas.Any())
     {
         <script>
-            // Aseguramos que la lógica de agrupación no use lambdas complejas dentro de la serialización directa
-            @{
-                var ventasAgrupadas = Model.Filas
-                    .GroupBy(x => x.MetodoPago ?? "Otro")
-                    .Select(g => new { Metodo = g.Key, Total = g.Sum(x => x.MontoTotal) })
-                    .ToList();
-            }
-
-            const ctxVentas = document.getElementById('graficoVentasMetodo');
-
-            if (ctxVentas) {
-                const labelsVentas = [@Html.Raw(string.Join(",", ventasAgrupadas.Select(x => "'" + x.Metodo + "'")))];
-                const dataVentas = [@string.Join(",", ventasAgrupadas.Select(x => x.Total.ToString(System.Globalization.CultureInfo.InvariantCulture)))];
-
-                new Chart(ctxVentas, {
-                    type: 'bar',
-                    data: {
-                        labels: labelsVentas,
-                        datasets: [{
-                            label: 'Monto Total (₡)',
-                            data: dataVentas,
-                            backgroundColor: ['#0E768C', '#0A7B48', '#54a0ff', '#f39c12'],
-                            borderRadius: 8
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            x: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) { return '₡' + value.toLocaleString(); }
-                                }
-                            }
-                        }
+            document.addEventListener('DOMContentLoaded', function() {
+                const ctx = document.getElementById('graficoVentasMetodo');
+                if (ctx) {
+                    // Datos pre-calculados en el servidor para evitar lambdas en JS
+                    @{
+                        var datos = Model.Filas.GroupBy(x => x.MetodoPago ?? "Otro")
+                                    .Select(g => new { M = g.Key, T = g.Sum(x => x.MontoTotal) }).ToList();
                     }
-                });
-            }
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [@Html.Raw(string.Join(",", datos.Select(x => "'" + x.M + "'")))],
+                            datasets: [{
+                                label: 'Monto Total (₡)',
+                                data: [@string.Join(",", datos.Select(x => x.T.ToString(System.Globalization.CultureInfo.InvariantCulture)))],
+                                backgroundColor: ['#0E768C', '#0A7B48', '#54a0ff', '#f39c12'],
+                                borderRadius: 8
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            plugins: { legend: { display: false } }
+                        }
+                    });
+                }
+            });
         </script>
     }
 }
