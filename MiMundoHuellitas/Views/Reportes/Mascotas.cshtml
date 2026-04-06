@@ -1,5 +1,4 @@
 ﻿@model MiMundoHuellitas.Models.ViewModels.Reportes.ReporteMascotasVM
-
 @{
     ViewBag.Title = "Reporte de Mascotas";
     ViewBag.ActiveMenu = "Reportes";
@@ -20,51 +19,50 @@
 
 <div class="container my-4">
 
-    <!-- Resumen -->
-    <div class="row g-3 mb-3">
+    <div class="row g-3 mb-4">
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
                     <div class="text-muted">Total</div>
-                    <div class="fs-3 fw-bold">@Model.Total</div>
+                    <div class="fs-3 fw-bold" style="color:#0E768C;">@Model.Total</div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
                     <div class="text-muted">Activas</div>
-                    <div class="fs-3 fw-bold">@Model.Activas</div>
+                    <div class="fs-3 fw-bold" style="color:#0A7B48;">@Model.Activas</div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm h-100">
                 <div class="card-body">
                     <div class="text-muted">Inactivas</div>
-                    <div class="fs-3 fw-bold">@Model.Inactivas</div>
+                    <div class="fs-3 fw-bold text-secondary">@Model.Inactivas</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Filtros -->
-    <div class="card border-0 shadow-sm mb-3">
+    <div class="card border-0 shadow-sm mb-4">
         <div class="card-body">
             @using (Html.BeginForm("Mascotas", "Reportes", FormMethod.Get))
             {
                 <div class="row g-3 align-items-end">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="form-label">Especie</label>
-                        @Html.DropDownListFor(m => m.IdEspecie, Model.Especies, new { @class = "form-select" })
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label">Raza</label>
-                        @Html.DropDownListFor(m => m.IdRaza, Model.Razas, new { @class = "form-select" })
+                        @* Usamos DropDownList simple para evitar errores de compilación *@
+                        @Html.DropDownList("idEspecie", Model.Especies, new { @class = "form-select" })
                     </div>
 
                     <div class="col-md-3">
+                        <label class="form-label">Raza</label>
+                        @Html.DropDownList("idRaza", Model.Razas, new { @class = "form-select" })
+                    </div>
+
+                    <div class="col-md-2">
                         <label class="form-label">Estado</label>
                         <select name="soloActivas" class="form-select">
                             <option value="" @(Model.SoloActivas == null ? "selected" : "")>Todas</option>
@@ -73,27 +71,47 @@
                         </select>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <label class="form-label">Buscar</label>
-                        <input type="text" name="texto" value="@(Model.Texto ?? "")" class="form-control" placeholder="Buscar por nombre o correo" />
+                        <input type="text" name="texto" value="@(Model.Texto ?? "")" class="form-control" placeholder="Nombre o correo" />
                     </div>
 
-                    <div class="col-md-1 d-grid">
-                        <button class="btn btn-primary">Filtrar</button>
+                    <div class="col-md-2 d-grid">
+                        <button class="btn btn-primary" style="background:#0A7B48; border:none;">Filtrar</button>
                     </div>
-                </div>
-
-                <div class="mt-3 d-flex gap-2">
-                    <a class="btn btn-outline-secondary" href="@Url.Action("Mascotas","Reportes")">Limpiar</a>
-                    <a class="btn btn-outline-success" href="@Url.Action("ExportMascotasCsv","Reportes", new { idEspecie = Model.IdEspecie, idRaza = Model.IdRaza, soloActivas = Model.SoloActivas, texto = Model.Texto })">
-                        Exportar CSV
-                    </a>
+                    <div class="col-md-2 d-grid">
+                        <a class="btn btn-outline-secondary" href="@Url.Action("Mascotas","Reportes")">Limpiar</a>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <a class="btn btn-outline-success" href="@Url.Action("ExportMascotasCsv","Reportes", new { idEspecie = Model.IdEspecie, idRaza = Model.IdRaza, soloActivas = Model.SoloActivas, texto = Model.Texto })">
+                            Exportar CSV
+                        </a>
+                    </div>
                 </div>
             }
         </div>
     </div>
 
-    <!-- Tabla -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3" style="color:#0A7B48;">Distribución por Especie</h5>
+                    @if (Model.Filas == null || !Model.Filas.Any())
+                    {
+                        <div class="text-center text-muted py-4">No hay datos para graficar.</div>
+                    }
+                    else
+                    {
+                        <div style="max-height: 250px;" class="d-flex justify-content-center">
+                            <canvas id="graficoEspecies"></canvas>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card border-0 shadow-sm">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
@@ -103,10 +121,9 @@
                         <th>Nombre</th>
                         <th>Especie</th>
                         <th>Raza</th>
-                        <th>Fecha de Nacimiento</th>
+                        <th>Nacimiento</th>
                         <th>Estado</th>
                         <th>Dueño</th>
-                        <th>Correo del Dueño</th>
                         <th>Observaciones</th>
                     </tr>
                 </thead>
@@ -114,7 +131,7 @@
                     @if (Model.Filas == null || !Model.Filas.Any())
                     {
                         <tr>
-                            <td colspan="9" class="text-center text-muted py-4">No hay resultados con esos filtros.</td>
+                            <td colspan="8" class="text-center text-muted py-4">No hay resultados.</td>
                         </tr>
                     }
                     else
@@ -126,16 +143,18 @@
                                 <td class="fw-semibold">@m.NombreMascota</td>
                                 <td>@m.Especie</td>
                                 <td>@m.Raza</td>
-                                <td>@(m.FechaNacimiento.HasValue ? m.FechaNacimiento.Value.ToString("yyyy-MM-dd") : "-")</td>
+                                <td>@(m.FechaNacimiento.HasValue ? m.FechaNacimiento.Value.ToString("dd/MM/yyyy") : "-")</td>
                                 <td>
                                     @if (m.Activo)
-                                    {<span class="badge bg-success">Activa</span> }
+                                    {<span class="badge" style="background:#0A7B48;">Activa</span> }
                                     else
-                                    { <span class="badge bg-secondary">Inactiva</span>}
+                                    { <span class="badge" style="background:#8395a7;">Inactiva</span>}
                                 </td>
-                                <td>@m.Dueno</td>
-                                <td>@m.CorreoDueno</td>
-                                <td class="text-muted">@m.Observaciones</td>
+                                <td>
+                                    <div class="fw-bold text-dark">@m.Dueno</div>
+                                    <div class="small text-muted">@m.CorreoDueno</div>
+                                </td>
+                                <td class="text-muted small">@m.Observaciones</td>
                             </tr>
                         }
                     }
@@ -143,5 +162,59 @@
             </table>
         </div>
     </div>
-
 </div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @if (Model.Filas != null && Model.Filas.Any())
+    {
+        <script>
+            @{
+                // Agrupamos por especie para el gráfico
+                var datosEspecies = Model.Filas
+                    .GroupBy(x => x.Especie ?? "No definida")
+                    .Select(g => new { Especie = g.Key, Cantidad = g.Count() })
+                    .ToList();
+            }
+
+            const ctxEspecies = document.getElementById('graficoEspecies');
+
+            if (ctxEspecies) {
+                // Definimos colores fijos para especies comunes y una paleta para el resto
+                const coloresEspecies = {
+                    'Perro': '#0A7B48',  // Verde
+                    'Gato': '#0E768C',   // Turquesa
+                    'Ave': '#f39c12',    // Naranja
+                    'Conejo': '#54a0ff'  // Azul
+                };
+
+                const labels = [@Html.Raw(string.Join(",", datosEspecies.Select(x => "'" + x.Especie + "'")))];
+                const data = [@string.Join(",", datosEspecies.Select(x => x.Cantidad))];
+                const bgColors = labels.map(l => coloresEspecies[l] || '#8395a7');
+
+                new Chart(ctxEspecies, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: bgColors,
+                            borderWidth: 2,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right'
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+    }
+}

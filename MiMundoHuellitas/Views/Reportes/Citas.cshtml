@@ -18,7 +18,6 @@
 
 <div class="container my-5">
 
-    <!-- FILTROS -->
     <div class="card shadow-sm border-0 mb-4">
         <div class="card-body">
             @using (Html.BeginForm("Citas", "Reportes", FormMethod.Get))
@@ -51,7 +50,6 @@
         </div>
     </div>
 
-    <!-- RESUMEN -->
     <div class="row g-3 mb-4">
         <div class="col-md-4">
             <div class="card border-0 shadow-sm h-100">
@@ -79,7 +77,26 @@
         </div>
     </div>
 
-    <!-- EXPORT -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3" style="color:#0A7B48;">Distribución de Estados</h5>
+                    @if (Model.Filas == null || !Model.Filas.Any())
+                    {
+                        <div class="text-center text-muted py-4">No hay datos para graficar.</div>
+                    }
+                    else
+                    {
+                        <div style="max-height: 300px;" class="d-flex justify-content-center">
+                            <canvas id="graficoEstadosCitas"></canvas>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="d-flex justify-content-end mb-3">
         <a class="btn btn-outline-success"
            style="border-color:#0A7B48;color:#0A7B48;"
@@ -88,7 +105,6 @@
         </a>
     </div>
 
-    <!-- TABLA -->
     <div class="card shadow-sm border-0">
         <div class="card-body table-responsive">
             <table class="table align-middle">
@@ -117,7 +133,6 @@
                         foreach (var x in Model.Filas)
                         {
                             var esCancelada = (x.Estado ?? "").ToLower().Contains("cancel");
-
                             <tr>
                                 <td>@x.IdCita</td>
                                 <td>@x.FechaHora.ToString("dd/MM/yyyy HH:mm")</td>
@@ -142,5 +157,67 @@
             </table>
         </div>
     </div>
-
 </div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @if (Model.Filas != null && Model.Filas.Any())
+    {
+        <script>
+            
+            @{
+                var datosAgrupados = Model.Filas
+                    .GroupBy(x => x.Estado)
+                    .Select(g => new { Estado = g.Key, Cantidad = g.Count() })
+                    .ToList();
+            }
+
+            const ctxCitas = document.getElementById('graficoEstadosCitas');
+
+            if (ctxCitas) {
+                
+                const coloresPorEstado = {
+                    'Atendida': '#0A7B48',    
+                    'Inactivo': '#8395a7',    
+                    'Activo':   '#0E768C',    
+                    'No asistió': '#f39c12',  
+                    'Cancelada': '#dc3545',   
+                    'Pendiente': '#54a0ff'    
+                };
+
+                
+                const labelsOriginales = [@Html.Raw(string.Join(",", datosAgrupados.Select(x => "'" + x.Estado + "'")))];
+
+                
+                const backgroundColors = labelsOriginales.map(label => coloresPorEstado[label] || '#bdc3c7');
+
+                new Chart(ctxCitas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labelsOriginales,
+                        datasets: [{
+                            data: [@string.Join(",", datosAgrupados.Select(x => x.Cantidad))],
+                            backgroundColor: backgroundColors,
+                            borderWidth: 2,
+                            borderColor: '#ffffff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20,
+                                    usePointStyle: true
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+    }
+}
