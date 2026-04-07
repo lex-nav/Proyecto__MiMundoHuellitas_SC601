@@ -8,7 +8,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize(Roles = "Empleado,Administrador")]
     public class MarcacionesController : Controller
     {
-        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
+        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
 
         private MH_Usuario_TB UsuarioActual()
         {

@@ -268,6 +268,7 @@
     <Compile Include="Controllers\AdminProductosController.cs" />
     <Compile Include="Controllers\AdminUsuariosController.cs" />
     <Compile Include="Controllers\AuditoriaController.cs" />
+    <Compile Include="Controllers\MarcacionesController.cs" />
     <Compile Include="Controllers\PermisoController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\PlanillaController.cs" />
@@ -465,9 +466,11 @@
     <Compile Include="Models\ViewModels\RecuperarContrasennaViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
+    <Compile Include="Models\ViewModels\Reportes\ReporteAuditoriaVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteCitasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteConsumoVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteFacturasVM.cs" />
+    <Compile Include="Models\ViewModels\Reportes\ReporteMarcacionesVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteMascotasVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteProductividadColaboradorVM.cs" />
     <Compile Include="Models\ViewModels\Reportes\ReporteServiciosVM.cs" />
@@ -756,10 +759,10 @@
     <Content Include="Views\Reportes\ProductividadColaborador.cshtml" />
     <Content Include="Views\Reportes\Consumo.cshtml" />
     <Content Include="Views\Reportes\Stock.cshtml" />
+    <Content Include="Views\Reportes\Auditoria.cshtml" />
+    <Content Include="Views\Reportes\Marcaciones.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />

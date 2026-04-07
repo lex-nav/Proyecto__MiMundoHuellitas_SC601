@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.Mvc;
+
 
 namespace MiMundoHuellitas.Models.ViewModels.Reportes
 {
@@ -22,19 +22,19 @@ namespace MiMundoHuellitas.Models.ViewModels.Reportes
     }
 
 
-public class ReporteAuditoriaRowVM
-{
-    public int IdAuditoria { get; set; }
-    public DateTime Fecha { get; set; }
+    public class ReporteAuditoriaRowVM
+    {
+        public int IdAuditoria { get; set; }
+        public DateTime Fecha { get; set; }
 
-    public string Admin { get; set; }
-    public string UsuarioAfectado { get; set; }
+        public string Admin { get; set; }
+        public string UsuarioAfectado { get; set; }
 
-    public string Modulo { get; set; }
-    public string Accion { get; set; }
-    public string Campo { get; set; }
-    public string ValorAnterior { get; set; }
-    public string ValorNuevo { get; set; }
-    public string Observacion { get; set; }
-}
+        public string Modulo { get; set; }
+        public string Accion { get; set; }
+        public string Campo { get; set; }
+        public string ValorAnterior { get; set; }
+        public string ValorNuevo { get; set; }
+        public string Observacion { get; set; }
+    }
 }

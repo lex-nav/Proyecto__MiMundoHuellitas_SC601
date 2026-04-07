@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;              // ✅ IMPORTANTE para Count(x => ...)
+using System.Linq;              
 using System.Web.Mvc;
 
 namespace MiMundoHuellitas.Models.ViewModels.Reportes

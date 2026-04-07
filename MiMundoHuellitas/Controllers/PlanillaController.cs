@@ -21,12 +21,8 @@ namespace MiMundoHuellitas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Calcular(DateTime fechaInicio, DateTime fechaFin)
         {
-<<<<<<< HEAD
-            List<PlanillaDetalleVM> resultado = _repo.CalcularPlanilla(fechaInicio, fechaFin, 1.5m, 2.0m, "Cálculo desde MVC");
-=======
             string usuarioAuditoria = User.Identity.Name;
             List<PlanillaDetalleVM> resultado = _repo.CalcularPlanilla(fechaInicio, fechaFin, usuarioAuditoria, 1.5m, 2.0m);
->>>>>>> Sebas
             return View("Resultado", resultado);
         }
 
