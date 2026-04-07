@@ -723,6 +723,135 @@ namespace MiMundoHuellitas.Controllers
             return View(data);
         }
 
+        public ActionResult Consumo(DateTime? desde, DateTime? hasta, string texto)
+        {
+            ViewBag.ActiveMenu = "Reportes";
+
+            if (!desde.HasValue)
+                desde = DateTime.Today.AddMonths(-1);
+
+            if (!hasta.HasValue)
+                hasta = DateTime.Today;
+
+            var desdeFecha = desde.Value.Date;
+            var hastaFecha = hasta.Value.Date.AddDays(1).AddTicks(-1);
+
+            var query = from sc in db.MH_Servicios_Cita_TB
+                        join c in db.MH_Cita_TB on sc.IdCita equals c.IdCita
+                        join s in db.MH_Servicios_TB on sc.IdServicio equals s.IdServicio
+                        where c.FechaHoraCita >= desdeFecha && c.FechaHoraCita <= hastaFecha
+                        select new
+                        {
+                            s.IdServicio,
+                            s.NombreServicio,
+                            sc.Cantidad,
+                            sc.Subtotal,
+                            sc.PrecioUnitario
+                        };
+
+            if (!string.IsNullOrWhiteSpace(texto))
+            {
+                query = query.Where(x => x.NombreServicio.Contains(texto));
+            }
+
+            var filas = query
+                .ToList()
+                .GroupBy(x => new { x.IdServicio, x.NombreServicio })
+                .Select(g => new ReporteConsumoFilaVM
+                {
+                    IdServicio = g.Key.IdServicio,
+                    NombreServicio = g.Key.NombreServicio,
+                    VecesConsumido = g.Count(),
+                    CantidadTotal = g.Sum(x => x.Cantidad),
+                    IngresoTotal = g.Sum(x => x.Subtotal),
+                    PrecioPromedio = g.Average(x => x.PrecioUnitario)
+                })
+                .OrderByDescending(x => x.CantidadTotal)
+                .ThenBy(x => x.NombreServicio)
+                .ToList();
+
+            var model = new ReporteConsumoVM
+            {
+                Desde = desde,
+                Hasta = hasta,
+                Texto = texto,
+                Filas = filas,
+                TotalServiciosConsumidos = filas.Sum(x => x.CantidadTotal),
+                TotalIngresos = filas.Sum(x => x.IngresoTotal),
+                PromedioPorServicio = filas.Any() ? filas.Average(x => x.IngresoTotal) : 0
+            };
+
+            return View(model);
+        }
+
+
+        public ActionResult Stock(string categoria, bool? soloActivos, string texto)
+        {
+            ViewBag.ActiveMenu = "Reportes";
+
+            var query = from p in db.MH_Productos_TB
+                        join e in db.MH_Estado_TB on p.IdEstado equals e.IdEstado into estados
+                        from e in estados.DefaultIfEmpty()
+                        select new ReporteStockFilaVM
+                        {
+                            IdProducto = p.IdProducto,
+                            NombreProducto = p.NombreProducto,
+                            Categoria = p.Categoria,
+                            PrecioUnitario = p.PrecioUnitario,
+                            StockActual = p.StockActual,
+                            Estado = e != null ? e.NombreEstado : "",
+                            Activo = p.Activo
+                        };
+
+            if (!string.IsNullOrWhiteSpace(categoria))
+            {
+                query = query.Where(x => x.Categoria == categoria);
+            }
+
+            if (soloActivos.HasValue)
+            {
+                query = query.Where(x => x.Activo == soloActivos.Value);
+            }
+
+            if (!string.IsNullOrWhiteSpace(texto))
+            {
+                query = query.Where(x =>
+                    x.NombreProducto.Contains(texto) ||
+                    x.Categoria.Contains(texto));
+            }
+
+            var filas = query
+                .OrderBy(x => x.StockActual)
+                .ThenBy(x => x.NombreProducto)
+                .ToList();
+
+            var categorias = db.MH_Productos_TB
+                .Where(x => x.Categoria != null && x.Categoria != "")
+                .Select(x => x.Categoria)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToList();
+
+            var model = new ReporteStockVM
+            {
+                Categoria = categoria,
+                SoloActivos = soloActivos,
+                Texto = texto,
+                Filas = filas,
+                TotalProductos = filas.Count,
+                ProductosSinStock = filas.Count(x => x.StockActual <= 0),
+                ProductosStockBajo = filas.Count(x => x.StockActual > 0 && x.StockActual <= 5),
+                ProductosStockNormal = filas.Count(x => x.StockActual > 5),
+                Categorias = categorias.Select(x => new SelectListItem
+                {
+                    Value = x,
+                    Text = x,
+                    Selected = (x == categoria)
+                }).ToList()
+            };
+
+            return View(model);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing) db.Dispose();

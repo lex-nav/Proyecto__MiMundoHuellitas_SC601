@@ -1,0 +1,272 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.PlanillaDetalleVM
+
+@{
+    ViewBag.Title = "Detalle de Planilla";
+}
+
+@section Styles{
+    <style>
+        .detalle-page {
+            max-width: 1150px;
+            margin: 35px auto;
+            padding: 0 10px;
+        }
+
+        .detalle-hero {
+            background: linear-gradient(90deg, #03a9f4, #00e676);
+            color: #fff;
+            border-radius: 18px;
+            padding: 28px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.12);
+        }
+
+            .detalle-hero h2 {
+                margin: 0;
+                font-size: 2rem;
+                font-weight: 800;
+            }
+
+            .detalle-hero p {
+                margin: 10px 0 0;
+                opacity: .95;
+            }
+
+        .detalle-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,.05);
+        }
+
+        .detalle-card-header {
+            background: #f8fbff;
+            padding: 20px 24px;
+            border-bottom: 1px solid #e9eef5;
+        }
+
+            .detalle-card-header h4 {
+                margin: 0;
+                font-weight: 800;
+                color: #0f172a;
+            }
+
+        .detalle-card-body {
+            padding: 24px;
+        }
+
+        .info-box {
+            background: #f8fbff;
+            border: 1px solid #e5eef8;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+            height: 100%;
+        }
+
+            .info-box .label {
+                display: block;
+                font-size: .85rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: #64748b;
+                margin-bottom: 6px;
+            }
+
+            .info-box .value {
+                color: #0f172a;
+                font-weight: 700;
+                font-size: 1.05rem;
+            }
+
+        .resumen-grid {
+            margin-top: 10px;
+        }
+
+        .money-box {
+            background: linear-gradient(180deg, #ffffff, #f8fbff);
+            border: 1px solid #dcecf8;
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+        }
+
+            .money-box .titulo {
+                display: block;
+                font-size: .85rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: #64748b;
+                margin-bottom: 8px;
+            }
+
+            .money-box .valor {
+                font-weight: 800;
+                font-size: 1.25rem;
+                color: #0f172a;
+            }
+
+            .money-box.total-final {
+                background: linear-gradient(90deg, rgba(3,169,244,.10), rgba(0,230,118,.10));
+                border: 1px solid rgba(0,200,83,.18);
+            }
+
+                .money-box.total-final .valor {
+                    color: #059669;
+                    font-size: 1.5rem;
+                }
+
+        .btn-back {
+            background: #0f172a;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 18px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+            .btn-back:hover {
+                color: #fff;
+                opacity: .95;
+            }
+
+        .alert-custom {
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,.06);
+        }
+    </style>
+}
+
+<div class="detalle-page">
+    <div class="detalle-hero">
+        <h2><i class="fa-solid fa-receipt me-2"></i>Detalle de Planilla</h2>
+        <p>Consulta la información completa de una planilla calculada para tu usuario.</p>
+    </div>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-custom">
+            @TempData["Error"]
+        </div>
+    }
+
+    @if (Model == null)
+    {
+        <div class="alert alert-warning alert-custom">
+            No se encontró información para esta planilla.
+        </div>
+    }
+    else
+    {
+        <div class="detalle-card">
+            <div class="detalle-card-header">
+                <h4>Planilla #@Model.IdPlanilla</h4>
+            </div>
+
+            <div class="detalle-card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-box">
+                            <span class="label">Colaborador</span>
+                            <span class="value">@Model.NombreCompleto</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-box">
+                            <span class="label">ID Usuario</span>
+                            <span class="value">@Model.IdUsuario</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-box">
+                            <span class="label">Fecha inicio</span>
+                            <span class="value">@Model.FechaInicio.ToString("dd/MM/yyyy")</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-box">
+                            <span class="label">Fecha fin</span>
+                            <span class="value">@Model.FechaFin.ToString("dd/MM/yyyy")</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-box">
+                            <span class="label">Fecha cálculo</span>
+                            <span class="value">@Model.FechaCalculo.ToString("dd/MM/yyyy HH:mm")</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box">
+                            <span class="titulo">Horas normales</span>
+                            <span class="valor">@Model.HorasNormales</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box">
+                            <span class="titulo">Horas extra</span>
+                            <span class="valor">@Model.HorasExtra</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box">
+                            <span class="titulo">Horas doble</span>
+                            <span class="valor">@Model.HorasDoble</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box">
+                            <span class="titulo">Salario por hora</span>
+                            <span class="valor">₡ @Model.SalarioHora.ToString("N2")</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box">
+                            <span class="titulo">Monto normales</span>
+                            <span class="valor">₡ @Model.MontoNormales.ToString("N2")</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box">
+                            <span class="titulo">Monto extra</span>
+                            <span class="valor">₡ @Model.MontoExtra.ToString("N2")</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box">
+                            <span class="titulo">Monto doble</span>
+                            <span class="valor">₡ @Model.MontoDoble.ToString("N2")</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="money-box total-final">
+                            <span class="titulo">Total a pagar</span>
+                            <span class="valor">₡ @Model.TotalPagar.ToString("N2")</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="@Url.Action("MisPlanillas", "Planilla")" class="btn-back">
+                        <i class="fa-solid fa-arrow-left me-1"></i> Volver a mis planillas
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

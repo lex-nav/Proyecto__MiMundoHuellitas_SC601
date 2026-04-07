@@ -1,0 +1,207 @@
+﻿@model IEnumerable<MiMundoHuellitas.Models.ViewModels.PlanillaDetalleVM>
+
+@{
+    ViewBag.Title = "Mis Planillas";
+}
+
+@section Styles{
+    <style>
+        .planilla-page {
+            max-width: 1200px;
+            margin: 35px auto;
+            padding: 0 10px;
+        }
+
+        .planilla-hero {
+            background: linear-gradient(90deg, #03a9f4, #00e676);
+            border-radius: 18px;
+            padding: 28px 30px;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,.12);
+            margin-bottom: 25px;
+        }
+
+            .planilla-hero h2 {
+                margin: 0;
+                font-weight: 800;
+                font-size: 2rem;
+            }
+
+            .planilla-hero p {
+                margin: 10px 0 0;
+                font-size: 1rem;
+                opacity: .95;
+            }
+
+        .planilla-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,.05);
+        }
+
+        .planilla-card-header {
+            background: #f8fbff;
+            padding: 18px 22px;
+            border-bottom: 1px solid #e9eef5;
+        }
+
+            .planilla-card-header h4 {
+                margin: 0;
+                font-weight: 700;
+                color: #1f2d3d;
+            }
+
+        .planilla-card-body {
+            padding: 20px;
+        }
+
+        .table-planillas thead th {
+            background: #0f172a;
+            color: #fff;
+            border: none !important;
+            font-size: .92rem;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            vertical-align: middle;
+        }
+
+        .table-planillas tbody td {
+            vertical-align: middle;
+            color: #334155;
+        }
+
+        .table-planillas tbody tr:hover {
+            background-color: #f4fbff;
+        }
+
+        .badge-periodo {
+            background: rgba(3,169,244,.12);
+            color: #0284c7;
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .monto-total {
+            color: #059669;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .btn-planilla {
+            border: none;
+            border-radius: 10px;
+            padding: 9px 16px;
+            font-weight: 700;
+            transition: .2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-detalle {
+            background: linear-gradient(90deg, #03a9f4, #00c853);
+            color: white;
+        }
+
+            .btn-detalle:hover {
+                transform: translateY(-1px);
+                color: white;
+                opacity: .95;
+            }
+
+        .empty-box {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            padding: 35px;
+            text-align: center;
+            color: #64748b;
+        }
+
+            .empty-box i {
+                font-size: 3rem;
+                color: #03a9f4;
+                margin-bottom: 15px;
+            }
+
+        .alert-custom {
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,.06);
+        }
+    </style>
+}
+
+<div class="planilla-page">
+    <div class="planilla-hero">
+        <h2><i class="fa-solid fa-file-invoice-dollar me-2"></i>Mis Planillas</h2>
+        <p>Aquí puedes consultar todas tus planillas anteriores y revisar el detalle completo de cada período.</p>
+    </div>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-custom">
+            @TempData["Error"]
+        </div>
+    }
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="empty-box">
+            <i class="fa-regular fa-folder-open"></i>
+            <h4>No tienes planillas registradas</h4>
+            <p class="mb-0">Cuando existan planillas calculadas para tu usuario, aparecerán listadas aquí.</p>
+        </div>
+    }
+    else
+    {
+        <div class="planilla-card">
+            <div class="planilla-card-header">
+                <h4>Historial de planillas</h4>
+            </div>
+            <div class="planilla-card-body">
+                <div class="table-responsive">
+                    <table class="table table-planillas table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Período</th>
+                                <th>Fecha cálculo</th>
+                                <th>Horas normales</th>
+                                <th>Horas extra</th>
+                                <th>Horas doble</th>
+                                <th>Total a pagar</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="badge-periodo">
+                                            @item.FechaInicio.ToString("dd/MM/yyyy") - @item.FechaFin.ToString("dd/MM/yyyy")
+                                        </span>
+                                    </td>
+                                    <td>@item.FechaCalculo.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>@item.HorasNormales</td>
+                                    <td>@item.HorasExtra</td>
+                                    <td>@item.HorasDoble</td>
+                                    <td class="monto-total">₡ @item.TotalPagar.ToString("N2")</td>
+                                    <td>
+                                        <a href="@Url.Action("Detalle", "Planilla", new { idPlanilla = item.IdPlanilla })"
+                                           class="btn-planilla btn-detalle">
+                                            <i class="fa-solid fa-eye me-1"></i> Ver detalle
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

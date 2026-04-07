@@ -1,0 +1,228 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.Reportes.ReporteStockVM
+@using System.Linq
+
+@{
+    ViewBag.Title = "Reporte de Stock - Mi Mundo de Huellitas";
+    ViewBag.ActiveMenu = "Reportes";
+}
+
+@Html.Partial("_ReportesHeader")
+
+<div class="hero-section d-flex align-items-center text-white"
+     style="height: 260px;
+            background: linear-gradient(rgba(10,123,72,0.85), rgba(14,118,140,0.85)),
+                        url('/StaticFiles/img/bg_3.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Reporte de Stock</h1>
+        <p class="lead mb-0">Controla existencias y detecta productos con bajo inventario</p>
+    </div>
+</div>
+
+<div class="container my-5">
+
+    <!-- RESUMEN -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted small fw-bold">Total productos</div>
+                    <div class="fs-3 fw-bold" style="color:#0A7B48;">@Model.TotalProductos</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted small fw-bold">Sin stock</div>
+                    <div class="fs-3 fw-bold text-danger">@Model.ProductosSinStock</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted small fw-bold">Stock bajo</div>
+                    <div class="fs-3 fw-bold" style="color:#f39c12;">@Model.ProductosStockBajo</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="text-muted small fw-bold">Stock normal</div>
+                    <div class="fs-3 fw-bold" style="color:#0E768C;">@Model.ProductosStockNormal</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            @using (Html.BeginForm("Stock", "Reportes", FormMethod.Get))
+            {
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label text-muted small fw-bold">Categoría</label>
+                        <select name="categoria" class="form-select">
+                            <option value="">Todas</option>
+                            @foreach (var item in Model.Categorias)
+                            {
+                                <option value="@item.Value" @(item.Selected ? "selected" : null)>@item.Text</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label text-muted small fw-bold">Estado</label>
+                        <select name="soloActivos" class="form-select">
+                            <option value="">Todos</option>
+                            <option value="true" @(Model.SoloActivos == true ? "selected" : null)>Activos</option>
+                            <option value="false" @(Model.SoloActivos == false ? "selected" : null)>Inactivos</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label text-muted small fw-bold">Buscar</label>
+                        <input type="text" name="texto" value="@Model.Texto" class="form-control" placeholder="Producto o categoría" />
+                    </div>
+
+                    <div class="col-md-3 d-grid">
+                        <button type="submit" class="btn btn-success" style="background:#0A7B48; border:none;">Filtrar</button>
+                    </div>
+
+                    <div class="col-md-3 d-grid">
+                        <a class="btn btn-outline-secondary" href="@Url.Action("Stock","Reportes")">Limpiar</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- ALERTAS -->
+    @if (Model.Filas.Any(x => x.StockActual <= 5))
+    {
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="fw-bold text-danger mb-3">⚠ Productos con bajo inventario</h5>
+
+                <ul class="mb-0">
+                    @foreach (var item in Model.Filas.Where(x => x.StockActual <= 5).Take(5))
+                    {
+                        <li>
+                            <strong>@item.NombreProducto</strong> -
+                            Stock: @item.StockActual
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+    <!-- GRÁFICO -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <h5 class="fw-bold mb-3" style="color:#0A7B48;">Distribución de stock</h5>
+
+            @if (Model.Filas == null || !Model.Filas.Any())
+            {
+                <div class="text-center text-muted py-4">No hay datos para mostrar el gráfico.</div>
+            }
+            else
+            {
+                <div style="max-width: 400px; margin: auto;">
+                    <canvas id="graficoStock"></canvas>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- TABLA -->
+    <div class="card border-0 shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th>Activo</th>
+                        <th>Alerta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Filas != null && Model.Filas.Any())
+                    {
+                        foreach (var f in Model.Filas)
+                        {
+                            var alerta = f.StockActual <= 0 ? "Sin stock"
+                                : f.StockActual <= 5 ? "Stock bajo"
+                                : "Normal";
+
+                            var clase = f.StockActual <= 0 ? "bg-danger"
+                                : f.StockActual <= 5 ? "bg-warning text-dark"
+                                : "bg-success";
+
+                            <tr>
+                                <td class="fw-bold">@f.IdProducto</td>
+                                <td>@f.NombreProducto</td>
+                                <td>@f.Categoria</td>
+                                <td>₡@f.PrecioUnitario.ToString("N2")</td>
+                                <td>@f.StockActual</td>
+                                <td>@f.Estado</td>
+                                <td>@(f.Activo ? "Sí" : "No")</td>
+                                <td><span class="badge @clase">@alerta</span></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-4">
+                                No hay productos para los filtros seleccionados.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @if (Model.Filas != null && Model.Filas.Any())
+    {
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const ctx = document.getElementById('graficoStock');
+
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Sin stock', 'Stock bajo', 'Stock normal'],
+                            datasets: [{
+                                data: [@Model.ProductosSinStock, @Model.ProductosStockBajo, @Model.ProductosStockNormal],
+                                backgroundColor: ['#dc3545', '#f39c12', '#0A7B48']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'right'
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        </script>
+    }
+}

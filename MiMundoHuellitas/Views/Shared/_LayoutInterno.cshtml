@@ -1,48 +1,19 @@
-<<<<<<< HEAD
-﻿@using System.Web.Security
-
-@{
-    bool isAuth = (Request != null && Request.IsAuthenticated);
-
-    string rol = "";
-
-    if (User.Identity.IsAuthenticated)
-    {
-        var identity = (FormsIdentity)User.Identity;
-        var ticket = identity.Ticket;
-        rol = ticket.UserData; // 👈 AQUÍ viene "Admin", "Empleado", "Cliente"
-    }
-
-    bool esAdmin = rol == "Admin";
-    bool esEmpleado = rol == "Empleado";
-    bool esCliente = rol == "Cliente";
-=======
 ﻿@{
     bool isAuth = User.Identity.IsAuthenticated;
 
+    int tempTipo;
     int? idTipoUsuario = null;
 
-    if (Session["IdTipoUsuario"] != null)
+    if (Session["IdTipoUsuario"] != null &&
+        int.TryParse(Session["IdTipoUsuario"].ToString(), out tempTipo))
     {
-        idTipoUsuario = Convert.ToInt32(Session["IdTipoUsuario"]);
+        idTipoUsuario = tempTipo;
     }
 
     bool esCliente = idTipoUsuario == 1;
     bool esAdmin = idTipoUsuario == 2;
     bool esEmpleado = idTipoUsuario == 3;
->>>>>>> Sebas
 }
-
-@*bool isAuth = (Request != null && Request.IsAuthenticated);
-
-
-        bool esAdmin = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
-                        (User.IsInRole("Admin") || User.IsInRole("Administrador")));
-
-
-        bool esEmpleado = (User != null && User.Identity != null && User.Identity.IsAuthenticated &&
-                           User.IsInRole("Empleado"));
-    }*@
 
 <!DOCTYPE html>
 <html lang="es">
@@ -142,16 +113,67 @@
             .menu-principal .navbar-brand img {
                 height: 40px;
             }
+
+        .menu-principal .nav-item.dropdown {
+            position: relative;
+        }
+
+        .menu-principal .dropdown-menu {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+            padding: 8px 0;
+            margin-top: 0;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+        }
+
+        .menu-principal .dropdown-item {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 10px 18px;
+            transition: all 0.2s ease;
+        }
+
+            .menu-principal .dropdown-item:hover,
+            .menu-principal .dropdown-item:focus {
+                background-color: #f3fdf6;
+                color: #00c853;
+            }
+
+        .menu-principal .dropdown-toggle::after {
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        @@media (min-width: 992px) {
+            .menu-principal .nav-item.dropdown:hover > .dropdown-menu {
+                display: block;
+            }
+        }
+
+        @@media (max-width: 991px) {
+            .menu-principal .nav-link {
+                margin-left: 0;
+            }
+
+            .menu-principal .dropdown-menu {
+                box-shadow: none;
+                margin-top: 0;
+                border-radius: 8px;
+                min-width: 100%;
+            }
+
+            .menu-principal .dropdown-item {
+                padding-left: 1rem;
+            }
+        }
     </style>
 </head>
 <body class="has-fixed-nav">
 
-<<<<<<< HEAD
-    <p style="color:red; font-weight:bold;">ROL: @rol</p>
-
-    <!-- TOP BAR -->
-=======
->>>>>>> Sebas
     <div class="top-contact-bar">
         <div class="top-contact-inner">
 
@@ -165,65 +187,15 @@
                 {
                     <span class="user-greeting">Hola, @User.Identity.Name</span>
 
-<<<<<<< HEAD
-                    @* ================== ADMIN ================== *@
-                    if (esAdmin)
-                    {
-                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
-
-                        <form action="@Url.Action("Logout", "Account")" method="post" id="logoutForm" style="display:inline;">
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:void(0);" class="auth-link"
-                               onclick="document.getElementById('logoutForm').submit();">
-                                Cerrar sesión
-                            </a>
-                        </form>
-
-                    }
-                    @* ================== EMPLEADO ==================
-                                ESTABA DUPLICADO
-                            else if (esEmpleado)
-                            {
-                                @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
-                                @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "auth-link" })
-                        }
-                    *@
-                    @* ================== EMPLEADO ================== *@
-                    else if (esEmpleado)
-                    {
-                        @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
-                        <form action="@Url.Action("Logout", "Account")" method="post" style="display:inline;">
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:void(0);" class="auth-link"
-                               onclick="this.closest('form').submit();">
-                                Cerrar sesión
-                            </a>
-                        </form>
-
-                    }
-                    @* ================== CLIENTE ================== *@
-                    else
-=======
                     @Html.ActionLink("Mi perfil", "Perfil", "Usuario", null, new { @class = "auth-link" })
 
                     if (esCliente)
->>>>>>> Sebas
                     {
                         <a class="auth-link" href="@Url.Action("Carrito", "Productos")" title="Carrito">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </a>
 
                         @Html.ActionLink("Mis citas", "VerCitas", "Citas", null, new { @class = "auth-link" })
-<<<<<<< HEAD
-                        <form action="@Url.Action("Logout", "Account")" method="post" style="display:inline;">
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:void(0);" class="auth-link"
-                               onclick="this.closest('form').submit();">
-                                Cerrar sesión
-                            </a>
-                        </form>
-=======
->>>>>>> Sebas
                     }
 
                     <form action="@Url.Action("Logout", "Account")" method="post" id="logoutFormGeneral" style="display:inline;">
@@ -257,74 +229,60 @@
                 <span class="ms-2 fw-bold">Mi Mundo de Huellitas</span>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="mainMenu">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ml-auto">
 
-                    @* ================= ADMIN ================= *@
                     @if (esAdmin)
                     {
-<<<<<<< HEAD
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a>
+                            <a class="nav-link" href="@Url.Action("AdminPlanillas", "Planilla")">ADMIN PLANILLA</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a>
+                            <a class="nav-link" href="@Url.Action("Calcular", "Planilla")">CALCULAR PLANILLA</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Comisiones")"> COMISIONES</a>
+                            <a class="nav-link" href="@Url.Action("LaboralIndex", "Personal")">PERSONAL</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Marcaciones")">MARCACIONES</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownAdministracion"
+                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ADMINISTRACIÓN
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownAdministracion">
+                                <a class="dropdown-item" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a>
+                                <a class="dropdown-item" href="@Url.Action("Administrar", "Permiso")">ADMIN PERMISOS</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Auditoria")">AUDITORÍA</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Auditoria")">Auditoria</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownOperacion"
+                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                OPERACIÓN
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownOperacion">
+                                <a class="dropdown-item" href="@Url.Action("VerMascotas", "Mascota")">ADMIN MASCOTAS</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">ADMIN MASCOTAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a>
-                        </li>
-=======
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Reportes")">REPORTES</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminUsuarios")">ADMIN USUARIOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "AdminProductos")">ADMIN PRODUCTOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Calcular", "Planilla")">PLANILLA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">ADMIN MASCOTAS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Administrar", "Permiso")">ADMIN PERMISOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Auditoria")">AUDITORÍA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("LaboralIndex", "Personal")">PERSONAL</a></li>
                     }
                     else if (esEmpleado)
                     {
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("MisPermisos", "Permiso")">MIS PERMISOS</a></li>
->>>>>>> Sebas
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("MisPlanillas", "Planilla")">PLANILLA</a></li>
                     }
-
-                    @* ================= EMPLEADO ================= *@
-                    else if (esEmpleado)
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index","Home")">INICIO</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold text-success"
-                               href="@Url.Action("Index", "Marcaciones")">
-                                MARCACIONES
-                            </a>
-                        </li>
-                    }
-
-                    @* ================= CLIENTE ================= *@
                     else
                     {
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
@@ -342,16 +300,11 @@
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">MIS MASCOTAS</a></li>
                         }
                     }
-
                 </ul>
             </div>
         </div>
     </nav>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Sebas
     @RenderSection("FullWidthTop", required: false)
 
     <main class="container-fluid body-content px-3">
