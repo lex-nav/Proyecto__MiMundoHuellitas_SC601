@@ -37,6 +37,10 @@
                         <label class="form-label">Estado</label>
                         @Html.DropDownList("idEstado", Model.EstadosCita, new { @class = "form-select" })
                     </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Servicio</label>
+                        @Html.DropDownList("idServicio", (List<SelectListItem>)ViewBag.Servicios, new { @class = "form-select" })
+                    </div>
                     <div class="col-md-3 d-flex gap-2">
                         <button class="btn btn-success w-100" style="background:#0A7B48;border:none;">
                             Filtrar

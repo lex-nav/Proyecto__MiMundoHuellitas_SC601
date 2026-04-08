@@ -29,7 +29,7 @@ namespace MiMundoHuellitas.Controllers
         // ============================
         // REPORTE DE CITAS
         // ============================
-        public ActionResult Citas(DateTime? desde, DateTime? hasta, int? idEstado)
+        public ActionResult Citas(DateTime? desde, DateTime? hasta, int? idEstado, int? idServicio)
         {
             ViewBag.ActiveMenu = "Reportes";
 
@@ -41,18 +41,20 @@ namespace MiMundoHuellitas.Controllers
             };
 
             // Estados (dropdown)
-            var estadosQuery = db.MH_Estado_TB.Where(e => e.Activo);
+            var estadosQuery = db.MH_Estado_TB.Where(e => e.Activo); 
             try { estadosQuery = estadosQuery.Where(e => e.TipoEntidad == "Cita"); } catch { }
+            
+            var estados = estadosQuery.OrderBy(e => e.NombreEstado).ToList(); 
+            
+            vm.EstadosCita.Add(new SelectListItem { Text = "Todos", Value = "" }); 
+            vm.EstadosCita.AddRange(estados.Select(e => new SelectListItem {
+                Text = e.NombreEstado, Value = e.IdEstado.ToString(), Selected = idEstado.HasValue && idEstado.Value == e.IdEstado }));
 
-            var estados = estadosQuery.OrderBy(e => e.NombreEstado).ToList();
+            var servicios = db.MH_Servicios_TB.Where(s => s.Activo).ToList();
 
-            vm.EstadosCita.Add(new SelectListItem { Text = "Todos", Value = "" });
-            vm.EstadosCita.AddRange(estados.Select(e => new SelectListItem
-            {
-                Text = e.NombreEstado,
-                Value = e.IdEstado.ToString(),
-                Selected = idEstado.HasValue && idEstado.Value == e.IdEstado
-            }));
+            ViewBag.Servicios = servicios.Select(s => new SelectListItem
+            {Text = s.NombreServicio, Value = s.IdServicio.ToString(), Selected = idServicio.HasValue && idServicio.Value == s.IdServicio
+            }).ToList();
 
             // Query
             var q = db.MH_Cita_TB
@@ -70,6 +72,12 @@ namespace MiMundoHuellitas.Controllers
 
             if (idEstado.HasValue)
                 q = q.Where(x => x.IdEstado == idEstado.Value);
+
+            if (idServicio.HasValue)
+            {
+                q = q.Where(c => c.MH_Servicios_Cita_TB
+                    .Any(sc => sc.IdServicio == idServicio.Value));
+            }
 
             var lista = q.OrderByDescending(x => x.FechaHoraCita).ToList();
 
