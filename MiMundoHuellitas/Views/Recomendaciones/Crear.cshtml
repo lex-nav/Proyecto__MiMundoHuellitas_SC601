@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "AgregarRecomendacion";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@model MiMundoHuellitas.EF.MH_Recomendaciones_TB
+
+<h2>Crear Recomendación</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <<div>
+        <label>Mascota</label>
+        @Html.DropDownListFor(m => m.IdMascota, (SelectList)ViewBag.Mascotas, "-- Seleccione --")
+    </div>
+
+    <div>
+        <label>Cita</label>
+        @Html.DropDownListFor(m => m.IdCita, (SelectList)ViewBag.Citas, "-- Seleccione --")
+    </div>
+
+    <div>
+        <label>Descripción</label>
+        @Html.TextAreaFor(m => m.Descripcion)
+    </div>
+
+    <button type="submit">Guardar</button>
+}

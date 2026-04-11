@@ -767,6 +767,7 @@
     <Content Include="Views\Reportes\Auditoria.cshtml" />
     <Content Include="Views\Reportes\Marcaciones.cshtml" />
     <Content Include="Views\Recomendaciones\HistorialRecomendaciones.cshtml" />
+    <Content Include="Views\Recomendaciones\Crear.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
