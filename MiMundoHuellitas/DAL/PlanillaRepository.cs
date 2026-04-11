@@ -9,11 +9,11 @@ namespace MiMundoHuellitas.DAL
 {
     public class PlanillaRepository : IDisposable
     {
-        private readonly BD_MiMundoHuellitasEntities _db;
+        private readonly MiMundoHuellitasEntities _db;
 
         public PlanillaRepository()
         {
-            _db = new BD_MiMundoHuellitasEntities();
+            _db = new MiMundoHuellitasEntities();
         }
 
         public List<PlanillaDetalleVM> CalcularPlanilla(DateTime fechaInicio, DateTime fechaFin, string usuarioAuditoria, decimal factorExtra, decimal factorDoble)

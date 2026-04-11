@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MiMundoHuellitasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MiMundoHuellitasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -285,6 +285,17 @@
           <Property Name="IdEspecie" Type="int" Nullable="false" />
           <Property Name="NombreRaza" Type="nvarchar" MaxLength="80" Nullable="false" />
         </EntityType>
+        <EntityType Name="MH_Recomendaciones_TB">
+          <Key>
+            <PropertyRef Name="IdRecomendacion" />
+          </Key>
+          <Property Name="IdRecomendacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCita" Type="int" Nullable="false" />
+          <Property Name="IdMascota" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
         <EntityType Name="MH_Servicios_Cita_TB">
           <Key>
             <PropertyRef Name="IdServicioCita" />
@@ -352,8 +363,8 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_AsistenciaDiaria' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_AsistenciaDiaria' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vw_MH_AsistenciaDiaria">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -372,8 +383,8 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_AsistenciaDiaria' does 
           <Property Name="EsFeriado" Type="int" Nullable="false" />
           <Property Name="EsFinDeSemana" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MiMundoHuellitas.dbo.VW_MH_Auditoria' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.VW_MH_Auditoria' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VW_MH_Auditoria">
           <Key>
             <PropertyRef Name="IdAuditoria" />
@@ -397,8 +408,8 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.VW_MH_Auditoria' does not hav
           <Property Name="FechaAuditoria" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="Observacion" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vw_MH_PlanillaDetalle">
           <Key>
             <PropertyRef Name="IdPlanilla" />
@@ -839,6 +850,30 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Recomendacion_Cita">
+          <End Role="MH_Cita_TB" Type="Self.MH_Cita_TB" Multiplicity="1" />
+          <End Role="MH_Recomendaciones_TB" Type="Self.MH_Recomendaciones_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Cita_TB">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="MH_Recomendaciones_TB">
+              <PropertyRef Name="IdCita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recomendacion_Mascota">
+          <End Role="MH_Mascotas_TB" Type="Self.MH_Mascotas_TB" Multiplicity="1" />
+          <End Role="MH_Recomendaciones_TB" Type="Self.MH_Recomendaciones_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdMascota" />
+            </Principal>
+            <Dependent Role="MH_Recomendaciones_TB">
+              <PropertyRef Name="IdMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -947,6 +982,7 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <EntitySet Name="MH_Proveedor_TB" EntityType="Self.MH_Proveedor_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Provincia_TB" EntityType="Self.MH_Provincia_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Raza_TB" EntityType="Self.MH_Raza_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Recomendaciones_TB" EntityType="Self.MH_Recomendaciones_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Servicios_Cita_TB" EntityType="Self.MH_Servicios_Cita_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Servicios_TB" EntityType="Self.MH_Servicios_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" Schema="dbo" store:Type="Tables" />
@@ -1135,9 +1171,16 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             <End Role="MH_Tipo_Usuario_TB" EntitySet="MH_Tipo_Usuario_TB" />
             <End Role="MH_Usuario_TB" EntitySet="MH_Usuario_TB" />
           </AssociationSet>
+          <AssociationSet Name="FK_Recomendacion_Cita" Association="Self.FK_Recomendacion_Cita">
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+            <End Role="MH_Recomendaciones_TB" EntitySet="MH_Recomendaciones_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recomendacion_Mascota" Association="Self.FK_Recomendacion_Mascota">
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+            <End Role="MH_Recomendaciones_TB" EntitySet="MH_Recomendaciones_TB" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MiMundoHuellitasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1196,6 +1239,7 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <NavigationProperty Name="MH_Mascotas_TB" Relationship="Self.FK_MH_Cita_Mascota" FromRole="MH_Cita_TB" ToRole="MH_Mascotas_TB" />
           <NavigationProperty Name="MH_Usuario_TB1" Relationship="Self.FK_MH_Cita_Usuario" FromRole="MH_Cita_TB" ToRole="MH_Usuario_TB" />
           <NavigationProperty Name="MH_Servicios_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Cita" FromRole="MH_Cita_TB" ToRole="MH_Servicios_Cita_TB" />
+          <NavigationProperty Name="MH_Recomendaciones_TB" Relationship="MiMundoHuellitasModel.FK_Recomendacion_Cita" FromRole="MH_Cita_TB" ToRole="MH_Recomendaciones_TB" />
         </EntityType>
         <EntityType Name="MH_Comision_TB">
           <Key>
@@ -1366,6 +1410,7 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <NavigationProperty Name="MH_Especie_TB" Relationship="Self.FK_MH_Mascotas_Especie" FromRole="MH_Mascotas_TB" ToRole="MH_Especie_TB" />
           <NavigationProperty Name="MH_Raza_TB" Relationship="Self.FK_MH_Mascotas_Raza" FromRole="MH_Mascotas_TB" ToRole="MH_Raza_TB" />
           <NavigationProperty Name="MH_Usuario_TB" Relationship="Self.FK_MH_Mascotas_Usuario" FromRole="MH_Mascotas_TB" ToRole="MH_Usuario_TB" />
+          <NavigationProperty Name="MH_Recomendaciones_TB" Relationship="MiMundoHuellitasModel.FK_Recomendacion_Mascota" FromRole="MH_Mascotas_TB" ToRole="MH_Recomendaciones_TB" />
         </EntityType>
         <EntityType Name="MH_Permiso_TB">
           <Key>
@@ -2255,22 +2300,22 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             <Parameter Name="Motivo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_MarcarEntrada" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_MarcarEntrada_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_MarcarSalida" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_MarcarSalida_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_ObtenerCitasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerCitasPorCliente_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_ObtenerClientePorId" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerClientePorId_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_ObtenerFacturasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerFacturasPorCliente_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_ObtenerMascotasPorCliente" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ObtenerMascotasPorCliente_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_MH_ReabrirPlanilla" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_ReabrirPlanilla_Result)">
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
@@ -2289,6 +2334,15 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
             <Parameter Name="Observacion" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="MH_Recomendaciones_TB" EntityType="MiMundoHuellitasModel.MH_Recomendaciones_TB" />
+          <AssociationSet Name="FK_Recomendacion_Cita" Association="MiMundoHuellitasModel.FK_Recomendacion_Cita">
+            <End Role="MH_Cita_TB" EntitySet="MH_Cita_TB" />
+            <End Role="MH_Recomendaciones_TB" EntitySet="MH_Recomendaciones_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recomendacion_Mascota" Association="MiMundoHuellitasModel.FK_Recomendacion_Mascota">
+            <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
+            <End Role="MH_Recomendaciones_TB" EntitySet="MH_Recomendaciones_TB" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -2387,6 +2441,43 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
           <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="19" />
           <Property Type="Int64" Name="IdPlanilla" Nullable="true" />
         </ComplexType>
+        <EntityType Name="MH_Recomendaciones_TB">
+          <Key>
+            <PropertyRef Name="IdRecomendacion" />
+          </Key>
+          <Property Name="IdRecomendacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCita" Type="Int32" Nullable="false" />
+          <Property Name="IdMascota" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="MH_Cita_TB" Relationship="MiMundoHuellitasModel.FK_Recomendacion_Cita" FromRole="MH_Recomendaciones_TB" ToRole="MH_Cita_TB" />
+          <NavigationProperty Name="MH_Mascotas_TB" Relationship="MiMundoHuellitasModel.FK_Recomendacion_Mascota" FromRole="MH_Recomendaciones_TB" ToRole="MH_Mascotas_TB" />
+        </EntityType>
+        <Association Name="FK_Recomendacion_Cita">
+          <End Type="MiMundoHuellitasModel.MH_Cita_TB" Role="MH_Cita_TB" Multiplicity="1" />
+          <End Type="MiMundoHuellitasModel.MH_Recomendaciones_TB" Role="MH_Recomendaciones_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Cita_TB">
+              <PropertyRef Name="IdCita" />
+            </Principal>
+            <Dependent Role="MH_Recomendaciones_TB">
+              <PropertyRef Name="IdCita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recomendacion_Mascota">
+          <End Type="MiMundoHuellitasModel.MH_Mascotas_TB" Role="MH_Mascotas_TB" Multiplicity="1" />
+          <End Type="MiMundoHuellitasModel.MH_Recomendaciones_TB" Role="MH_Recomendaciones_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Mascotas_TB">
+              <PropertyRef Name="IdMascota" />
+            </Principal>
+            <Dependent Role="MH_Recomendaciones_TB">
+              <PropertyRef Name="IdMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2972,6 +3063,18 @@ warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does n
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_MH_RegistrarAuditoria" FunctionName="MiMundoHuellitasModel.Store.usp_MH_RegistrarAuditoria" />
+          <EntitySetMapping Name="MH_Recomendaciones_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Recomendaciones_TB">
+              <MappingFragment StoreEntitySet="MH_Recomendaciones_TB">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdMascota" ColumnName="IdMascota" />
+                <ScalarProperty Name="IdCita" ColumnName="IdCita" />
+                <ScalarProperty Name="IdRecomendacion" ColumnName="IdRecomendacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

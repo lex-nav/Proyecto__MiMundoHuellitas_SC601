@@ -3,14 +3,15 @@ using System.Web.Mvc;
 using MiMundoHuellitas.EF;
 using MiMundoHuellitas.DAL;
 using MiMundoHuellitas.Models.ViewModels;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
     [Authorize] // luego puedes restringir por rol Admin
     public class AdminUsuariosController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db =
-            new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db =
+            new MiMundoHuellitasEntities();
 
         // GET: /AdminUsuarios
         public ActionResult Index()

@@ -2,13 +2,14 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
     [Authorize(Roles = "Empleado,Administrador")]
     public class MarcacionesController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
 
         private MH_Usuario_TB UsuarioActual()
         {

@@ -8,11 +8,11 @@ namespace MiMundoHuellitas.DAL
 {
     public class MarcacionRepository : IDisposable
     {
-        private readonly BD_MiMundoHuellitasEntities _db;
+        private readonly MiMundoHuellitasEntities _db;
 
         public MarcacionRepository()
         {
-            _db = new BD_MiMundoHuellitasEntities();
+            _db = new MiMundoHuellitasEntities();
         }
 
         public void MarcarEntrada(int idUsuario)

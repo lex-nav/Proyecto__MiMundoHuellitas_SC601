@@ -72,6 +72,9 @@
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Productos_Proveedor" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Servicios_Cita_Servicio" ManuallyRouted="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_MH_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Recomendaciones_TB" Width="1.5" PointX="17.25" PointY="23.25" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_Recomendacion_Cita" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_Recomendacion_Mascota" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

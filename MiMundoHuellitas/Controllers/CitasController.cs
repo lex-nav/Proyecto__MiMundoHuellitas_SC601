@@ -7,13 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
     [Authorize]
     public class CitasController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
 
         // =========================
         // Helpers

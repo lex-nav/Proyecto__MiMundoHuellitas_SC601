@@ -3,13 +3,14 @@ using MiMundoHuellitas.Models.ViewModels;
 using System;
 using System.Linq;
 using System.Web.Mvc;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
     [Authorize]
     public class ProductosController : Controller
     {
-        private BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
         private const int TAM_PAGINA = 6;
 
         public ActionResult Index(int pagina = 1)

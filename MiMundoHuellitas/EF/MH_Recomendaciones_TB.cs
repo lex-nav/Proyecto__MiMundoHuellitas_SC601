@@ -12,11 +12,16 @@ namespace MiMundoHuellitas.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class MH_Recomendaciones_TB
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public int IdRecomendacion { get; set; }
+        public int IdCita { get; set; }
+        public int IdMascota { get; set; }
+        public string Descripcion { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
+    
+        public virtual MH_Cita_TB MH_Cita_TB { get; set; }
+        public virtual MH_Mascotas_TB MH_Mascotas_TB { get; set; }
     }
 }

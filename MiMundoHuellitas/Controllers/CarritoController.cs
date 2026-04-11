@@ -10,12 +10,13 @@ using System.Web.Mvc;
 using System.Configuration;
 using MiMundoHuellitas.Models.ViewModels;
 using System.Web;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
     public class CarritoController : Controller
     {
-        private BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private MiMundoHuellitasEntities db = new  MiMundoHuellitasEntities();
 
         private const string CART_KEY = "CARRITO";
 

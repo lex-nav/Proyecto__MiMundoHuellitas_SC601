@@ -1,6 +1,7 @@
 ﻿using MiMundoHuellitas.DAL;
 using MiMundoHuellitas.Models.ViewModels;
 using System.Web.Mvc;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
@@ -15,7 +16,7 @@ namespace MiMundoHuellitas.Controllers
     [Authorize(Roles = "Admin")]
     public class ReportesController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities db = new MiMundoHuellitasEntities();
 
         // ============================
         // MENÚ PRINCIPAL DE REPORTES

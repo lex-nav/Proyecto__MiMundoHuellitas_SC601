@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using MiMundoHuellitas.DAL;
 using MiMundoHuellitas.Models.ViewModels;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {

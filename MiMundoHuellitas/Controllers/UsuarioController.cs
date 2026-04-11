@@ -5,13 +5,14 @@ using System.Security.Cryptography;
 using System.Text;
 using MiMundoHuellitas.EF;
 using MiMundoHuellitas.Models.ViewModels;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
     [Authorize]
     public class UsuarioController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities _db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities _db = new MiMundoHuellitasEntities();
 
         // GET: /Usuario/Perfil
         public ActionResult Perfil()

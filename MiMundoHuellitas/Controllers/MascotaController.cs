@@ -2,13 +2,14 @@
 using System.Web.Mvc;
 using MiMundoHuellitas.EF;
 using MiMundoHuellitas.Models.ViewModels;
+using MiMundoHuellitas.Helpers;
 
 namespace MiMundoHuellitas.Controllers
 {
     [Authorize]
     public class MascotaController : Controller
     {
-        private readonly BD_MiMundoHuellitasEntities _db = new BD_MiMundoHuellitasEntities();
+        private readonly MiMundoHuellitasEntities _db = new MiMundoHuellitasEntities();
 
         // =====================
         // Helpers
@@ -103,6 +104,19 @@ namespace MiMundoHuellitas.Controllers
 
             _db.MH_Mascotas_TB.Add(mascota);
             _db.SaveChanges();
+
+            // Prueba de auditoria
+            AuditoriaHelper.Registrar(
+                "MH_Mascotas_TB",
+                "Mascotas",
+                "Crear",
+                null,
+                mascota.IdMascota.ToString(),
+                null,
+                mascota.NombreMascota,
+                User.Identity.Name,
+                "Se registró una nueva mascota"
+            );
 
             return RedirectToAction("VerMascotas");
         }

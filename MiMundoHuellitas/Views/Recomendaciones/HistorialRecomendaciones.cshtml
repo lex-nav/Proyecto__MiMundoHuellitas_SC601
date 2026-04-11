@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Recomendaciones";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@model List<MiMundoHuellitas.EF.MH_Recomendaciones_TB>
+
+<h2>Historial de Recomendaciones</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Mascota</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="3">No hay recomendaciones disponibles</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Fecha</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.IdMascota</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
