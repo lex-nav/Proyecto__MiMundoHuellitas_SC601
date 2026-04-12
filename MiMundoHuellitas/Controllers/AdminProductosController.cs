@@ -18,6 +18,14 @@ namespace MiMundoHuellitas.Controllers
                 .OrderBy(p => p.NombreProducto)
                 .ToList();
 
+            // MÉTRICA: productos con stock bajo
+            var productosBajos = productos
+                .Where(p => p.StockActual <= 5 && p.Activo)
+                .ToList();
+
+            ViewBag.ProductosBajos = productosBajos;
+            ViewBag.CantidadBajos = productosBajos.Count;
+
             return View(productos);
         }
 
