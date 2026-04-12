@@ -1,39 +1,102 @@
-﻿
+﻿@model IEnumerable<MiMundoHuellitas.EF.MH_Recomendaciones_TB>
+
 @{
-    ViewBag.Title = "Recomendaciones";
+    ViewBag.Title = "Mis recomendaciones";
     Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-@model List<MiMundoHuellitas.EF.MH_Recomendaciones_TB>
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-2.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Mis recomendaciones</h1>
+        <p class="lead mb-0">
+            Consejos para el cuidado de tu mascota 🐾
+        </p>
+    </div>
+</div>
 
-<h2>Historial de Recomendaciones</h2>
+<!-- FONDO -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Descripción</th>
-            <th>Mascota</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-4">
+            <h3 class="mb-1 fw-bold">Historial de recomendaciones</h3>
+            <div class="text-muted">Revisa las sugerencias que hemos hecho para tu mascota</div>
+        </div>
+
+        @if (Model == null || !Model.Any())
         {
-            <tr>
-                <td colspan="3">No hay recomendaciones disponibles</td>
-            </tr>
+            <div class="card border-0 shadow-sm" style="border-radius:18px;">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div style="font-size:42px;">🐾</div>
+                    <h5 class="mt-2 mb-1 fw-bold">No tienes recomendaciones</h5>
+                    <p class="text-muted mb-0">
+                        Aún no hay sugerencias registradas para tus mascotas.
+                    </p>
+                </div>
+            </div>
         }
         else
         {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Fecha</td>
-                    <td>@item.Descripcion</td>
-                    <td>@item.IdMascota</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+            <div class="row g-4">
+                @foreach (var r in Model)
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0"
+                             style="border-radius:18px;">
+                            <div class="card-body p-4">
 
+                                <!-- FECHA -->
+                                <div class="mb-3">
+                                    <h5 class="fw-bold mb-1">
+                                        @r.Fecha.ToString("dd/MM/yyyy")
+                                    </h5>
+                                    <div class="text-muted small">
+                                        🕒 @r.Fecha.ToString("HH:mm")
+                                    </div>
+                                </div>
+
+                                <!-- INFO -->
+                                <ul class="list-unstyled mb-3 small">
+                                    <li class="mb-1">
+                                        🐾 <strong>Mascota:</strong>
+                                        @(r.MH_Mascotas_TB != null
+                                            ? r.MH_Mascotas_TB.NombreMascota
+                                            : "-")
+                                    </li>
+
+                                    <li>
+                                        💡 <strong>Recomendación:</strong><br />
+                                        @r.Descripcion
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="mt-4 text-muted small">
+                Tip: Sigue estas recomendaciones para mantener a tu mascota sana y feliz 🐶✨
+            </div>
+        }
+
+    </div>
+</div>

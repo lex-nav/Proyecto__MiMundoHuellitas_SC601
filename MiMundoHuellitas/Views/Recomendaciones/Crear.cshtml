@@ -1,30 +1,110 @@
-﻿@{
-    ViewBag.Title = "AgregarRecomendacion";
+﻿@model MiMundoHuellitas.EF.MH_Recomendaciones_TB
+
+@{
+    ViewBag.Title = "Nueva recomendación";
     Layout = "~/Views/Shared/_LayoutInterno.cshtml";
 }
 
-@model MiMundoHuellitas.EF.MH_Recomendaciones_TB
-
-<h2>Crear Recomendación</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <<div>
-        <label>Mascota</label>
-        @Html.DropDownListFor(m => m.IdMascota, (SelectList)ViewBag.Mascotas, "-- Seleccione --")
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-2.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Nueva recomendación</h1>
+        <p class="lead mb-0">
+            Registra una sugerencia para el cuidado de la mascota 🐾
+        </p>
     </div>
+</div>
 
-    <div>
-        <label>Cita</label>
-        @Html.DropDownListFor(m => m.IdCita, (SelectList)ViewBag.Citas, "-- Seleccione --")
+<!-- FONDO -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-4">
+            <h3 class="fw-bold mb-1">Registrar recomendación</h3>
+            <div class="text-muted">Completa la información para guardar la recomendación</div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+
+                <div class="card shadow-sm border-0" style="border-radius:18px;">
+                    <div class="card-body p-4">
+
+                        @using (Html.BeginForm("Crear", "Recomendaciones", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <!-- Mascota -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Mascota</label>
+                                @Html.DropDownListFor(m => m.IdMascota,
+                                         (SelectList)ViewBag.Mascotas,
+                                         "-- Seleccione --",
+                                         new { @class = "form-control", style = "border-radius:10px;" })
+                                @Html.ValidationMessageFor(m => m.IdMascota, "", new { @class = "text-danger" })
+                            </div>
+
+                            <!-- Cita -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Cita</label>
+                                @Html.DropDownListFor(m => m.IdCita,
+                                         (SelectList)ViewBag.Citas,
+                                         "-- Seleccione --",
+                                         new { @class = "form-control", style = "border-radius:10px;" })
+                                @Html.ValidationMessageFor(m => m.IdCita, "", new { @class = "text-danger" })
+                            </div>
+
+                            <!-- Descripción -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Recomendación</label>
+                                @Html.TextAreaFor(m => m.Descripcion,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             rows = 4,
+                                             placeholder = "Escribe la recomendación...",
+                                             style = "border-radius:10px;"
+                                         })
+                                @Html.ValidationMessageFor(m => m.Descripcion, "", new { @class = "text-danger" })
+                            </div>
+
+                            <!-- BOTONES -->
+                            <div class="d-flex gap-2 mt-4">
+                                <button type="submit"
+                                        class="btn btn-success w-100"
+                                        style="border-radius:12px;">
+                                    Guardar
+                                </button>
+
+                                <a href="@Url.Action("HistorialRecomendaciones")"
+                                   class="btn btn-outline-secondary w-100"
+                                   style="border-radius:12px;">
+                                    Cancelar
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-
-    <div>
-        <label>Descripción</label>
-        @Html.TextAreaFor(m => m.Descripcion)
-    </div>
-
-    <button type="submit">Guardar</button>
-}
+</div>
