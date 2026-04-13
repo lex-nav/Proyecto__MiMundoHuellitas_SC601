@@ -296,6 +296,14 @@
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="IdUsuario" Type="int" />
         </EntityType>
+        <EntityType Name="MH_Servicio_Producto_TB">
+          <Key>
+            <PropertyRef Name="IdServicioProducto" />
+          </Key>
+          <Property Name="IdServicioProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdServicio" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="MH_Servicios_Cita_TB">
           <Key>
             <PropertyRef Name="IdServicioCita" />
@@ -874,6 +882,30 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServicioProducto_Producto">
+          <End Role="MH_Productos_TB" Type="Self.MH_Productos_TB" Multiplicity="1" />
+          <End Role="MH_Servicio_Producto_TB" Type="Self.MH_Servicio_Producto_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Productos_TB">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="MH_Servicio_Producto_TB">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioProducto_Servicio">
+          <End Role="MH_Servicios_TB" Type="Self.MH_Servicios_TB" Multiplicity="1" />
+          <End Role="MH_Servicio_Producto_TB" Type="Self.MH_Servicio_Producto_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Servicios_TB">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="MH_Servicio_Producto_TB">
+              <PropertyRef Name="IdServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -983,6 +1015,7 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
           <EntitySet Name="MH_Provincia_TB" EntityType="Self.MH_Provincia_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Raza_TB" EntityType="Self.MH_Raza_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Recomendaciones_TB" EntityType="Self.MH_Recomendaciones_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_Servicio_Producto_TB" EntityType="Self.MH_Servicio_Producto_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Servicios_Cita_TB" EntityType="Self.MH_Servicios_Cita_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Servicios_TB" EntityType="Self.MH_Servicios_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Tipo_Usuario_TB" EntityType="Self.MH_Tipo_Usuario_TB" Schema="dbo" store:Type="Tables" />
@@ -1178,6 +1211,14 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
           <AssociationSet Name="FK_Recomendacion_Mascota" Association="Self.FK_Recomendacion_Mascota">
             <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
             <End Role="MH_Recomendaciones_TB" EntitySet="MH_Recomendaciones_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioProducto_Producto" Association="Self.FK_ServicioProducto_Producto">
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+            <End Role="MH_Servicio_Producto_TB" EntitySet="MH_Servicio_Producto_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioProducto_Servicio" Association="Self.FK_ServicioProducto_Servicio">
+            <End Role="MH_Servicios_TB" EntitySet="MH_Servicios_TB" />
+            <End Role="MH_Servicio_Producto_TB" EntitySet="MH_Servicio_Producto_TB" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1482,6 +1523,7 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
           <NavigationProperty Name="MH_DetalleFactura_TB" Relationship="Self.FK_MH_DetalleFactura_Producto" FromRole="MH_Productos_TB" ToRole="MH_DetalleFactura_TB" />
           <NavigationProperty Name="MH_Estado_TB" Relationship="Self.FK_MH_Productos_Estado" FromRole="MH_Productos_TB" ToRole="MH_Estado_TB" />
           <NavigationProperty Name="MH_Proveedor_TB" Relationship="Self.FK_MH_Productos_Proveedor" FromRole="MH_Productos_TB" ToRole="MH_Proveedor_TB" />
+          <NavigationProperty Name="MH_Servicio_Producto_TB" Relationship="MiMundoHuellitasModel.FK_ServicioProducto_Producto" FromRole="MH_Productos_TB" ToRole="MH_Servicio_Producto_TB" />
         </EntityType>
         <EntityType Name="MH_Proveedor_TB">
           <Key>
@@ -1539,6 +1581,7 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="MH_DetalleFactura_TB" Relationship="Self.FK_MH_DetalleFactura_Servicio" FromRole="MH_Servicios_TB" ToRole="MH_DetalleFactura_TB" />
           <NavigationProperty Name="MH_Servicios_Cita_TB" Relationship="Self.FK_MH_Servicios_Cita_Servicio" FromRole="MH_Servicios_TB" ToRole="MH_Servicios_Cita_TB" />
+          <NavigationProperty Name="MH_Servicio_Producto_TB" Relationship="MiMundoHuellitasModel.FK_ServicioProducto_Servicio" FromRole="MH_Servicios_TB" ToRole="MH_Servicio_Producto_TB" />
         </EntityType>
         <EntityType Name="MH_Tipo_Usuario_TB">
           <Key>
@@ -2343,6 +2386,15 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
             <End Role="MH_Mascotas_TB" EntitySet="MH_Mascotas_TB" />
             <End Role="MH_Recomendaciones_TB" EntitySet="MH_Recomendaciones_TB" />
           </AssociationSet>
+          <EntitySet Name="MH_Servicio_Producto_TB" EntityType="MiMundoHuellitasModel.MH_Servicio_Producto_TB" />
+          <AssociationSet Name="FK_ServicioProducto_Producto" Association="MiMundoHuellitasModel.FK_ServicioProducto_Producto">
+            <End Role="MH_Productos_TB" EntitySet="MH_Productos_TB" />
+            <End Role="MH_Servicio_Producto_TB" EntitySet="MH_Servicio_Producto_TB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioProducto_Servicio" Association="MiMundoHuellitasModel.FK_ServicioProducto_Servicio">
+            <End Role="MH_Servicios_TB" EntitySet="MH_Servicios_TB" />
+            <End Role="MH_Servicio_Producto_TB" EntitySet="MH_Servicio_Producto_TB" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -2475,6 +2527,40 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
             </Principal>
             <Dependent Role="MH_Recomendaciones_TB">
               <PropertyRef Name="IdMascota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MH_Servicio_Producto_TB">
+          <Key>
+            <PropertyRef Name="IdServicioProducto" />
+          </Key>
+          <Property Name="IdServicioProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdServicio" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MH_Productos_TB" Relationship="MiMundoHuellitasModel.FK_ServicioProducto_Producto" FromRole="MH_Servicio_Producto_TB" ToRole="MH_Productos_TB" />
+          <NavigationProperty Name="MH_Servicios_TB" Relationship="MiMundoHuellitasModel.FK_ServicioProducto_Servicio" FromRole="MH_Servicio_Producto_TB" ToRole="MH_Servicios_TB" />
+        </EntityType>
+        <Association Name="FK_ServicioProducto_Producto">
+          <End Type="MiMundoHuellitasModel.MH_Productos_TB" Role="MH_Productos_TB" Multiplicity="1" />
+          <End Type="MiMundoHuellitasModel.MH_Servicio_Producto_TB" Role="MH_Servicio_Producto_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Productos_TB">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="MH_Servicio_Producto_TB">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioProducto_Servicio">
+          <End Type="MiMundoHuellitasModel.MH_Servicios_TB" Role="MH_Servicios_TB" Multiplicity="1" />
+          <End Type="MiMundoHuellitasModel.MH_Servicio_Producto_TB" Role="MH_Servicio_Producto_TB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MH_Servicios_TB">
+              <PropertyRef Name="IdServicio" />
+            </Principal>
+            <Dependent Role="MH_Servicio_Producto_TB">
+              <PropertyRef Name="IdServicio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3072,6 +3158,15 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
                 <ScalarProperty Name="IdMascota" ColumnName="IdMascota" />
                 <ScalarProperty Name="IdCita" ColumnName="IdCita" />
                 <ScalarProperty Name="IdRecomendacion" ColumnName="IdRecomendacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MH_Servicio_Producto_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_Servicio_Producto_TB">
+              <MappingFragment StoreEntitySet="MH_Servicio_Producto_TB">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="IdServicioProducto" ColumnName="IdServicioProducto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -285,19 +285,29 @@
                     }
                     else
                     {
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">INICIO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("SobreNosotros", "Home")">SOBRE NOSOTROS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Equipo", "Home")">EQUIPO</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Servicios", "Home")">SERVICIOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Galeria", "Home")">GALERÍA</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Productos", "Home")">PRODUCTOS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Blog", "Home")">BLOG</a></li>
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Contacto", "Home")">CONTÁCTENOS</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownInicio"
+                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                INICIO
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownInicio">
+                                <a class="dropdown-item" href="@Url.Action("SobreNosotros", "Home")">SOBRE NOSOTROS</a>
+                                <a class="dropdown-item" href="@Url.Action("Equipo", "Home")">EQUIPO</a>
+                                <a class="dropdown-item" href="@Url.Action("Servicios", "Home")">SERVICIOS</a>
+                                <a class="dropdown-item" href="@Url.Action("Galeria", "Home")">GALERIA</a>
+                                <a class="dropdown-item" href="@Url.Action("Productos", "Home")">PRODUCTOS</a>
+                                <a class="dropdown-item" href="@Url.Action("Blog", "Home")">BLOG</a>
+                                <a class="dropdown-item" href="@Url.Action("Contacto", "Home")">CONTACTENOS</a>
+                            </div>
+                        </li>
 
                         if (isAuth)
                         {
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("Agendar", "Citas")">AGENDAR CITA</a></li>
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("VerMascotas", "Mascota")">MIS MASCOTAS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Sugerencias", "Sugerencias")">SUGERENCIAS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Promociones")">PROMOCIONES</a></li>
                         }
                     }
                 </ul>

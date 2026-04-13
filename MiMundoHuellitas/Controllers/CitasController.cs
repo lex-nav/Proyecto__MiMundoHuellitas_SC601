@@ -411,7 +411,8 @@ padding:16px;border-radius:12px;margin:16px 0'>
                 Fecha = cita.FechaHoraCita.Date,
                 Hora = cita.FechaHoraCita.ToString("HH:mm"),
                 NotasCliente = cita.NotasCliente,
-                IdEmpleadoAsignado = cita.IdEmpleadoAsignado
+                IdEmpleadoAsignado = cita.IdEmpleadoAsignado,
+                IdEstado = cita.IdEstado
             };
 
             CargarCombos(model, usuario.IdUsuario);
@@ -541,6 +542,50 @@ padding:16px;border-radius:12px;margin:16px 0'>
             return RedirectToAction("VerCitas");
         }
 
+        private void DescontarStockPorServicio(int idServicio)
+        {
+            var productosServicio = db.MH_Servicio_Producto_TB
+                .Where(sp => sp.IdServicio == idServicio)
+                .ToList();
+
+            foreach (var item in productosServicio)
+            {
+                var producto = db.MH_Productos_TB
+                    .FirstOrDefault(p => p.IdProducto == item.IdProducto);
+
+                if (producto != null && producto.StockActual > 0)
+                {
+                    producto.StockActual -= 1;
+                }
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FinalizarCita(int id)
+        {
+            var cita = db.MH_Cita_TB.Find(id);
+
+            if (cita == null)
+                return HttpNotFound();
+
+            // 🔥 Estado "Atendida"
+            cita.IdEstado = 13;
+
+            // 🔥 Obtener servicio(s)
+            var servicios = cita.MH_Servicios_Cita_TB.ToList();
+
+            foreach (var s in servicios)
+            {
+                DescontarStockPorServicio(s.IdServicio);
+            }
+
+            db.SaveChanges();
+
+            TempData["Ok"] = "Cita finalizada y stock actualizado";
+
+            return RedirectToAction("VerCitas");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

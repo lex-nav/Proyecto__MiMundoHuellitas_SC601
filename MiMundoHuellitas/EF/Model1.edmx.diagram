@@ -75,6 +75,9 @@
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Recomendaciones_TB" Width="1.5" PointX="17.25" PointY="23.25" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_Recomendacion_Cita" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_Recomendacion_Mascota" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicio_Producto_TB" Width="2.625" PointX="17.75" PointY="10.625" IsExpanded="false" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_ServicioProducto_Producto" />
+        <AssociationConnector Association="MiMundoHuellitasModel.FK_ServicioProducto_Servicio" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

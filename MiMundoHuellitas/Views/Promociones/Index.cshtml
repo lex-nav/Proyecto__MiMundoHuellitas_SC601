@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@model List<string>
+
+@{
+    ViewBag.Title = "Promociones Personalizadas";
+}
+
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-2.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Promociones</h1>
+        <p class="lead mb-0">
+            Promociones personalizadas para vos y tu mascota 🗓️
+        </p>
+    </div>
+</div>
+
+<!-- FONDO GENERAL -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4"> </div>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <ul>
+                @foreach (var promo in Model)
+                {
+                    <li>@promo</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No hay promociones disponibles por el momento.</p>
+        }
+

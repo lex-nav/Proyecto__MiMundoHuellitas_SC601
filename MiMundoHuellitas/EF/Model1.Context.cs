@@ -61,6 +61,7 @@ namespace MiMundoHuellitas.EF
         public virtual DbSet<VW_MH_Auditoria> VW_MH_Auditoria { get; set; }
         public virtual DbSet<vw_MH_PlanillaDetalle> vw_MH_PlanillaDetalle { get; set; }
         public virtual DbSet<MH_Recomendaciones_TB> MH_Recomendaciones_TB { get; set; }
+        public virtual DbSet<MH_Servicio_Producto_TB> MH_Servicio_Producto_TB { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

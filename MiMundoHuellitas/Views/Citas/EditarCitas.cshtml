@@ -128,17 +128,44 @@
                                 </div>
 
                                 <div class="col-12 mt-2">
+
+                                    <!-- GUARDAR -->
                                     <button type="submit"
                                             class="btn btn-success btn-lg w-100"
                                             style="border-radius:12px;">
                                         Guardar cambios
                                     </button>
 
+                                    <!-- CANCELAR -->
                                     <a href="@Url.Action("VerCitas", "Citas")"
                                        class="btn btn-outline-secondary w-100 mt-2"
                                        style="border-radius:12px;">
                                         Cancelar
                                     </a>
+
+                                    <!-- 🔥 FINALIZAR CITA -->
+                                    @if (Model.IdEstado != 13)
+                                    {
+                                        <button type="button"
+                                                class="btn btn-outline-success w-100 mt-2"
+                                                style="border-radius:12px;"
+                                                onclick="finalizarCita(@Model.IdCita)">
+                                            ✔️ Finalizar cita
+                                        </button>
+                                        }
+                                    }
+                                    @if (Model.IdEstado == 13)
+                                    {
+                                        <div class="alert alert-success text-center">
+                                            ✔️ Esta cita ya fue atendida
+                                        </div>
+                                    }
+                                    @if (Model.IdEstado == 13)
+                                    {
+                                        <script>
+                                            document.querySelectorAll("input, select, textarea").forEach(e => e.disabled = true);
+                                        </script>
+                                    }
                                 </div>
                             </div>
 
@@ -160,3 +187,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    function finalizarCita(id) {
+        if (!confirm("¿Finalizar esta cita? Esto descontará productos automáticamente")) return;
+
+        var form = document.createElement("form");
+        form.method = "post";
+        form.action = "/Citas/FinalizarCita";
+
+        // reutiliza el token del form principal
+        var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+        var inputToken = document.createElement("input");
+        inputToken.type = "hidden";
+        inputToken.name = "__RequestVerificationToken";
+        inputToken.value = token;
+
+        var inputId = document.createElement("input");
+        inputId.type = "hidden";
+        inputId.name = "id";
+        inputId.value = id;
+
+        form.appendChild(inputToken);
+        form.appendChild(inputId);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>

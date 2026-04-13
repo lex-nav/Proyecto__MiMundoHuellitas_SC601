@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Sugerencias";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@model IEnumerable<MiMundoHuellitas.EF.MH_Productos_TB>
+
+@{
+    ViewBag.Title = "Sugerencias para ti";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+<div class="container py-5">
+
+    <h2 class="fw-bold mb-4 text-center">
+        ✨ Productos recomendados para tu mascota
+    </h2>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center text-muted">
+            Aún no tenemos sugerencias. Agenda servicios para recibir recomendaciones 🐶
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var p in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm border-0" style="border-radius:18px;">
+                        <div class="card-body p-4">
+
+                            <h5 class="fw-bold">@p.NombreProducto</h5>
+
+                            <div class="text-muted small mb-2">
+                                📦 @p.Categoria
+                            </div>
+
+                            <div class="mb-2">
+                                💲 ₡@p.PrecioUnitario
+                            </div>
+
+                            <p class="small text-muted">
+                                @p.Descripcion
+                            </p>
+
+                            <span class="badge bg-success">
+                                Recomendado para ti
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+</div>
+

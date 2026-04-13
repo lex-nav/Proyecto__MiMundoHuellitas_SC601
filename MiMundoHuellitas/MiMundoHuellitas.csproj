@@ -274,8 +274,10 @@
     <Compile Include="Controllers\PlanillaController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
+    <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Controllers\RecomendacionesController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\SugerenciasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CitasController.cs" />
@@ -368,6 +370,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_Servicios_TB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MH_Servicio_Producto_TB.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MH_TipoPermiso_TB.cs">
@@ -768,6 +773,8 @@
     <Content Include="Views\Reportes\Marcaciones.cshtml" />
     <Content Include="Views\Recomendaciones\HistorialRecomendaciones.cshtml" />
     <Content Include="Views\Recomendaciones\Crear.cshtml" />
+    <Content Include="Views\Sugerencias\Sugerencias.cshtml" />
+    <Content Include="Views\Promociones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

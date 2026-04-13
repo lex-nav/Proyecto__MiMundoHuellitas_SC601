@@ -29,6 +29,8 @@ namespace MiMundoHuellitas.Models.ViewModels
         [Display(Name = "Notas del cliente")]
         public string NotasCliente { get; set; }
 
+        public int IdEstado { get; set; }
+
         [Required(ErrorMessage = "Debe seleccionar un colaborador.")]
         [Display(Name = "Colaborador asignado")]
         public int? IdEmpleadoAsignado { get; set; }

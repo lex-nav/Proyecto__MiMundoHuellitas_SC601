@@ -18,6 +18,7 @@ namespace MiMundoHuellitas.EF
         public MH_Productos_TB()
         {
             this.MH_DetalleFactura_TB = new HashSet<MH_DetalleFactura_TB>();
+            this.MH_Servicio_Producto_TB = new HashSet<MH_Servicio_Producto_TB>();
         }
     
         public int IdProducto { get; set; }
@@ -35,5 +36,7 @@ namespace MiMundoHuellitas.EF
         public virtual ICollection<MH_DetalleFactura_TB> MH_DetalleFactura_TB { get; set; }
         public virtual MH_Estado_TB MH_Estado_TB { get; set; }
         public virtual MH_Proveedor_TB MH_Proveedor_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MH_Servicio_Producto_TB> MH_Servicio_Producto_TB { get; set; }
     }
 }
