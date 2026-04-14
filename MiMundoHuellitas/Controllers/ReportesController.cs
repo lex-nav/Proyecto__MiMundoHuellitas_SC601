@@ -7,6 +7,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+ Updated upstream
+
+using System.Collections.Generic;
+using System.Globalization;
+using MiMundoHuellitas.Helpers;
+ Stashed changes
 
 namespace MiMundoHuellitas.Controllers
 {
@@ -23,9 +29,72 @@ namespace MiMundoHuellitas.Controllers
         public ActionResult Index()
         {
             ViewBag.ActiveMenu = "Reportes";
+            ViewBag.ActiveSubMenu = "Index";
             return View();
         }
+    
 
+        public ActionResult Dashboard()
+        {
+            ViewBag.ActiveMenu = "Reportes";
+            ViewBag.ActiveSubMenu = "Dashboard";
+
+            var hoy = DateTime.Today;
+            var inicioMes = new DateTime(hoy.Year, hoy.Month, 1);
+
+            var vm = new DashboardVM();
+
+            // KPIs
+            vm.VentasMes = db.MH_Factura_TB
+                .Where(f => f.FechaFactura >= inicioMes)
+                .Select(f => (decimal?)f.MontoTotal)
+                .Sum() ?? 0;
+
+            vm.CitasHoy = db.MH_Cita_TB
+                .Count(c => DbFunctions.TruncateTime(c.FechaHoraCita) == hoy);
+
+            vm.CitasProximas = db.MH_Cita_TB
+                .Count(c => c.FechaHoraCita > DateTime.Now);
+
+            vm.MascotasActivas = db.MH_Mascotas_TB.Count(m => m.Activo);
+
+            vm.ProductosSinStock = db.MH_Productos_TB.Count(p => p.StockActual <= 0);
+
+            vm.ProductosStockBajo = db.MH_Productos_TB
+                .Count(p => p.StockActual > 0 && p.StockActual <= 5);
+
+            // Gráfico ventas
+            var ventas = db.MH_Factura_TB
+                .Where(f => f.FechaFactura >= inicioMes)
+                .GroupBy(f => DbFunctions.TruncateTime(f.FechaFactura))
+                .Select(g => new
+                {
+                    Fecha = g.Key,
+                    Total = g.Sum(x => x.MontoTotal)
+                })
+                .OrderBy(x => x.Fecha)
+                .ToList();
+
+            vm.LabelsVentas = ventas.Select(x => x.Fecha.Value.ToString("dd/MM")).ToList();
+            vm.DataVentas = ventas.Select(x => x.Total).ToList();
+
+            // Top servicios
+            var servicios = db.MH_Servicios_Cita_TB
+                .GroupBy(s => s.MH_Servicios_TB.NombreServicio)
+                .Select(g => new
+                {
+                    Nombre = g.Key,
+                    Cantidad = g.Sum(x => x.Cantidad)
+                })
+                .OrderByDescending(x => x.Cantidad)
+                .Take(5)
+                .ToList();
+
+            vm.LabelsServicios = servicios.Select(x => x.Nombre).ToList();
+            vm.DataServicios = servicios.Select(x => x.Cantidad).ToList();
+
+            return View(vm);
+        }
         // ============================
         // REPORTE DE CITAS
         // ============================

@@ -10,10 +10,21 @@
         </p>
     </div>
 
+ Updated upstream
     <div class="d-flex gap-2">
         <a href="@Url.Action("Index", "Reportes")"
            class="btn btn-outline-secondary">
             ← Volver a Reportes
+
+    <div class="rep-nav mt-2 mt-md-0">
+        <a class="@(active=="Index" ? "active" : "")" href="@Url.Action("Index","Reportes")">Inicio</a>
+        <a class="@(active=="Auditoria" ? "active" : "")" href="@Url.Action("Auditoria","Reportes")">Auditoría</a>
+        <a class="@(active=="Citas" ? "active" : "")" href="@Url.Action("Citas","Reportes")">Citas</a>
+        <a class="@(active=="Facturas" ? "active" : "")" href="@Url.Action("Facturas","Reportes")">Facturas</a>
+        <a class="@(ViewBag.ActiveSubMenu == "Dashboard" ? "active" : "")"
+           href="@Url.Action("Dashboard", "Reportes")">
+            Dashboard
+ Stashed changes
         </a>
     </div>
 

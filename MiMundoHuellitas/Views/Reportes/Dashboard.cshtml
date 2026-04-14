@@ -1,0 +1,247 @@
+﻿@model MiMundoHuellitas.Models.ViewModels.Reportes.DashboardVM
+
+
+@{
+    ViewBag.Title = "Dashboard Ejecutivo";
+}
+<link href="~/StaticFiles/CSS/dashboard.css" rel="stylesheet" />
+<div class="container-fluid py-4 dashboard-page">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1 dashboard-title">Panel Ejecutivo</h2>
+            <p class="text-muted mb-0">Monitoreo general del negocio en tiempo real.</p>
+        </div>
+
+        <div class="mt-3 mt-md-0">
+            <span class="badge dashboard-badge px-3 py-2">
+                @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+            </span>
+        </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6 col-xl-2">
+            <div class="card dashboard-kpi kpi-ventas border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="dashboard-kpi-label">Ventas del mes</div>
+                    <div class="dashboard-kpi-value">₡ @Model.VentasMes.ToString("N0")</div>
+                    <div class="dashboard-kpi-icon">💰</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-2">
+            <div class="card dashboard-kpi kpi-citas-hoy border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="dashboard-kpi-label">Citas hoy</div>
+                    <div class="dashboard-kpi-value">@Model.CitasHoy</div>
+                    <div class="dashboard-kpi-icon">📅</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-2">
+            <div class="card dashboard-kpi kpi-citas-proximas border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="dashboard-kpi-label">Citas próximas</div>
+                    <div class="dashboard-kpi-value">@Model.CitasProximas</div>
+                    <div class="dashboard-kpi-icon">⏰</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-2">
+            <div class="card dashboard-kpi kpi-mascotas border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="dashboard-kpi-label">Mascotas activas</div>
+                    <div class="dashboard-kpi-value">@Model.MascotasActivas</div>
+                    <div class="dashboard-kpi-icon">🐾</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-2">
+            <div class="card dashboard-kpi kpi-sin-stock border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="dashboard-kpi-label">Sin stock</div>
+                    <div class="dashboard-kpi-value">@Model.ProductosSinStock</div>
+                    <div class="dashboard-kpi-icon">📦</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-2">
+            <div class="card dashboard-kpi kpi-stock-bajo border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <div class="dashboard-kpi-label">Stock bajo</div>
+                    <div class="dashboard-kpi-value">@Model.ProductosStockBajo</div>
+                    <div class="dashboard-kpi-icon">⚠️</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRÁFICOS -->
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card dashboard-card border-0 shadow-sm h-100">
+                <div class="card-header dashboard-card-header">
+                    <h5 class="mb-0">Comportamiento de ventas del mes</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="ventasChart" height="110"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card dashboard-card border-0 shadow-sm h-100">
+                <div class="card-header dashboard-card-header">
+                    <h5 class="mb-0">Top 5 servicios</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="serviciosChart" height="220"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESUMEN EXTRA -->
+    <div class="row g-4 mt-1">
+        <div class="col-lg-6">
+            <div class="card dashboard-card border-0 shadow-sm h-100">
+                <div class="card-header dashboard-card-header">
+                    <h5 class="mb-0">Resumen operativo</h5>
+                </div>
+                <div class="card-body">
+                    <div class="dashboard-summary-item d-flex justify-content-between align-items-center mb-3">
+                        <span>Total productos con alerta</span>
+                        <span class="fw-bold text-danger">@(Model.ProductosSinStock + Model.ProductosStockBajo)</span>
+                    </div>
+                    <div class="dashboard-summary-item d-flex justify-content-between align-items-center mb-3">
+                        <span>Total agenda activa</span>
+                        <span class="fw-bold text-primary">@(Model.CitasHoy + Model.CitasProximas)</span>
+                    </div>
+                    <div class="dashboard-summary-item d-flex justify-content-between align-items-center">
+                        <span>Base activa de mascotas</span>
+                        <span class="fw-bold" style="color:#0A7B48;">@Model.MascotasActivas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card dashboard-card border-0 shadow-sm h-100">
+                <div class="card-header dashboard-card-header">
+                    <h5 class="mb-0">Acciones rápidas</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-3">
+                        <a href="@Url.Action("Stock", "Reportes")" class="btn btn-outline-success dashboard-action-btn">
+                            Revisar inventario
+                        </a>
+                        <a href="@Url.Action("Citas", "Reportes")" class="btn btn-outline-success dashboard-action-btn">
+                            Ver citas
+                        </a>
+                        <a href="@Url.Action("Facturas", "Reportes")" class="btn btn-outline-success dashboard-action-btn">
+                            Revisar ventas
+                        </a>
+                        <a href="@Url.Action("Consumo", "Reportes")" class="btn btn-outline-success dashboard-action-btn">
+                            Ver consumo de servicios
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ventasLabels = @Html.Raw(Json.Encode(Model.LabelsVentas));
+        const ventasData = @Html.Raw(Json.Encode(Model.DataVentas));
+
+        const serviciosLabels = @Html.Raw(Json.Encode(Model.LabelsServicios));
+        const serviciosData = @Html.Raw(Json.Encode(Model.DataServicios));
+
+        const ventasCtx = document.getElementById('ventasChart');
+        if (ventasCtx) {
+            new Chart(ventasCtx, {
+                type: 'line',
+                data: {
+                    labels: ventasLabels,
+                    datasets: [{
+                        label: 'Ventas',
+                        data: ventasData,
+                        borderColor: '#0A7B48',
+                        backgroundColor: 'rgba(10, 123, 72, 0.12)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.35,
+                        pointBackgroundColor: '#0A7B48',
+                        pointBorderColor: '#0A7B48',
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₡ ' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        const serviciosCtx = document.getElementById('serviciosChart');
+        if (serviciosCtx) {
+            new Chart(serviciosCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: serviciosLabels,
+                    datasets: [{
+                        data: serviciosData,
+                        backgroundColor: [
+                            '#0A7B48',
+                            '#198754',
+                            '#20A36A',
+                            '#63C18D',
+                            '#A7E0BE'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+}

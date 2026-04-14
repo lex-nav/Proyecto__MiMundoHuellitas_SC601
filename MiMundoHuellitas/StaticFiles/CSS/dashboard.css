@@ -1,0 +1,231 @@
+/* ============================= */
+/* BASE GENERAL */
+/* ============================= */
+
+.dashboard-page {
+    background: linear-gradient(180deg, #f4faf7 0%, #ffffff 100%);
+    border-radius: 18px;
+    padding-bottom: 15px;
+}
+
+.dashboard-title {
+    color: #0A7B48;
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.dashboard-badge {
+    background: #e8f6ef;
+    color: #0A7B48;
+    border: 1px solid #cfead9;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ============================= */
+/* TARJETAS KPI */
+/* ============================= */
+
+.dashboard-kpi {
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    transition: all .25s ease;
+    cursor: default;
+}
+
+    .dashboard-kpi:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 2rem rgba(0,0,0,0.08) !important;
+    }
+
+    .dashboard-kpi .card-body {
+        padding: 1.2rem;
+        min-height: 125px;
+        position: relative;
+    }
+
+.dashboard-kpi-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 6px;
+}
+
+.dashboard-kpi-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.dashboard-kpi-icon {
+    position: absolute;
+    right: 16px;
+    bottom: 10px;
+    font-size: 2rem;
+    opacity: 0.15;
+}
+
+/* ============================= */
+/* PALETA VERDE PARA KPIs */
+/* ============================= */
+
+.kpi-ventas {
+    background: linear-gradient(135deg, #0A7B48, #0f9d5d);
+    color: #fff;
+}
+
+.kpi-citas-hoy {
+    background: linear-gradient(135deg, #146c43, #1f9e64);
+    color: #fff;
+}
+
+.kpi-citas-proximas {
+    background: linear-gradient(135deg, #1ea56d, #49c48f);
+    color: #fff;
+}
+
+.kpi-mascotas {
+    background: linear-gradient(135deg, #5bc79a, #9fe2c6);
+    color: #063d2a;
+}
+
+.kpi-sin-stock {
+    background: linear-gradient(135deg, #2e6f5c, #4fa287);
+    color: #fff;
+}
+
+.kpi-stock-bajo {
+    background: linear-gradient(135deg, #bfead7, #e4f7ef);
+    color: #0b5a3b;
+}
+
+/* ============================= */
+/* TARJETAS DE CONTENIDO */
+/* ============================= */
+
+.dashboard-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.dashboard-card-header {
+    background: #ffffff;
+    border-bottom: 1px solid #eef3f0;
+    padding: 1rem 1.25rem;
+}
+
+    .dashboard-card-header h5 {
+        color: #0A7B48;
+        font-weight: 700;
+    }
+
+.dashboard-card .card-body {
+    padding: 1.2rem;
+}
+
+/* ============================= */
+/* CONTENEDOR DE GRÁFICOS */
+/* ============================= */
+
+.chart-container {
+    position: relative;
+    width: 100%;
+}
+
+    .chart-container.chart-line {
+        height: 340px;
+    }
+
+    .chart-container.chart-donut {
+        height: 340px;
+    }
+
+/* ============================= */
+/* RESUMEN OPERATIVO */
+/* ============================= */
+
+.dashboard-summary-item {
+    padding: 0.8rem 1rem;
+    background: #f4faf7;
+    border-radius: 12px;
+    border: 1px solid #e3f1ea;
+    font-size: 0.95rem;
+}
+
+    .dashboard-summary-item span:last-child {
+        font-size: 1.1rem;
+    }
+
+/* ============================= */
+/* TEXTO PANEL */
+/* ============================= */
+
+.dashboard-panel-note {
+    color: #5f6f67;
+    line-height: 1.6;
+}
+
+/* ============================= */
+/* EFECTOS VISUALES PRO */
+/* ============================= */
+
+.dashboard-kpi::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.15);
+    transform: skewX(-25deg);
+}
+
+.dashboard-kpi:hover::after {
+    animation: shine 0.8s ease;
+}
+
+@keyframes shine {
+    100% {
+        left: 125%;
+    }
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 992px) {
+    .chart-container.chart-line,
+    .chart-container.chart-donut {
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-kpi-value {
+        font-size: 1.5rem;
+    }
+
+    .chart-container.chart-line,
+    .chart-container.chart-donut {
+        height: 260px;
+    }
+}
+.dashboard-action-btn {
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    font-weight: 600;
+    border-color: #b9dfca;
+    color: #0A7B48;
+    background-color: #f7fbf8;
+    transition: all .2s ease;
+}
+
+    .dashboard-action-btn:hover {
+        background: #0A7B48;
+        color: #fff;
+        border-color: #0A7B48;
+        transform: translateY(-2px);
+    }

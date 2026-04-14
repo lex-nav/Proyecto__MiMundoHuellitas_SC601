@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutInterno.cshtml";
+}
+
+@model List<MiMundoHuellitas.EF.MH_Cita_TB>
+
+<!-- HERO -->
+<div class="hero-section d-flex align-items-center text-white"
+     style="
+        height:260px;
+        background:
+            linear-gradient(rgba(10,123,72,0.80), rgba(14,118,140,0.80)),
+            url('/StaticFiles/img/gallery-2.jpg') center/cover no-repeat;">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold">Recordatorios</h1>
+        <p class="lead mb-0">
+            No olvides las próximas citas de tu mascota 🗓️
+        </p>
+    </div>
+</div>
+
+<!-- FONDO GENERAL -->
+<div style="
+    background: linear-gradient(
+        180deg,
+        #e8f8f3 0%,
+        #f5fffb 45%,
+        #ffffff 100%
+    );
+    min-height: calc(100vh - 260px);
+    padding: 60px 0;
+">
+
+    <div class="container">
+
+        @if (Model != null && Model.Any())
+        {
+            <ul>
+                @foreach (var cita in Model)
+                {
+                    <div class="alert alert-info">
+                        ⏰ Tienes una cita el <strong>@cita.FechaHoraCita.ToString("dd/MM/yyyy HH:mm")</strong>
+                    </div>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No tienes citas próximas 🎉</p>
+        }
