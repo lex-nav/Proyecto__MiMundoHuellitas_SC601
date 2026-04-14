@@ -276,6 +276,7 @@
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\PromocionesController.cs" />
     <Compile Include="Controllers\RecomendacionesController.cs" />
+    <Compile Include="Controllers\RecordatoriosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\SugerenciasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -775,6 +776,7 @@
     <Content Include="Views\Recomendaciones\Crear.cshtml" />
     <Content Include="Views\Sugerencias\Sugerencias.cshtml" />
     <Content Include="Views\Promociones\Index.cshtml" />
+    <Content Include="Views\Recordatorios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
