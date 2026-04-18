@@ -11,13 +11,11 @@ namespace MiMundoHuellitas.EF
 {
     using System;
     
-    public partial class usp_MH_ObtenerClientePorId_Result
+    public partial class usp_MH_CrearSiguientePlanilla_Result
     {
-        public int IdUsuario { get; set; }
-        public string NombreCompleto { get; set; }
-        public string Correo { get; set; }
-        public string Telefono { get; set; }
-        public string TipoUsuario { get; set; }
-        public bool Activo { get; set; }
+        public int Ok { get; set; }
+        public Nullable<System.DateTime> NuevaFechaInicio { get; set; }
+        public Nullable<System.DateTime> NuevaFechaFin { get; set; }
+        public string Mensaje { get; set; }
     }
 }

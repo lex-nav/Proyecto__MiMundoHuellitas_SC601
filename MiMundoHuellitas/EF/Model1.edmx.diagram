@@ -78,6 +78,7 @@
         <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_Servicio_Producto_TB" Width="2.625" PointX="17.75" PointY="10.625" IsExpanded="false" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_ServicioProducto_Producto" />
         <AssociationConnector Association="MiMundoHuellitasModel.FK_ServicioProducto_Servicio" />
+        <EntityTypeShape EntityType="MiMundoHuellitasModel.MH_PlanillaPeriodoConfig_TB" Width="1.5" PointX="7.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

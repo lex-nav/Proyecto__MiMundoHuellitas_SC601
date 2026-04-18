@@ -10,14 +10,12 @@
 namespace MiMundoHuellitas.EF
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class usp_MH_ObtenerClientePorId_Result
+    public partial class MH_PlanillaPeriodoConfig_TB
     {
-        public int IdUsuario { get; set; }
-        public string NombreCompleto { get; set; }
-        public string Correo { get; set; }
-        public string Telefono { get; set; }
-        public string TipoUsuario { get; set; }
+        public int IdConfig { get; set; }
+        public string TipoPeriodo { get; set; }
         public bool Activo { get; set; }
     }
 }

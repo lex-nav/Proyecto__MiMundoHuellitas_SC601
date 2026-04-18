@@ -244,6 +244,14 @@
           <Property Name="MontoDoble" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TotalPagar" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="MH_PlanillaPeriodoConfig_TB">
+          <Key>
+            <PropertyRef Name="IdConfig" />
+          </Key>
+          <Property Name="IdConfig" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoPeriodo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="MH_Productos_TB">
           <Key>
             <PropertyRef Name="IdProducto" />
@@ -371,8 +379,8 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_AsistenciaDiaria' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_AsistenciaDiaria' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_MH_AsistenciaDiaria">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -391,8 +399,8 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_AsistenciaDiaria'
           <Property Name="EsFeriado" Type="int" Nullable="false" />
           <Property Name="EsFinDeSemana" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.VW_MH_Auditoria' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MiMundoHuellitas.dbo.VW_MH_Auditoria' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_MH_Auditoria">
           <Key>
             <PropertyRef Name="IdAuditoria" />
@@ -416,8 +424,8 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.VW_MH_Auditoria' no tie
           <Property Name="FechaAuditoria" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="Observacion" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_MH_PlanillaDetalle">
           <Key>
             <PropertyRef Name="IdPlanilla" />
@@ -948,11 +956,16 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
           <Parameter Name="FactorDoble" Type="decimal" Mode="In" />
           <Parameter Name="Observacion" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="usp_MH_CerrarMarcacionesAbiertas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_MH_CerrarMarcacionesAbiertasAnteriores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_MH_CerrarPlanilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaInicio" Type="date" Mode="In" />
           <Parameter Name="FechaFin" Type="date" Mode="In" />
           <Parameter Name="CerradaPorIdUsuario" Type="int" Mode="In" />
           <Parameter Name="Motivo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_MH_CrearSiguientePlanilla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPlanillaCerrada" Type="bigint" Mode="In" />
         </Function>
         <Function Name="usp_MH_MarcarEntrada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -1010,6 +1023,7 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
           <EntitySet Name="MH_Permiso_TB" EntityType="Self.MH_Permiso_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Planilla_TB" EntityType="Self.MH_Planilla_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_PlanillaDetalle_TB" EntityType="Self.MH_PlanillaDetalle_TB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MH_PlanillaPeriodoConfig_TB" EntityType="Self.MH_PlanillaPeriodoConfig_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Productos_TB" EntityType="Self.MH_Productos_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Proveedor_TB" EntityType="Self.MH_Proveedor_TB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MH_Provincia_TB" EntityType="Self.MH_Provincia_TB" Schema="dbo" store:Type="Tables" />
@@ -2395,6 +2409,12 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
             <End Role="MH_Servicios_TB" EntitySet="MH_Servicios_TB" />
             <End Role="MH_Servicio_Producto_TB" EntitySet="MH_Servicio_Producto_TB" />
           </AssociationSet>
+          <EntitySet Name="MH_PlanillaPeriodoConfig_TB" EntityType="MiMundoHuellitasModel.MH_PlanillaPeriodoConfig_TB" />
+          <FunctionImport Name="usp_MH_CerrarMarcacionesAbiertas" />
+          <FunctionImport Name="usp_MH_CerrarMarcacionesAbiertasAnteriores" />
+          <FunctionImport Name="usp_MH_CrearSiguientePlanilla" ReturnType="Collection(MiMundoHuellitasModel.usp_MH_CrearSiguientePlanilla_Result)">
+            <Parameter Name="IdPlanillaCerrada" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -2564,6 +2584,20 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MH_PlanillaPeriodoConfig_TB">
+          <Key>
+            <PropertyRef Name="IdConfig" />
+          </Key>
+          <Property Name="IdConfig" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoPeriodo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="usp_MH_CrearSiguientePlanilla_Result">
+          <Property Type="Int32" Name="Ok" Nullable="false" />
+          <Property Type="DateTime" Name="NuevaFechaInicio" Nullable="true" />
+          <Property Type="DateTime" Name="NuevaFechaFin" Nullable="true" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="41" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3170,6 +3204,27 @@ advertencia 6002: La tabla o vista 'MiMundoHuellitas.dbo.vw_MH_PlanillaDetalle' 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MH_PlanillaPeriodoConfig_TB">
+            <EntityTypeMapping TypeName="MiMundoHuellitasModel.MH_PlanillaPeriodoConfig_TB">
+              <MappingFragment StoreEntitySet="MH_PlanillaPeriodoConfig_TB">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="TipoPeriodo" ColumnName="TipoPeriodo" />
+                <ScalarProperty Name="IdConfig" ColumnName="IdConfig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_MH_CerrarMarcacionesAbiertas" FunctionName="MiMundoHuellitasModel.Store.usp_MH_CerrarMarcacionesAbiertas" />
+          <FunctionImportMapping FunctionImportName="usp_MH_CerrarMarcacionesAbiertasAnteriores" FunctionName="MiMundoHuellitasModel.Store.usp_MH_CerrarMarcacionesAbiertasAnteriores" />
+          <FunctionImportMapping FunctionImportName="usp_MH_CrearSiguientePlanilla" FunctionName="MiMundoHuellitasModel.Store.usp_MH_CrearSiguientePlanilla">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiMundoHuellitasModel.usp_MH_CrearSiguientePlanilla_Result">
+                <ScalarProperty Name="Ok" ColumnName="Ok" />
+                <ScalarProperty Name="NuevaFechaInicio" ColumnName="NuevaFechaInicio" />
+                <ScalarProperty Name="NuevaFechaFin" ColumnName="NuevaFechaFin" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
