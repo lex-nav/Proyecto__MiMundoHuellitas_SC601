@@ -10,6 +10,11 @@
 *.userosscache
 *.sln.docstates
 credencialesMail.config
+Web.config
+Web.*.config
+appsettings.json
+appsettings.*.json
+*.config
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
