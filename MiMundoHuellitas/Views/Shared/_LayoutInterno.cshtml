@@ -29,6 +29,7 @@
     <link href="~/StaticFiles/css/responsive.css" rel="stylesheet" />
     <link href="~/StaticFiles/CSS/mimundo.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/StaticFiles/CSS/animaciones.css" />
+    <link href="~/StaticFiles/CSS/chatbot.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 
     <link rel="stylesheet"
@@ -211,11 +212,12 @@
                     @Html.ActionLink("Iniciar sesión", "Login", "Account", null, new { @class = "auth-link" })
                 }
 
-                <a href="#" class="social-icon" aria-label="Facebook">
+                <a href="https://www.facebook.com/share/18kic7TXwU/"
+                   class="social-icon"
+                   aria-label="Facebook"
+                   target="_blank"
+                   rel="noopener noreferrer">
                     <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-icon" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
                 </a>
             </div>
         </div>
@@ -328,9 +330,37 @@
 
     @RenderSection("FullWidthBottom", required: false)
 
+    <!-- 🐾 HUELLITAS BOT -->
+    <div id="chat-bubble">
+        <i class="fa-solid fa-paw"></i>
+    </div>
+
+    <div id="chat-window" class="hidden">
+        <div id="chat-header">
+            🐾 HuellitasBot
+            <span id="close-chat">✖</span>
+        </div>
+
+        <div id="chat-body">
+            <div class="bot-message">
+                ¡Hola! Bienvenido a Mi Mundo Huellitas 🐶
+                ¿Cómo puedo ayudarte hoy?
+            </div>
+
+            <div class="options">
+                <button onclick="respuesta(1)">¿Cómo agendar?</button>
+                <button onclick="respuesta(2)">Cuáles servicios ofrecemos?</button>
+                <button onclick="respuesta(3)">Horarios</button>
+                <button onclick="respuesta(4)">Ubicación</button>
+            </div>
+        </div>
+    </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script src="~/StaticFiles/JS/chatbot.js"></script>
 
 </body>
 </html>
